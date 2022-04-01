@@ -377,7 +377,42 @@
                                         
                                                                         
                                                                         <!-- Modal -->
+                                                                        <form action="{{ route('transaksi.destroy', $t->id)}}" method="post">
+                                                                          <div class="modal fade" id="modalDelete_{{ $t->id }}" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
+                                                                            <div class="modal-dialog" role="document">
+                                                                              <div class="modal-content">
 
+                                                                                  <div class="modal-header bg-danger">
+                                                                                    <h5 class="modal-title" id="exampleModalLabel">Peringatan</h5>
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                      <span aria-hidden="true">&times;</span>
+                                                                                    </button>
+                                                                                  </div>
+
+                                                                                  <div class="modal-body">
+
+
+                                                                                  @method('DELETE')
+                                                                                  @csrf
+
+                                                                                    <p>Apakah anda yakin ingin menghapus data <b>{{$t->kode_transaksi}}</b>- <b>{{$t->detail_kategori->kategori}}</b>  ?</p>
+                                                                                    <!-- <b>{{$t->kas->kas}}</b> dengan nominal <b> {{ "Rp.".number_format($t->nominal ).",-" }}</b> -->
+
+                                                                                  </div>
+
+                                                                                  <div class="modal-footer">
+                                                                                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="ti-close m-r-5 f-s-12"></i> Tutup</button>
+                                                                                    
+                                                                                    
+                                                                                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash m-r-5"></i> Hapus</button>
+                                                                                                        
+                                                                                  </div>
+                                                                          
+
+                                                                              </div>
+                                                                            </div>
+                                                                          </div>
+                                                                        </form>
                                                                 
 
                                                             </td>

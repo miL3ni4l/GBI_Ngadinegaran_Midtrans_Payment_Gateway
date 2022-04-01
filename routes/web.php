@@ -141,6 +141,7 @@ Route::get('pemasukan_khusus/status/{id}','PemasukanKhususController@status');
 
 
 //TRANSAKSI
+Route::post('/transaksi/destroy/{id}','TransaksiController@destroy');
 Route::resource('transaksi', 'TransaksiController');
 Route::get('transaksi_create_rutin', 'TransaksiController@transaksi_create_rutin')->name('transaksi_create_rutin');
 Route::post('transaksi_store_rutin', 'TransaksiController@transaksi_store_rutin')->name('transaksi_store_rutin');
