@@ -214,13 +214,17 @@ class PetugasController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function destroy(Petugas $petugas)
+     
+    public function destroy($id)
     {
+  
+
         if(Auth::user()->level == 'bendahara') {
             return redirect()->to('/home');
         }
-        if(Auth::user()->petugas->id != $petugas) {
-            $user_data = Petugas::findOrFail($petugas);
+        
+        if(Auth::user()->petugas->id != $id) {
+            $user_data = Petugas::findOrFail($id);
             $user_data->delete();
             Session::flash('message', 'Berhasil dihapus!');
             Session::flash('message_type', 'success');
@@ -230,6 +234,23 @@ class PetugasController extends Controller
         }
         return redirect()->route('petugas.index');
     }
+
+    // public function destroy(Petugas $petugas)
+    // {
+    //     if(Auth::user()->level == 'bendahara') {
+    //         return redirect()->to('/home');
+    //     }
+    //     if(Auth::user()->petugas->id != $petugas) {
+    //         $user_data = Petugas::findOrFail($petugas);
+    //         $user_data->delete();
+    //         Session::flash('message', 'Berhasil dihapus!');
+    //         Session::flash('message_type', 'success');
+    //     } else {
+    //         Session::flash('message', 'Data anda sendiri tidak bisa dihapus !');
+    //         Session::flash('message_type', 'danger');
+    //     }
+    //     return redirect()->route('petugas.index');
+    // }
 
     // public function hapus($id)
     // {

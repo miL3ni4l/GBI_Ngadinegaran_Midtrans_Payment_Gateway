@@ -139,7 +139,7 @@
 
 
                                                           <!-- Modal -->
-                                                          <form method="POST" action="{{ route('petugas.destroy', ['id' => $petugas->id]) }}">
+                                                          <form action="{{ route('petugas.destroy', $p->id)}}" method="post">
                                                             <div class="modal fade" id="modalDelete_{{ $p->id }}" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
                                                               <div class="modal-dialog" role="document">
                                                                 <div class="modal-content">
@@ -154,8 +154,8 @@
                                                                   <div class="modal-body">
 
 
-                                                                  {{ csrf_field() }}
-                                                                    {{ method_field('delete') }}
+                                                                  @method('DELETE')
+                                                                  @csrf
 
                                                                     <p>Apakah anda yakin ingin menghapus <b>{{ $p->nama }} </b>?</p>
 
