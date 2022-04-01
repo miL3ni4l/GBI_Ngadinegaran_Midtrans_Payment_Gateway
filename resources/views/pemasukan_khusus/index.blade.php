@@ -397,7 +397,7 @@
 
                                                         
                                                         <!-- Modal -->
-                                                        <form method="POST" action="{{ route('pemasukan_khusus.destroy',['id' => $t->id]) }}">
+                                                        <form action="{{ route('pemasukan_khusus.destroy', $t->id)}}" method="post">
                                                           <div class="modal fade" id="modalDelete_{{ $t->id }}" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
                                                             <div class="modal-dialog" role="document">
                                                               <div class="modal-content">

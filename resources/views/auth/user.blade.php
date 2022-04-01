@@ -157,7 +157,9 @@
                                           
                                                                           
                                                                           <!-- Modal -->
-                                                                          <form method="POST" action="{{ route('user.destroy',['id' => $data->id]) }}">
+                                                                          
+                                                                        <form action="{{ route('user.destroy', $data->id)}}" method="post">
+                                                
                                                                             <div class="modal fade" id="modalDelete_{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
                                                                               <div class="modal-dialog" role="document">
                                                                                 <div class="modal-content">

@@ -315,7 +315,7 @@
                                         <i class="fas fa-trash  text-center"></i>
                                       </a>
                                       
-                                          <form method="POST" action="{{ route('ibadah.destroy',['id' => $k->id]) }}">
+                                      <form action="{{ route('ibadah.destroy', $k->id)}}" method="post">
                                             <div class="modal fade" id="modalDelete_{{ $k->id }}" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
                                               <div class="modal-dialog">
                                                 <div class="modal-content">

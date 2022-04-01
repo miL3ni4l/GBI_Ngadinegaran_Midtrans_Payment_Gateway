@@ -383,7 +383,8 @@
                               <!-- Modal -->
                             
                             
-                                  <form method="POST" action="{{ route('kas.destroy',['id' => $k->id]) }}">
+                              
+                            <form action="{{ route('kas.destroy', $k->id)}}" method="post">
                                     <div class="modal fade" id="modalDelete_{{ $k->id }}" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
                                       <div class="modal-dialog">
                                         <div class="modal-content">

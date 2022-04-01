@@ -91,7 +91,8 @@
                             </div>
                             &nbsp
 
-                            <form method="POST" action="{{ route('kategori_pengeluaran.destroy',['id' => $kp->id]) }}">
+                            
+                            <form action="{{ route('kategori_pengeluaran.destroy', $kp->id)}}" method="post">
                                                                   <div class="modal fade" id="hapus_kategori_{{ $kp->id }}" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
                                                                       <div class="modal-dialog">
                                                                         <div class="modal-content">
@@ -351,7 +352,7 @@
                                                             </a>
                                                           
                                                             <!-- Modal -->
-                                                            <form method="POST" action="{{ route('detail_pengeluaran.destroy',['id' => $k->id]) }}">
+                                                            <form action="{{ route('detail_pengeluaran.destroy', $k->id)}}" method="post">
                                                               <div class="modal fade" id="modalDelete_{{ $k->id }}" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
                                                                   <div class="modal-dialog">
                                                                     <div class="modal-content">
