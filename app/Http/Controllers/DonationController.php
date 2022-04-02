@@ -1,9 +1,35 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Donation;
+
 
 use Illuminate\Http\Request;
+
+//skripsi
+use Illuminate\Support\Facades\DB;
+use App\Donation;
+use App\Anggota;
+use App\User;
+use App\Petugas;
+use App\DetailKategori;
+use App\DetailPengeluaran;
+use App\Kategori;
+use App\Kas;
+use App\Ibadah;
+use App\Transaksi;
+use Carbon\Carbon;
+use Hash;
+use Auth;
+use File;
+use Session;
+use PDF;
+
+use App\Exports\LaporanExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Str;
+
 
 class DonationController extends Controller
 {
@@ -21,10 +47,12 @@ class DonationController extends Controller
         $donations = Donation::orderBy('id', 'desc')->paginate(8);
         return view('welcome', compact('donations'));
     }
-
+ 
     public function create()
     {
-        return view('donation');
+        $kategoris = DetailKategori::orderBy('updated_at','desc')->get();    
+        return view('donation' , compact('kategoris'));
+        // return view('donation');
     }
 
     public function store(Request $request)
