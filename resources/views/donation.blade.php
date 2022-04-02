@@ -75,16 +75,17 @@
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
                                                                     
-                                                                        <label>Jenis Kelamin <b style="color:Tomato;">*</b></label>
+                                                                        <label>Jenis Persembahan <b style="color:Tomato;">*</b></label>
                                                                                                     <!-- <select required="required" name="jk" class="custom-select mb-3" > -->
                                                                                                     <select name="donation_type" class="form-control" id="donation_type"  class="custom-select mb-3">
                                                                                                        
-                                                                                                        <option value="">-- Pilih Jenis Persembahan --</option>  
+                                                                                                        <!-- <option value="">-- Pilih Jenis Persembahan --</option>  
                                                                                                     @foreach($kategoris as $k)
                                                                                                         <option value="{{$k->id = $k->kategori }}">{{$k->kategori}}</option>
-                                                                                                        <!-- <option value="persembahan">Persembahan</option>
-                                                                                                        <option value="persepuluhan">Perpuluhan</option> -->
-                                                                                                    @endforeach
+                                                                                                      
+                                                                                                    @endforeach -->
+                                                                                                        <option value="Kolekte">Kolekte</option>
+                                                                                                   
                                                                                                     </select>
                                                                                         
                                                                         </div>

@@ -50,7 +50,9 @@ class DonationController extends Controller
  
     public function create()
     {
-        $kategoris = DetailKategori::orderBy('updated_at','desc')->get();    
+        $kategoris = DetailKategori::orderBy('updated_at','desc')
+        ->where('jenis', 'Rutin')
+        ->get();    
         return view('donation' , compact('kategoris'));
         // return view('donation');
     }
