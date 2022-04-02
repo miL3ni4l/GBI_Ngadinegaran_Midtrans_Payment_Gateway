@@ -58,7 +58,7 @@ class DonationAdminController extends Controller
         $profil = Profil::orderBy('updated_at','desc')->get();
         $pendeta = Pendeta::orderBy('updated_at','desc')->get();
         $donation = Donation::orderBy('updated_at','desc')->get();
-     
+       
         return view('donation.index',array('ibadah' => $ibadah,'petugas' => $petugas,'profil' => $profil,'pendeta' => $pendeta,'donation' => $donation));
 
     }

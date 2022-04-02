@@ -36,6 +36,100 @@
       </div><!-- /.container-fluid -->
   </div>
 
+  <div class="content-header">
+                        <div class="container-fluid">
+                          <div class="row">
+
+                              <?php
+                                $seluruh_pemasukan = DB::table('transaksi')->select(DB::raw('SUM(nominal) as total'))
+                                ->where('status','1')
+                                ->first();
+                    
+                                $total = $seluruh_pemasukan->total;
+                              ?>
+
+                              <div class="col-md-3">
+                                <div class="card card-outline card-warning">
+                                    <div class="card-header">
+                                      <h3 class="card-title">
+                                      <b>Payment Pending</b> 
+                                      </h3>
+                                    </div>
+
+                                    <div class="card-tools"> 
+                                      <div class="card-body ">
+
+                                      <div class="row">
+                                        {{$donation->where('status', 'pending')->count()}}
+                                      </div>
+                                      </div>
+                                    </div>
+                                </div>
+                              </div>
+
+                              <div class="col-md-3">
+                                <div class="card card-outline card-success">
+                                    <div class="card-header">
+                                      <h3 class="card-title">
+                                      <b>Payment Succeess</b> 
+                                      </h3>
+                                    </div>
+
+                                    <div class="card-tools"> 
+                                      <div class="card-body ">
+
+                                      <div class="row">
+                                       {{$donation->where('status', 'success')->count()}}
+                                      </div>
+                                      </div>
+                                    </div>
+                                </div>
+                              </div>
+
+                              <div class="col-md-3">
+                                <div class="card card-outline card-danger">
+                                    <div class="card-header">
+                                      <h3 class="card-title">
+                                      <b>Payment Failed</b> 
+                                      </h3>
+                                    </div>
+
+                                    <div class="card-tools"> 
+                                      <div class="card-body ">
+
+                                      <div class="row">
+                                      {{$donation->where('status', 'failed')->count()}}
+                                      </div>
+                                      </div>
+                                    </div>
+                                </div>
+                              </div>
+
+                              <div class="col-md-3">
+                                <div class="card card-outline card-dark">
+                                    <div class="card-header">
+                                      <h3 class="card-title">
+                                      <b>Payment Expired</b> 
+                                      </h3>
+                                    </div>
+
+                                    <div class="card-tools"> 
+                                      <div class="card-body ">
+
+                                      <div class="row">
+                                      {{$donation->where('status', 'expired')->count()}}
+                                      </div>
+                                      </div>
+                                    </div>
+                                </div>
+                              </div>
+
+                             
+
+                          </div>
+                         </div>       
+                      </div>
+
 
 
   <section class="content">
@@ -44,7 +138,7 @@
         <div class="col-12">
             <div class="card">
                   <div class="card-header">
-                    <h3 class="card-title">Data Transaksi Midtrans</h3>
+                    <h3 class="card-title">Data Midtrans Payment</h3>
                   </div>
                   <div class="card">
                   </div>
@@ -76,7 +170,18 @@
                             <td>{{ $k->donor_email }}</td>
                             <td>{{ $k->donation_type }}</td>
                             <td class="text-right">{{ "Rp.".number_format($k->amount).",-" }}</td>
-                            <td class="text-center">{{ $k->status }}</td>
+                            <td class="text-center">
+                          
+                                                            @if($k->status  == 'success')
+                                                              <span class="badge bg-success col-md-8">{{ $k->status }}</span>
+                                                            @elseif($k->status  == 'failed')
+                                                              <span class="badge bg-danger col-md-8">{{ $k->status }}</span>    
+                                                            @elseif($k->status  == 'pending')
+                                                              <span class="badge bg-warning col-md-8">{{ $k->status }}</span>    
+                                                            @else($k->status  == 'expired')
+                                                              <span class="badge bg-dark col-md-8">{{ $k->status }}</span>    
+                                                            @endif
+                            </td>
                             <td class="text-center">{{ $k->updated_at->diffForHumans() }}</td>
                           </tr>
                           @endforeach
