@@ -13,7 +13,7 @@ use App\Petugas;
 use App\DetailKategori;
 use App\DetailPengeluaran;
 use App\kas;
-use App\Transaksi;
+use App\pemasukan_rutin;
 use Carbon\Carbon;
 use Hash;
 use Auth;
@@ -29,8 +29,8 @@ class RiwayatController extends Controller
 {
 
    
-    //TRANSAKSI
-    //MENAMPILKAN DATA TRANSAKSI
+    //pemasukan_rutin
+    //MENAMPILKAN DATA pemasukan_rutin
     public function index()
     {
         //Akses Dari Luar 
@@ -57,21 +57,21 @@ class RiwayatController extends Controller
         //menampilkan riwayat berdasarkan userlogin
         if(Auth::user()->level == 'bendahara')
         {
-            $transaksi = Transaksi::orderBy('tanggal','desc')
+            $pemasukan_rutin = pemasukan_rutin::orderBy('tanggal','desc')
             ->where('nama_pengguna', Auth::user()->petugas->id)
             ->where('status','1')
             ->whereMonth('tanggal',$bulan)
             ->get();
         } else {                  
-            $transaksi = Transaksi  ::orderBy('tanggal','desc')
+            $pemasukan_rutin = pemasukan_rutin  ::orderBy('tanggal','desc')
             ->whereMonth('tanggal',$bulan)
             ->where('status','1')
             ->get();
         }
-        return view('riwayat.index',['transaksi' => $transaksi, 'kategori' => $kategori, 'user'=>$user ]);
+        return view('riwayat.index',['pemasukan_rutin' => $pemasukan_rutin, 'kategori' => $kategori, 'user'=>$user ]);
     }
   
-    // FILTER RIWAYAT TRANSAKSI PER USER
+    // FILTER RIWAYAT pemasukan_rutin PER USER
     public function period()
     {   
          //Akses Dari Luar 
@@ -89,9 +89,9 @@ class RiwayatController extends Controller
         } 
 
         $user = Petugas::all();
-        $transaksi = Transaksi::all();
-        $transaksi = Transaksi::orderBy('tanggal','desc');
-        $transaksis  = Transaksi::count(); 
+        $pemasukan_rutin = pemasukan_rutin::all();
+        $pemasukan_rutin = pemasukan_rutin::orderBy('tanggal','desc');
+        $pemasukan_rutins  = pemasukan_rutin::count(); 
 
         if(Auth::user()->level == 'bendahara')
         {
@@ -99,14 +99,14 @@ class RiwayatController extends Controller
                 {
                     $user = Petugas::orderBy('nama','asc')->get();
                     if($_GET['user'] == ""){
-                        $transaksi = Transaksi::whereDate('tanggal','>=',$_GET['dari'])
+                        $pemasukan_rutin = pemasukan_rutin::whereDate('tanggal','>=',$_GET['dari'])
                         ->where('nama_pengguna', Auth::user()->petugas->id)
                         ->whereDate('tanggal','<=',$_GET['sampai'])
                         ->orderBy('tanggal','desc')
                         ->where('status','1')
                         ->get();
                     }else{
-                        $transaksi = Transaksi::where('nama_pengguna',$_GET['user'])
+                        $pemasukan_rutin = pemasukan_rutin::where('nama_pengguna',$_GET['user'])
                         ->where('nama_pengguna', Auth::user()->petugas->id)
                         ->whereDate('tanggal','>=',$_GET['dari'])
                         ->whereDate('tanggal','<=',$_GET['sampai'])
@@ -114,12 +114,12 @@ class RiwayatController extends Controller
                         ->where('status','1')
                         ->get();
                     }    
-                    return view('riwayat.index',['transaksi' => $transaksi, 
+                    return view('riwayat.index',['pemasukan_rutin' => $pemasukan_rutin, 
                     'user' => $user,            
-                    'transaksis'=>$transaksis]);
+                    'pemasukan_rutins'=>$pemasukan_rutins]);
                 }
                 else{
-                    return view('riwayat.index',['transaksi' => array(), 'user' => $user, 'transaksis'=>$transaksis]);
+                    return view('riwayat.index',['pemasukan_rutin' => array(), 'user' => $user, 'pemasukan_rutins'=>$pemasukan_rutins]);
                 
                 }
         }else{
@@ -127,32 +127,32 @@ class RiwayatController extends Controller
                 {
                     $user = Petugas::orderBy('nama','asc')->get();
                     if($_GET['user'] == ""){
-                        $transaksi = Transaksi::whereDate('tanggal','>=',$_GET['dari'])     
+                        $pemasukan_rutin = pemasukan_rutin::whereDate('tanggal','>=',$_GET['dari'])     
                         ->whereDate('tanggal','<=',$_GET['sampai'])
                         ->orderBy('tanggal','desc')
                         ->where('status','1')
                         ->get();
                     }else{
-                        $transaksi = Transaksi::where('nama_pengguna',$_GET['user'])
+                        $pemasukan_rutin = pemasukan_rutin::where('nama_pengguna',$_GET['user'])
                         ->whereDate('tanggal','>=',$_GET['dari'])
                         ->whereDate('tanggal','<=',$_GET['sampai'])
                         ->orderBy('tanggal','desc')
                         ->where('status','1')
                         ->get();
                     }    
-                    return view('riwayat.index',['transaksi' => $transaksi, 
+                    return view('riwayat.index',['pemasukan_rutin' => $pemasukan_rutin, 
                     'user' => $user, 
-                    'transaksis'=>$transaksis]);
+                    'pemasukan_rutins'=>$pemasukan_rutins]);
                 }
                 else{
                 
-                    return view('riwayat.index',['transaksi' => array(), 'user' => $user, 'seluruh_pemasukan' => $seluruh_pemasukan,  'seluruh_pengeluaran' => $seluruh_pengeluaran,'transaksis'=>$transaksis]);
+                    return view('riwayat.index',['pemasukan_rutin' => array(), 'user' => $user, 'seluruh_pemasukan' => $seluruh_pemasukan,  'seluruh_pengeluaran' => $seluruh_pengeluaran,'pemasukan_rutins'=>$pemasukan_rutins]);
                 
                 }
         }
     }
 
-    //show data transaksi
+    //show data pemasukan_rutin
     public function show($id)
     {       
         //Akses Dari Luar 
@@ -170,8 +170,8 @@ class RiwayatController extends Controller
               return redirect()->to('/');
           } 
           
-        $transaksi = Transaksi::findOrFail($id);
-        return view('riwayat.show', compact('transaksi'));
+        $pemasukan_rutin = pemasukan_rutin::findOrFail($id);
+        return view('riwayat.show', compact('pemasukan_rutin'));
     }
 
     

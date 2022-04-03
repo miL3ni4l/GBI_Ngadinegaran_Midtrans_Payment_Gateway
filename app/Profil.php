@@ -10,9 +10,9 @@ class Profil extends Model
 
 	protected $fillable = ["nama_gereja","alamat_gereja","email_gereja","tlp_gereja","sejarah_gereja","visi_gereja","misi_gereja"];
 
-	// public function transaksi()
+	// public function pemasukan_rutin()
     // {
-    // 	return $this->hasMany(Transaksi::class);
+    // 	return $this->hasMany(pemasukan_rutin::class);
     // }
 
 	

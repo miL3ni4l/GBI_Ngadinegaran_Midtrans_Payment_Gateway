@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Kategori;
 use App\kas;
-use App\Transaksi;
+use App\pemasukan_rutin;
 use App\User;
 
 use Hash;

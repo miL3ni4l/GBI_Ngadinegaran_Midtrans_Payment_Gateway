@@ -9,7 +9,7 @@ class PengeluaranRutin extends Model
 	protected $table = "pengeluaran_rutin";
 	protected $dates = ['tanggal'];
 
-	protected $fillable = ["nama_pengguna","kode_transaksi", "tanggal","kategori_id","detail_pengeluaran","kas_id","cover","nominal","status","keterangan"];
+	protected $fillable = ["nama_pengguna","kode_pemasukan_rutin", "tanggal","kategori_id","detail_pengeluaran","kas_id","cover","nominal","status","keterangan"];
 
 	public function nama_kategori()
 	{

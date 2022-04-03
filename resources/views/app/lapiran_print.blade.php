@@ -68,10 +68,10 @@
       $total_pengeluaran_rutin = 0;
       $total_pengeluaran_khusus = 0;
       @endphp
-        @foreach($transaksi as $t)
+        @foreach($pemasukan_rutin as $t)
         <tr>
           <td class="text-left">{{ $no++ }}</td>
-          <td>{{ $t->kode_transaksi }}</td>
+          <td>{{ $t->kode_pemasukan_rutin }}</td>
           <td class="text-left">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
           <td>{{ $t->detail_kategori->kategori }}</td>
           <td>{{ $t->kas->kas }}</td>
@@ -97,7 +97,7 @@
         @foreach($pengeluaran_rutin as $t)
                       <tr>
                         <td class="text-left">{{ $no++ }}</td>
-                        <td class="text-left">{{ $t->kode_transaksi }}</td>
+                        <td class="text-left">{{ $t->kode_pemasukan_rutin }}</td>
                         <td class="text-left">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
                         <td class="text-left">{{ $t->kategori_pengeluaran->kategori }}</td>
                         <td class="text-left">{{ $t->kas->kas }}</td>
@@ -110,7 +110,7 @@
         @foreach($pengeluaran_khusus as $t)
                       <tr>
                         <td class="text-left">{{ $no++ }}</td>
-                        <td class="text-left">{{ $t->kode_transaksi }}</td>
+                        <td class="text-left">{{ $t->kode_pemasukan_rutin }}</td>
                         <td class="text-left">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
                         <td class="text-left">{{ $t->detail_kategori->kategori }}</td>
                         <td class="text-left">{{ $t->kas->kas }}</td>

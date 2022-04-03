@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Petugas;
 use App\Ibadah;
-use App\Transaksi;
+use App\pemasukan_rutin;
 use App\PemasukanKhusus;
 use App\Kas;
 use App\User;
@@ -114,7 +114,7 @@ class IbadahController extends Controller
 
     }
 
-    //FILTER DATA TRANSAKSI BERDASARKAN TANGGAL2
+    //FILTER DATA pemasukan_rutin BERDASARKAN TANGGAL2
     public function ibadah_filter()
     {   
         //Akses Dari Luar 
@@ -135,7 +135,7 @@ class IbadahController extends Controller
         $kas = Kas::orderBy('kas','asc')->get();
 
         if($_GET['ibadah'] == "" || $_GET['kas'] == ""){
-            $transaksi = Transaksi::whereDate('tanggal','>=',$_GET['dari'])
+            $pemasukan_rutin = pemasukan_rutin::whereDate('tanggal','>=',$_GET['dari'])
             ->whereDate('tanggal','<=',$_GET['sampai'])
             ->where('status','1')
             ->get();
@@ -145,7 +145,7 @@ class IbadahController extends Controller
             ->get();
         }
         else{
-            $transaksi = Transaksi::where('ibadah_id',$_GET['ibadah'])
+            $pemasukan_rutin = pemasukan_rutin::where('ibadah_id',$_GET['ibadah'])
             ->whereDate('tanggal','>=',$_GET['dari'])
             ->whereDate('tanggal','<=',$_GET['sampai'])
             ->where('kas_id',$_GET['kas'])
@@ -158,7 +158,7 @@ class IbadahController extends Controller
             ->where('status','1')
             ->get();   
         }  
-        return view('ibadah.index',['transaksi' => $transaksi, 'pemasukan_khusus' => $pemasukan_khusus, 'ibadah'=>$ibadah, 'kas'=>$kas]);
+        return view('ibadah.index',['pemasukan_rutin' => $pemasukan_rutin, 'pemasukan_khusus' => $pemasukan_khusus, 'ibadah'=>$ibadah, 'kas'=>$kas]);
 
 
     }
@@ -205,11 +205,11 @@ class IbadahController extends Controller
         $ibadah = Ibadah::find($id);
         $ibadah = Ibadah::orderBy('id','desc')->find($id);    
         $ibadah->delete();
-        $tt = Transaksi::where('ibadah_id',$id)->get();
+        $tt = pemasukan_rutin::where('ibadah_id',$id)->get();
         if($tt->count() > 0){
-            $transaksi = Transaksi::where('ibadah_id',$id)->first();
-            $transaksi->ibadah_id = "1";
-            $transaksi->save();
+            $pemasukan_rutin = pemasukan_rutin::where('ibadah_id',$id)->first();
+            $pemasukan_rutin->ibadah_id = "1";
+            $pemasukan_rutin->save();
         }    
         Session::flash('message', 'Berhasil dihapus!');
         Session::flash('message_type', 'success');

@@ -81,7 +81,7 @@
                                 
                                               <div class="form-group{{ $errors->has('kode_pemasukan_khusus') ? ' has-error' : '' }}">
                                                     
-                                                    <label for="kode_pemasukan_khusus" class="col-md-7 control-label">Kode Transaksi <b style="color:Tomato;">*</b> </label>
+                                                    <label for="kode_pemasukan_khusus" class="col-md-7 control-label">Kode pemasukan_rutin <b style="color:Tomato;">*</b> </label>
                                                     <div class="col-md-12">
                                                         <input id="kode_pemasukan_khusus" type="text" class="form-control" name="kode_pemasukan_khusus" value="{{ $kode }}" readonly="">
                                                         @if ($errors->has('kode_pemasukan_khusus'))
@@ -118,7 +118,7 @@
                                                   @foreach($ibadahs as $i)        
                                                   <?php 
                                                         $id_ibadah = $i->id;
-                                                        $pemasukan_peribadah = DB::table('transaksi')
+                                                        $pemasukan_peribadah = DB::table('pemasukan_rutin')
                                                         ->select(DB::raw('SUM(nominal) as total'))
                                                         ->where('ibadah_id',$id_ibadah)
                                                         ->where('status','1')
@@ -133,7 +133,7 @@
 
                                                         <?php 
                                                         $id_ibadah = $i->id;
-                                                        $pengeluaran_peribadah = DB::table('transaksi')
+                                                        $pengeluaran_peribadah = DB::table('pemasukan_rutin')
                                                         ->select(DB::raw('SUM(nominal) as total'))
                                                         ->where('ibadah_id',$id_ibadah)
                                                         ->where('status','1')
@@ -162,7 +162,7 @@
 
                                                       <?php 
                                                         $id_kategori = $k->id;
-                                                        $pemasukan_perkategori = DB::table('transaksi')
+                                                        $pemasukan_perkategori = DB::table('pemasukan_rutin')
                                                         ->select(DB::raw('SUM(nominal) as total'))
                                                         ->where('kategori_id',$id_kategori)
                                                         ->where('status','1')
@@ -177,7 +177,7 @@
 
                                                         <?php 
                                                         $id_kategori = $k->id;
-                                                        $pengeluaran_perkategori = DB::table('transaksi')
+                                                        $pengeluaran_perkategori = DB::table('pemasukan_rutin')
                                                         ->select(DB::raw('SUM(nominal) as total'))
                                                         ->where('kategori_id',$id_kategori)
                                                         ->where('status','1')
@@ -208,7 +208,7 @@
 
                                                   <?php 
                                                       $id_kas = $k->id;
-                                                      $pemasukan_perkas = DB::table('transaksi')
+                                                      $pemasukan_perkas = DB::table('pemasukan_rutin')
                                                       ->select(DB::raw('SUM(nominal) as total'))
                                                       ->where('kas_id',$id_kas)
                                                       ->where('status','1')
@@ -223,7 +223,7 @@
 
                                                       <?php 
                                                       $id_kas = $k->id;
-                                                      $pengeluaran_perkas = DB::table('transaksi')
+                                                      $pengeluaran_perkas = DB::table('pemasukan_rutin')
                                                       ->select(DB::raw('SUM(nominal) as total'))
                                                       ->where('kas_id',$id_kas)
                                                       ->where('status','1')
@@ -272,7 +272,7 @@
                               
 
                                               <div class="form-group col-md-12">
-                                                        <label for="email" class="col-md-12 control-label">Bukti Transaksi <i>(kosongkan jika tidak ada)</i> </label>
+                                                        <label for="email" class="col-md-12 control-label">Bukti pemasukan_rutin <i>(kosongkan jika tidak ada)</i> </label>
                                                         
                                                         <div class="col-md-12">
                                                             <img width="235" height="235" />

@@ -33,7 +33,7 @@ use Illuminate\Support\Str;
 class PemasukanKhususController extends Controller
 {
 
-    //READ TRANSAKSI
+    //READ pemasukan_rutin
     public function index()
     {
         //Akses Dari Luar 
@@ -120,7 +120,7 @@ class PemasukanKhususController extends Controller
         return view('pemasukan_khusus.index', compact('pemasukan_khusus','nama', 'kas','ibadah','kategori', 'datas', 'kategoris'));
     }
    
-    //FILTER DATA TRANSAKSI BERDASARKAN TANGGAL2
+    //FILTER DATA pemasukan_rutin BERDASARKAN TANGGAL2
     public function periode_pemasukan_khusus()
     {   
         //Akses Dari Luar 
@@ -187,7 +187,7 @@ class PemasukanKhususController extends Controller
         return Excel::download(new LaporanExport, 'Laporan.xlsx');
     }
 
-    //MENAMBAHKAN DATA TRANSAKSI
+    //MENAMBAHKAN DATA pemasukan_rutin
     public function create(Request $request)
     {   
 
@@ -317,7 +317,7 @@ class PemasukanKhususController extends Controller
     }
 
     //SEMUA USER BISA AKSES
-    //UPDATE TRANSAKSI
+    //UPDATE pemasukan_rutin
     public function edit($id)
     {   
 

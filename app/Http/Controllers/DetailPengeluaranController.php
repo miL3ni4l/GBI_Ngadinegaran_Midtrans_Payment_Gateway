@@ -13,7 +13,7 @@ use App\Kategori;
 use App\KategoriPengeluaranRutin;
 use App\DetailPengeluaran;
 use App\PengeluaranRutin;
-use App\Transaksi;
+use App\pemasukan_rutin;
 use App\User;
 
 use Hash;
@@ -65,18 +65,18 @@ class DetailPengeluaranController extends Controller
                 $kategoris = DetailPengeluaran::orderBy('updated_at','desc')->get();   
             }
 
-            $transaksis = Transaksi::all();
+            $pemasukan_rutins = pemasukan_rutin::all();
             $kategori = DetailPengeluaran::get();
-            $transaksi = Transaksi::get();
+            $pemasukan_rutin = pemasukan_rutin::get();
             $kategori_pengeluaran= KategoriPengeluaranRutin::orderBy('updated_at','desc')->get();    
-            $seluruh_pemasukan = DB::table('transaksi')->select(DB::raw('SUM(nominal) as total'))
+            $seluruh_pemasukan = DB::table('pemasukan_rutin')->select(DB::raw('SUM(nominal) as total'))
             ->where('status','1')
             ->first();
 
             $total = $seluruh_pemasukan->total;
 
             
-            return view('detail_pengeluaran.index', compact('datas','kategori', 'kategoris', 'transaksis','transaksi', 'total' , 'seluruh_pemasukan','kategori_pengeluaran'));
+            return view('detail_pengeluaran.index', compact('datas','kategori', 'kategoris', 'pemasukan_rutins','pemasukan_rutin', 'total' , 'seluruh_pemasukan','kategori_pengeluaran'));
 
     }
 
@@ -177,7 +177,7 @@ class DetailPengeluaranController extends Controller
     }
 
        
-    //FILTER DATA TRANSAKSI BERDASARKAN TANGGAL2
+    //FILTER DATA pemasukan_rutin BERDASARKAN TANGGAL2
     public function rutin_pengeluaran()
     {   
         //Akses Dari Luar 
@@ -208,21 +208,21 @@ class DetailPengeluaranController extends Controller
         $kategoris = DetailPengeluaran::all(); 
         $kategori = DetailPengeluaran::orderBy('kategori','asc')->get();
         $kategori_pengeluaran= KategoriPengeluaranRutin::orderBy('updated_at','desc')->get();    
-        $transaksi = Transaksi::all();
-        $transaksis  = Transaksi::count(); 
+        $pemasukan_rutin = pemasukan_rutin::all();
+        $pemasukan_rutins  = pemasukan_rutin::count(); 
 
         if($_GET['kategori'] == ""){
-            $transaksi = PengeluaranRutin::whereDate('tanggal','>=',$_GET['dari'])
+            $pemasukan_rutin = PengeluaranRutin::whereDate('tanggal','>=',$_GET['dari'])
             ->whereDate('tanggal','<=',$_GET['sampai'])
             ->get();
         }
         else{
-            $transaksi = PengeluaranRutin::where('detail_pengeluaran',$_GET['kategori'])
+            $pemasukan_rutin = PengeluaranRutin::where('detail_pengeluaran',$_GET['kategori'])
             ->whereDate('tanggal','>=',$_GET['dari'])
             ->whereDate('tanggal','<=',$_GET['sampai'])
             ->get();     
         }  
-        return view('detail_pengeluaran.index',['transaksi' => $transaksi, 'kategori' => $kategori, 'datas' => $datas,'details' => $details,'kategoris'=>$kategoris ,'transaksis'=>$transaksis, 'kategori_pengeluaran'=> $kategori_pengeluaran]);
+        return view('detail_pengeluaran.index',['pemasukan_rutin' => $pemasukan_rutin, 'kategori' => $kategori, 'datas' => $datas,'details' => $details,'kategoris'=>$kategoris ,'pemasukan_rutins'=>$pemasukan_rutins, 'kategori_pengeluaran'=> $kategori_pengeluaran]);
 
 
     }
@@ -269,9 +269,9 @@ class DetailPengeluaranController extends Controller
         $tt = PengeluaranRutin::where('kategori_id',$id)->get();
 
         if($tt->count() > 0){
-            $transaksi = PengeluaranRutin::where('kategori_id',$id)->first();
-            $transaksi->kategori_id = "1";
-            $transaksi->save();
+            $pemasukan_rutin = PengeluaranRutin::where('kategori_id',$id)->first();
+            $pemasukan_rutin->kategori_id = "1";
+            $pemasukan_rutin->save();
         }
         Session::flash('message', 'Berhasil dihapus!');
         Session::flash('message_type', 'success');

@@ -178,10 +178,10 @@
                                             @endphp
 
                                             <!-- PEMASUKAN RUTIN -->
-                                            @foreach($transaksi as $t)
+                                            @foreach($pemasukan_rutin as $t)
                                             <tr>
                                               <td class="text-center">{{ $no++ }}</td>
-                                              <td class="text-left">{{ $t->kode_transaksi }}</td>
+                                              <td class="text-left">{{ $t->kode_pemasukan_rutin }}</td>
                                               <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
                                               <td class="text-left">{{ $t->detail_kategori->kategori }}</td>
                                               <td class="text-left">{{ $t->kas->kas }}</td>
@@ -200,7 +200,7 @@
                                             @foreach($pengeluaran_rutin as $t)
                                             <tr>
                                               <td class="text-center">{{ $no++ }}</td>
-                                              <td class="text-left">{{ $t->kode_transaksi }}</td>
+                                              <td class="text-left">{{ $t->kode_pemasukan_rutin }}</td>
                                               <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
                                               <td class="text-left">{{ $t->kategori_pengeluaran->kategori }}</td>
                                               <td class="text-left">{{ $t->kas->kas }}</td>
@@ -238,7 +238,7 @@
                                             @foreach($pengeluaran_khusus as $t)
                                             <tr>
                                               <td class="text-center">{{ $no++ }}</td>
-                                              <td class="text-left">{{ $t->kode_transaksi }}</td>
+                                              <td class="text-left">{{ $t->kode_pemasukan_rutin }}</td>
                                               <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
                                               <td class="text-left">{{ $t->detail_kategori->kategori }}</td>
                                               <td class="text-left">{{ $t->kas->kas }}</td>
@@ -337,7 +337,7 @@
 
                             <?php 
                                                                         $id_kas = $k->id;
-                                                                        $pemasukan_perkas = DB::table('transaksi')
+                                                                        $pemasukan_perkas = DB::table('pemasukan_rutin')
                                                                         ->select(DB::raw('SUM(nominal) as total'))
                                                                         ->where('kas_id',$id_kas)
                                                                         ->where('status','1')
@@ -498,7 +498,7 @@
         @foreach($kas as $k)
         <?php 
         $id_kas = $k->id;
-        $pemasukan_perkas = DB::table('transaksi')
+        $pemasukan_perkas = DB::table('pemasukan_rutin')
         ->select(DB::raw('SUM(nominal) as total'))
         ->where('kas_id',$id_kas)
         ->where('status','1')

@@ -79,14 +79,14 @@
                               
                                               
                                 
-                                              <div class="form-group{{ $errors->has('kode_transaksi') ? ' has-error' : '' }}">
+                                              <div class="form-group{{ $errors->has('kode_pemasukan_rutin') ? ' has-error' : '' }}">
                                                     
-                                                    <label for="kode_transaksi" class="col-md-7 control-label">Kode Transaksi <b style="color:Tomato;">*</b> </label>
+                                                    <label for="kode_pemasukan_rutin" class="col-md-7 control-label">Kode pemasukan_rutin <b style="color:Tomato;">*</b> </label>
                                                     <div class="col-md-12">
-                                                        <input id="kode_transaksi" type="text" class="form-control" name="kode_transaksi" value="{{ $kode }}" readonly="">
-                                                        @if ($errors->has('kode_transaksi'))
+                                                        <input id="kode_pemasukan_rutin" type="text" class="form-control" name="kode_pemasukan_rutin" value="{{ $kode }}" readonly="">
+                                                        @if ($errors->has('kode_pemasukan_rutin'))
                                                             <span class="help-block">
-                                                                <strong>{{ $errors->first('kode_transaksi') }}</strong>
+                                                                <strong>{{ $errors->first('kode_pemasukan_rutin') }}</strong>
                                                             </span>
                                                         @endif
                                                     </div>
@@ -118,7 +118,7 @@
                                                   @foreach($kategoris as $k)
                                                       <?php 
                                                           $id_kategori = $k->id;
-                                                          $pemasukan_perkategori = DB::table('transaksi')
+                                                          $pemasukan_perkategori = DB::table('pemasukan_rutin')
                                                           ->select(DB::raw('SUM(nominal) as total'))
                                                           ->where('kategori_id',$id_kategori)
                                                           ->where('status','1')
@@ -163,7 +163,7 @@
 
                                                   <?php 
                                                       $id_kas = $k->id;
-                                                      $pemasukan_perkas = DB::table('transaksi')
+                                                      $pemasukan_perkas = DB::table('pemasukan_rutin')
                                                       ->select(DB::raw('SUM(nominal) as total'))
                                                       ->where('kas_id',$id_kas)
                                                       ->where('status','1')
@@ -210,7 +210,7 @@
                               
 
                                               <div class="form-group col-md-12">
-                                                        <label for="email" class="col-md-12 control-label">Bukti Transaksi <i>(kosongkan jika tidak ada)</i> </label>
+                                                        <label for="email" class="col-md-12 control-label">Bukti pemasukan_rutin <i>(kosongkan jika tidak ada)</i> </label>
                                                         
                                                         <div class="col-md-12">
                                                             <img width="235" height="235" />

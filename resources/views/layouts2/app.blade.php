@@ -42,6 +42,8 @@
           <i class="fas fa-th-large"></i>
         </a>
       </li>
+
+
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -74,12 +76,6 @@
         @else(Auth::user() == '')
         -
         @endif
-
-
-
-
-
-
         </div>
         <div class="info">
           <a>{{Auth::user()->name}}</a>

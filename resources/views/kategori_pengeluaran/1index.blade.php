@@ -99,14 +99,14 @@
                                                             @foreach ($k->detail_kategori as $dk)
                                                               <?php 
                                                                 $id_kategori = $dk->id;
-                                                                $pemasukan_perkategori = DB::table('transaksi')
+                                                                $pemasukan_perkategori = DB::table('pemasukan_rutin')
                                                                 ->select(DB::raw('SUM(nominal) as total'))
                                                                 ->where('kategori_id',$id_kategori)
                                                                 ->where('status','1')
                                                                 ->first();
                                                             
                                                                 $id_kategori = $dk->id;
-                                                                $pengeluaran_perkategori = DB::table('transaksi')
+                                                                $pengeluaran_perkategori = DB::table('pemasukan_rutin')
                                                                 ->select(DB::raw('SUM(nominal) as total'))
                                                                 ->where('kategori_id',$id_kategori)
                                                                 ->where('status','1')
@@ -114,7 +114,7 @@
 
                                                                 $total = $pemasukan_perkategori->total -= $pengeluaran_perkategori->total;    
                                                                 
-                                                                $sisa = DB::table('transaksi')
+                                                                $sisa = DB::table('pemasukan_rutin')
                                                                 ->where('status','1')
                                                                 ->sum('nominal');                                    
                                                               ?>

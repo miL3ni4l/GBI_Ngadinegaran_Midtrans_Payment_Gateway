@@ -18,8 +18,8 @@
                                   <div class="col-md-12 col-sm-12 col-12">
                                     <ol class="breadcrumb float-sm-right">
                                       <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                                      <li class="breadcrumb-item"><a href="/transaksi">Pemasukan Rutin</a></li>
-                                      <li class="breadcrumb-item active">{{$transaksi->kode_transaksi}}-{{$transaksi->detail_kategori->kategori}}</li>
+                                      <li class="breadcrumb-item"><a href="/pemasukan_rutin">Pemasukan Rutin</a></li>
+                                      <li class="breadcrumb-item active">{{$pemasukan_rutin->kode_pemasukan_rutin}}-{{$pemasukan_rutin->detail_kategori->kategori}}</li>
                                     </ol>
                                   </div>
                               </div> 
@@ -39,14 +39,14 @@
                     <div class="card card-primary card-outline">
                       <div class="mailbox-read-info">
                         <h5>
-                          <b>{{$transaksi->kode_transaksi}}-{{$transaksi->detail_kategori->kategori}} 
-                                    @if($transaksi->status == '1')
+                          <b>{{$pemasukan_rutin->kode_pemasukan_rutin}}-{{$pemasukan_rutin->detail_kategori->kategori}} 
+                                    @if($pemasukan_rutin->status == '1')
                                         <i class="fa fa-check-square" style="color:green" ></i>
                                       @else
                                         <i class="fa fa-times" style="color:red"></i>
                                     @endif
                           </b>
-                          <span class="mailbox-read-time float-right">{{ $transaksi->updated_at->diffForHumans() }}</span>
+                          <span class="mailbox-read-time float-right">{{ $pemasukan_rutin->updated_at->diffForHumans() }}</span>
                         </h5>
                       </div>
 
@@ -54,17 +54,17 @@
                         <p>Hello <b><i>{{Auth::user()->name}}</i></b>,</p>
 
                         <p>
-                          Pemasukan ini dilakukan pada tanggal <b>{{$transaksi->tanggal->format('d-M-Y')}}</b> dengan kategori <b>{{$transaksi->detail_kategori->kategori}}</b>
-                          nominal <b>{{ "Rp.".number_format($transaksi->nominal).",-" }} </b>
-                          dimasukan ke dalam <b>{{$transaksi->kas->kas}}</b>.
+                          Pemasukan ini dilakukan pada tanggal <b>{{$pemasukan_rutin->tanggal->format('d-M-Y')}}</b> dengan kategori <b>{{$pemasukan_rutin->detail_kategori->kategori}}</b>
+                          nominal <b>{{ "Rp.".number_format($pemasukan_rutin->nominal).",-" }} </b>
+                          dimasukan ke dalam <b>{{$pemasukan_rutin->kas->kas}}</b>.
                         </p>
 
                         <p>
-                          Keterangan :<i>{{$transaksi->keterangan}}</i> 
+                          Keterangan :<i>{{$pemasukan_rutin->keterangan}}</i> 
                         </p>
 
-                        <p>Bukti Transaksi :</p>
-                        <img width="270" height="270" @if($transaksi->cover) src="{{ asset('images/Transaksi/'.$transaksi->cover) }}" @endif /> 
+                        <p>Bukti pemasukan_rutin :</p>
+                        <img width="270" height="270" @if($pemasukan_rutin->cover) src="{{ asset('images/pemasukan_rutin/'.$pemasukan_rutin->cover) }}" @endif /> 
                       </div>
                     </div>
       

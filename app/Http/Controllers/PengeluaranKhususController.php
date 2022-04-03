@@ -15,7 +15,7 @@ use App\DetailKategori;
 use App\DetailPengeluaran;
 use App\Kategori;
 use App\Kas;
-use App\Transaksi;
+use App\pemasukan_rutin;
 use App\PengeluaranKhusus;
 use Carbon\Carbon;
 use Hash;
@@ -33,7 +33,7 @@ use Illuminate\Support\Str;
 class PengeluaranKhususController extends Controller
 {
 
-    //READ TRANSAKSI
+    //READ pemasukan_rutin
     public function index()
     {
         //Akses Dari Luar 
@@ -55,17 +55,17 @@ class PengeluaranKhususController extends Controller
         if(Auth::user()->level == 'bendahara')
         {
               
-            $transaksi = PengeluaranKhusus::orderBy('updated_at','desc')->where('nama_pengguna', Auth::user()->petugas->id)->get();           
+            $pemasukan_rutin = PengeluaranKhusus::orderBy('updated_at','desc')->where('nama_pengguna', Auth::user()->petugas->id)->get();           
         } else {       
                  
-            $transaksi = PengeluaranKhusus::get();
-            $transaksi = PengeluaranKhusus::orderBy('updated_at','desc')->get();
+            $pemasukan_rutin = PengeluaranKhusus::get();
+            $pemasukan_rutin = PengeluaranKhusus::orderBy('updated_at','desc')->get();
         }
 
 
         $kas = Kas::all();
         $kategori = DetailKategori::where('jenis', 'Khusus')->get();
-        return view('pengeluaran_khusus.index', compact('transaksi','nama', 'kas', 'kategori'));
+        return view('pengeluaran_khusus.index', compact('pemasukan_rutin','nama', 'kas', 'kategori'));
 
     }
 
@@ -89,14 +89,14 @@ class PengeluaranKhususController extends Controller
         if(Auth::user()->level == 'bendahara')
         {
               
-            $transaksi = PengeluaranKhusus::orderBy('updated_at','desc')
+            $pemasukan_rutin = PengeluaranKhusus::orderBy('updated_at','desc')
             ->where('nama_pengguna', Auth::user()->petugas->id)
             ->where('status', '0')
             ->get();           
         } else {       
                  
-            $transaksi = PengeluaranKhusus::get();
-            $transaksi = PengeluaranKhusus::orderBy('updated_at','desc')
+            $pemasukan_rutin = PengeluaranKhusus::get();
+            $pemasukan_rutin = PengeluaranKhusus::orderBy('updated_at','desc')
             ->where('status', '0')
             ->get();
         }
@@ -117,10 +117,10 @@ class PengeluaranKhususController extends Controller
 
         $kas = Kas::all();
         $kategori = DetailKategori::where('jenis', 'Khusus')->get();
-        return view('pengeluaran_khusus.index', compact('transaksi','nama', 'kas','kategori', 'datas', 'kategoris'));
+        return view('pengeluaran_khusus.index', compact('pemasukan_rutin','nama', 'kas','kategori', 'datas', 'kategoris'));
     }
    
-    //FILTER DATA TRANSAKSI BERDASARKAN TANGGAL2
+    //FILTER DATA pemasukan_rutin BERDASARKAN TANGGAL2
     public function periode_khusus()
     {   
          //Akses Dari Luar 
@@ -153,8 +153,8 @@ class PengeluaranKhususController extends Controller
 
         $kas = Kas::all();
         $kategori = DetailKategori::all();
-        $transaksi = PengeluaranKhusus::all();
-        $transaksis  = PengeluaranKhusus::count(); 
+        $pemasukan_rutin = PengeluaranKhusus::all();
+        $pemasukan_rutins  = PengeluaranKhusus::count(); 
 
  
         $kas = Kas::orderBy('kas','asc')->get();
@@ -163,13 +163,13 @@ class PengeluaranKhususController extends Controller
 
 
         if($_GET['kategori'] == ""  || $_GET['kas'] == ""){
-            $transaksi = PengeluaranKhusus::whereDate('tanggal','>=',$_GET['dari'])
+            $pemasukan_rutin = PengeluaranKhusus::whereDate('tanggal','>=',$_GET['dari'])
             ->whereDate('tanggal','<=',$_GET['sampai'])
             ->where('status', '1')
             ->get();
         }
         else{
-            $transaksi = 
+            $pemasukan_rutin = 
             PengeluaranKhusus::whereDate('tanggal','>=',$_GET['dari'])
             ->whereDate('tanggal','<=',$_GET['sampai'])
             ->where('kategori_id',$_GET['kategori'])
@@ -177,7 +177,7 @@ class PengeluaranKhususController extends Controller
             ->where('status', '1')
             ->get();     
         }  
-        return view('pengeluaran_khusus.index',['transaksi' => $transaksi, 'kas' => $kas,'kategori' => $kategori, 'transaksis'=>$transaksis, 'datas'=>$datas,'kategoris'=>$kategoris]);
+        return view('pengeluaran_khusus.index',['pemasukan_rutin' => $pemasukan_rutin, 'kas' => $kas,'kategori' => $kategori, 'pemasukan_rutins'=>$pemasukan_rutins, 'datas'=>$datas,'kategoris'=>$kategoris]);
 
 
     }
@@ -187,7 +187,7 @@ class PengeluaranKhususController extends Controller
         return Excel::download(new LaporanExport, 'Laporan.xlsx');
     }
 
-    //MENAMBAHKAN DATA TRANSAKSI
+    //MENAMBAHKAN DATA pemasukan_rutin
     public function create(Request $request)
     {   
          //Akses Dari Luar 
@@ -260,7 +260,7 @@ class PengeluaranKhususController extends Controller
             $cover = $fileName;
         }
         $nama_pengguna = $request->input('nama_pengguna');
-        $kode_transaksi = $request->input('kode_transaksi');
+        $kode_pemasukan_rutin = $request->input('kode_pemasukan_rutin');
         $tanggal = $request->input('tanggal');
         $kategori = $request->input('kategori');
         $kas = $request->input('kas');
@@ -270,7 +270,7 @@ class PengeluaranKhususController extends Controller
         PengeluaranKhusus::create(
             [
             'nama_pengguna' =>  $nama_pengguna,
-            'kode_transaksi' => $kode_transaksi,
+            'kode_pemasukan_rutin' => $kode_pemasukan_rutin,
             'tanggal' => $tanggal,
             'kategori_id' => $kategori,
             'kas_id' => $kas,
@@ -303,19 +303,19 @@ class PengeluaranKhususController extends Controller
 
         if(Auth::user()->level == 'bendahara')
         {
-            //$transaksi = PengeluaranKhusus::where('nama_pengguna', Auth::user()->petugas->id , PengeluaranKhusus::orderBy('id','desc'))->get();
-            $transaksi = PengeluaranKhusus::where('nama_pengguna', Auth::user()->petugas->id)->findOrFail($id);
-            // $transaksi  = PengeluaranKhusus::findOrFail($id);
-            // $transaksi = PengeluaranKhusus::orderBy('id','desc')->findOrFail($id);     
+            //$pemasukan_rutin = PengeluaranKhusus::where('nama_pengguna', Auth::user()->petugas->id , PengeluaranKhusus::orderBy('id','desc'))->get();
+            $pemasukan_rutin = PengeluaranKhusus::where('nama_pengguna', Auth::user()->petugas->id)->findOrFail($id);
+            // $pemasukan_rutin  = PengeluaranKhusus::findOrFail($id);
+            // $pemasukan_rutin = PengeluaranKhusus::orderBy('id','desc')->findOrFail($id);     
         } else {            
-            // $transaksi  = PengeluaranKhusus::findOrFail($id);
-            $transaksi = PengeluaranKhusus::orderBy('id','desc')->findOrFail($id);
+            // $pemasukan_rutin  = PengeluaranKhusus::findOrFail($id);
+            $pemasukan_rutin = PengeluaranKhusus::orderBy('id','desc')->findOrFail($id);
         }       
-        return view('pengeluaran_khusus.show', compact('transaksi'));
+        return view('pengeluaran_khusus.show', compact('pemasukan_rutin'));
     }
 
     //SEMUA USER BISA AKSES
-    //UPDATE TRANSAKSI
+    //UPDATE pemasukan_rutin
     public function edit($id)
     {   
 
@@ -327,20 +327,20 @@ class PengeluaranKhususController extends Controller
             return redirect()->to('/home');
         } 
 
-        //transaksi edit berdasarkan user login
+        //pemasukan_rutin edit berdasarkan user login
         $nama = Auth::user()->petugas->id;
         if(Auth::user()->level == 'bendahara')
         {
-            $transaksi = PengeluaranKhusus::where('nama_pengguna', Auth::user()->petugas->id)
+            $pemasukan_rutin = PengeluaranKhusus::where('nama_pengguna', Auth::user()->petugas->id)
             ->where('status','0')
             ->findOrFail($id);
-            $transaksi  = PengeluaranKhusus::findOrFail($id);
-            $transaksi = PengeluaranKhusus::orderBy('id','desc')->findOrFail($id);
+            $pemasukan_rutin  = PengeluaranKhusus::findOrFail($id);
+            $pemasukan_rutin = PengeluaranKhusus::orderBy('id','desc')->findOrFail($id);
            
          
         } else {            
-            $transaksi  = PengeluaranKhusus::findOrFail($id);
-            $transaksi = PengeluaranKhusus::orderBy('id','desc')->findOrFail($id);
+            $pemasukan_rutin  = PengeluaranKhusus::findOrFail($id);
+            $pemasukan_rutin = PengeluaranKhusus::orderBy('id','desc')->findOrFail($id);
 
 
         }
@@ -359,16 +359,16 @@ class PengeluaranKhususController extends Controller
         
         $kas = Kas::get();
         
-        return view('pengeluaran_khusus.edit', compact('kategori','kas', 'transaksi', 'nama'));
+        return view('pengeluaran_khusus.edit', compact('kategori','kas', 'pemasukan_rutin', 'nama'));
         
     }
 
     public function update(Request $request, $id)
     {
        
-        $transaksi = PengeluaranKhusus::findOrFail($id);
+        $pemasukan_rutin = PengeluaranKhusus::findOrFail($id);
         $nama = $request->input('nama_pengguna');
-        $kode = $request->input('kode_transaksi');
+        $kode = $request->input('kode_pemasukan_rutin');
         $tanggal = $request->input('tanggal');
         $kategori = $request->input('kategori');
         $kas = $request->input('kas');
@@ -383,19 +383,19 @@ class PengeluaranKhususController extends Controller
             $acak  = $file->getClientOriginalExtension();
             $fileName = rand(11111,99999).'-'.$dt->format('Y-m-d-H-i-s').'.'.$acak; 
             $request->file('cover')->move("images/PengeluaranKhusus", $fileName);
-            $transaksi->cover = $fileName;
+            $pemasukan_rutin->cover = $fileName;
         }
         
-        $transaksi->nama_pengguna = $nama;
-        $transaksi->kode_transaksi = $kode;
-        $transaksi->tanggal = $tanggal;
-        $transaksi->kategori_id = $kategori;
-        $transaksi->kas_id = $kas;
-        $transaksi->nominal = $nominal;
-        $transaksi->keterangan = $keterangan;
+        $pemasukan_rutin->nama_pengguna = $nama;
+        $pemasukan_rutin->kode_pemasukan_rutin = $kode;
+        $pemasukan_rutin->tanggal = $tanggal;
+        $pemasukan_rutin->kategori_id = $kategori;
+        $pemasukan_rutin->kas_id = $kas;
+        $pemasukan_rutin->nominal = $nominal;
+        $pemasukan_rutin->keterangan = $keterangan;
       
-        $transaksi->update();
-        $transaksi->save();
+        $pemasukan_rutin->update();
+        $pemasukan_rutin->save();
         Session::flash('message', 'Berhasil diedit!');
         Session::flash('message_type', 'success');
         return redirect()->to('pengeluaran_khusus');
@@ -403,8 +403,8 @@ class PengeluaranKhususController extends Controller
 
     public function destroy($id)
     {
-        $transaksi = PengeluaranKhusus::find($id);
-        $transaksi->delete();
+        $pemasukan_rutin = PengeluaranKhusus::find($id);
+        $pemasukan_rutin->delete();
         Session::flash('message', 'Berhasil dihapus!');
         Session::flash('message_type', 'success');
         return redirect()->back()->with("success","PengeluaranKhusus telah dihapus!");
@@ -412,8 +412,8 @@ class PengeluaranKhususController extends Controller
 
     public function hapus($id)
     {
-        $transaksi = PengeluaranKhusus::find($id);
-        $transaksi->delete();
+        $pemasukan_rutin = PengeluaranKhusus::find($id);
+        $pemasukan_rutin->delete();
         Session::flash('message', 'Berhasil dihapus!');
         Session::flash('message_type', 'success');
         return redirect()->back()->with("success","PengeluaranKhusus telah dihapus!");
@@ -425,7 +425,7 @@ class PengeluaranKhususController extends Controller
         $pengeluaran_khusus = PengeluaranKhusus::find($id);
         $datas = $pengeluaran_khusus->get();
         $pdf = PDF::loadView('pengeluaran_khusus.laporan', compact('pengeluaran_khusus'));
-        return $pdf->download('laporan_pengeluaran_khusus_'.$pengeluaran_khusus->kode_transaksi.'.pdf');
+        return $pdf->download('laporan_pengeluaran_khusus_'.$pengeluaran_khusus->kode_pemasukan_rutin.'.pdf');
         // return view('laporan.kk_pdf');
     }
 

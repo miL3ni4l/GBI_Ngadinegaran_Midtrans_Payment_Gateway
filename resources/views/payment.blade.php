@@ -54,7 +54,7 @@
                                                                                                         
 
                                                                                                           <div class="form-group">
-                                                                                                              <label class="label">Apakah anda yakin batal melakuakan transaksi ?</label>
+                                                                                                              <label class="label">Apakah anda yakin batal melakuakan pemasukan_rutin ?</label>
                                                                                                               
                                                                                                           </div>
 

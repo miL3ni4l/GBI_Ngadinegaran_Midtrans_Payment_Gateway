@@ -11,14 +11,14 @@ class PemasukanRutinTableSeeder extends Seeder
      */
     public function run()
     {
-       \App\Transaksi::insert([
+       \App\pemasukan_rutin::insert([
             [
               'id'  			=> 1,
               'ibadah_id'  			=> 1,
               'kategori_id'  			=> 2,
               'kas_id'  			=> 1,
               'nama_pengguna'  			=> 1,
-              'kode_transaksi'  			=> 'TM122',
+              'kode_pemasukan_rutin'  			=> 'TM122',
               'status'  			=> '1',
               'nominal'  			=> '1500000',
               'tanggal'      => \Carbon\Carbon::now(),
@@ -31,7 +31,7 @@ class PemasukanRutinTableSeeder extends Seeder
                 'kategori_id'  			=> 1,
                 'kas_id'  			=> 1,
                 'nama_pengguna'  			=> 1,
-                'kode_transaksi'  			=> 'TM122',
+                'kode_pemasukan_rutin'  			=> 'TM122',
                 'status'  			=> '1',
                 'nominal'  			=> '500000',
                 'tanggal'      => \Carbon\Carbon::now(),
@@ -45,7 +45,7 @@ class PemasukanRutinTableSeeder extends Seeder
               'kategori_id'  			=> 1,
               'kas_id'  			=> 1,
               'nama_pengguna'  			=> 1,
-              'kode_transaksi'  			=> 'TM122',
+              'kode_pemasukan_rutin'  			=> 'TM122',
               'status'  			=> '1',
               'nominal'  			=> '350000',
               'tanggal'      => \Carbon\Carbon::now(),
@@ -59,7 +59,7 @@ class PemasukanRutinTableSeeder extends Seeder
               'kategori_id'  			=> 1,
               'kas_id'  			=> 2,
               'nama_pengguna'  			=> 1,
-              'kode_transaksi'  			=> 'TM122',
+              'kode_pemasukan_rutin'  			=> 'TM122',
               'status'  			=> '1',
               'nominal'  			=> '500000',
               'tanggal'      => \Carbon\Carbon::now(),
@@ -73,7 +73,7 @@ class PemasukanRutinTableSeeder extends Seeder
               'kategori_id'  			=> 1,
               'kas_id'  			=> 2,
               'nama_pengguna'  			=> 1,
-              'kode_transaksi'  			=> 'TM122',
+              'kode_pemasukan_rutin'  			=> 'TM122',
               'status'  			=> '1',
               'nominal'  			=> '3500000',
               'tanggal'      => \Carbon\Carbon::now(),
@@ -87,7 +87,7 @@ class PemasukanRutinTableSeeder extends Seeder
               'kategori_id'  			=> 2,
               'kas_id'  			=> 2,
               'nama_pengguna'  			=> 1,
-              'kode_transaksi'  			=> 'TM122',
+              'kode_pemasukan_rutin'  			=> 'TM122',
               'status'  			=> '1',
               'nominal'  			=> '1500000',
               'tanggal'      => \Carbon\Carbon::now(),

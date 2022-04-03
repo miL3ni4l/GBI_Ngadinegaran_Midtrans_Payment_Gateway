@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 use App\Petugas;
 use App\Kategori;
 use App\DetailKategori;
-use App\Transaksi;
+use App\pemasukan_rutin;
 use App\User;
 
 use Hash;
@@ -51,9 +51,9 @@ class KategoriController extends Controller
           
             $kategoris= Kategori::orderBy('updated_at','desc')->get();     
             $details= DetailKategori::orderBy('updated_at','desc')->get();  
-            $transaksi = Transaksi::all();
+            $pemasukan_rutin = pemasukan_rutin::all();
           
-            return view('kategori.index', compact('kategoris','details','transaksi'));
+            return view('kategori.index', compact('kategoris','details','pemasukan_rutin'));
 
     }
 
@@ -112,7 +112,7 @@ class KategoriController extends Controller
    
     }
 
-    //FILTER DATA TRANSAKSI BERDASARKAN TANGGAL2
+    //FILTER DATA pemasukan_rutin BERDASARKAN TANGGAL2
     public function kategori_filter()
     {   
         //Akses Dari Luar 
@@ -132,20 +132,20 @@ class KategoriController extends Controller
         $kategoris = Kategori::orderBy('updated_at','desc')->get();
 
         if($_GET['kategori'] == ""){
-            $transaksi = Transaksi::whereDate('tanggal','>=',$_GET['dari'])
+            $pemasukan_rutin = pemasukan_rutin::whereDate('tanggal','>=',$_GET['dari'])
             ->whereDate('tanggal','<=',$_GET['sampai'])
             ->where('status','1')
             ->get();
         }
         else{
-            $transaksi = Transaksi::where('kategori_id',$_GET['kategori'])
+            $pemasukan_rutin = pemasukan_rutin::where('kategori_id',$_GET['kategori'])
             ->whereDate('tanggal','>=',$_GET['dari'])
             ->whereDate('tanggal','<=',$_GET['sampai'])
             ->where('kategori_id', $kategoris)
             ->where('status','1')
             ->get();     
         }  
-        return view('kategori.index',['transaksi' => $transaksi, 'kategoris'=>$kategoris]);
+        return view('kategori.index',['pemasukan_rutin' => $pemasukan_rutin, 'kategoris'=>$kategoris]);
 
 
     }
@@ -193,9 +193,9 @@ class KategoriController extends Controller
         $tt = DetailKategori::where('kategori_id',$id)->get();
 
         if($tt->count() > 0){
-            $transaksi = DetailKategori::where('kategori_id',$id)->first();
-            $transaksi->kategori_id = "1";
-            $transaksi->save();
+            $pemasukan_rutin = DetailKategori::where('kategori_id',$id)->first();
+            $pemasukan_rutin->kategori_id = "1";
+            $pemasukan_rutin->save();
         }
         Session::flash('message', 'Berhasil dihapus!');
         Session::flash('message_type', 'success');

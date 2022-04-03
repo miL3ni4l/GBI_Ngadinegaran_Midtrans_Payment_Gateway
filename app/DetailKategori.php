@@ -22,9 +22,9 @@ class DetailKategori extends Model
     {
     	return $this->belongsTo('App\Kategori','kategori_id');
     }
-    public function transaksi()
+    public function pemasukan_rutin()
     {
-    	return $this->hasManyThrough(Transaksi::class);
+    	return $this->hasManyThrough(pemasukan_rutin::class);
     }
     public function donasi()
     {

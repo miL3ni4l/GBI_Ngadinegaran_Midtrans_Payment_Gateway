@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTransaksisTable extends Migration
+class CreatePemasukanRutinsTable extends Migration
 {
 
     
@@ -17,7 +17,7 @@ class CreateTransaksisTable extends Migration
     {
        
       
-        Schema::create('transaksi', function (Blueprint $table) {
+        Schema::create('pemasukan_rutin', function (Blueprint $table) {
             $table->increments('id');
 
             $table->integer('ibadah_id')->unsigned();
@@ -30,7 +30,7 @@ class CreateTransaksisTable extends Migration
             $table->foreign('kas_id')->references('id')->on('kas')->onDelete('cascade')->onUpdate('cascade');
 
             $table->string('nama_pengguna'); 
-            $table->string('kode_transaksi');      
+            $table->string('kode_pemasukan_rutin');      
             $table->date('tanggal');
 
             //Tipe data ENUM merupakan tipe data yang khusus 
@@ -57,6 +57,6 @@ class CreateTransaksisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transaksi');
+        Schema::dropIfExists('pemasukan_rutin');
     }
 }

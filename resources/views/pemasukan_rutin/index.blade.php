@@ -21,7 +21,7 @@
                             <div class="col-md-12 col-sm-12 col-12">
 
                                   <div class="btn-group">
-                                    <a href="{{ route('transaksi.create') }}"  type="button" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+                                    <a href="{{ route('pemasukan_rutin.create') }}"  type="button" class="btn btn-primary"><i class="fa fa-plus"></i></a>
                                   </div>
                               
                                   <div class="btn-group">
@@ -37,7 +37,7 @@
                                   </div>
 
                                   <div class="btn-group">
-                                    <a   href="{{route('transaksi.index')}}"  type="button" class="btn btn-warning">
+                                    <a   href="{{route('pemasukan_rutin.index')}}"  type="button" class="btn btn-warning">
                                     <i class="fas fa-undo"></i>
                                     </a>
                                   </div>
@@ -200,12 +200,12 @@
                                                       $total_pengeluaran = 0;
                                                       @endphp
 
-                                                      @foreach($transaksi as $t)
+                                                      @foreach($pemasukan_rutin as $t)
                                                       
                                                       <tr>
                                                             <td class="text-center">{{ $no++ }}</td>
 
-                                                            <td class="text-left">{{ $t->kode_transaksi }}</td>
+                                                            <td class="text-left">{{ $t->kode_pemasukan_rutin }}</td>
 
                                                             <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
                                                             <td>{{ $t->nama_ibadah->ibadah }}</td>
@@ -305,21 +305,21 @@
                                                           @php
                                                           $no = 1;
                                                           @endphp
-                                                          @foreach($transaksi as $t)
+                                                          @foreach($pemasukan_rutin as $t)
                                                           <tr>
                                                             <td class="text-left">{{ $no++ }}</td>
                                                             @if(Auth::user()->level == 'admin')
                                                             <td>
                                                                 @if($t->status == '1')
-                                                                <a href="{{ url('transaksi/status/'.$t->id) }}" class="btn btn-sm btn-danger">BELUM</a>
+                                                                <a href="{{ url('pemasukan_rutin/status/'.$t->id) }}" class="btn btn-sm btn-danger">BELUM</a>
                                                                 @else
-                                                                <a href="{{ url('transaksi/status/'.$t->id) }}" class="btn btn-sm btn-success">SUDAH</a>
+                                                                <a href="{{ url('pemasukan_rutin/status/'.$t->id) }}" class="btn btn-sm btn-success">SUDAH</a>
                                                                 @endif
                                                             </td>
                                                             @endif
                                                             <td class="text-left" >
                                                                                           
-                                                                                    {{ $t->kode_transaksi }}
+                                                                                    {{ $t->kode_pemasukan_rutin }}
 
                                                             </td>
                                                             <td class="text-left">
@@ -347,26 +347,26 @@
                                                             <td class="text-left col-md-1">   
 
                                                                   @if($t->status == '1')
-                                                                    <a href="{{route('transaksi.show', $t->id)}}" class="btn btn-info btn-sm  text-center" tooltip >
+                                                                    <a href="{{route('pemasukan_rutin.show', $t->id)}}" class="btn btn-info btn-sm  text-center" tooltip >
                                                                       <i class="fa fa-eye text-center"></i>
                                                                     </a>  
-                                                                    <a href="{{ route('transaksi.laporan', $t->id) }}" class="btn btn-success btn-sm  text-center" tooltip >
+                                                                    <a href="{{ route('pemasukan_rutin.laporan', $t->id) }}" class="btn btn-success btn-sm  text-center" tooltip >
                                                                       <i class="fa fa-download text-center"></i>
                                                                     </a>  
                                                                   @endif                    
                                                                     
                                                                   
                                                                   @if($t->status == '0')  
-                                                                    <a href="{{route('transaksi.show', $t->id)}}" class="btn btn-info btn-sm  text-center" tooltip >
+                                                                    <a href="{{route('pemasukan_rutin.show', $t->id)}}" class="btn btn-info btn-sm  text-center" tooltip >
                                                                       <i class="fa fa-eye text-center"></i>
                                                                     </a>     
-                                                                    <a href="{{route('transaksi.edit', $t->id)}}" class="btn btn-secondary btn-sm text-center">
+                                                                    <a href="{{route('pemasukan_rutin.edit', $t->id)}}" class="btn btn-secondary btn-sm text-center">
                                                                       <i class="fas fa-edit  text-center"></i> 
                                                                     </a>
                                                                     <a  data-toggle="modal" data-target="#modalDelete_{{ $t->id }}" class="btn btn-danger btn-sm text-center">
                                                                       <i class="fas fa-trash  text-center"></i>
                                                                     </a>
-                                                                    <!-- <a href="{{ route('transaksi.laporan', $t->id) }}" class="btn btn-success btn-sm  text-center" tooltip >
+                                                                    <!-- <a href="{{ route('pemasukan_rutin.laporan', $t->id) }}" class="btn btn-success btn-sm  text-center" tooltip >
                                                                       <i class="fa fa-download text-center"></i>
                                                                     </a>   -->
                                                       
@@ -377,7 +377,7 @@
                                         
                                                                         
                                                                         <!-- Modal -->
-                                                                        <form action="{{ route('transaksi.destroy', $t->id)}}" method="post">
+                                                                        <form action="{{ route('pemasukan_rutin.destroy', $t->id)}}" method="post">
                                                                           <div class="modal fade" id="modalDelete_{{ $t->id }}" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
                                                                             <div class="modal-dialog" role="document">
                                                                               <div class="modal-content">
@@ -395,7 +395,7 @@
                                                                                   @method('DELETE')
                                                                                   @csrf
 
-                                                                                    <p>Apakah anda yakin ingin menghapus data <b>{{$t->kode_transaksi}}</b>- <b>{{$t->detail_kategori->kategori}}</b>  ?</p>
+                                                                                    <p>Apakah anda yakin ingin menghapus data <b>{{$t->kode_pemasukan_rutin}}</b>- <b>{{$t->detail_kategori->kategori}}</b>  ?</p>
                                                                                     <!-- <b>{{$t->kas->kas}}</b> dengan nominal <b> {{ "Rp.".number_format($t->nominal ).",-" }}</b> -->
 
                                                                                   </div>

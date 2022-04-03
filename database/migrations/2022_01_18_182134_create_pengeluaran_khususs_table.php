@@ -23,7 +23,7 @@ class CreatePengeluaranKhusussTable extends Migration
             $table->foreign('kas_id')->references('id')->on('kas')->onDelete('cascade')->onUpdate('cascade');
 
             $table->string('nama_pengguna'); 
-            $table->string('kode_transaksi');      
+            $table->string('kode_pemasukan_rutin');      
             $table->date('tanggal');
 
             //Tipe data ENUM merupakan tipe data yang khusus 

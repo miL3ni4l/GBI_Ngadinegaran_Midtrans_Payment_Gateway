@@ -32,7 +32,7 @@
                     
                     <ol class="breadcrumb float-sm-right">
                       <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                      <li class="breadcrumb-item active">Riwayat Transaksi</li>
+                      <li class="breadcrumb-item active">Riwayat pemasukan_rutin</li>
                       </ol>
                     </div>
               </div>  
@@ -41,7 +41,7 @@
  
 
    
-          @foreach($transaksi as $t)
+          @foreach($pemasukan_rutin as $t)
    
                   @if($t->jenis == 'Pemasukan') 
                   <div class="col-md-12 col-sm-12 col-12">
@@ -77,7 +77,7 @@
                               <div class="progress-bar bg-success" style="width: 100%"></div>
                             </div>
                             <p>
-                                [{{ $t->kode_transaksi }}] - Transaksi ini dilakukan pada tanggal <b>{{ date('d-M-Y', strtotime($t->tanggal )) }} </b> dengan kategori transaksi <b> {{ $t->detail_kategori->kategori }} </b> &  dimasukan dalam <b>{{ $t->kas->kas }}</b>.      
+                                [{{ $t->kode_pemasukan_rutin }}] - pemasukan_rutin ini dilakukan pada tanggal <b>{{ date('d-M-Y', strtotime($t->tanggal )) }} </b> dengan kategori pemasukan_rutin <b> {{ $t->detail_kategori->kategori }} </b> &  dimasukan dalam <b>{{ $t->kas->kas }}</b>.      
                                       {{ $t->keterangan}}
                             </p>
                             
@@ -121,7 +121,7 @@
                             <div class="progress-bar bg-warning" style="width: 100%"></div>
                           </div>
                           <p>
-                          [{{ $t->kode_transaksi }}]  Transaksi ini dilakukan pada tanggal <b>{{ date('d-M-Y', strtotime($t->tanggal )) }} </b> dengan kategori transaksi <b> {{ $t->detail_kategori->kategori }} </b> &  dimasukan dalam <b>{{ $t->kas->kas }}</b>.      
+                          [{{ $t->kode_pemasukan_rutin }}]  pemasukan_rutin ini dilakukan pada tanggal <b>{{ date('d-M-Y', strtotime($t->tanggal )) }} </b> dengan kategori pemasukan_rutin <b> {{ $t->detail_kategori->kategori }} </b> &  dimasukan dalam <b>{{ $t->kas->kas }}</b>.      
                                     {{ $t->keterangan}}
                           </p>
                           

@@ -11,9 +11,9 @@ class Kas extends Model
 	protected $fillable = ["kas","keterangan"];
 
 
-	public function transaksi()
+	public function pemasukan_rutin()
     {
-    	return $this->hasMany(Transaksi::class);
+    	return $this->hasMany(pemasukan_rutin::class);
     }
     public function pemasukan_khusus()
     {

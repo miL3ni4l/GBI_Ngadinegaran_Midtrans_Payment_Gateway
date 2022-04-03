@@ -43,7 +43,7 @@
     background-color: #009b4e; }
 	</style>
   <link rel="stylesheet" href="">
-	<title>Laporan Data Transaksi</title>
+	<title>Laporan Data pemasukan_rutin</title>
 </head>
 <body>
 
@@ -57,37 +57,37 @@
                 <div class="col-sm-4 invoice-col" >
                     <table >
                         <tr>
-                          <td width="50%"> Petugas  <b>{{ $transaksi->detail_kategori->petugas['nama'] }}</b> </td>
+                          <td width="50%"> Petugas  <b>{{ $pemasukan_rutin->detail_kategori->petugas['nama'] }}</b> </td>
                         </tr>
 
                         <tr>
                           <td width="50%">Tanggal</td>
                           <td width="5%" class="text-center">:</td>
-                          <td> <small class="float-right">  {{ $transaksi->tanggal->format('d-M-Y')}} </small></td>
+                          <td> <small class="float-right">  {{ $pemasukan_rutin->tanggal->format('d-M-Y')}} </small></td>
                         </tr>
 
                         <!-- <tr>
                           <td width="50%">Data Input</td>
                           <td width="5%" class="text-center">:</td>
-                          <td> <small class="float-right">  {{ $transaksi->updated_at->diffForHumans()}} </small></td>
+                          <td> <small class="float-right">  {{ $pemasukan_rutin->updated_at->diffForHumans()}} </small></td>
                         </tr> -->
 
 
                         <tr>
                           <td width="50%">Kategori</td>
                           <td width="5%" class="text-center">:</td>
-                          <td> <small class="float-right">  {{ $transaksi->detail_kategori->kategori }} </small></td>
+                          <td> <small class="float-right">  {{ $pemasukan_rutin->detail_kategori->kategori }} </small></td>
                         </tr>
                         <tr>
                           <td width="50%">Pembayaran</td>
                           <td width="5%" class="text-center">:</td>
-                          <td> <small class="float-right">  {{ $transaksi->kas->kas }} </small></td>
+                          <td> <small class="float-right">  {{ $pemasukan_rutin->kas->kas }} </small></td>
                         </tr>
 
                         <tr>
                           <td width="50%">Nominal</td>
                           <td width="5%" class="text-center">:</td>
-                          <td> <small class="float-right">  {{ "Rp.".number_format($transaksi->nominal).",-" }} </small></td>
+                          <td> <small class="float-right">  {{ "Rp.".number_format($pemasukan_rutin->nominal).",-" }} </small></td>
                         </tr>
 
 
@@ -96,10 +96,10 @@
                           <td width="5%" class="text-center">:</td>
                           <td> 
                             <small class="float-right">  
-                                                              @if($transaksi->keterangan  == null)
+                                                              @if($pemasukan_rutin->keterangan  == null)
                                                                   -
                                                               @else
-                                                                  {{ $transaksi->keterangan }}
+                                                                  {{ $pemasukan_rutin->keterangan }}
                                                               @endif
                             </small>
                           </td>
@@ -110,7 +110,7 @@
                           <td width="5%" class="text-center">:</td>
                           <td> 
                             <small class="float-right">  
-                                                                @if($transaksi->status == '1')
+                                                                @if($pemasukan_rutin->status == '1')
                                                                   Telah dikonfirmasi
                                                                     @else
                                                                  Masih dalam proses

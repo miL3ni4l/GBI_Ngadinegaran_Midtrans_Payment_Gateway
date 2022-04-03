@@ -374,7 +374,7 @@
       <?php
       for($bulan=1;$bulan<=12;$bulan++){
         $tahun = date('Y');
-        $pemasukan_perbulan = DB::table('transaksi')
+        $pemasukan_perbulan = DB::table('pemasukan_rutin')
         ->select(DB::raw('SUM(nominal) as total'))
         ->where('status','1')
         ->whereMonth('tanggal',$bulan)
@@ -438,7 +438,7 @@
   var barChartData2 = {
     labels : [
     <?php 
-    $thn2 = DB::table('transaksi')
+    $thn2 = DB::table('pemasukan_rutin')
     ->select(DB::raw('year(tanggal) as tahun'))
     ->distinct()
     // DARI TAHUN SEBELUMNYA
@@ -462,7 +462,7 @@
       <?php
       foreach($thn2 as $t){
         $thn = $t->tahun;
-        $tahun = DB::table('transaksi')
+        $tahun = DB::table('pemasukan_rutin')
         ->select(DB::raw('SUM(nominal) as total'))
         ->where('status','1')
         ->whereYear('tanggal',$thn)
@@ -537,7 +537,7 @@
       @foreach($kas as $k)
       <?php 
       $id_kas = $k->id;
-      $pemasukan_perkas = DB::table('transaksi')
+      $pemasukan_perkas = DB::table('pemasukan_rutin')
       ->select(DB::raw('SUM(nominal) as total'))
       ->where('kas_id',$id_kas)
       ->where('status','1')

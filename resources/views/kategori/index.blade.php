@@ -244,12 +244,12 @@
                                 $total_pengeluaran = 0;
                                 @endphp
 
-                                @foreach($transaksi as $t)
+                                @foreach($pemasukan_rutin as $t)
                                 
                                 <tr>
                                       <td class="text-center">{{ $no++ }}</td>
 
-                                      <td class="text-center">{{ $t->kode_transaksi }}</td>
+                                      <td class="text-center">{{ $t->kode_pemasukan_rutin }}</td>
 
                                       <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
 
@@ -425,7 +425,7 @@
                                                             @foreach ($k->detail_kategori as $dk)
                                                               <?php 
                                                                 $id_kategori = $dk->id;
-                                                                $pemasukan_perkategori = DB::table('transaksi')
+                                                                $pemasukan_perkategori = DB::table('pemasukan_rutin')
                                                                 ->select(DB::raw('SUM(nominal) as total'))
                                                                 ->where('kategori_id',$id_kategori)
                                                                 ->where('status','1')
@@ -434,7 +434,7 @@
 
                                                                 $total = $pemasukan_perkategori->total;    
                                                                 
-                                                                $sisa = DB::table('transaksi')
+                                                                $sisa = DB::table('pemasukan_rutin')
                                                                 ->where('status','1')
                                                                 ->sum('nominal');                                    
                                                               ?>

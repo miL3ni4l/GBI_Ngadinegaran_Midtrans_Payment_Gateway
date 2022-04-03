@@ -10,7 +10,7 @@ use App\Anggota;
 use Illuminate\Support\Facades\DB;
 use App\DetailKategori;
 use App\kas;
-use App\Transaksi;
+use App\pemasukan_rutin;
 use App\User;
 
 use Hash;
@@ -49,15 +49,15 @@ class LaporanDetailKategoriController extends Controller
          } 
 
         $kategori = DetailKategori::all();
-        $transaksi = Transaksi::all();
-        $transaksis  = Transaksi::count(); 
+        $pemasukan_rutin = pemasukan_rutin::all();
+        $pemasukan_rutins  = pemasukan_rutin::count(); 
              
-        $seluruh_pemasukan = DB::table('transaksi')
+        $seluruh_pemasukan = DB::table('pemasukan_rutin')
         ->select(DB::raw('SUM(nominal) as total'))
         ->where('status', '1')
         ->first();
 
-        $seluruh_pengeluaran = DB::table('transaksi')
+        $seluruh_pengeluaran = DB::table('pemasukan_rutin')
         ->select(DB::raw('SUM(nominal) as total'))
         ->where('status', '1')
         ->first();
@@ -66,31 +66,31 @@ class LaporanDetailKategoriController extends Controller
         {
             $kategori = DetailKategori::orderBy('kategori','asc')->get();
             if($_GET['kategori'] == ""){
-                $transaksi = Transaksi::whereDate('tanggal','>=',$_GET['dari'])
+                $pemasukan_rutin = pemasukan_rutin::whereDate('tanggal','>=',$_GET['dari'])
                 ->where('status', '1')
                 ->whereDate('tanggal','<=',$_GET['sampai'])
                 ->get();
             }else{
-                $transaksi = Transaksi::where('kategori_id',$_GET['kategori'])
+                $pemasukan_rutin = pemasukan_rutin::where('kategori_id',$_GET['kategori'])
                 ->where('status', '1')
                 ->whereDate('tanggal','>=',$_GET['dari'])
                 ->whereDate('tanggal','<=',$_GET['sampai'])
                 ->get();
             }    
-             return view('laporan.laporan',['transaksi' => $transaksi, 
+             return view('laporan.laporan',['pemasukan_rutin' => $pemasukan_rutin, 
              'kategori' => $kategori, 
              'seluruh_pemasukan' => $seluruh_pemasukan,  
              'seluruh_pengeluaran' => $seluruh_pengeluaran,
-             'transaksis'=>$transaksis]);
+             'pemasukan_rutins'=>$pemasukan_rutins]);
         }
      
         else{
             $kategori = DetailKategori::orderBy('kategori','asc')->get();
-            return view('laporan.laporan',['transaksi' => array(), 
+            return view('laporan.laporan',['pemasukan_rutin' => array(), 
                                             'kategori' => $kategori, 
                                             'seluruh_pemasukan' => $seluruh_pemasukan,  
                                             'seluruh_pengeluaran' => $seluruh_pengeluaran,
-                                            'transaksis'=>$transaksis]);
+                                            'pemasukan_rutins'=>$pemasukan_rutins]);
         
         }
     }
@@ -103,18 +103,18 @@ class LaporanDetailKategoriController extends Controller
         if(isset($_GET['kategori'])){
             $kategori = DetailKategori::orderBy('kategori','asc')->get();
             if($_GET['kategori'] == ""){
-                $transaksi = Transaksi::whereDate('tanggal','>=',$_GET['dari'])
+                $pemasukan_rutin = pemasukan_rutin::whereDate('tanggal','>=',$_GET['dari'])
                 ->where('status', '1')
                 ->whereDate('tanggal','<=',$_GET['sampai'])
                 ->get();
             }else{
-                $transaksi = Transaksi::where('kategori_id',$_GET['kategori'])
+                $pemasukan_rutin = pemasukan_rutin::where('kategori_id',$_GET['kategori'])
                 ->where('status', '1')
                 ->whereDate('tanggal','>=',$_GET['dari'])
                 ->whereDate('tanggal','<=',$_GET['sampai'])
                 ->get();
             }
-            return view('laporan.laporan_print',['transaksi' => $transaksi, 'kategori' => $kategori]);
+            return view('laporan.laporan_print',['pemasukan_rutin' => $pemasukan_rutin, 'kategori' => $kategori]);
         }
     }
 
@@ -128,18 +128,18 @@ class LaporanDetailKategoriController extends Controller
     {if(isset($_GET['kategori'])){
         $kategori = DetailKategori::orderBy('kategori','asc')->get();
         if($_GET['kategori'] == ""){
-            $transaksi = Transaksi::whereDate('tanggal','>=',$_GET['dari'])
+            $pemasukan_rutin = pemasukan_rutin::whereDate('tanggal','>=',$_GET['dari'])
             ->where('status', '1')
             ->whereDate('tanggal','<=',$_GET['sampai'])
             ->get();
         }else{
-            $transaksi = Transaksi::where('kategori_id',$_GET['kategori'])
+            $pemasukan_rutin = pemasukan_rutin::where('kategori_id',$_GET['kategori'])
             ->where('status', '1')
             ->whereDate('tanggal','>=',$_GET['dari'])
             ->whereDate('tanggal','<=',$_GET['sampai'])
             ->get();
         }
-        return view('laporan.laporan_pdf',['transaksi' => $transaksi, 'kategori' => $kategori]);
+        return view('laporan.laporan_pdf',['pemasukan_rutin' => $pemasukan_rutin, 'kategori' => $kategori]);
     }   
     }
 

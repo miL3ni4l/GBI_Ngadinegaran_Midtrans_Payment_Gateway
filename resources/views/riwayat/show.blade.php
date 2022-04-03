@@ -28,7 +28,7 @@
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/home">Home</a></li>
               <li class="breadcrumb-item active"><a href="/riwayat">Riwayat</a></li>
-              <li class="breadcrumb-item active">{{$transaksi->detail_kategori->kategori}}</li>
+              <li class="breadcrumb-item active">{{$pemasukan_rutin->detail_kategori->kategori}}</li>
             </ol>
           </div>
           
@@ -48,9 +48,9 @@
             <div class="card-body p-0">
               <div class="mailbox-read-info">
 
-                <h5>Kode Transaksi <b>{{$transaksi->kode_transaksi}} </b></h5>
-                <h6>petugas : {{ $transaksi->detail_kategori->petugas['nama'] }}
-                  <span class="mailbox-read-time float-right">{{ $transaksi->updated_at->diffForHumans() }}</span></h6>
+                <h5>Kode pemasukan_rutin <b>{{$pemasukan_rutin->kode_pemasukan_rutin}} </b></h5>
+                <h6>petugas : {{ $pemasukan_rutin->detail_kategori->petugas['nama'] }}
+                  <span class="mailbox-read-time float-right">{{ $pemasukan_rutin->updated_at->diffForHumans() }}</span></h6>
               </div>
 
               <!-- /.mailbox-read-info -->
@@ -67,19 +67,19 @@
                 <p>Hello <b><i>{{Auth::user()->name}}</i></b>,</p>
 
                 <p>
-                  Transaksi ini dilakukan pada tanggal {{$transaksi->tanggal->format('d-M-Y')}} dengan jenis {{$transaksi->jenis}} sebesar <b>   {{ "Rp.".number_format($transaksi->nominal).",-" }} </b>
-                  kategori transaksi <b>{{$transaksi->detail_kategori->kategori}}</b> dimasukan ke dalam  <b>{{$transaksi->kas->kas}}</b>.
+                  pemasukan_rutin ini dilakukan pada tanggal {{$pemasukan_rutin->tanggal->format('d-M-Y')}} dengan jenis {{$pemasukan_rutin->jenis}} sebesar <b>   {{ "Rp.".number_format($pemasukan_rutin->nominal).",-" }} </b>
+                  kategori pemasukan_rutin <b>{{$pemasukan_rutin->detail_kategori->kategori}}</b> dimasukan ke dalam  <b>{{$pemasukan_rutin->kas->kas}}</b>.
                 </p>
 
 
                 <p>
                   Keterangan :
                   <i>
-                  {{$transaksi->keterangan}}
+                  {{$pemasukan_rutin->keterangan}}
                   </i>
                 </p>
 
-                <p>Thanks,<br> {{ $transaksi->detail_kategori->petugas['nama'] }}</p>
+                <p>Thanks,<br> {{ $pemasukan_rutin->detail_kategori->petugas['nama'] }}</p>
               </div>
 
           
@@ -89,8 +89,8 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer bg-white">
-            <p>Bukti Transaksi :</p>
-            <img width="275" height="275" @if($transaksi->cover) src="{{ asset('images/Transaksi/'.$transaksi->cover) }}" @endif />      
+            <p>Bukti pemasukan_rutin :</p>
+            <img width="275" height="275" @if($pemasukan_rutin->cover) src="{{ asset('images/pemasukan_rutin/'.$pemasukan_rutin->cover) }}" @endif />      
               <ul class="mailbox-attachments d-flex align-items-stretch clearfix">
                 <!-- <li>
                   <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>

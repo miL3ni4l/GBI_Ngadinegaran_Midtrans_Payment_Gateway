@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Transaksi extends Model
+class pemasukan_rutin extends Model
 {
-	protected $table = "transaksi";
+	protected $table = "pemasukan_rutin";
 	protected $dates = ['tanggal'];
 
-	protected $fillable = ["nama_pengguna","kode_transaksi", "tanggal","kategori_id","kas_id","ibadah_id","cover","nominal","status","keterangan"];
+	protected $fillable = ["nama_pengguna","kode_pemasukan_rutin", "tanggal","kategori_id","kas_id","ibadah_id","cover","nominal","status","keterangan"];
 
 	public function detail_kategori()
 	{

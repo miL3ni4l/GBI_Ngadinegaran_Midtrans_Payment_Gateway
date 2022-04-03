@@ -202,7 +202,7 @@
                                           <thead>
                                           <tr>
                                             <th class="text-center">NO</th>
-                                            <th class="text-center">KODE TRANSAKSI</th>
+                                            <th class="text-center">KODE pemasukan_rutin</th>
                                             <th class="text-center">TANGGAL</th>
                                             <th class="text-center">NAMA KATEGORI</th>
                                             <th class="text-center">KETERANGAN</th>
@@ -217,10 +217,10 @@
                                           $total_pemasukan = 0;
                                           $total_pengeluaran = 0;
                                           @endphp
-                                        @foreach($transaksi as $t)
+                                        @foreach($pemasukan_rutin as $t)
                                         <tr>
                                           <td class="text-center">{{ $no++ }}</td>
-                                          <td class="text-center">{{ $t->kode_transaksi }}</td>
+                                          <td class="text-center">{{ $t->kode_pemasukan_rutin }}</td>
                                           <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
                                           <td>{{ $t->detail_kategori->kategori }}</td>
 

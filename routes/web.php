@@ -124,10 +124,10 @@ Route::get('/lapiran/kas/pdf', 'LaporanController@kasPdf');
 Route::get('/lapiran/kas/excel', 'LaporanController@kasExcel');
 Route::get('/laporan/gwl', 'LaporanController@gerwil');
 Route::get('/laporan/gwl/pdf', 'LaporanController@gerwilPdf');
-// TRANSAKSI=====LAPORAN
-Route::get('/laporan/trs', 'LaporanController@transaksi');
-Route::get('/laporan/trs/pdf', 'LaporanController@transaksiPdf');
-Route::get('/laporan/trs/excel', 'LaporanController@transaksiExcel');
+// pemasukan_rutin=====LAPORAN
+Route::get('/laporan/trs', 'LaporanController@pemasukan_rutin');
+Route::get('/laporan/trs/pdf', 'LaporanController@pemasukan_rutinPdf');
+Route::get('/laporan/trs/excel', 'LaporanController@pemasukan_rutinExcel');
 
 
 //PEMASUKAN_KHUSUS
@@ -140,27 +140,27 @@ Route::get('pemasukan_khusus/pdf/{id}', ['as' => 'pemasukan_khusus.laporan', 'us
 Route::get('pemasukan_khusus/status/{id}','PemasukanKhususController@status');
 
 
-//TRANSAKSI
-Route::post('/transaksi/destroy/{id}','TransaksiController@destroy');
-Route::resource('transaksi', 'TransaksiController');
-Route::get('transaksi_create_rutin', 'TransaksiController@transaksi_create_rutin')->name('transaksi_create_rutin');
-Route::post('transaksi_store_rutin', 'TransaksiController@transaksi_store_rutin')->name('transaksi_store_rutin');
-Route::get('transaksi_create_khusus', 'TransaksiController@transaksi_create_khusus')->name('transaksi_create_khusus');
-Route::post('transaksi_store_khusus', 'TransaksiController@transaksi_store_khusus')->name('transaksi_store_khusus');
-Route::get('/konfirmasi', 'TransaksiController@konfirmasi')->name('konfirmasi');
-Route::get('/periode', 'TransaksiController@periode')->name('periode');
-Route::get('/periode_tanggal', 'TransaksiController@periode_tanggal')->name('periode_tanggal');
-// TRANSAKSI=====ROUTE DOWNLOAD BERDASARKAN ID
-Route::get('transaksi/pdf/{id}', ['as' => 'transaksi.laporan', 'uses' => 'TransaksiController@cetak_pdf']);
-Route::get('transaksi/status/{id}','TransaksiController@status');
+//pemasukan_rutin
+Route::post('/pemasukan_rutin/destroy/{id}','pemasukan_rutinController@destroy');
+Route::resource('pemasukan_rutin', 'pemasukan_rutinController');
+Route::get('pemasukan_rutin_create_rutin', 'pemasukan_rutinController@pemasukan_rutin_create_rutin')->name('pemasukan_rutin_create_rutin');
+Route::post('pemasukan_rutin_store_rutin', 'pemasukan_rutinController@pemasukan_rutin_store_rutin')->name('pemasukan_rutin_store_rutin');
+Route::get('pemasukan_rutin_create_khusus', 'pemasukan_rutinController@pemasukan_rutin_create_khusus')->name('pemasukan_rutin_create_khusus');
+Route::post('pemasukan_rutin_store_khusus', 'pemasukan_rutinController@pemasukan_rutin_store_khusus')->name('pemasukan_rutin_store_khusus');
+Route::get('/konfirmasi', 'pemasukan_rutinController@konfirmasi')->name('konfirmasi');
+Route::get('/periode', 'pemasukan_rutinController@periode')->name('periode');
+Route::get('/periode_tanggal', 'pemasukan_rutinController@periode_tanggal')->name('periode_tanggal');
+// pemasukan_rutin=====ROUTE DOWNLOAD BERDASARKAN ID
+Route::get('pemasukan_rutin/pdf/{id}', ['as' => 'pemasukan_rutin.laporan', 'uses' => 'pemasukan_rutinController@cetak_pdf']);
+Route::get('pemasukan_rutin/status/{id}','pemasukan_rutinController@status');
 
 
 //PENGELUARAN KHUSUS
 Route::resource('pengeluaran_khusus', 'PengeluaranKhususController');
-Route::get('transaksi_create_rutin', 'PengeluaranKhususController@transaksi_create_rutin')->name('transaksi_create_rutin');
-Route::post('transaksi_store_rutin', 'PengeluaranKhususController@transaksi_store_rutin')->name('transaksi_store_rutin');
-Route::get('transaksi_create_khusus', 'PengeluaranKhususController@transaksi_create_khusus')->name('transaksi_create_khusus');
-Route::post('transaksi_store_khusus', 'PengeluaranKhususController@transaksi_store_khusus')->name('transaksi_store_khusus');
+Route::get('pemasukan_rutin_create_rutin', 'PengeluaranKhususController@pemasukan_rutin_create_rutin')->name('pemasukan_rutin_create_rutin');
+Route::post('pemasukan_rutin_store_rutin', 'PengeluaranKhususController@pemasukan_rutin_store_rutin')->name('pemasukan_rutin_store_rutin');
+Route::get('pemasukan_rutin_create_khusus', 'PengeluaranKhususController@pemasukan_rutin_create_khusus')->name('pemasukan_rutin_create_khusus');
+Route::post('pemasukan_rutin_store_khusus', 'PengeluaranKhususController@pemasukan_rutin_store_khusus')->name('pemasukan_rutin_store_khusus');
 Route::get('/konfirmasi_khusus', 'PengeluaranKhususController@konfirmasi_khusus')->name('konfirmasi_khusus');
 Route::get('/periode_khusus', 'PengeluaranKhususController@periode_khusus')->name('periode_khusus');
 // Route::get('/periode_tanggal', 'PengeluaranKhususController@periode_tanggal')->name('periode_tanggal');
@@ -172,10 +172,10 @@ Route::get('pengeluaran_khusus/status/{id}','PengeluaranKhususController@status'
 
 //PENGELUARAN RUTIN
 Route::resource('pengeluaran_rutin', 'PengeluaranRutinController');
-Route::get('transaksi_create_rutin', 'PengeluaranRutinController@transaksi_create_rutin')->name('transaksi_create_rutin');
-Route::post('transaksi_store_rutin', 'PengeluaranRutinController@transaksi_store_rutin')->name('transaksi_store_rutin');
-Route::get('transaksi_create_rutin', 'PengeluaranRutinController@transaksi_create_rutin')->name('transaksi_create_rutin');
-Route::post('transaksi_store_rutin', 'PengeluaranRutinController@transaksi_store_rutin')->name('transaksi_store_rutin');
+Route::get('pemasukan_rutin_create_rutin', 'PengeluaranRutinController@pemasukan_rutin_create_rutin')->name('pemasukan_rutin_create_rutin');
+Route::post('pemasukan_rutin_store_rutin', 'PengeluaranRutinController@pemasukan_rutin_store_rutin')->name('pemasukan_rutin_store_rutin');
+Route::get('pemasukan_rutin_create_rutin', 'PengeluaranRutinController@pemasukan_rutin_create_rutin')->name('pemasukan_rutin_create_rutin');
+Route::post('pemasukan_rutin_store_rutin', 'PengeluaranRutinController@pemasukan_rutin_store_rutin')->name('pemasukan_rutin_store_rutin');
 Route::get('/konfirmasi_rutin', 'PengeluaranRutinController@konfirmasi_rutin')->name('konfirmasi_rutin');
 Route::get('/periode_rutin', 'PengeluaranRutinController@periode_rutin')->name('periode_rutin');
 // Route::get('/periode_tanggal', 'PengeluaranRutinController@periode_tanggal')->name('periode_tanggal');

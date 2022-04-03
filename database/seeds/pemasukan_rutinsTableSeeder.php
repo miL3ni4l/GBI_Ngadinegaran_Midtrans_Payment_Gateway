@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class TransaksisTableSeeder extends Seeder
+class pemasukan_rutinsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,10 +11,10 @@ class TransaksisTableSeeder extends Seeder
      */
     public function run()
     {
-       \App\Transaksi::insert([
+       \App\pemasukan_rutin::insert([
             [
               'id'  			=> 1,
-              'kode_transaksi' 	=> 'TR0001',
+              'kode_pemasukan_rutin' 	=> 'TR0001',
               'ibadah_id'			=> 1,
               'kategori_id'			=> 1,
               'kas_id'			=> 1,
@@ -27,7 +27,7 @@ class TransaksisTableSeeder extends Seeder
             ],
             [
                 'id'  			=> 2,
-                'kode_transaksi' 	=> 'TR0001',
+                'kode_pemasukan_rutin' 	=> 'TR0001',
                 'ibadah_id'			=> 2,
                 'kategori_id'			=> 2,
                 'kas_id'			=> 1,

@@ -58,26 +58,26 @@
    <div class="card-body">
    <h4 class="card-title col-md-12 col-sm-12 col-xs-12" style="margin-top: 20px;">Filter Laporan Keuangan</h4>
    
-                        <div class="form-group{{ $errors->has('tgl_transaksi') ? ' has-error' : '' }}">
-                            <label for="tgl_transaksi" class="col-md-4 control-label">Dari Tanggal</label>
+                        <div class="form-group{{ $errors->has('tgl_pemasukan_rutin') ? ' has-error' : '' }}">
+                            <label for="tgl_pemasukan_rutin" class="col-md-4 control-label">Dari Tanggal</label>
                             <div class="col-md-4">
-                                <input id="tgl_transaksi" type="date" class="form-control" name="tgl_transaksi" value="{{ date('Y-m-d', strtotime(Carbon\Carbon::today()->toDateString())) }}">
-                                @if ($errors->has('tgl_transaksi'))
+                                <input id="tgl_pemasukan_rutin" type="date" class="form-control" name="tgl_pemasukan_rutin" value="{{ date('Y-m-d', strtotime(Carbon\Carbon::today()->toDateString())) }}">
+                                @if ($errors->has('tgl_pemasukan_rutin'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('tgl_transaksi') }}</strong>
+                                        <strong>{{ $errors->first('tgl_pemasukan_rutin') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
                         
-                        <div class="form-group{{ $errors->has('tgl_transaksi') ? ' has-error' : '' }}">
-                            <label for="tgl_transaksi" class="col-md-4 control-label">Sampai Tanggal</label>
+                        <div class="form-group{{ $errors->has('tgl_pemasukan_rutin') ? ' has-error' : '' }}">
+                            <label for="tgl_pemasukan_rutin" class="col-md-4 control-label">Sampai Tanggal</label>
                             <div class="col-md-4">
-                                <input id="tgl_transaksi" type="date" class="form-control" name="tgl_transaksi" value="{{ date('Y-m-d', strtotime(Carbon\Carbon::today()->toDateString())) }}">
-                                @if ($errors->has('tgl_transaksi'))
+                                <input id="tgl_pemasukan_rutin" type="date" class="form-control" name="tgl_pemasukan_rutin" value="{{ date('Y-m-d', strtotime(Carbon\Carbon::today()->toDateString())) }}">
+                                @if ($errors->has('tgl_pemasukan_rutin'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('tgl_transaksi') }}</strong>
+                                        <strong>{{ $errors->first('tgl_pemasukan_rutin') }}</strong>
                                     </span>
                                 @endif
                             </div>

@@ -10,9 +10,9 @@ class Ibadah extends Model
 
 	protected $fillable = ["kode_ibadah","ibadah","keterangan"];
 
-	public function transaksi()
+	public function pemasukan_rutins()
     {
-    	return $this->hasMany(Transaksi::class);
+    	return $this->hasMany(pemasukan_rutin::class);
     }
     public function pemasukan_rutin()
     {

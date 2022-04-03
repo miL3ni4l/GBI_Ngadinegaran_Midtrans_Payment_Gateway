@@ -43,7 +43,7 @@
     background-color: #009b4e; }
 	</style>
   <link rel="stylesheet" href="">
-	<title>Laporan Data Transaksi</title>
+	<title>Laporan Data pemasukan_rutin</title>
 </head>
 <body>
 

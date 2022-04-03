@@ -77,7 +77,7 @@
                           <div class="row">
 
                               <?php
-                                $seluruh_pemasukan = DB::table('transaksi')->select(DB::raw('SUM(nominal) as total'))
+                                $seluruh_pemasukan = DB::table('pemasukan_rutin')->select(DB::raw('SUM(nominal) as total'))
                                 ->where('status','1')
                                 ->first();
                     
@@ -238,11 +238,11 @@
                                                                 $total_pengeluaran = 0;
                                                                 @endphp
 
-                                                                @foreach($transaksi as $t)
+                                                                @foreach($pemasukan_rutin as $t)
                                                                   @if($t->detail_kategori->jenis  == 'Rutin')
                                                                     <tr>
                                                                       <td class="text-center">{{ $no++ }}</td>
-                                                                      <td class="text-left">{{ $t->kode_transaksi }}</td>
+                                                                      <td class="text-left">{{ $t->kode_pemasukan_rutin }}</td>
                                                                       <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
                                                                       <td>{{ $t->detail_kategori->kategori }}</td>
 

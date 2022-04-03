@@ -28,7 +28,7 @@
 @extends('layouts2.app')
 
 @section('content')
-<form action="{{ route('pengeluaran_khusus.update', $transaksi->id) }}" method="post" enctype="multipart/form-data">
+<form action="{{ route('pengeluaran_khusus.update', $pemasukan_rutin->id) }}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
         {{ method_field('put') }}
 <section class="content-header">
@@ -41,13 +41,13 @@
               <div class="container-fluid">
                   <div class="row mb-2">
                     <div class="col-sm-6">
-                      <h4>Edit Pengeluaran  Khusus <b> {{ $transaksi->kode_transaksi }}</b> </h4> 
+                      <h4>Edit Pengeluaran  Khusus <b> {{ $pemasukan_rutin->kode_pemasukan_rutin }}</b> </h4> 
                     </div>
                     <div class="col-sm-6">
                       <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="/home">Home</a></li>
                         <li class="breadcrumb-item active"><a href="/pengeluaran_khusus">Pengeluaran Khusus</a></li>
-                        <li class="breadcrumb-item active">Edit Pengeluaran Khusus {{ $transaksi->kode_transaksi }}</li>
+                        <li class="breadcrumb-item active">Edit Pengeluaran Khusus {{ $pemasukan_rutin->kode_pemasukan_rutin }}</li>
                       </ol>
                     </div>
                   </div>
@@ -66,14 +66,14 @@
                                         
 
 
-                                                <div class="form-group{{ $errors->has('kode_transaksi') ? ' has-error' : '' }}">
+                                                <div class="form-group{{ $errors->has('kode_pemasukan_rutin') ? ' has-error' : '' }}">
                                                     
-                                                    <!-- <label for="kode_transaksi" class="col-md-7 control-label">Kode Trasaksi <b style="color:Tomato;">*</b> </label> -->
+                                                    <!-- <label for="kode_pemasukan_rutin" class="col-md-7 control-label">Kode Trasaksi <b style="color:Tomato;">*</b> </label> -->
                                                     <div class="col-md-12">
-                                                        <input id="kode_transaksi" type="hidden" class="form-control" name="kode_transaksi" value="{{ $transaksi->kode_transaksi }}" readonly="">
-                                                        @if ($errors->has('kode_transaksi'))
+                                                        <input id="kode_pemasukan_rutin" type="hidden" class="form-control" name="kode_pemasukan_rutin" value="{{ $pemasukan_rutin->kode_pemasukan_rutin }}" readonly="">
+                                                        @if ($errors->has('kode_pemasukan_rutin'))
                                                             <span class="help-block">
-                                                                <strong>{{ $errors->first('kode_transaksi') }}</strong>
+                                                                <strong>{{ $errors->first('kode_pemasukan_rutin') }}</strong>
                                                             </span>
                                                         @endif
                                                     </div>
@@ -96,7 +96,7 @@
                                               
                                                 <div class="form-group col-md-12" style="width: 100%;margin-bottom:20px">
                                                   <label>Tanggal <b style="color:Tomato;">*</b></label>
-                                                  <input type="date" class="form-control datepicker2 py-0" required="required" name="tanggal" value="{{ $transaksi->tanggal }}" style="width: 100%">
+                                                  <input type="date" class="form-control datepicker2 py-0" required="required" name="tanggal" value="{{ $pemasukan_rutin->tanggal }}" style="width: 100%">
                                                 </div>
 
 
@@ -105,7 +105,7 @@
                                                   <select class="form-control py-0" required="required" name="kategori" style="width: 100%">
                                                    
                                                     @foreach($kategori as $k)
-                                                    <option {{ ($transaksi->detail_kategori->id == $k->id ? "selected='selected'" : "") }}  value="{{ $k->id }}">{{ $k->kategori }}</option>
+                                                    <option {{ ($pemasukan_rutin->detail_kategori->id == $k->id ? "selected='selected'" : "") }}  value="{{ $k->id }}">{{ $k->kategori }}</option>
                                                     @endforeach
                                                   </select>
                                                 </div>
@@ -115,14 +115,14 @@
                                                   <select class="form-control py-0" required="required" name="kas" style="width: 100%">
                                                
                                                     @foreach($kas as $k)
-                                                    <option {{ ($transaksi->kas->id == $k->id ? "selected='selected'" : "") }}  value="{{ $k->id }}">{{ $k->kas }}</option>
+                                                    <option {{ ($pemasukan_rutin->kas->id == $k->id ? "selected='selected'" : "") }}  value="{{ $k->id }}">{{ $k->kas }}</option>
                                                     @endforeach
                                                   </select>
                                                 </div>
 
                                                 <div class="form-group col-md-12" style="width: 100%;margin-bottom:20px">
                                                   <label>Nominal <b style="color:Tomato;">*</b></label>
-                                                  <input type="number" class="form-control py-0" required="required" name="nominal" value="{{ $transaksi->nominal }}" style="width: 100%">
+                                                  <input type="number" class="form-control py-0" required="required" name="nominal" value="{{ $pemasukan_rutin->nominal }}" style="width: 100%">
                                                 </div>
 
                                 
@@ -148,10 +148,10 @@
                            
                             
                             <div class="form-group col-md-12">
-                            <label for="cover" class="col-md-12 control-label">Bukti Transaksi <i>(kosongkan jika tidak ada)</i> </label>
+                            <label for="cover" class="col-md-12 control-label">Bukti pemasukan_rutin <i>(kosongkan jika tidak ada)</i> </label>
                             <div class="col-md-12">
                            
-                                <img width="120" height="120" @if($transaksi->cover) src="{{ asset('images/PengeluaranKhusus/'.$transaksi->cover) }}" @endif />
+                                <img width="120" height="120" @if($pemasukan_rutin->cover) src="{{ asset('images/PengeluaranKhusus/'.$pemasukan_rutin->cover) }}" @endif />
                                 <input type="file" class="uploads form-control" style="margin-top: 20px;" name="cover">
                             </div>
                             </div>
@@ -160,7 +160,7 @@
 
                             <div class="form-group col-md-12" style="width: 150%;margin-bottom:28px">
                               <label>Keterangan</label>
-                              <textarea class="form-control py-0" name="keterangan"  autocomplete="off" placeholder="Masukkan keterangan (Opsional) .." style="width: 100%">{{ $transaksi->keterangan }}</textarea>
+                              <textarea class="form-control py-0" name="keterangan"  autocomplete="off" placeholder="Masukkan keterangan (Opsional) .." style="width: 100%">{{ $pemasukan_rutin->keterangan }}</textarea>
                             </div>
                                                                     
                                 

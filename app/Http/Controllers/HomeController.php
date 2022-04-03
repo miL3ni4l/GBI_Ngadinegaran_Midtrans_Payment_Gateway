@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\DetailKategori;
 use App\DetailPengeluaran;
 use App\kas;
-use App\Transaksi;
+use App\pemasukan_rutin;
 use App\User;
 
 use Hash;
@@ -46,40 +46,40 @@ class HomeController extends Controller
         $kategori = DetailKategori::all();
         $jenis_kategori_khusus = DetailKategori::all(); 
         $kas = kas::all();
-        $transaksi = Transaksi::all();
+        $pemasukan_rutin = pemasukan_rutin::all();
         $tanggal = date('Y-m-d');
         $bulan = date('m');
         $tahun = date('Y');
         $kategori = DetailKategori::all();
         $kategori_user = DetailKategori::all();
         $kas = kas::all();
-        $transaksi = Transaksi::all();
+        $pemasukan_rutin = pemasukan_rutin::all();
         $tanggal = date('Y-m-d');
         $bulan = date('m');
         $tahun = date('Y');
 
-        $pemasukan_bulan_ini = DB::table('transaksi')->select(DB::raw('SUM(nominal) as total'))
+        $pemasukan_bulan_ini = DB::table('pemasukan_rutin')->select(DB::raw('SUM(nominal) as total'))
         ->where('status','1')
         ->whereMonth('tanggal',$bulan)
         ->whereYear('tanggal',$tahun)
         ->first();
 
-        $pemasukan_tahun_ini = DB::table('transaksi')->select(DB::raw('SUM(nominal) as total'))
+        $pemasukan_tahun_ini = DB::table('pemasukan_rutin')->select(DB::raw('SUM(nominal) as total'))
         ->where('status','1')
         ->whereYear('tanggal',$tahun)
         ->first();
 
-        $seluruh_pemasukan = DB::table('transaksi')->select(DB::raw('SUM(nominal) as total'))
+        $seluruh_pemasukan = DB::table('pemasukan_rutin')->select(DB::raw('SUM(nominal) as total'))
         ->where('status','1')
         ->first();
 
-        $pengeluaran_bulan_ini = DB::table('transaksi')->select(DB::raw('SUM(nominal) as total'))
+        $pengeluaran_bulan_ini = DB::table('pemasukan_rutin')->select(DB::raw('SUM(nominal) as total'))
         ->where('status','1')
         ->whereMonth('tanggal',$bulan)
         ->whereYear('tanggal',$tahun)
         ->first();
 
-        $pengeluaran_tahun_ini = DB::table('transaksi')->select(DB::raw('SUM(nominal) as total'))
+        $pengeluaran_tahun_ini = DB::table('pemasukan_rutin')->select(DB::raw('SUM(nominal) as total'))
         ->where('status','1')
         ->whereYear('tanggal',$tahun)
         ->first();
@@ -89,11 +89,11 @@ class HomeController extends Controller
         ->where('status','success')
         ->first();
 
-        $semua_pemasukan = DB::table('transaksi')->select(DB::raw('SUM(nominal) as total'))
+        $semua_pemasukan = DB::table('pemasukan_rutin')->select(DB::raw('SUM(nominal) as total'))
         ->where('status','1')
         ->first();
         
-        $semua_pengeluaran = DB::table('transaksi')->select(DB::raw('SUM(nominal) as total'))
+        $semua_pengeluaran = DB::table('pemasukan_rutin')->select(DB::raw('SUM(nominal) as total'))
         ->where('status','1')
         ->first();
 
@@ -103,7 +103,7 @@ class HomeController extends Controller
         ->where('status','success')
         ->first();
 
-        $pemasukan_rutin = DB::table('transaksi')->select(DB::raw('SUM(nominal) as total'))
+        $pemasukan_rutin = DB::table('pemasukan_rutin')->select(DB::raw('SUM(nominal) as total'))
         ->where('status','1')
         ->first();
         $pemasukan_khusus = DB::table('pemasukan_khusus')->select(DB::raw('SUM(nominal) as total'))
@@ -112,7 +112,7 @@ class HomeController extends Controller
 
  
 
-        $seluruh_pemasukan = DB::table('transaksi')->select(DB::raw('SUM(nominal) as total'))
+        $seluruh_pemasukan = DB::table('pemasukan_rutin')->select(DB::raw('SUM(nominal) as total'))
         ->where('status','1')
         ->first();
         $seluruh_pemasukan_khusus = DB::table('pemasukan_khusus')->select(DB::raw('SUM(nominal) as total'))
@@ -162,7 +162,7 @@ class HomeController extends Controller
                 'kas' => $kas,
                 'total_pemasukan' => $total_pemasukan,
                 'total_pengeluaran' => $total_pengeluaran,
-                'transaksi' => $transaksi,
+                'pemasukan_rutin' => $pemasukan_rutin,
                 'midtrans' => $midtrans,
                 'pemasukan_rutin' => $pemasukan_rutin,
                 'pemasukan_khusus' => $pemasukan_khusus,   

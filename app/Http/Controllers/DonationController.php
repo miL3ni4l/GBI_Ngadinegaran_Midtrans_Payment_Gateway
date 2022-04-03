@@ -16,7 +16,7 @@ use App\DetailPengeluaran;
 use App\Kategori;
 use App\Kas;
 use App\Ibadah;
-use App\Transaksi;
+use App\pemasukan_rutin;
 use Carbon\Carbon;
 use Hash;
 use Auth;

@@ -21,14 +21,14 @@
 
 <div class="col-sm-6">
 
-<h4>Form Tambah Transaksi</h4> 
+<h4>Form Tambah pemasukan_rutin</h4> 
       </div>
 
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/home">Home</a></li>
-              <li class="breadcrumb-item active"><a href="/transaksi">Data Transaksi</a></li>
-              <li class="breadcrumb-item active">Tambah Data Transaksi</li>
+              <li class="breadcrumb-item active"><a href="/pemasukan_rutin">Data pemasukan_rutin</a></li>
+              <li class="breadcrumb-item active">Tambah Data pemasukan_rutin</li>
             </ol>
           </div>
           
@@ -43,7 +43,7 @@
 <div class="card card-secondary">
   <div class="card-body">
     
-  <form method="POST" action="{{ route('transaksi.store') }}" enctype="multipart/form-data">
+  <form method="POST" action="{{ route('pemasukan_rutin.store') }}" enctype="multipart/form-data">
   {{ csrf_field() }}
 
     <!--area ditambah   -->
@@ -60,7 +60,7 @@
       <button type="reset" class="btn btn-danger col-md-1 float-left">
                                     Reset
       </button>
-      <a href="{{route('transaksi.index')}}" class="btn btn-light pull-right col-md-1">Back</a>
+      <a href="{{route('pemasukan_rutin.index')}}" class="btn btn-light pull-right col-md-1">Back</a>
     </div>
     
                       
@@ -106,13 +106,13 @@
 
 <div class="col-sm-6">
 
-<a href="{{ route('transaksi.create') }}" class="btn btn-primary  btn-fw col-lg-3"><i class="fa fa-plus"></i> Tambah Transaksi</a>         
+<a href="{{ route('pemasukan_rutin.create') }}" class="btn btn-primary  btn-fw col-lg-3"><i class="fa fa-plus"></i> Tambah pemasukan_rutin</a>         
       </div>
 
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/home">Home</a></li>
-              <li class="breadcrumb-item active">Transaksi</li>
+              <li class="breadcrumb-item active">pemasukan_rutin</li>
               
             </ol>
           </div>
@@ -142,7 +142,7 @@
               @php
               $no = 1;
               @endphp
-              @foreach($transaksi as $t)
+              @foreach($pemasukan_rutin as $t)
               <tr>
                 <td class="text-left">{{ $no++ }}</td>
               
@@ -167,7 +167,7 @@
 
                 <td class="text-center ">    
 
-                <a href="{{route('transaksi.edit', $t->id)}}" class="btn btn-secondary btn-sm col-md-5 text-center">
+                <a href="{{route('pemasukan_rutin.edit', $t->id)}}" class="btn btn-secondary btn-sm col-md-5 text-center">
                   <i class="fas fa-edit  text-center"></i> Edit
                 </a>
                 <a  data-toggle="modal" data-target="#modalDelete_{{ $t->id }}" class="btn btn-danger btn-sm col-md-5 text-center">
@@ -175,13 +175,13 @@
                 </a>
                 
                   <!-- 
-                    <a href="{{route('transaksi.edit', $t->id)}}" class="btn btn-secondary  btn-sm"><i class="fa fa-cog"></i> </a>
+                    <a href="{{route('pemasukan_rutin.edit', $t->id)}}" class="btn btn-secondary  btn-sm"><i class="fa fa-cog"></i> </a>
                   <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalDelete_{{ $t->id }}"><i class="fa fa-trash"></i></button>
                   -->
                
                   
                   <!-- Modal -->
-                  <form method="POST" action="{{ route('transaksi.destroy',['id' => $t->id]) }}">
+                  <form method="POST" action="{{ route('pemasukan_rutin.destroy',['id' => $t->id]) }}">
                     <div class="modal fade" id="modalDelete_{{ $t->id }}" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -197,7 +197,7 @@
                           {{ csrf_field() }}
                             {{ method_field('delete') }}
 
-                            <p>Apakah anda yakin ingin menghapus data <b>{{$t->transaksi}}</b> ?</p>
+                            <p>Apakah anda yakin ingin menghapus data <b>{{$t->pemasukan_rutin}}</b> ?</p>
 
                           </div>
                           <div class="modal-footer">

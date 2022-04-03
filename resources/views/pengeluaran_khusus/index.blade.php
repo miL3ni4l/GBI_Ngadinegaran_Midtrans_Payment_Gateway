@@ -167,12 +167,12 @@
                                       $total_pengeluaran = 0;
                                       @endphp
 
-                                      @foreach($transaksi as $t)
+                                      @foreach($pemasukan_rutin as $t)
                                       
                                       <tr>
                                             <td class="text-center">{{ $no++ }}</td>
 
-                                            <td class="text-left">{{ $t->kode_transaksi }}</td>
+                                            <td class="text-left">{{ $t->kode_pemasukan_rutin }}</td>
 
                                             <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
                                            
@@ -269,7 +269,7 @@
                                             @php
                                             $no = 1;
                                             @endphp
-                                            @foreach($transaksi as $t)
+                                            @foreach($pemasukan_rutin as $t)
                                             <tr>
                                               <td class="text-left">{{ $no++ }}</td>
 
@@ -283,7 +283,7 @@
                                               </td>
                                               @endif
                                             
-                                              <td class="text-left" > {{ $t->kode_transaksi }} </td>
+                                              <td class="text-left" > {{ $t->kode_pemasukan_rutin }} </td>
                                               <td class="text-left">
                                                 {{$t->tanggal->format('d-M-y')}}
                                               </td>

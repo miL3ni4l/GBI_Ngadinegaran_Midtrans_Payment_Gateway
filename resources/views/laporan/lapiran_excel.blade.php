@@ -68,7 +68,7 @@
       $total_pemasukan = 0;
       $total_pengeluaran = 0;
       @endphp
-      @foreach($transaksi as $t)
+      @foreach($pemasukan_rutin as $t)
       <tr>
         <td>{{ $no++ }}</td>
         <td>{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>

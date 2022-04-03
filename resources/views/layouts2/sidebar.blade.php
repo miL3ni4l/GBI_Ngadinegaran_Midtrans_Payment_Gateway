@@ -1,15 +1,18 @@
 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+  
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           
           
 
                <?php
-               $transaksi= DB::table('transaksi');
+               $pemasukan_rutin= DB::table('pemasukan_rutin');
                $pemasukan_khusus= DB::table('pemasukan_khusus');
                $pengeluaran_khusus= DB::table('pengeluaran_khusus');
                $pengeluaran_rutin= DB::table('pengeluaran_rutin');
                ?>
+
 
                 <li class="nav-item {{ setActive(['home*']) }}"> 
                   <a class="nav-link {{ setActive(['home*']) }}" href="{{route('home')}}">
@@ -23,16 +26,16 @@
 
 
                 @if(Auth::user()->petugas)       
-                <div class="d-flex border">     
+                <div class="user-panel mt-1 pb-1 mb-1 d-flex">     
                 </div>
-                <li class=""> 
+                <!-- <li class=""> 
                   <a class="nav-link" >
                       
                       <p>
                         Transaksi
                       </p>
                     </a>
-                </li>    
+                </li>     -->
                 
                 
                 <li class="nav-item {{ setActive(['donasi*']) }}"> 
@@ -52,11 +55,11 @@
                               Pemasukan  
                                               
                               <i class="right fas fa-angle-left"></i>
-                            </p>
+                              </p>
                                             <span class="badge bg-danger">
                                               @if(Auth::user()->level == 'admin')
                                                 {{
-                                                  $transaksi->where('status', '0')
+                                                  $pemasukan_rutin->where('status', '0')
                                                   ->count()
                                                   +
                                                   $pemasukan_khusus->where('status', '0')
@@ -64,7 +67,7 @@
                                                 }}
                                               @else
                                               {{
-                                                  $transaksi->where('status', '0')
+                                                  $pemasukan_rutin->where('status', '0')
                                                   ->where('nama_pengguna', Auth::user()->petugas->id)
                                                   ->count()
                                                   +
@@ -76,18 +79,18 @@
                                             </span> 
                           </a>
 
-                          <div class="collapse {{ setShow(['transaksi*','pemasukan_khusus*']) }}" id="ui-basicTM">
+                          <div class="collapse {{ setShow(['pemasukan_rutin*','pemasukan_khusus*']) }}" id="ui-basicTM">
                             <ul class="nav flex-column sub-menu">
                               
                           
                               @if(Auth::user()->level == 'admin')
                                 <li class="nav-item">
-                                  <a class="nav-link {{ setActive(['transaksi*']) }}" href="{{route('transaksi.index')}}">
-                                    <i class=" nav-icon fas fa-minus"></i>
+                                  <a class="nav-link {{ setActive(['pemasukan_rutin*']) }}" href="{{route('pemasukan_rutin.index')}}">
+                                  <i class="far fa-circle nav-icon"></i>
                                     <p>Rutin</p>     
                                     <span class="badge bg-danger">
                                       {{
-                                        $transaksi->where('status', '0')
+                                        $pemasukan_rutin->where('status', '0')
                                         ->count()
                                       }}
                                     </span> 
@@ -96,13 +99,13 @@
                                 @else
                                     @if(Auth::user()->petugas)
                                         <li class="nav-item">
-                                          <a class="nav-link {{ setActive(['transaksi*']) }}" href="{{route('transaksi.index')}}">
-                                            <i class=" nav-icon fas fa-minus"></i>
+                                          <a class="nav-link {{ setActive(['pemasukan_rutin*']) }}" href="{{route('pemasukan_rutin.index')}}">
+                                          <i class="far fa-circle nav-icon"></i>
                                             <p>Rutin</p>
                                                     
                                                       <span class="badge bg-danger">
                                                         {{
-                                                          $transaksi->where('status', '0')
+                                                          $pemasukan_rutin->where('status', '0')
                                                           ->where('nama_pengguna', Auth::user()->petugas->id)
                                                           ->count()
                                                         }}
@@ -118,7 +121,7 @@
                               @if(Auth::user()->level == 'admin')
                                 <li class="nav-item">
                                   <a class="nav-link {{ setActive(['pemasukan_khusus*']) }}" href="{{route('pemasukan_khusus.index')}}">
-                                  <i class=" nav-icon fas fa-minus"></i>
+                                <i class="far fa-circle nav-icon"></i>
                                   <p>Khusus</p>
                                   
                                             <span class="badge bg-danger">
@@ -133,7 +136,7 @@
                                     @if(Auth::user()->petugas)
                                         <li class="nav-item">
                                           <a class="nav-link {{ setActive(['pemasukan_khusus*']) }}" href="{{route('pemasukan_khusus.index')}}">
-                                          <i class=" nav-icon fas fa-minus"></i>
+                                        <i class="far fa-circle nav-icon"></i>
                                           <p>Khusus</p>
                                                     @if(Auth::user()->petugas)
                                                     <span class="badge bg-danger">
@@ -196,7 +199,7 @@
                               @if(Auth::user()->level == 'admin')
                                 <li class="nav-item">
                                   <a class="nav-link {{ setActive(['pengeluaran_rutin*']) }}" href="{{route('pengeluaran_rutin.index')}}">
-                                  <i class=" nav-icon fas fa-minus"></i>
+                                <i class="far fa-circle nav-icon"></i>
                                   <p>Rutin</p>
                                   
                                             <span class="badge bg-danger">
@@ -214,7 +217,7 @@
                               @if(Auth::user()->level == 'admin')
                                 <li class="nav-item">
                                   <a class="nav-link {{ setActive(['pengeluaran_khusus*']) }}" href="{{route('pengeluaran_khusus.index')}}">
-                                  <i class=" nav-icon fas fa-minus"></i>
+                                <i class="far fa-circle nav-icon"></i>
                                   <p>Khusus</p>
                                   
                                             <span class="badge bg-danger">
@@ -229,7 +232,7 @@
                                     @if(Auth::user()->petugas)
                                         <li class="nav-item">
                                           <a class="nav-link {{ setActive(['pengeluaran_khusus*']) }}" href="{{route('pengeluaran_khusus.index')}}">
-                                          <i class=" nav-icon fas fa-minus"></i>
+                                        <i class="far fa-circle nav-icon"></i>
                                           <p>Khusus</p>
                                                     @if(Auth::user()->petugas)
                                                     <span class="badge bg-danger">
@@ -251,12 +254,14 @@
                       @endif
 
               
-                  <div class="d-flex border">     
+                  <div class="user-panel mt-1 pb-1 mb-1 d-flex">     
                 </div>
                 @endif
               
     
               <!-- MASTER DATA -->
+           
+
               @if(Auth::user()->level == 'admin')
                 <li li class="nav-item">
                 <a class="nav-link " data-toggle="collapse" href="#ui-basic" aria-controls="ui-basic">
@@ -309,14 +314,14 @@
                         
                                   <li class="nav-item">
                                   <a class="nav-link {{ setActive(['kategori*']) }}" href="{{route('kategori.index')}}">
-                                    <i class=" nav-icon fas fa-minus"></i>
+                                  <i class="far fa-circle nav-icon"></i>
                                   <p>Kategori</p>
                                   </a>
                                   </li>
   
                                   <li class="nav-item">
                                   <a class="nav-link {{ setActive(['detail_kategori*']) }}" href="{{route('detail_kategori.index')}}">
-                                  <i class=" nav-icon fas fa-minus"></i>
+                                <i class="far fa-circle nav-icon"></i>
                                     <p>Detail Kategori</p>
                                     </a>
                                   </li>
@@ -453,7 +458,7 @@
           <a class="nav-link {{ setActive(['riwayat*']) }}" href="riwayat">
               <i class="nav-icon fas fa-history"></i>
               <p>
-               Riwayat Transaksi
+               Riwayat pemasukan_rutin
               
               </p>
             </a>
@@ -476,26 +481,27 @@
           
         
           
-                <div class="d-flex border">     
+                <div class="user-panel mt-1 pb-1 mb-1 d-flex">     
                 </div>
         
                 
 
 
             <li class="nav-item {{ setActive(['logout', '']) }}"> 
-            <a class="dropdown-item nav-link {{ setActive(['logout*']) }}" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-              <i class="nav-icon fas fa-time"></i>
+              <a class="dropdown-item nav-link {{ setActive(['logout*']) }}" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              <i class="far fa-stop nav-icon"></i>  
               <p class="text-red">
-                                      <b>
-                                         
-                                        Keluar
-                                        
-                                      </b>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-              </p>
-            </a>
+               
+                                        <b>
+                
+                                          Keluar
+                                          
+                                        </b>
+                                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                              {{ csrf_field() }}
+                                          </form>
+                </p>
+              </a>
             </li>
 
            

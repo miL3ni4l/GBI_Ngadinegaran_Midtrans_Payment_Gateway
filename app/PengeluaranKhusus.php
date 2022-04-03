@@ -9,7 +9,7 @@ class PengeluaranKhusus extends Model
 	protected $table = "pengeluaran_khusus";
 	protected $dates = ['tanggal'];
 
-	protected $fillable = ["nama_pengguna","kode_transaksi", "tanggal","kategori_id","kas_id","cover","nominal","status","keterangan"];
+	protected $fillable = ["nama_pengguna","kode_pemasukan_rutin", "tanggal","kategori_id","kas_id","cover","nominal","status","keterangan"];
 
 	public function detail_kategori()
 	{
