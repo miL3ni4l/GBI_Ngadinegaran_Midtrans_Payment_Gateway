@@ -32,7 +32,7 @@
                   <a class="nav-link" >
                       
                       <p>
-                        Transaksi
+                        pemasukan_rutin
                       </p>
                     </a>
                 </li>     -->
