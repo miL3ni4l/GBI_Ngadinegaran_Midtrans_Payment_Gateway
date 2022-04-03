@@ -260,6 +260,34 @@
                                                                     </tr>
                                                                   @endif
                                                                 @endforeach
+
+                                                                @foreach($pemasukan_khusus as $t)
+                                                                  @if($t->detail_kategori->jenis  == 'Khusus')
+                                                                    <tr>
+                                                                      <td class="text-center">{{ $no++ }}</td>
+                                                                      <td class="text-left">{{ $t->kode_pemasukan_khusus }}</td>
+                                                                      <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
+                                                                      <td>{{ $t->detail_kategori->kategori }}</td>
+
+                                                                      @if($t->keterangan  == null)
+                                                                            <td class ="text-center"> -</td>
+                                                                      @else
+                                                                            <td>{{ $t->keterangan }}</td>
+                                                                      @endif
+                                                                      
+                                                                      <td class="text-right">
+                                                                        {{ "Rp.".number_format($t->nominal).",-" }}
+                                                                        @php $total_pemasukan += $t->nominal; @endphp
+                                                                      </td>
+
+                                                                    </tr>
+                                                                  @endif
+                                                                @endforeach
+
+
+
+
+
                                                             </tbody>
 
                                                             <tfoot class="bg-info text-white font-weight-bold">

@@ -6,7 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Donation extends Model
 {
-    protected $guarded = [];
+    // protected $guarded = [];
+
+    protected $table = "donations";
+	protected $dates = ['created_at'];
+
+	protected $fillable = ["donation_type","transaction_id", "donor_name","donor_email","amount","note","status","snap_token"];
+
+    public function detail_kategori()
+	{
+		return $this->belongsTo('App\Donation','donation_type');
+	}
 
     /**
      * Set status to Pending

@@ -8,21 +8,31 @@ use App\Anggota;
 //skripsi
 use Illuminate\Support\Facades\DB;
 
-use App\Petugas;
-use App\Kategori;
-use App\DetailKategori;
-use App\Transaksi;
-use App\User;
 
+use App\User;
+use App\Petugas;
+use App\DetailKategori;
+use App\DetailPengeluaran;
+use App\Kategori;
+use App\Kas;
+use App\Ibadah;
+use App\Transaksi;
+use App\PemasukanKhusus;
+use App\PengeluaranKhusus;
+use App\PengeluaranRutin;
+use App\Donation;
+use Carbon\Carbon;
 use Hash;
 use Auth;
 use File;
 use Session;
+use PDF;
 
 use App\Exports\LaporanExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Str;
 
 class DetailKategoriController extends Controller
 {
@@ -350,19 +360,43 @@ class DetailKategoriController extends Controller
         ->get();
         $transaksi = Transaksi::all();
         $transaksis  = Transaksi::count(); 
+        $pemasukan_khusus = PemasukanKhusus::all();
+        $pemasukan_khususs  = PemasukanKhusus::count(); 
+        $midtrans = Donation::all();
+        $midtranss  = Donation::count(); 
 
         if($_GET['kategori'] == ""){
             $transaksi = Transaksi::whereDate('tanggal','>=',$_GET['dari'])
+            ->where('status', '1')
             ->whereDate('tanggal','<=',$_GET['sampai'])
             ->get();
+            $pemasukan_khusus = PemasukanKhusus::whereDate('tanggal','>=',$_GET['dari'])
+            ->where('status', '1')
+            ->whereDate('tanggal','<=',$_GET['sampai'])
+            ->get();
+            // $midtrans = Donation::whereDate('created_at','>=',$_GET['dari'])
+            // ->where('status','success')
+            // ->whereDate('created_at','<=',$_GET['sampai'])
+            // ->get();
         }
         else{
             $transaksi = Transaksi::where('kategori_id',$_GET['kategori'])
+            ->where('status', '1')
             ->whereDate('tanggal','>=',$_GET['dari'])
             ->whereDate('tanggal','<=',$_GET['sampai'])
-            ->get();     
+            ->get();    
+            $pemasukan_khusus = PemasukanKhusus::where('kategori_id',$_GET['kategori'])
+            ->where('status', '1')
+            ->whereDate('tanggal','>=',$_GET['dari'])
+            ->whereDate('tanggal','<=',$_GET['sampai'])
+            ->get(); 
+            // $midtrans = Donation::where('donation_type',$_GET['kategori'])
+            // ->where('status','success')
+            // ->whereDate('created_at','>=',$_GET['dari'])
+            // ->whereDate('created_at','<=',$_GET['sampai'])
+            // ->get();
         }  
-        return view('detail_kategori.index',['kategoris_pemasukan'=> $kategoris_pemasukan,'transaksi' => $transaksi, 'kategori' => $kategori, 'datas' => $datas,'details' => $details,'kategoris'=>$kategoris ,'transaksis'=>$transaksis]);
+        return view('detail_kategori.index',['kategoris_pemasukan'=> $kategoris_pemasukan,'transaksi' => $transaksi, 'pemasukan_khusus' => $pemasukan_khusus,'kategori' => $kategori, 'datas' => $datas,'details' => $details,'kategoris'=>$kategoris ,'transaksis'=>$transaksis]);
 
 
     }
