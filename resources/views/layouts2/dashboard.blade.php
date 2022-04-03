@@ -35,7 +35,7 @@
                     <span class="info-box-icon bg-success"><i class="fa fa-caret-up"></i></span>
                     <div class="info-box-content">
                       <span class="info-box-text">Pemasukan</span>
-                      <h5 class="info-box-number text-dark ">{{ "Rp. ".number_format($pemasukan_rutin->total += $pemasukan_khusus->total )." ,-" }}</h5>
+                      <h5 class="info-box-number text-dark ">{{ "Rp. ".number_format($pemasukan_rutin->total += $pemasukan_khusus->total)." ,-" }}</h5>
                       <div class="progress"> 
                         <div class="progress-bar bg-success" style="width: 100%"></div>
                       </div>
@@ -128,6 +128,21 @@
                         </div>   
               </div>                  
             </div>
+
+            <!-- <div class="col-md-12 col-sm-12 col-12 ">
+              <div class="card col-12">
+                        <div class="card-header border-0">
+                          <div class="d-flex justify-content-between">
+                            <h5  class="position-center ">Grafik <b>Midtrans Per Bulan </b>  </h5>
+                          </div>
+                        </div>
+
+                        <div class="position-relative ">
+                          <canvas id="grafik8"></canvas>
+                        </div>   
+              </div>                  
+            </div> -->
+
          
             @endif
             
@@ -326,7 +341,7 @@
                         </div>
 
                         <div class="position-relative ">
-                          <canvas id="grafik4"></canvas>
+                          <canvas id="grafik8"></canvas>
                         </div>   
               </div>                  
             </div>
@@ -578,6 +593,41 @@
 
   }
 
+  var barChartData8 = {
+    labels : ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"],
+    datasets : [
+    {
+      label: 'Payment',
+      fillColor : "rgb(52, 152, 219)",
+      strokeColor : "rgb(37, 116, 169)",
+      highlightFill: "rgba(220,220,220,0.75)",
+      highlightStroke: "rgba(220,220,220,1)",
+      data : [
+      <?php
+      for($bulan=1;$bulan<=12;$bulan++){
+        $tahun = date('Y');
+        $pemasukan_perbulan = DB::table('donations')
+        ->select(DB::raw('SUM(amount) as total'))
+        ->where('status','success')
+        ->whereMonth('created_at',$bulan)
+        ->whereYear('created_at',$tahun)
+        ->first();
+
+        $total = $pemasukan_perbulan->total;
+        if($pemasukan_perbulan->total == ""){
+          echo "0,";
+        }else{
+          echo $total.",";
+          
+        }
+      }
+      ?>
+      ]
+    }
+    ]
+
+  }
+
 
   window.onload = function()
   {
@@ -604,6 +654,16 @@
 
    var ctx = document.getElementById("grafik4").getContext("2d");
     window.myBar = new Chart(ctx).Bar(barChartData4, {
+     responsive : true,
+     animation: true,
+     barValueSpacing : 5,
+     barDatasetSpacing : 1,
+     tooltipFillColor: "rgba(0,0,0,0.8)",
+     multiTooltipTemplate: "<%= datasetLabel %> - Rp.<%= value.toLocaleString() %>,-"
+   });
+
+   var ctx = document.getElementById("grafik8").getContext("2d");
+    window.myBar = new Chart(ctx).Bar(barChartData8, {
      responsive : true,
      animation: true,
      barValueSpacing : 5,

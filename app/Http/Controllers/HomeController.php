@@ -83,7 +83,12 @@ class HomeController extends Controller
         ->where('status','1')
         ->whereYear('tanggal',$tahun)
         ->first();
+
         //GRAFIK
+        $semua_pemasukan_midtrans = DB::table('donations')->select(DB::raw('SUM(amount) as total'))
+        ->where('status','success')
+        ->first();
+
         $semua_pemasukan = DB::table('transaksi')->select(DB::raw('SUM(nominal) as total'))
         ->where('status','1')
         ->first();
@@ -137,6 +142,7 @@ class HomeController extends Controller
                 'pemasukan_bulan_ini' => $pemasukan_bulan_ini,
                 'pemasukan_tahun_ini' => $pemasukan_tahun_ini,
                 'seluruh_pemasukan' => $seluruh_pemasukan,
+                'semua_pemasukan_midtrans' => $semua_pemasukan_midtrans,
                 'semua_pemasukan' => $semua_pemasukan,
                 'pengeluaran_bulan_ini' => $pengeluaran_bulan_ini,
                 'pengeluaran_tahun_ini' => $pengeluaran_tahun_ini,

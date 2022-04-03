@@ -48,82 +48,104 @@
                                 $total = $seluruh_pemasukan->total;
                               ?>
 
-                              <div class="col-md-3">
-                                <div class="card card-outline card-warning">
-                                    <div class="card-header">
-                                      <h3 class="card-title">
-                                      <b>Payment Pending</b> 
-                                      </h3>
-                                    </div>
 
-                                    <div class="card-tools"> 
-                                      <div class="card-body ">
+                              <!-- <div class="col-12 col-sm-6 col-md-3">
+                                <div class="info-box">
+                                  <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-clock"></i></span>
 
-                                      <div class="row">
-                                        {{$donation->where('status', 'pending')->count()}}
-                                      </div>
-                                      </div>
-                                    </div>
+                                  <div class="info-box-content">
+                                    <span class="info-box-text">Payment Pending</span>
+                                    <span class="info-box-number">
+                                    {{$donation->where('status', 'pending')->count()}}
+                                     
+                                    </span>
+                                  </div>
+ 
                                 </div>
+
+                              </div>
+                              <div class="col-12 col-sm-6 col-md-3">
+                                <div class="info-box">
+                                  <span class="info-box-icon bg-success elevation-1"><i class="fas fa-check"></i></span>
+
+                                  <div class="info-box-content">
+                                    <span class="info-box-text">Payment Success</span>
+                                    <span class="info-box-number">
+                                    {{$donation->where('status', 'success')->count()}}
+                                     
+                                    </span>
+                                  </div>
+ 
+                                </div>
+
+                              </div>
+                              <div class="col-12 col-sm-6 col-md-3">
+                                <div class="info-box">
+                                  <span class="info-box-icon bg-red elevation-1"><i class="fas fa-times"></i></span>
+
+                                  <div class="info-box-content">
+                                    <span class="info-box-text">Payment Failed</span>
+                                    <span class="info-box-number">
+                                    {{$donation->where('status', 'failed')->count()}}
+                                     
+                                    </span>
+                                  </div>
+ 
+                                </div>
+
+                              </div>
+                              <div class="col-12 col-sm-6 col-md-3">
+                                <div class="info-box">
+                                  <span class="info-box-icon bg-dark elevation-1"><i class="fas fa-stop"></i></span>
+
+                                  <div class="info-box-content">
+                                    <span class="info-box-text">Payment Expired</span>
+                                    <span class="info-box-number">
+                                    {{$donation->where('status', 'expired')->count()}}
+                                     
+                                    </span>
+                                  </div>
+ 
+                                </div>
+
+                              </div>
+                               -->
+
+                               <div class="col-12 col-sm-6 col-md-6">
+                                <div class="info-box">
+                                  <span class="info-box-icon bg-info elevation-1"><i class="fas fa-caret-up"></i></span>
+
+                                  <div class="info-box-content">
+                                    <h6 class="info-box-text">Total Volume </h6>
+                                      <i>Month to Date</i>
+                                    <span class="info-box-number">
+
+                                      <h5>{{ "Rp. ".number_format($total_pemasukan_bulan_ini)." ,-" }}</h5>
+                                     
+                                    </span>
+                                  </div>
+ 
+                                </div>
+
                               </div>
 
-                              <div class="col-md-3">
-                                <div class="card card-outline card-success">
-                                    <div class="card-header">
-                                      <h3 class="card-title">
-                                      <b>Payment Succeess</b> 
-                                      </h3>
-                                    </div>
+                              <div class="col-12 col-sm-6 col-md-6">
+                                <div class="info-box">
+                                  <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
 
-                                    <div class="card-tools"> 
-                                      <div class="card-body ">
+                                  <div class="info-box-content">
+                                    <h6 class="info-box-text">Total Transaction </h6>
+                                      <i>Month to Date</i>
+                                    <span class="info-box-number">
 
-                                      <div class="row">
-                                       {{$donation->where('status', 'success')->count()}}
-                                      </div>
-                                      </div>
-                                    </div>
+                                      <h5>{{$donation->where('status', 'success')->count()}}</h5>
+                                     
+                                    </span>
+                                  </div>
+ 
                                 </div>
+
                               </div>
-
-                              <div class="col-md-3">
-                                <div class="card card-outline card-danger">
-                                    <div class="card-header">
-                                      <h3 class="card-title">
-                                      <b>Payment Failed</b> 
-                                      </h3>
-                                    </div>
-
-                                    <div class="card-tools"> 
-                                      <div class="card-body ">
-
-                                      <div class="row">
-                                      {{$donation->where('status', 'failed')->count()}}
-                                      </div>
-                                      </div>
-                                    </div>
-                                </div>
-                              </div>
-
-                              <div class="col-md-3">
-                                <div class="card card-outline card-dark">
-                                    <div class="card-header">
-                                      <h3 class="card-title">
-                                      <b>Payment Expired</b> 
-                                      </h3>
-                                    </div>
-
-                                    <div class="card-tools"> 
-                                      <div class="card-body ">
-
-                                      <div class="row">
-                                      {{$donation->where('status', 'expired')->count()}}
-                                      </div>
-                                      </div>
-                                    </div>
-                                </div>
-                              </div>
-
                              
 
                           </div>
