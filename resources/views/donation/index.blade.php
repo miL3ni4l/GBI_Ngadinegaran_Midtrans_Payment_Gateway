@@ -35,81 +35,10 @@
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
   </div>
-
-  <div class="content-header">
+<!-- 
+                       <div class="content-header">
                         <div class="container-fluid">
                           <div class="row">
-
-                              <?php
-                                $seluruh_pemasukan = DB::table('transaksi')->select(DB::raw('SUM(nominal) as total'))
-                                ->where('status','1')
-                                ->first();
-                    
-                                $total = $seluruh_pemasukan->total;
-                              ?>
-
-
-                              <!-- <div class="col-12 col-sm-6 col-md-3">
-                                <div class="info-box">
-                                  <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-clock"></i></span>
-
-                                  <div class="info-box-content">
-                                    <span class="info-box-text">Payment Pending</span>
-                                    <span class="info-box-number">
-                                    {{$donation->where('status', 'pending')->count()}}
-                                     
-                                    </span>
-                                  </div>
- 
-                                </div>
-
-                              </div>
-                              <div class="col-12 col-sm-6 col-md-3">
-                                <div class="info-box">
-                                  <span class="info-box-icon bg-success elevation-1"><i class="fas fa-check"></i></span>
-
-                                  <div class="info-box-content">
-                                    <span class="info-box-text">Payment Success</span>
-                                    <span class="info-box-number">
-                                    {{$donation->where('status', 'success')->count()}}
-                                     
-                                    </span>
-                                  </div>
- 
-                                </div>
-
-                              </div>
-                              <div class="col-12 col-sm-6 col-md-3">
-                                <div class="info-box">
-                                  <span class="info-box-icon bg-red elevation-1"><i class="fas fa-times"></i></span>
-
-                                  <div class="info-box-content">
-                                    <span class="info-box-text">Payment Failed</span>
-                                    <span class="info-box-number">
-                                    {{$donation->where('status', 'failed')->count()}}
-                                     
-                                    </span>
-                                  </div>
- 
-                                </div>
-
-                              </div>
-                              <div class="col-12 col-sm-6 col-md-3">
-                                <div class="info-box">
-                                  <span class="info-box-icon bg-dark elevation-1"><i class="fas fa-stop"></i></span>
-
-                                  <div class="info-box-content">
-                                    <span class="info-box-text">Payment Expired</span>
-                                    <span class="info-box-number">
-                                    {{$donation->where('status', 'expired')->count()}}
-                                     
-                                    </span>
-                                  </div>
- 
-                                </div>
-
-                              </div>
-                               -->
 
                                <div class="col-12 col-sm-6 col-md-6">
                                 <div class="info-box">
@@ -150,7 +79,7 @@
 
                           </div>
                          </div>       
-                      </div>
+                      </div> -->
 
 
 

@@ -23,6 +23,12 @@ class KassTableSeeder extends Seeder
                 'kas'  	    => 'BCA',
                 'created_at'      => \Carbon\Carbon::now(),
                 'updated_at'      => \Carbon\Carbon::now()
+            ],
+            [
+                'id'  			=> 3,
+                'kas'  	    => 'Midtrans',
+                'created_at'      => \Carbon\Carbon::now(),
+                'updated_at'      => \Carbon\Carbon::now()
             ]
         ]);
     }
