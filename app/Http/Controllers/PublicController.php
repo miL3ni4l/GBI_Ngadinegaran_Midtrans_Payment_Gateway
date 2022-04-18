@@ -22,6 +22,7 @@ use App\DetailPengeluaran;
 use App\Kategori;
 use App\Kas;
 use App\Ibadah;
+use App\Komunitas;
 use App\pemasukan_rutin;
 use App\Profil;
 
@@ -38,14 +39,14 @@ class PublicController extends Controller
 
     public function index()
     {
-        $ibadah = Ibadah::orderBy('updated_at','desc')
-        ->where('status', '1')->get();
+        $ibadah = Ibadah::orderBy('updated_at','desc')->where('status', '1')->get();
         $petugas = Petugas::orderBy('updated_at','desc')->get();
         $profil = Profil::orderBy('updated_at','desc')->get();
         $pendeta = Pendeta::orderBy('updated_at','desc')->get();
+        $komunitas = Komunitas::orderBy('updated_at','desc')->where('status', '1')->get();
      
      
-        return view('utama.1',array('ibadah' => $ibadah,'petugas' => $petugas,'profil' => $profil,'pendeta' => $pendeta));
+        return view('utama.1',array('ibadah' => $ibadah,'petugas' => $petugas,'profil' => $profil,'pendeta' => $pendeta,'komunitas' => $komunitas));
 
     }
 

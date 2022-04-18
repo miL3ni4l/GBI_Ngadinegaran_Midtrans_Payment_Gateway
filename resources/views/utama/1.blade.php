@@ -344,67 +344,69 @@
   <section id="ministries">
     <div class="container">
 
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <h4 class="section-heading text-uppercase">MINISTRIES</h4><br>
-        </div>
-      </div>
-
-      <div class="container">
         <div class="row">
-                
-            @foreach($profil as $p)         
-            <div id="owl-carousel-1" class="owl-carousel owl-theme center-owl-nav">
+          <div class="col-lg-12 text-center">
+            <h4 class="section-heading text-uppercase">ministries</h4><br>
+          </div>
+        </div>
 
-                <div class="col-md-12">
-                    <div class="alert alert-secondary center-block">
-                      <table id="example1" class="table table-bordered table-striped">
-                        
+        <div class="container">
+                      <div class="section-title">
+                        <h4 class="title">Mari Bergabung</h4>
+                      </div>
+                      <div class="row">
+                              
+                          
+                          <div id="owl-carousel-3" class="owl-carousel owl-theme center-owl-nav">
+                            @foreach($komunitas as $p)
+                                <div class="col-md-12">
+                                    <div class="alert alert-secondary center-block">
+                                      <table>
+                                      <div class="card-body text-muted">
+                                          <h5> {{ $p->nama_komunitas }} </h5>
+                                          
+                                        </div>
 
-                                <div class="card-body text-muted border-bottom-0">
-                                  <h6> {{ $p->nama_gereja }} </h6>
+                                        <div class="col-12">
+                                          <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                                            <div class="col-xl-6 col-lg-6"><img class="img-fluid mb-3 mb-lg-0" src="utama/img/child.jpg" alt="..." /></div>
+                                                    <div class="col-xl-6 col-lg-4">
+
+                                                       
+                                                            <ul class="ml-0 mb-0 fa-ul text-muted">
+                                                              <li class="small"></i></span>  {{ $p->deskripsi }}</li>
+                                                              </br>
+                                                              <li class="small">  <h6>Pj</h6></li>
+                                                              <li class="small"></i></span>  {{ $p->pj }}</li>
+                                                              </br>
+                                                              <li class="small">  <h6>Kontak</h6></li>
+                                                              <li class="small"></i></span>  {{ $p->kontak }}</li>
+                                                              </br>
+                                                            
+                                                            </ul>
+                                            </div> 
+                                          </div> 
+                                        </div>
+
+
+
+                                         </div>
+
+                                              
+                                          
+                                      </table>
+                                    </div>
                                 </div>
 
-                                <div class="card-body pt-0">
-                                  <div class="row">
+                            @endforeach    
+                          </div>    
 
-                                    <div class="col-12">
-                                      
-                                      <ul class="ml-0 mb-0 fa-ul text-muted">
-                                      
-                                        <li class="small">  <h6>Nama Gereja</h6></li>
-                                        <li class="small"></i></span>  {{ $p->nama_gereja }}</li>
-                                        </br>
-                                        <li class="small">  <h6>Telp</h6></li>
-                                        <li class="small"></i></span> {{ $p->tlp_gereja }}
-                                        </li>
-                                        </br>
-                                        <li class="small">  <h6>Alamat</h6></li>
-                                        <li class="small"></i></span> {{ $p->alamat_gereja }}
-                                        </li>
-                                        
-                                      
-                                      </ul>
-
-                                    </div>
-                                    
-                                    <div class="col-5 text-center">
-                                    </div>
-
-                                  </div>
-                                
-                           
-                      </table>
-                    </div>
-                </div>
-            @endforeach
-
-            
-            </div>    
-
-
+                      </div>
         </div>
-      </div>
+
+        <div class="col-lg-12 text-center">
+                          <a class="nav-link js-scroll-trigger"  href="#ministries"><h4>Read More >></h4></a>
+        </div>
     
     </div>
   </section>
@@ -636,7 +638,7 @@
 
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h4 class="section-heading text-uppercase">ministries Gereja</h4><br>
+            <h4 class="section-heading text-uppercase">ministries</h4><br>
           </div>
         </div>
         
@@ -645,33 +647,21 @@
             <div class="row">
               <div class="col-md-12">
 
-                <div class="section-title">
-                  <h4 class="title">Berita Terkini</h4>
-                </div>
-            
-                
-                <div id="owl-carousel-2" class="owl-carousel owl-theme">        
-
-                  <article class="article thumb-article" width="50px" height="50px">
-                    <div class="article-img">
-                    <img> 
+                    <div class="section-title">
+                      <h4 class="title">Berita Terkini</h4>
                     </div>
-                    <div class="article-body">
-                      <ul class="article-info">
-                      </ul>
-                      <h3 class="article-title"><a >judul</a></h3>
-                      <ul class="article-meta">
-                        <li><i></i>ministries</li>
-                      </ul>
-                    </div>
-                  </article>
                 
-                </div>
 
-          <div class="col-lg-12 text-center">
-              <a href="/utama/2"><h4>Read More >></h4></a>
+                    <div class="col-lg-12 text-center">
+                        <a href="/utama/2"><h4>Read More >></h4></a>
+                    </div>
+
+              </div>
+            </div>
           </div>
+        </div>
 
+      </div>
 
     </section> -->
 

@@ -112,6 +112,10 @@ Route::resource('ibadah', 'IbadahController');
 Route::get('/ibadah_filter', 'IbadahController@ibadah_filter')->name('ibadah_filter');
 Route::get('ibadah/status/{id}','IbadahController@status');
 
+// KOMUNITAS
+Route::resource('komunitas', 'KomunitasController');
+Route::get('/komunitas_filter', 'KomunitasController@komunitas_filter')->name('komunitas_filter');
+Route::get('komunitas/status/{id}','KomunitasController@status');
 
 // RIWAYAT
 Route::resource('riwayat', 'RiwayatController');
