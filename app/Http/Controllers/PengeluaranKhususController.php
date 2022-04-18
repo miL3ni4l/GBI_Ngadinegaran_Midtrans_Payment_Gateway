@@ -265,6 +265,7 @@ class PengeluaranKhususController extends Controller
         $kategori = $request->input('kategori');
         $kas = $request->input('kas');
         $nominal = $request->input('nominal');
+        $status = $request->input('status');
         $keterangan = $request->input('keterangan');
 
         PengeluaranKhusus::create(
@@ -275,6 +276,7 @@ class PengeluaranKhususController extends Controller
             'kategori_id' => $kategori,
             'kas_id' => $kas,
             'nominal' => $nominal,
+            'status' => $status,
             // 'nominal' => ['required', 'nominal', 'max:2'],
             'cover' => $cover,
             'keterangan' => $keterangan,

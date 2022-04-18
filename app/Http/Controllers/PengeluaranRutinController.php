@@ -335,6 +335,7 @@ class PengeluaranRutinController extends Controller
         $detail_pengeluaran = $request->input('detail_pengeluaran');
         $kas = $request->input('kas');
         $nominal = $request->input('nominal');
+        $status = $request->input('status');
         $keterangan = $request->input('keterangan');
 
         PengeluaranRutin::create(
@@ -346,6 +347,7 @@ class PengeluaranRutinController extends Controller
             'detail_pengeluaran' => $detail_pengeluaran,
             'kas_id' => $kas,
             'nominal' => $nominal,
+            'status' => $status,
             // 'nominal' => ['required', 'nominal', 'max:2'],
             'cover' => $cover,
             'keterangan' => $keterangan,

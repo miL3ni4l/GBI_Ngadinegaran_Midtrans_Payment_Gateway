@@ -269,7 +269,8 @@ class PemasukanKhususController extends Controller
         $kas = $request->input('kas');
         $ibadah = $request->input('ibadah');
         $nominal = $request->input('nominal');
-        $keterangan = $request->input('keterangan');
+        $status = $request->input('status');
+        $keterangan = $request->input('keterangan'); 
 
         PemasukanKhusus::create(
             [
@@ -280,6 +281,7 @@ class PemasukanKhususController extends Controller
             'kas_id' => $kas,
             'ibadah_id' => $ibadah,
             'nominal' => $nominal,
+            'status' => $status,
             // 'nominal' => ['required', 'nominal', 'max:2'],
             'cover' => $cover,
             'keterangan' => $keterangan,

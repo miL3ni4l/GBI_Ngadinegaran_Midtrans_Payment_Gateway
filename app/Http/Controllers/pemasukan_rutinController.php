@@ -269,6 +269,7 @@ class pemasukan_rutinController extends Controller
         $kode_pemasukan_rutin = $request->input('kode_pemasukan_rutin');
         $tanggal = $request->input('tanggal');
         $kategori = $request->input('kategori');
+        $status = $request->input('status');
         $kas = $request->input('kas');
         $ibadah = $request->input('ibadah');
         $nominal = $request->input('nominal');
@@ -280,6 +281,7 @@ class pemasukan_rutinController extends Controller
             'kode_pemasukan_rutin' => $kode_pemasukan_rutin,
             'tanggal' => $tanggal,
             'kategori_id' => $kategori,
+            'status' => $status,
             'kas_id' => $kas,
             'ibadah_id' => $ibadah,
             'nominal' => $nominal,

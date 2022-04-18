@@ -191,6 +191,15 @@
                                                 <label>Nominal<b style="color:Tomato;">*</b></label>
                                                 <input type="number" class="form-control" required="required" name="nominal" autocomplete="off" placeholder="Masukkan Nominal . . .">
                                               </div>
+
+                                              <div class="container  col-md-12">                               
+                                                <label>Status <b style="color:Tomato;">*</b></label>
+                                                <select required="required" name="status" class="custom-select mb-3" >
+                                                  <option value="">-- Pilih Status --</option>
+                                                  <option value="0">Belum Diterima</option>
+                                                  <option value="1">Sudah Diterima</option>
+                                                </select>
+                                              </div>
                                               
 
                       </div>
@@ -213,7 +222,7 @@
                                                         <label for="email" class="col-md-12 control-label">Bukti pemasukan_rutin <i>(kosongkan jika tidak ada)</i> </label>
                                                         
                                                         <div class="col-md-12">
-                                                            <img width="235" height="235" />
+                                                            <img width="300" height="300" />
                                                             <input type="file" class="uploads form-control" style="margin-top: 20px;" name="cover">
                                                         </div>
                                               </div>
