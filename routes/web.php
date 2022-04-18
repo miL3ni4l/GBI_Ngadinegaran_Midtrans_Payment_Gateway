@@ -110,6 +110,7 @@ Route::get('/lapiran/print', 'LaporanKasController@lapiran_print')->name('lapira
 // IBADAH
 Route::resource('ibadah', 'IbadahController');
 Route::get('/ibadah_filter', 'IbadahController@ibadah_filter')->name('ibadah_filter');
+Route::get('ibadah/status/{id}','IbadahController@status');
 
 
 // RIWAYAT

@@ -18,6 +18,7 @@ class CreateIbadahsTable extends Migration
             $table->string('kode_ibadah');
             $table->string('ibadah');
             $table->string('jam')->nullable();
+            $table->enum('status',['0','1']);
             $table->longText('keterangan')->nullable();
             $table->timestamps();
         });

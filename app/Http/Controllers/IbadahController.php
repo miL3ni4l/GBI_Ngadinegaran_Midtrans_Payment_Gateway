@@ -215,6 +215,30 @@ class IbadahController extends Controller
         Session::flash('message_type', 'success');
         return redirect('ibadah')->with('success','ibadah telah dihapus');
     }
+
+     //KONFRIMASI
+     public function status($id){
+        $data = \DB::table('ibadah')->where('id',$id)->first();
+ 
+        $status_sekarang = $data->status;
+ 
+        if($status_sekarang == '1'){
+            \DB::table('ibadah')
+            ->where('id',$id)
+            ->update(['status'=>'0']);
+            Session::flash('message', 'Status ibadah private');
+            Session::flash('message_type', 'success');
+        }else{
+            \DB::table('ibadah')
+            ->where('id',$id)
+            ->update(['status'=>'1']);
+            Session::flash('message', 'Status ibadah publik');
+            Session::flash('message_type', 'success');
+        }
+        
+        // return redirect('/ibadah');
+        return redirect()->back();
+    }
     
 }
     

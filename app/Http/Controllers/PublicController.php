@@ -38,7 +38,8 @@ class PublicController extends Controller
 
     public function index()
     {
-        $ibadah = Ibadah::orderBy('updated_at','desc')->get();
+        $ibadah = Ibadah::orderBy('updated_at','desc')
+        ->where('status', '1')->get();
         $petugas = Petugas::orderBy('updated_at','desc')->get();
         $profil = Profil::orderBy('updated_at','desc')->get();
         $pendeta = Pendeta::orderBy('updated_at','desc')->get();

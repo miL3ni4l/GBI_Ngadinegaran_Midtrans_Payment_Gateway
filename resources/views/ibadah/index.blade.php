@@ -280,10 +280,14 @@
                                 <thead> 
                                   <tr>
                                   <th width="1%">NO</th>
+                                  @if(Auth::user()->level == 'admin')
+                                                            <th class="text-center col-md-1" >CONFIRM </th>
+                                                            @endif
                                   <th class="text-center">KODE</th>
                                   <th class="text-center">IBADAH</th>
                                   <th class="text-center">JAM</th>
                                   <th class="text-center">KETERANGAN</th>
+                                  <th class="text-center">STATUS</th>
                                   <th class="text-center">UPDATED</th>
                                   @if(Auth::user()->level == 'admin')
                                   <th class="text-center col-md-2" width="10%">OPSI</th>
@@ -297,6 +301,15 @@
                                 @foreach($ibadah as $k)
                                 <tr>
                                   <td class="text-center">{{ $no++ }}</td>
+                                  @if(Auth::user()->level == 'admin')
+                                                            <td>
+                                                                @if($k->status == '1')
+                                                                <a href="{{ url('ibadah/status/'.$k->id) }}" class="btn btn-sm btn-danger">PRIVATE</a>
+                                                                @else
+                                                                <a href="{{ url('ibadah/status/'.$k->id) }}" class="btn btn-sm btn-success">PUBLIC</a>
+                                                                @endif
+                                                            </td>
+                                                            @endif
                                   <td class="text-left">{{ $k->kode_ibadah }}</td>                    
                                   <td>{{ $k->ibadah }}</td>
                                   <td class="text-center">{{ $k->jam }}</td>
@@ -305,6 +318,16 @@
                                         @else
                                         <td>{{ $k->keterangan }}</td>
                                   @endif
+                                  <td  class="text-center">
+                                                              @if($k->status == '1')
+                                                                <i class="fa fa-check-square" style="color:green" ></i>
+                                                              @else
+                                                                <i class="fa fa-times" style="color:red"></i>
+                                                              @endif
+                                  </td>
+
+
+
                                   <td class="text-left">{{ $k->updated_at->diffForHumans() }}</td>
                                 
                                   @if(Auth::user()->level == 'admin')
