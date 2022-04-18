@@ -236,7 +236,7 @@
                                       <tr>
                                         <td class="text-center">{{ $no++ }}</td>               
                                         <td class="text-left">{{ $k->ibadah }}</td>
-                                        <td class="text-center">{{ $k->waktu_ibadah }}</td>
+                                        <td class="text-center">{{ $k->jam }}</td>
                                       </tr>
                                       @endforeach
                                     </tbody>

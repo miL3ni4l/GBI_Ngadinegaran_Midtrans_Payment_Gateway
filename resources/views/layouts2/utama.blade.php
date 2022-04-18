@@ -95,15 +95,11 @@
             <a class="nav-link js-scroll-trigger" href="#contact">Kontak</a>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/login">User</a>
-          </li>
-
-          
-
           <!-- <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="/login">User</a>
           </li> -->
+
+
           
         </ul>
       </div>

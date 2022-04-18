@@ -282,8 +282,9 @@
                                   <th width="1%">NO</th>
                                   <th class="text-center">KODE</th>
                                   <th class="text-center">IBADAH</th>
-                                  <th class="text-center">UPDATED</th>
+                                  <th class="text-center">JAM</th>
                                   <th class="text-center">KETERANGAN</th>
+                                  <th class="text-center">UPDATED</th>
                                   @if(Auth::user()->level == 'admin')
                                   <th class="text-center col-md-2" width="10%">OPSI</th>
                                   @endif
@@ -298,6 +299,7 @@
                                   <td class="text-center">{{ $no++ }}</td>
                                   <td class="text-left">{{ $k->kode_ibadah }}</td>                    
                                   <td>{{ $k->ibadah }}</td>
+                                  <td class="text-center">{{ $k->jam }}</td>
                                   @if($k->keterangan  == null)
                                         <td class =" text-center">-</td>
                                         @else
@@ -306,7 +308,7 @@
                                   <td class="text-left">{{ $k->updated_at->diffForHumans() }}</td>
                                 
                                   @if(Auth::user()->level == 'admin')
-                                    <td class="text-left col-md-1">    
+                                    <td class="text-center col-md-1">    
 
                                       <a href="{{route('ibadah.edit', $k->id)}}" class="btn btn-secondary btn-sm col-md-2 text-center">
                                         <i class="fas fa-edit  text-center"></i>

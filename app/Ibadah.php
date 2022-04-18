@@ -8,7 +8,7 @@ class Ibadah extends Model
 {
     protected $table = "ibadah";
 
-	protected $fillable = ["kode_ibadah","ibadah","keterangan"];
+	protected $fillable = ["kode_ibadah","ibadah" ,"jam","keterangan"];
 
 	public function pemasukan_rutins()
     {

@@ -17,6 +17,7 @@ class CreateIbadahsTable extends Migration
             $table->increments('id');
             $table->string('kode_ibadah');
             $table->string('ibadah');
+            $table->string('jam')->nullable();
             $table->longText('keterangan')->nullable();
             $table->timestamps();
         });

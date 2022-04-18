@@ -13,6 +13,7 @@
 @section('content')
 
 
+
     <section class="content-header">
       <div class="container-fluid">
         <div class="row">
@@ -35,6 +36,8 @@
                         </div>
                       @endif
               
+                    
+
                       <div class=" table-responsive col-md-12 col-sm-6 col-12">     
                           <div class="card card-secondary">
                               <div class="card-body">
@@ -65,6 +68,19 @@
                                                                     @endif
                                                                 </div>
                                               </div>
+                                              <div class="form-group{{ $errors->has('jam') ? ' has-error' : '' }}">
+                                                                <label for="jam" class="col-md-2 control-label">Jam Ibadah <b style="color:Tomato;">*</b> </label>
+                                                                <div class="col-md-12">
+                                                                    <input id="jam" type="time" class="form-control" name="jam" placeholder="Masukkan Nama jam . . ." value="{{ old('jam') }}" required>
+                                                                    @if ($errors->has('jam'))
+                                                                        <span class="help-block">
+                                                                            <strong>{{ $errors->first('jam') }}</strong>
+                                                                        </span>
+                                                                    @endif
+                                                                </div>
+                                              </div>
+
+                                              
 
                                               <div class="form-group col-md-12 ">
                                                 <label for="email" class="control-label">Keterangan <i>(kosongkan jika tidak ada)</label>

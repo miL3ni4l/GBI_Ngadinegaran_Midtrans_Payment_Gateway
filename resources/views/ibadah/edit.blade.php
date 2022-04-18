@@ -66,6 +66,18 @@
                                                                         </div>
                                                               </div>
 
+                                                              <div class="form-group{{ $errors->has('jam') ? ' has-error' : '' }}">
+                                                                        <label for="jam" class="col-md-4 control-label">Jam Ibadah <b style="color:Tomato;">*</b> </label>
+                                                                        <div class="col-md-12">
+                                                                            <input id="jam" type="time" class="form-control" name="jam"  placeholder="Masukkan Nama jam . . ."value="{{ $data->jam }}" required>
+                                                                            @if ($errors->has('jam'))
+                                                                                <span class="help-block">
+                                                                                    <strong>{{ $errors->first('jam') }}</strong>
+                                                                                </span>
+                                                                            @endif
+                                                                        </div>
+                                                              </div>
+
                                                               <div class="form-group col-md-12 ">
                                                                                   <label for="email" class="control-label">Keterangan <i>(kosongkan jika tidak ada)</label>
                                                                                    

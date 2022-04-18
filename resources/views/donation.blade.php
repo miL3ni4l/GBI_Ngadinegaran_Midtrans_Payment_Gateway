@@ -80,10 +80,10 @@
                                                                                                     <select name="donation_type" class="form-control" id="donation_type"  class="custom-select mb-3">
                                                                                                        
                                                                                                         <option value="">-- Pilih Jenis Persembahan --</option>  
-                                                                                                    @foreach($kategoris as $k)
+                                                                                                    <!-- @foreach($kategoris as $k)
                                                                                                         <option value="{{$k->id = $k->kategori }}">{{$k->kategori}}</option>
                                                                                                       
-                                                                                                    @endforeach
+                                                                                                    @endforeach -->
                                                                                                         <!-- <option value="Kolekte">Kolekte</option> -->
                                                                                                    
                                                                                                     </select>
