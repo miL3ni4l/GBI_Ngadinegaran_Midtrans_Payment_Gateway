@@ -227,7 +227,7 @@
                                         <div style="padding-top:2%" class="col-md-12">
                                             <div class="team-member">
                 
-                                                <img class="mx-auto rounded-circle" id="img-n"  width="150" height="150" style="display:block; margin:auto;" @if($p->cover) src="{{ asset('images/Pendeta/'.$p->cover) }}" @endif /> 
+                                                <img class="mx-auto rounded-circle" id="img-n"  width="50" height="50" style="display:block; margin:auto;" @if($p->cover) src="{{ asset('images/Pendeta/'.$p->cover) }}" @endif /> 
                                                 <h4>{{ $p->nama_pendeta }} </h4>
                                                 <p class="text-muted">Pendeta</p>
                                                 <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i class="fab fa-whatsapp"></i></a>
