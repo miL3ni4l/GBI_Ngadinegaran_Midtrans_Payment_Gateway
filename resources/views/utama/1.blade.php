@@ -3,48 +3,68 @@
 @section('header')
 <section id="">
     <div class="intro-text">
-        <div class="intro-lead-in">Selamat Datang di</div>
-        <div class="">
-          <h4>GEREJA BAPTIS INDONESIA</h4>
-          <h4>NGADINEGARAN</h4>
+      
+        <div class="intro-lead-in">
+        Selamat Datang di
         </div>
-      </div>
-      <div class="row text-center">
-        <div class="col-md-4">
-          <span class="fa-stack fa-4x">
-            <a class="js-scroll-trigger" href="#ibadah">
-              <i class="fas fa-circle fa-stack-2x text-primary"></i>
-              <i class="fas fa-calendar-alt fa-stack-1x fa-inverse"></i>
-            </a>
-          </span>
-          <h4 class="service-heading">Jadwal Ibadah</h4>
+
+          <div class="">
+            <h1>GEREJA BAPTIS INDONESIA</h1>
+            <h1>NGADINEGARAN</h1>
+          </div>
+
         </div>
-        <div class="col-md-4">
-          <span class="fa-stack fa-4x">
-            <a class="js-scroll-trigger" href="#warta">
-              <i class="fas fa-circle fa-stack-2x text-primary"></i>
-              <i class="fas fa-newspaper fa-stack-1x fa-inverse"></i>
-            </a>
-          </span>
-          <h4 class="service-heading">Warta Gereja</h4>
-        </div>
+
+          <div class="col-md-12 align-center">
+            <span class="fa-stack fa-6x">
+            <a  class="btn btn-primary btn-m nav-link js-scroll-trigger" href="#profil_grj">Lihat Selanjutnya</a>
+            </span>
+
+          </div>
+
        
-        <div class="col-md-4">
-          <span class="fa-stack fa-4x">
-            <a class="js-scroll-trigger"  href="#contact">
-              <i class="fas fa-circle fa-stack-2x text-primary"></i>
-              <i class="fas fa-phone fa-stack-1x fa-inverse"></i>
-            </a>            
-          </span>
-          <h4 class="service-heading">Kontak</h4>
-        </div>
+        
+        <!-- <div class="row text-center">
+
+          <div class="col-md-4">
+            <span class="fa-stack fa-4x">
+              <a class="js-scroll-trigger" href="#ibadah">
+                <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                <i class="fas fa-calendar-alt fa-stack-1x fa-inverse"></i>
+              </a>
+            </span>
+            <h4 class="service-heading">Jadwal Ibadah</h4>
+          </div>
+
+          <div class="col-md-4">
+            <span class="fa-stack fa-4x">
+              <a class="js-scroll-trigger" href="#warta">
+                <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                <i class="fas fa-newspaper fa-stack-1x fa-inverse"></i>
+              </a>
+            </span>
+            <h4 class="service-heading">Warta Gereja</h4>
+          </div>
+
+          <div class="col-md-4">
+            <span class="fa-stack fa-4x">
+              <a class="js-scroll-trigger"  href="#contact">
+                <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                <i class="fas fa-phone fa-stack-1x fa-inverse"></i>
+              </a>            
+            </span>
+            <h4 class="service-heading">Kontak</h4>
+          </div>
+
+        </div> -->
+
     </div>
 </section>
 @endsection
 
 @section('content')
 
-  <section id="profil_grj">
+  <!-- <section id="profil_grj">
     <div class="container">
 
       <div class="row">
@@ -103,18 +123,6 @@
                                           </div>
                                         </div>
 
-                                        <!-- <div class="card-footer">
-                                          <div class="text-right">
-                                            <a href="#" class="btn btn-sm bg-teal">
-                                              <i class="fas fa-comments"></i>
-                                            </a>
-                                            
-                                            <a href="#" class="btn btn-sm btn-primary">
-                                              <i class="fas fa-user"></i> View Profile
-                                            </a>
-                                          </div>
-                                        </div>
-                                      </div> -->
                               
                         </div>      
                   @endforeach
@@ -122,7 +130,78 @@
       </div>
     
     </div>
+  </section> -->
+
+  <section id="profil_grj">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h4 class="section-heading text-uppercase">PROFIL GEREJA</h4><br>
+        </div>
+      </div>
+
+
+      <div class="container">
+        <div class="row">
+                     
+                        <div class="col-lg-12">
+                                      <div class="card bg-light d-flex flex-fill" style="padding-top:4%">
+                                        <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                                            <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="utama/img/bg_4.jpg" alt="..." /></div>
+                                                  <div class="col-xl-4 col-lg-5">
+                                                      <!-- <div class="featured-text text-center text-lg-left"> -->
+                                                     
+                                                    @foreach($profil as $p)
+                                                      <div class="card-body pt-0">
+                                                        <div class="row">
+
+                                                          <div class="col-12">
+                                                            <h4 class="lead"><b></b></h4>
+                                                            <p class="text-muted text-sm">
+
+                                                            
+                                                            </p>
+                                                            <ul class="ml-0 mb-0 fa-ul text-muted">
+                                                              <li class="small">  <h6> SEJARAH </h6></li>
+                                                              <li class="small"></i></span>  {{ $p->sejarah_gereja }}</li>
+                                                              </br>
+                                                              <li class="small">  <h6>VISI</h6></li>
+                                                              <li class="small"></i></span>  {{ $p->visi_gereja }}</li>
+                                                              </br>
+                                                              <li class="small">  <h6>MISI</h6></li>
+                                                              <li class="small"></i></span>  {{ $p->misi_gereja }}</li>
+                                                              </br>
+                                                              <li class="small">  <h6> TELP </h6></li>
+                                                              <li class="small"></span>{{ $p->tlp_gereja }}</li>
+                                                              </br>
+                                                              <li class="small">  <h6>ALAMAT</h6></li>
+                                                              <li class="small"></i></span> {{ $p->alamat_gereja }}
+                                                              </li>
+                                                            
+                                                            </ul>
+                                                          </div>
+
+                                                          <div class="col-5 text-center">
+                                                          </div>
+
+                                                        </div>
+                                                      </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
+                                      </div>  
+                              
+                        </div>      
+                 
+        </div>
+      </div>
+
+    
+    </div>
   </section>
+
 
   <section id="profil_pdt">
     <div class="container">
@@ -142,14 +221,25 @@
                       
                                       <div class="card bg-light d-flex flex-fill">
 
-                                        <div style="padding-top:2%" class="col-md-12">
+                                        <!-- <div style="padding-top:2%" class="col-md-12">
                                           <img id="img-n"  width="150" height="150" style="display:block; margin:auto;" @if($p->cover) src="{{ asset('images/Pendeta/'.$p->cover) }}" @endif /> 
-                                         
+                                        </div> -->
+
+                                        <div style="padding-top:2%" class="col-md-12">
+                                            <div class="team-member">
+                
+                                                <img class="mx-auto rounded-circle" id="img-n"  width="150" height="150" style="display:block; margin:auto;" @if($p->cover) src="{{ asset('images/Pendeta/'.$p->cover) }}" @endif /> 
+                                                <h4>{{ $p->nama_pendeta }} </h4>
+                                                <p class="text-muted">PENDETA</p>
+                                                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i class="fab fa-whatsapp"></i></a>
+                                                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                                                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand LinkedIn Profile"><i class="fab fa-instagram"></i></a>
+                                            </div>
                                         </div>
              
-                                        <div class="card-body text-muted border-bottom-0">
+                                        <!-- <div class="card-body text-muted border-bottom-0">
                                            <h5> {{ $p->nama_pendeta }} </h5>
-                                        </div>
+                                        </div> -->
 
                                         <div class="card-body pt-0">
                                           <div class="row">
