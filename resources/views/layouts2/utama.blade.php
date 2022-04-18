@@ -80,7 +80,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger"  href="#warta">Warta</a>
+            <a class="nav-link js-scroll-trigger"  href="#ministries">ministries</a>
           </li>    
 
           <!-- <li class="nav-item">

@@ -17,7 +17,7 @@
 
           <div class="col-md-12 align-center">
             <span class="fa-stack fa-6x">
-            <a  class="btn btn-primary btn-m nav-link js-scroll-trigger" href="#profil_grj">Lihat Selanjutnya</a>
+            <a  class="btn btn-primary btn-m nav-link js-scroll-trigger" href="https://api.whatsapp.com/send/?phone=6287870552929&text&app_absent=0">Hubungi Kami</a>
             </span>
 
           </div>
@@ -38,12 +38,12 @@
 
           <div class="col-md-4">
             <span class="fa-stack fa-4x">
-              <a class="js-scroll-trigger" href="#warta">
+              <a class="js-scroll-trigger" href="#ministries">
                 <i class="fas fa-circle fa-stack-2x text-primary"></i>
                 <i class="fas fa-newspaper fa-stack-1x fa-inverse"></i>
               </a>
             </span>
-            <h4 class="service-heading">Warta Gereja</h4>
+            <h4 class="service-heading">ministries Gereja</h4>
           </div>
 
           <div class="col-md-4">
@@ -230,10 +230,10 @@
                 
                                                 <img class="mx-auto rounded-circle" id="img-n"  width="150" height="150" style="display:block; margin:auto;" @if($p->cover) src="{{ asset('images/Pendeta/'.$p->cover) }}" @endif /> 
                                                 <h4>{{ $p->nama_pendeta }} </h4>
-                                                <p class="text-muted">PENDETA</p>
+                                                <p class="text-muted">Pendeta</p>
                                                 <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i class="fab fa-whatsapp"></i></a>
-                                                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                                                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand LinkedIn Profile"><i class="fab fa-instagram"></i></a>
+                                                <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/marthinus.sumendi" aria-label="Parveen Anand Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                                                <a class="btn btn-dark btn-social mx-2" href="https://www.instagram.com/mendy_redmount/" aria-label="Parveen Anand LinkedIn Profile"><i class="fab fa-instagram"></i></a>
                                             </div>
                                         </div>
              
@@ -341,12 +341,12 @@
     </div>
   </section>
 
-  <section id="warta">
+  <section id="ministries">
     <div class="container">
 
       <div class="row">
         <div class="col-lg-12 text-center">
-          <h4 class="section-heading text-uppercase">WARTA</h4><br>
+          <h4 class="section-heading text-uppercase">MINISTRIES</h4><br>
         </div>
       </div>
 
@@ -630,13 +630,13 @@
     </div>
   </section> -->
 
-    <!--Warta Gereja-->
-    <!-- <section id="warta">
+    <!--ministries Gereja-->
+    <!-- <section id="ministries">
       <div class="container">
 
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h4 class="section-heading text-uppercase">Warta Gereja</h4><br>
+            <h4 class="section-heading text-uppercase">ministries Gereja</h4><br>
           </div>
         </div>
         
@@ -661,7 +661,7 @@
                       </ul>
                       <h3 class="article-title"><a >judul</a></h3>
                       <ul class="article-meta">
-                        <li><i></i>warta</li>
+                        <li><i></i>ministries</li>
                       </ul>
                     </div>
                   </article>
@@ -699,7 +699,7 @@
                 <h6 class="section-heading text-uppercase">Kontak </h6>      
                 @foreach($profil as $p)
                   <p class="section-heading text-uppercase">
-                  <a href=" https://api.whatsapp.com/send/?phone=6287870552929&text&app_absent=0">
+                  <a href="https://api.whatsapp.com/send/?phone=6287870552929&text&app_absent=0">
                     <u>{{ $p->tlp_gereja }}</u>
                     </a>
                   </p>
@@ -781,10 +781,6 @@
     </div>
     
   </section>
-
-
-    
-
 
 
   <script>
