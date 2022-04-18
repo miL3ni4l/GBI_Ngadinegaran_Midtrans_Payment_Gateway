@@ -9,20 +9,53 @@
     <div class="container-fluid">
         <div class="row">
 
-                <div class="col-lg-12 text-center">
+                <!-- <div class="col-lg-12 text-center">
                     <h4 class="section-heading text-uppercase">PERSEMBAHAN ONLINE</h4><br>
                 </div>
-
-
-
-                <div class=" table-responsive col-md-12 col-sm-12 col-12">
-                    <div class="card card-solid" class="alert alert-secondary center-block">
+                 -->
+                <div class=" table-responsive">
+                    <div class="card card-solid">
 
      
+         
+                                                    <div class="col-lg-6 mx-auto">
+                                                        <div class="invoice p-3 ">
 
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <h4>
+                                                                        <i class="fas fa-credit-card"></i> Persembahan Online
+                                                                    </h4>
+                                                                </div>
+                                                            </div>
 
-                                        <div class="col-lg-4 mx-auto">
-                                            <div class="row">
+                                                            <p class="section-heading text-uppercase">Dalam merespon situasi tanggap darurat COVID-19, GBI Ngadinegaran memberikan opsi persembahan online yang dapat dilakukan.</p>
+                                                            <h6 class="section-heading text-uppercase">Persembahan dapat diberikan dengan cara :</h6>
+                                                        
+                                                            <div class="row invoice-info">
+                                                                <div class="col-sm-6 invoice-col">
+                                                                    <address>
+                                                                        <p class="section-heading">
+                                                                        Transfer ke rekening Gereja.
+                                                                        BCA a/n Marthinus Sumendi atau Sardjono No Rek: 4451096448
+                                                                        atau dapat diberikan secara langsung setiap hari Minggu pukul 10.00-12.00 WIB di Gedung Utama Gereja.</p>
+                                                                    </address>
+                                                                </div>
+                                          
+                                                                <div class="col-sm-6 invoice-col">
+                                                                    <address>
+                                                                        <p class="section-heading">Persembahan melalui aplikasi pembayaran online sebagai alternatif untuk mengirimkan persembahan.</p>  
+                                                                        <p class="section">Silahkan isi form dibawah ini.</p> 
+                                                                    </address>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+               
+
+                                        <div class="col-lg-6     mx-auto">
+                                     
 
                                                     <div class="container">
                                                         <form action="#" id="donation_form">
@@ -146,57 +179,55 @@
                                                         </form>
                                                     </div>
 
+                                                    <script src="https://code.jquery.com/jquery-3.4.1.min.js">
+                                                    </script>
+                                                    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js">
+                                                    </script>
+                                                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js">
+                                                    </script>
+                                                    <script src="{{
+                                                        !config('services.midtrans.isProduction') ? 'https://app.sandbox.midtrans.com/snap/snap.js' : 'https://app.midtrans.com/snap/snap.js' }}"
+                                                        data-client-key="{{ config('services.midtrans.clientKey')
+                                                    }}"></script>
+                                                    <script>
+                                                        $("#donation_form").submit(function(event) {
+                                                            event.preventDefault();
 
+                                                            $.post("/api/donation", {
+                                                                _method: 'POST',
+                                                                _token: '{{ csrf_token() }}',
+                                                                donor_name: $('input#donor_name').val(),
+                                                                donor_email: $('input#donor_email').val(),
+                                                                donation_type: $('select#donation_type').val(),
+                                                                amount: $('input#amount').val(),
+                                                                note: $('textarea#note').val(),
+                                                            },
 
-                                                <script src="https://code.jquery.com/jquery-3.4.1.min.js">
-                                                </script>
-                                                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js">
-                                                </script>
-                                                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js">
-                                                </script>
-                                                <script src="{{
-                                                    !config('services.midtrans.isProduction') ? 'https://app.sandbox.midtrans.com/snap/snap.js' : 'https://app.midtrans.com/snap/snap.js' }}"
-                                                    data-client-key="{{ config('services.midtrans.clientKey')
-                                                }}"></script>
-                                                <script>
-                                                    $("#donation_form").submit(function(event) {
-                                                        event.preventDefault();
-
-                                                        $.post("/api/donation", {
-                                                            _method: 'POST',
-                                                            _token: '{{ csrf_token() }}',
-                                                            donor_name: $('input#donor_name').val(),
-                                                            donor_email: $('input#donor_email').val(),
-                                                            donation_type: $('select#donation_type').val(),
-                                                            amount: $('input#amount').val(),
-                                                            note: $('textarea#note').val(),
-                                                        },
-
-                                                        function (data, status) {
-                                                            console.log(data);
-                                                            snap.pay(data.snap_token, {
-                                                                // Optional
-                                                                onSuccess: function (result) {
-                                                                    console.log(JSON.stringify(result, null, 2));
-                                                                    location.replace('/');
-                                                                },
-                                                                // Optional
-                                                                onPending: function (result) {
-                                                                    console.log(JSON.stringify(result, null, 2));
-                                                                    location.replace('/');
-                                                                },
-                                                                // Optional
-                                                                onError: function (result) {
-                                                                    console.log(JSON.stringify(result, null, 2));
-                                                                    location.replace('/');
-                                                                }
+                                                            function (data, status) {
+                                                                console.log(data);
+                                                                snap.pay(data.snap_token, {
+                                                                    // Optional
+                                                                    onSuccess: function (result) {
+                                                                        console.log(JSON.stringify(result, null, 2));
+                                                                        location.replace('/');
+                                                                    },
+                                                                    // Optional
+                                                                    onPending: function (result) {
+                                                                        console.log(JSON.stringify(result, null, 2));
+                                                                        location.replace('/');
+                                                                    },
+                                                                    // Optional
+                                                                    onError: function (result) {
+                                                                        console.log(JSON.stringify(result, null, 2));
+                                                                        location.replace('/');
+                                                                    }
+                                                                });
+                                                                return false;
                                                             });
-                                                            return false;
-                                                        });
-                                                    })
-                                                </script>
+                                                        })
+                                                    </script>
 
-                                            </div>              
+                                                   
                                         </div>  
  
                     </div>              

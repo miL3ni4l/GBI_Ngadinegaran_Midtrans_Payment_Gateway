@@ -19,6 +19,7 @@ class CreateKomunitasTable extends Migration
             $table->string('deskripsi');
             $table->string('pj'); 
             $table->string('kontak');    
+            $table->string('cover')->nullable();
             $table->enum('status',['0','1']);        
             $table->timestamps();
         });

@@ -16,6 +16,7 @@ use App\PemasukanKhusus;
 use App\Ibadah;
 use App\Kas;
 use App\User;
+use Carbon\Carbon;
 
 use Hash;
 use Auth;
@@ -94,7 +95,18 @@ class KomunitasController extends Controller
         //     return redirect()->to('komunitas/create');
         // }
 
-        // Komunitas::create($request->all());    
+        // Komunitas::create($request->all()); 
+        
+        if($request->file('cover') == '') {
+            $cover = NULL;
+            } else {
+            $file = $request->file('cover');
+            $dt = Carbon::now();
+            $acak  = $file->getClientOriginalExtension();
+            $fileName = rand(11111,99999).'-'.$dt->format('Y-m-d-H-i-s').'.'.$acak; 
+            $request->file('cover')->move("images/PengeluaranRutin", $fileName);
+            $cover = $fileName;
+        }
 
         $nama_komunitas = $request->input('nama_komunitas');
         $deskripsi = $request->input('deskripsi');
@@ -109,6 +121,7 @@ class KomunitasController extends Controller
             'deskripsi' => $deskripsi,
             'pj' => $pj,
             'kontak' => $kontak,
+            'cover' => $cover,
             // 'status' => $status,
         ]); 
 

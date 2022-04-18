@@ -90,6 +90,14 @@
                                                                     @endif
                                                                 </div>
                                               </div>
+                                              <div class="form-group col-md-12">
+                                                        <label for="email" class="col-md-12 control-label">Bukti pemasukan_rutin <i>(kosongkan jika tidak ada)</i> </label>
+                                                        
+                                                        <div class="col-md-12">
+                                                            <img width="302" height="302" />
+                                                            <input type="file" class="uploads form-control" style="margin-top: 20px;" name="cover">
+                                                        </div>
+                                              </div>
 
                                               <div class="form-group col-md-12">
                                                     <button type="submit" class="btn btn-success col-md-4 float-right" id="submit" >Submit </button>     

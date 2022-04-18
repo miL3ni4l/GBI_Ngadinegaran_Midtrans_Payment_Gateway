@@ -20,7 +20,7 @@ class PendetaTableSeeder extends Seeder
               'alias'		=> 'Marthinus',
               'tempat_lahir' 			=> 'Gunung Kidul',
               'tlp_pendeta'			=> '0878 7055 2929',
-              'tgl_lahir'			=> \Carbon\Carbon::now(),
+              'tgl_lahir'			=> '1968-03-13',
               'istri'			=> 'Srikembang',
               'pendidikan'			=> '-',
               'karir'			=> '-',

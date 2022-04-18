@@ -202,7 +202,6 @@
     </div>
   </section>
 
-
   <section id="profil_pdt">
     <div class="container">
 
@@ -360,31 +359,37 @@
                           <div id="owl-carousel-3" class="owl-carousel owl-theme center-owl-nav">
                             @foreach($komunitas as $p)
                                 <div class="col-md-12">
-                                    <div class="alert alert-secondary center-block">
+                                    <!-- <div class="alert alert-secondary"> -->
+                                    <div class="">
                                       <table>
-                                      <div class="card-body text-muted">
-                                          <h5> {{ $p->nama_komunitas }} </h5>
-                                          
+                                        <div class="card-body text-muted">
+                              
+                                          <h3> {{ $p->nama_komunitas }} </h3>   
                                         </div>
 
                                         <div class="col-12">
                                           <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-                                            <div class="col-xl-6 col-lg-6"><img class="img-fluid mb-3 mb-lg-0" src="utama/img/child.jpg" alt="..." /></div>
+                                                    <div class="col-xl-6 col-lg-6">
+                                                      <img style="display:block; margin:auto;" @if($p->cover) src="{{ asset('images/PengeluaranRutin/'.$p->cover) }}" @endif /> 
+                                                        <!-- <img class="img-fluid mb-3 mb-lg-0" src="utama/img/child.jpg" alt="..." /> -->
+                                                    </div>
+
                                                     <div class="col-xl-6 col-lg-4">
 
                                                        
                                                             <ul class="ml-0 mb-0 fa-ul text-muted">
+                                                              <!-- <li class="small">  <h3>{{ $p->nama_komunitas }}</h3></li> -->
                                                               <li class="small"></i></span>  {{ $p->deskripsi }}</li>
                                                               </br>
-                                                              <li class="small">  <h6>Pj</h6></li>
-                                                              <li class="small"></i></span>  {{ $p->pj }}</li>
-                                                              </br>
+                                                              <li class="small">  <h6>Hubungi :</h6></li>
+                                                              <li class="small"></i></span>  {{ $p->pj }} ({{ $p->kontak }})</li>
+                                                              <!-- </br>
                                                               <li class="small">  <h6>Kontak</h6></li>
-                                                              <li class="small"></i></span>  {{ $p->kontak }}</li>
-                                                              </br>
+                                                              <li class="small"></i></span>  {{ $p->kontak }}</li> -->
+                                                 
                                                             
                                                             </ul>
-                                            </div> 
+                                                    </div> 
                                           </div> 
                                         </div>
 
@@ -490,187 +495,12 @@
     </div>
   </section>
 
-  <!-- <section id="persembahan">
-    <div class="container">
-
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <h4 class="section-heading text-uppercase">Persembahan</h4><br>
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="row">
-          
-               
-                        <div class="col-lg-12">
-                          
-
-                      
-                                  
-                    
-                                          <div class="card bg-light d-flex flex-fill">
-
-                                     
-
-
-
-                                                    <div class="col-lg-12 mx-auto">
-                                                        <div class="invoice p-3 mb-3">
-
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    <h4>
-                                                                        <i class="fas fa-globe"></i> Gerak Bersama     <a  href="/donation"  class="btn btn-warning btn-sm text-center">
-                                                                                <i class="fas fa-credit-card  text-center"></i> klik disini
-                                                                        </a>
-                                                                    </h4>
-                                                                </div>
-                                                            </div>
-
-                                                            <p class="section-heading text-uppercase">Dalam merespon situasi tanggap darurat COVID-19, GBI Ngadinegaran akan memberikan paket bahan pangan kepada mereka yang terdampak situasi tersebut, khususnya warga lansia dan kelompok rentan lainnya.</p>
-                                                            <h6 class="section-heading text-uppercase">saudara dapat bertapisipasi dengan :</h6>
-                                                        
-                                                            <div class="row invoice-info">
-                                                                <div class="col-sm-6 invoice-col">
-                                                                    <address>
-                                                              
-                                                                        <p class="section-heading">Membawa barang isi paket bahan pangan berupa: Beras 5 Kg, Kacang Hijau 1 Kg, Minyak Goreng 1 lt, Gula, Mie Kering, Kecap, Garam, dan diserahkan ke Kantor Gereja.</p>
-                                                                    </address>
-                                                                </div>
-                                          
-                                                                <div class="col-sm-6 invoice-col">
-                                                                    <address>
-                                                                        <p class="section-heading">Memberikan dana pengadaan paket bahan pangan seharga Rp 100.000,00 per paket. Dana dikirimkan ke rekening BCA a/n Marthinus Sumendi atau Sardjono No Rek: 4451096448</p>
-                                                                        
-                                                                    </address>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-
-                           
-                                                    <form action="/payment" method="GET">
-                                                            <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
-                                                                <div class="modal-dialog" role="document">
-                                                                    <div class="modal-content">
-
-                                                                      <div class="modal-header bg-warning">
-                                                                        <h5 class="modal-title" id="exampleModalLabel">Form Pembayaran</h5>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                          <span aria-hidden="true">&times;</span>
-                                                                        </button>
-                                                                      </div>
-
-                                                                      <div class="modal-body">
-                                                                        {{ csrf_field() }}
-
-                                                                        <div class="form-group{{ $errors->has('uname') ? ' has-error' : '' }}">
-                                                                            <label class="label">Nama <b style="color:Tomato;">*</b> </label>
-                                                                            <div class="input-group">
-                                                                                <input id="uname" type="text" class="form-control"  placeholder="Masukan nama . . . ." name="uname" value="{{ old('uname') }}" required autofocus>
-                                                                                
-                                                                            </div>
-                                                                                @if ($errors->has('uname'))
-                                                                                    <span class="help-block">
-                                                                                        <strong>{{ $errors->first('uname') }}</strong>
-                                                                                    </span>
-                                                                                @endif
-                                                                        </div>
-
-                                                                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                                                            <label class="label">Email <b style="color:Tomato;">*</b> </label>
-                                                                            <div class="input-group">
-                                                                                <input id="email" type="text" class="form-control"  placeholder="Masukan email . . . ."  name="email" value="{{ old('email') }}" required autofocus>
-                                                                                
-                                                                            </div>
-                                                                                @if ($errors->has('email'))
-                                                                                    <span class="help-block">
-                                                                                        <strong>{{ $errors->first('email') }}</strong>
-                                                                                    </span>
-                                                                                @endif
-                                                                        </div>
-
-                                                                        <div class="form-group{{ $errors->has('number') ? ' has-error' : '' }}">
-                                                                            <label class="label">Telp <b style="color:Tomato;">*</b> </label>
-                                                                            <div class="input-group">
-                                                                                <input id="number" type="number" class="form-control"  placeholder="Masukan no telp . . . ."  name="number" required>
-                                                                                
-                                                                                @if ($errors->has('number'))
-                                                                                    <span class="help-block">
-                                                                                        <strong>{{ $errors->first('number') }}</strong>
-                                                                                    </span>
-                                                                                @endif
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="form-group">
-                                                                            <button class="btn btn-warning submit-btn btn-block" type="submit">Simpan</button>
-                                                                        </div>
-
-                                                                      </div>
-                                                                      
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                    </form>
-
-                                                    @if(session('alert-success'))
-                                                    <script>alert("{{session('alert-success')}}")</script>
-                                                    @elseif(session('alert-failed'))
-                                                    <script>alert("{{session('alert-failed')}}")</script>
-                                                    @endif
-
-                                          </div> 
-                               
-                        </div>      
-                 
-        </div>
-      </div>
-    
-    </div>
-  </section> -->
-
-    <!--ministries Gereja-->
-    <!-- <section id="ministries">
-      <div class="container">
-
-        <div class="row">
-          <div class="col-lg-12 text-center">
-            <h4 class="section-heading text-uppercase">ministries</h4><br>
-          </div>
-        </div>
-        
-        <div class="section">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-12">
-
-                    <div class="section-title">
-                      <h4 class="title">Berita Terkini</h4>
-                    </div>
-                
-
-                    <div class="col-lg-12 text-center">
-                        <a href="/utama/2"><h4>Read More >></h4></a>
-                    </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </section> -->
-
   <section id="contact">
     <div class="container">
         
           <div class="row text-center">
               
-              <div class="col-md-6">
+              <!-- <div class="col-md-6">
                 
                 <h6 class="section-heading text-uppercase">QR PERSEMBAHAN  
                 <p>
@@ -683,9 +513,9 @@
                 <img id="img-n" width="256" height="256" style="display:block; margin:auto;" src="img/qris_erickunto.jpeg"/>  
                 </br>
 
-              </div>
+              </div> -->
             
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <h6 class="section-heading text-uppercase">Kontak </h6>      
                 @foreach($profil as $p)
                   <p class="section-heading text-uppercase">
@@ -772,65 +602,64 @@
     
   </section>
 
-
   <script>
-  var randomScalingFactor = function(){ return Math.round(Math.random()*500)};
+    var randomScalingFactor = function(){ return Math.round(Math.random()*500)};
 
-  var barChartData = {
-    labels : ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"],
-    datasets : [
-    {
-      label: 'Pemasukan',
-      fillColor : "rgb(52, 152, 219)",
-      strokeColor : "rgb(37, 116, 169)",
-      highlightFill: "rgba(220,220,220,0.75)",
-      highlightStroke: "rgba(220,220,220,1)",
-      data : [
-      <?php
-      for($bulan=1;$bulan<=12;$bulan++){
-        $tahun = date('Y');
-        $pemasukan_perbulan = DB::table('pemasukan_rutin')
-        ->select(DB::raw('SUM(nominal) as total'))
-        ->where('status','1')
-        ->whereMonth('tanggal',$bulan)
-        ->whereYear('tanggal',$tahun)
-        ->first();
+    var barChartData = {
+      labels : ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"],
+      datasets : [
+      {
+        label: 'Pemasukan',
+        fillColor : "rgb(52, 152, 219)",
+        strokeColor : "rgb(37, 116, 169)",
+        highlightFill: "rgba(220,220,220,0.75)",
+        highlightStroke: "rgba(220,220,220,1)",
+        data : [
+        <?php
+        for($bulan=1;$bulan<=12;$bulan++){
+          $tahun = date('Y');
+          $pemasukan_perbulan = DB::table('pemasukan_rutin')
+          ->select(DB::raw('SUM(nominal) as total'))
+          ->where('status','1')
+          ->whereMonth('tanggal',$bulan)
+          ->whereYear('tanggal',$tahun)
+          ->first();
 
 
-        $total = $pemasukan_perbulan->total ;
-        if($pemasukan_perbulan->total == ""){
-          echo "0,";
-        }else{
- 
-          echo $total.",";
+          $total = $pemasukan_perbulan->total ;
+          if($pemasukan_perbulan->total == ""){
+            echo "0,";
+          }else{
+  
+            echo $total.",";
+          }
         }
+        ?>
+        ]
       }
-      ?>
       ]
+
     }
-    ]
-
-  }
 
 
 
-  window.onload = function()
-  {
+    window.onload = function()
+    {
 
-    var ctx = document.getElementById("grafik1").getContext("2d");
-    window.myBar = new Chart(ctx).Bar(barChartData, {
-     responsive : true,
-     animation: true,
-     barValueSpacing : 5,
-     barDatasetSpacing : 1,
-     tooltipFillColor: "rgba(0,0,0,0.8)",
-     multiTooltipTemplate: "<%= datasetLabel %> - Rp.<%= value.toLocaleString() %>,-"
-   });
+      var ctx = document.getElementById("grafik1").getContext("2d");
+      window.myBar = new Chart(ctx).Bar(barChartData, {
+      responsive : true,
+      animation: true,
+      barValueSpacing : 5,
+      barDatasetSpacing : 1,
+      tooltipFillColor: "rgba(0,0,0,0.8)",
+      multiTooltipTemplate: "<%= datasetLabel %> - Rp.<%= value.toLocaleString() %>,-"
+    });
 
 
-  }
+    }
 
-</script>
+  </script>
 
 
 @endsection
