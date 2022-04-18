@@ -77,16 +77,16 @@ class UserController extends Controller
         //DATA USERNAME SUDAH ADA
         $count = User::where('username',$request->input('username'))->count();
         if($count>0){
-            Session::flash('message', 'Already exist!');
+            Session::flash('message', 'Username telah tersedia!');
             Session::flash('message_type', 'danger');
-            return redirect()->to('user');
+            return redirect()->to('user/create');
         }
 
         $this->validate($request, [
-            'name' => 'required|string|max:255',
-            'username' => 'required|string|max:20|unique:users',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'name' => 'required|string|max:15',
+            'username' => 'required|string|max:18|unique:users',
+            'email' => 'required|string|email|max:50|unique:users',
+            'password' => 'required|string|min:8|confirmed',
         ]);
 
 

@@ -95,6 +95,10 @@
             <a class="nav-link js-scroll-trigger" href="#contact">Kontak</a>
           </li>
 
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="https://www.youtube.com/c/GerejaBaptisIndonesiaNgadinegaran/">YouTube</a>
+          </li>
+
           <!-- <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="/login">User</a>
           </li> -->
@@ -152,6 +156,10 @@
   <script src="{{asset ('utama/js/bootstrap2.min.js')}}"></script>
   <script src="{{asset ('utama/js/owl.carousel.min.js')}}"></script>
   <script src="{{asset ('utama/js/main.js')}}"></script>
+
+  <!-- CHART -->
+<script src="{{ asset('asset_admin/plugins/chart.js/Chart.bundle.min.js') }}"></script>
+<script src="{{ asset('asset_admin/bower_components/chart.js/Chart.min.js') }}"></script>
   
 </body>
 

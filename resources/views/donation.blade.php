@@ -10,7 +10,7 @@
         <div class="row">
 
                 <div class="col-lg-12 text-center">
-                    <h4 class="section-heading text-uppercase">PERSEMBAHAN</h4><br>
+                    <h4 class="section-heading text-uppercase">PERSEMBAHAN ONLINE</h4><br>
                 </div>
 
 
@@ -80,10 +80,10 @@
                                                                                                     <select name="donation_type" class="form-control" id="donation_type"  class="custom-select mb-3">
                                                                                                        
                                                                                                         <option value="">-- Pilih Jenis Persembahan --</option>  
-                                                                                                    <!-- @foreach($kategoris as $k)
+                                                                                                    @foreach($kategoris as $k)
                                                                                                         <option value="{{$k->id = $k->kategori }}">{{$k->kategori}}</option>
                                                                                                       
-                                                                                                    @endforeach -->
+                                                                                                    @endforeach
                                                                                                         <!-- <option value="Kolekte">Kolekte</option> -->
                                                                                                    
                                                                                                     </select>

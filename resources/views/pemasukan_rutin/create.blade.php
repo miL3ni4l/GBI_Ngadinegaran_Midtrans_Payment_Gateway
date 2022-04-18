@@ -275,7 +275,7 @@
                                                         <label for="email" class="col-md-12 control-label">Bukti pemasukan_rutin <i>(kosongkan jika tidak ada)</i> </label>
                                                         
                                                         <div class="col-md-12">
-                                                            <img width="236" height="236" />
+                                                            <img width="221" height="221" />
                                                             <input type="file" class="uploads form-control" style="margin-top: 20px;" name="cover">
                                                         </div>
                                               </div>
