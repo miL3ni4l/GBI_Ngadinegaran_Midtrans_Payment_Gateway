@@ -33,7 +33,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 
-class DonationAdminController extends Controller
+class PersembahanAdminController extends Controller
 {
 
     public function index()

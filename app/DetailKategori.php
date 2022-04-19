@@ -26,7 +26,7 @@ class DetailKategori extends Model
     {
     	return $this->hasManyThrough(pemasukan_rutin::class);
     }
-    public function donasi()
+    public function persembahan()
     {
     	return $this->hasManyThrough(Donation::class);
     }

@@ -36,10 +36,10 @@ Route::post('/payment', 'WebController@payment_post');
 Route::resource('pendeta', 'PendetaController');
 
 
-// DONASI
+// persembahan
 // Route::get('/', 'DonationController@index')->name('donation.index');
 Route::get('/donation', 'DonationController@create')->name('donation.create');
-Route::get('/donasi', 'DonationAdminController@index')->name('donasi'); 
+Route::get('/persembahan', 'PersembahanAdminController@index')->name('persembahan'); 
 
 
 

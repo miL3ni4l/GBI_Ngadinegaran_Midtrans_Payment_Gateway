@@ -35,7 +35,7 @@
     <div class="jumbotron">
         <div class="container">
             <h1 class="display-4">IDonation</h1>
-            <p class="lead">Platform donasi untuk saudara kita yang membutuhkan.</p>
+            <p class="lead">Platform persembahan untuk saudara kita yang membutuhkan.</p>
         </div>
     </div>
 

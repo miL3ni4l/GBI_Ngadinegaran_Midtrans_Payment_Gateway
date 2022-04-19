@@ -38,8 +38,8 @@
                 </li>     -->
                 
                 
-                <li class="nav-item {{ setActive(['donasi*']) }}"> 
-                  <a class="nav-link {{ setActive(['donasi*']) }}" href="/donasi">
+                <li class="nav-item {{ setActive(['persembahan*']) }}"> 
+                  <a class="nav-link {{ setActive(['persembahan*']) }}" href="/persembahan">
                       <i class="nav-icon fas fa-cloud"></i>
                       <p>
                         Midtrans
