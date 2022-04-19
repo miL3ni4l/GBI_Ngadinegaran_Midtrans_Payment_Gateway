@@ -13,7 +13,7 @@
                $pengeluaran_rutin= DB::table('pengeluaran_rutin');
                ?>
 
-
+ 
                 <li class="nav-item {{ setActive(['home*']) }}"> 
                   <a class="nav-link {{ setActive(['home*']) }}" href="{{route('home')}}">
                       <i class="nav-icon fas fa-tachometer-alt"></i>
