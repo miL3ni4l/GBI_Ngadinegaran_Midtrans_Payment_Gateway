@@ -137,6 +137,7 @@
 
       <div class="row">
         <div class="col-lg-12 text-center">
+          
           <h4 class="section-heading text-uppercase">PROFIL GEREJA</h4><br>
         </div>
       </div>
@@ -146,6 +147,7 @@
         <div class="row">
                      
                         <div class="col-lg-12">
+                          
                                       <div class="card bg-light d-flex flex-fill" style="padding-top:4%">
                                         <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
                                             <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="utama/img/bg_4.jpg" alt="..." /></div>
@@ -157,6 +159,7 @@
                                                         <div class="row">
 
                                                           <div class="col-12">
+                                                            
                                                             <h4 class="lead"><b></b></h4>
                                                             <p class="text-muted text-sm">
 
@@ -223,6 +226,7 @@
                                         <!-- <div style="padding-top:2%" class="col-md-12">
                                           <img id="img-n"  width="150" height="150" style="display:block; margin:auto;" @if($p->cover) src="{{ asset('images/Pendeta/'.$p->cover) }}" @endif /> 
                                         </div> -->
+
 
                                         <div style="padding-top:2%" class="col-md-12">
                                             <div class="team-member">
@@ -303,11 +307,29 @@
         </div>
       </div>
 
+      <!-- <div class="container">
+        <div class="row">
+        <div class="col-lg-6">
+                                    <div class="timeline-body">
+                                      <div class="embed-responsive embed-responsive-16by9">
+                                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/hHi28vNZjgQ" allowfullscreen></iframe>
+                                      </div>
+                                    </div>
+                                  </div>
+        </div>
+      </div>
+                                        </br> -->
       <div class="container">
         <div class="row">
+
+        
                 
                      
                         <div class="col-lg-12">
+                          
+
+                       
+                          
 
                                   <table id="example1" class="table table-bordered table-striped">
                                       <thead> 
@@ -497,6 +519,7 @@
 
   <section id="contact">
     <div class="container">
+
         
           <div class="row text-center">
               
@@ -516,8 +539,9 @@
               </div> -->
             
               <div class="col-md-12">
-                <h6 class="section-heading text-uppercase">Kontak </h6>      
+              
                 @foreach($profil as $p)
+                <h6 class="section-heading text-uppercase">Kontak </h6>      
                   <p class="section-heading text-uppercase">
                   <a href="https://api.whatsapp.com/send/?phone=6287870552929&text&app_absent=0">
                     <u>{{ $p->tlp_gereja }}</u>
