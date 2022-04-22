@@ -41,13 +41,13 @@
               <div class="container-fluid">
                   <div class="row mb-2">
                     <div class="col-sm-6">
-                      <h4>Edit Pengeluaran Rutin <b> {{ $pemasukan_rutin->kode_pemasukan_rutin }}</b> </h4> 
+                      <h4>Edit Pengeluaran Rutin <b> {{ $pemasukan_rutin->kode_pengeluaran_rutin }}</b> </h4> 
                     </div>
                     <div class="col-sm-6">
                       <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="/home">Home</a></li>
                         <li class="breadcrumb-item active"><a href="/pengeluaran_rutin">Pengeluaran Rutin</a></li>
-                        <li class="breadcrumb-item active">Edit Pengeluaran Rutin {{ $pemasukan_rutin->kode_pemasukan_rutin }}</li>
+                        <li class="breadcrumb-item active">Edit Pengeluaran Rutin {{ $pemasukan_rutin->kode_pengeluaran_rutin }}</li>
                       </ol>
                     </div>
                   </div>
@@ -66,14 +66,14 @@
                                         
 
 
-                                                <div class="form-group{{ $errors->has('kode_pemasukan_rutin') ? ' has-error' : '' }}">
+                                                <div class="form-group{{ $errors->has('kode_pengeluaran_rutin') ? ' has-error' : '' }}">
                                                     
-                                                    <!-- <label for="kode_pemasukan_rutin" class="col-md-7 control-label">Kode Trasaksi <b style="color:Tomato;">*</b> </label> -->
+                                                    <!-- <label for="kode_pengeluaran_rutin" class="col-md-7 control-label">Kode Trasaksi <b style="color:Tomato;">*</b> </label> -->
                                                     <div class="col-md-12">
-                                                        <input id="kode_pemasukan_rutin" type="hidden" class="form-control" name="kode_pemasukan_rutin" value="{{ $pemasukan_rutin->kode_pemasukan_rutin }}" readonly="">
-                                                        @if ($errors->has('kode_pemasukan_rutin'))
+                                                        <input id="kode_pengeluaran_rutin" type="hidden" class="form-control" name="kode_pengeluaran_rutin" value="{{ $pemasukan_rutin->kode_pengeluaran_rutin }}" readonly="">
+                                                        @if ($errors->has('kode_pengeluaran_rutin'))
                                                             <span class="help-block">
-                                                                <strong>{{ $errors->first('kode_pemasukan_rutin') }}</strong>
+                                                                <strong>{{ $errors->first('kode_pengeluaran_rutin') }}</strong>
                                                             </span>
                                                         @endif
                                                     </div>

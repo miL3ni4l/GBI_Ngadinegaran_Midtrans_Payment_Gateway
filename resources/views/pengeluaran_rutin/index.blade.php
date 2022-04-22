@@ -182,7 +182,7 @@
                                                       <tr>
                                                             <td class="text-center">{{ $no++ }}</td>
 
-                                                            <td class="text-left">{{ $t->kode_pemasukan_rutin }}</td>
+                                                            <td class="text-left">{{ $t->kode_pengeluaran_rutin }}</td>
 
                                                             <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
                                                             <td>{{ $t->nama_kategori->kategori }}</td>
@@ -296,7 +296,7 @@
                                                           @endif
                                                           <td class="text-left" >
                                                                                         
-                                                                                  {{ $t->kode_pemasukan_rutin }}
+                                                                                  {{ $t->kode_pengeluaran_rutin }}
 
                                                           </td>
                                                           <td class="text-center">
@@ -366,7 +366,7 @@
                                                                               {{ csrf_field() }}
                                                                                 {{ method_field('delete') }}
 
-                                                                                <p>Apakah anda yakin ingin menghapus data <b>{{$t->kode_pemasukan_rutin}}</b> ?</p>
+                                                                                <p>Apakah anda yakin ingin menghapus data <b>{{$t->kode_pengeluaran_rutin}}</b> ?</p>
 
                                                                               </div>
 

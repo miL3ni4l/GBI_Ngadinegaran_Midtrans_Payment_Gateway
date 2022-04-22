@@ -329,7 +329,7 @@ class PengeluaranRutinController extends Controller
             $cover = $fileName;
         }
         $nama_pengguna = $request->input('nama_pengguna');
-        $kode_pemasukan_rutin = $request->input('kode_pemasukan_rutin');
+        $kode_pengeluaran_rutin = $request->input('kode_pengeluaran_rutin');
         $tanggal = $request->input('tanggal');
         $kategori = $request->input('kategori');
         $detail_pengeluaran = $request->input('detail_pengeluaran');
@@ -341,7 +341,7 @@ class PengeluaranRutinController extends Controller
         PengeluaranRutin::create(
             [
             'nama_pengguna' =>  $nama_pengguna,
-            'kode_pemasukan_rutin' => $kode_pemasukan_rutin,
+            'kode_pengeluaran_rutin' => $kode_pengeluaran_rutin,
             'tanggal' => $tanggal,
             'kategori_id' => $kategori,
             'detail_pengeluaran' => $detail_pengeluaran,
@@ -431,7 +431,7 @@ class PengeluaranRutinController extends Controller
        
         $pemasukan_rutin = PengeluaranRutin::findOrFail($id);
         $nama = $request->input('nama_pengguna');
-        $kode = $request->input('kode_pemasukan_rutin');
+        $kode = $request->input('kode_pengeluaran_rutin');
         $tanggal = $request->input('tanggal');
         $kategori = $request->input('kategori_id');
         $detail_pengeluaran = $request->input('detail_pengeluaran');
@@ -451,7 +451,7 @@ class PengeluaranRutinController extends Controller
         }
         
         $pemasukan_rutin->nama_pengguna = $nama;
-        $pemasukan_rutin->kode_pemasukan_rutin = $kode;
+        $pemasukan_rutin->kode_pengeluaran_rutin = $kode;
         $pemasukan_rutin->tanggal = $tanggal;
         $pemasukan_rutin->kategori_id = $kategori;
         $pemasukan_rutin->detail_pengeluaran = $detail_pengeluaran;
@@ -492,7 +492,7 @@ class PengeluaranRutinController extends Controller
         $pengeluaran_rutin = PengeluaranRutin::find($id);
         $datas = $pengeluaran_rutin->get();
         $pdf = PDF::loadView('pengeluaran_rutin.laporan', compact('pengeluaran_rutin'));
-        return $pdf->download('laporan_pengeluaran_rutin_'.$pengeluaran_rutin->kode_pemasukan_rutin.'.pdf');
+        return $pdf->download('laporan_pengeluaran_rutin_'.$pengeluaran_rutin->kode_pengeluaran_rutin.'.pdf');
         // return view('laporan.kk_pdf');
     }
 

@@ -19,7 +19,7 @@
                                     <ol class="breadcrumb float-sm-right">
                                       <li class="breadcrumb-item"><a href="/home">Home</a></li>
                                       <li class="breadcrumb-item"><a href="/pengeluaran_rutin">Pengeluaran Rutin</a></li>
-                                      <li class="breadcrumb-item active">{{$pemasukan_rutin->kode_pemasukan_rutin}}-{{$pemasukan_rutin->kategori_pengeluaran->kategori}}</li>
+                                      <li class="breadcrumb-item active">{{$pemasukan_rutin->kode_pengeluaran_rutin}}-{{$pemasukan_rutin->kategori_pengeluaran->kategori}}</li>
                                     </ol>
                                   </div>
                               </div> 
@@ -39,7 +39,7 @@
                     <div class="card card-primary card-outline">
                       <div class="mailbox-read-info">
                         <h5>
-                          <b>{{$pemasukan_rutin->kode_pemasukan_rutin}}-{{$pemasukan_rutin->kategori_pengeluaran->kategori}} 
+                          <b>{{$pemasukan_rutin->kode_pengeluaran_rutin}}-{{$pemasukan_rutin->kategori_pengeluaran->kategori}} 
                                     @if($pemasukan_rutin->status == '1')
                                         <i class="fa fa-check-square" style="color:green" ></i>
                                       @else
