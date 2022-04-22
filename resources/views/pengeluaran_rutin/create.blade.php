@@ -81,7 +81,7 @@
                                 
                                               <div class="form-group{{ $errors->has('kode_pengeluaran_rutin') ? ' has-error' : '' }}">
                                                     
-                                                    <label for="kode_pengeluaran_rutin" class="col-md-7 control-label">Kode pemasukan_rutin <b style="color:Tomato;">*</b> </label>
+                                                    <label for="kode_pengeluaran_rutin" class="col-md-7 control-label">Kode Pengeluaran Rutin <b style="color:Tomato;">*</b> </label>
                                                     <div class="col-md-12">
                                                         <input id="kode_pengeluaran_rutin" type="text" class="form-control" name="kode_pengeluaran_rutin" value="{{ $kode }}" readonly="">
                                                         @if ($errors->has('kode_pengeluaran_rutin'))
@@ -219,7 +219,7 @@
                               
 
                                               <div class="form-group col-md-12">
-                                                        <label for="email" class="col-md-12 control-label">Bukti pemasukan_rutin <i>(kosongkan jika tidak ada)</i> </label>
+                                                        <label for="email" class="col-md-12 control-label">Bukti Pengeluaran Rutin <i>(kosongkan jika tidak ada)</i> </label>
                                                         
                                                         <div class="col-md-12">
                                                             <img width="300" height="300" />

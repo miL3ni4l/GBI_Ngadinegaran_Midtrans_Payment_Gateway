@@ -28,7 +28,7 @@
 @extends('layouts2.app')
 
 @section('content')
-<form action="{{ route('pengeluaran_rutin.update', $pemasukan_rutin->id) }}" method="post" enctype="multipart/form-data">
+<form action="{{ route('pengeluaran_rutin.update', $pengeluaran_rutin->id) }}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
         {{ method_field('put') }}
 <section class="content-header">
@@ -41,13 +41,13 @@
               <div class="container-fluid">
                   <div class="row mb-2">
                     <div class="col-sm-6">
-                      <h4>Edit Pengeluaran Rutin <b> {{ $pemasukan_rutin->kode_pengeluaran_rutin }}</b> </h4> 
+                      <h4>Edit Pengeluaran Rutin <b> {{ $pengeluaran_rutin->kode_pengeluaran_rutin }}</b> </h4> 
                     </div>
                     <div class="col-sm-6">
                       <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="/home">Home</a></li>
                         <li class="breadcrumb-item active"><a href="/pengeluaran_rutin">Pengeluaran Rutin</a></li>
-                        <li class="breadcrumb-item active">Edit Pengeluaran Rutin {{ $pemasukan_rutin->kode_pengeluaran_rutin }}</li>
+                        <li class="breadcrumb-item active">Edit Pengeluaran Rutin {{ $pengeluaran_rutin->kode_pengeluaran_rutin }}</li>
                       </ol>
                     </div>
                   </div>
@@ -70,7 +70,7 @@
                                                     
                                                     <!-- <label for="kode_pengeluaran_rutin" class="col-md-7 control-label">Kode Trasaksi <b style="color:Tomato;">*</b> </label> -->
                                                     <div class="col-md-12">
-                                                        <input id="kode_pengeluaran_rutin" type="hidden" class="form-control" name="kode_pengeluaran_rutin" value="{{ $pemasukan_rutin->kode_pengeluaran_rutin }}" readonly="">
+                                                        <input id="kode_pengeluaran_rutin" type="hidden" class="form-control" name="kode_pengeluaran_rutin" value="{{ $pengeluaran_rutin->kode_pengeluaran_rutin }}" readonly="">
                                                         @if ($errors->has('kode_pengeluaran_rutin'))
                                                             <span class="help-block">
                                                                 <strong>{{ $errors->first('kode_pengeluaran_rutin') }}</strong>
@@ -96,7 +96,7 @@
                                               
                                                 <div class="form-group col-md-12" style="width: 100%;margin-bottom:20px">
                                                   <label>Tanggal <b style="color:Tomato;">*</b></label>
-                                                  <input type="date" class="form-control datepicker2 py-0" required="required" name="tanggal" value="{{ $pemasukan_rutin->tanggal }}" style="width: 100%">
+                                                  <input type="date" class="form-control datepicker2 py-0" required="required" name="tanggal" value="{{ $pengeluaran_rutin->tanggal }}" style="width: 100%">
                                                 </div>
 
                                                 <div class="form-group col-md-12" style="width: 100%;margin-bottom:20px">
@@ -104,7 +104,7 @@
                                                   <select class="form-control py-0" required="required" name="kategori_id" style="width: 100%">
                                                    
                                                     @foreach($kategori as $k)
-                                                    <option {{ ($pemasukan_rutin->nama_kategori->id == $k->id ? "selected='selected'" : "") }}  value="{{ $k->id }}">{{ $k->kategori }}</option>
+                                                    <option {{ ($pengeluaran_rutin->nama_kategori->id == $k->id ? "selected='selected'" : "") }}  value="{{ $k->id }}">{{ $k->kategori }}</option>
                                                     @endforeach
                                                   </select>
                                                 </div>
@@ -114,7 +114,7 @@
                                                   <select class="form-control py-0" required="required" name="detail_pengeluaran" style="width: 100%">
                                                    
                                                     @foreach($kategori_pengeluaran as $k)
-                                                    <option {{ ($pemasukan_rutin->nama_kategori->id == $k->id ? "selected='selected'" : "") }}  value="{{ $k->id }}">{{ $k->kategori }}</option>
+                                                    <option {{ ($pengeluaran_rutin->nama_kategori->id == $k->id ? "selected='selected'" : "") }}  value="{{ $k->id }}">{{ $k->kategori }}</option>
                                                     @endforeach
                                                   </select>
                                                 </div>
@@ -124,14 +124,14 @@
                                                   <select class="form-control py-0" required="required" name="kas" style="width: 100%">
                                                
                                                     @foreach($kas as $k)
-                                                    <option {{ ($pemasukan_rutin->kas->id == $k->id ? "selected='selected'" : "") }}  value="{{ $k->id }}">{{ $k->kas }}</option>
+                                                    <option {{ ($pengeluaran_rutin->kas->id == $k->id ? "selected='selected'" : "") }}  value="{{ $k->id }}">{{ $k->kas }}</option>
                                                     @endforeach
                                                   </select>
                                                 </div>
 
                                                 <div class="form-group col-md-12" style="width: 100%;margin-bottom:20px">
                                                   <label>Nominal <b style="color:Tomato;">*</b></label>
-                                                  <input type="number" class="form-control py-0" required="required" name="nominal" value="{{ $pemasukan_rutin->nominal }}" style="width: 100%">
+                                                  <input type="number" class="form-control py-0" required="required" name="nominal" value="{{ $pengeluaran_rutin->nominal }}" style="width: 100%">
                                                 </div>
 
                                 
@@ -157,10 +157,10 @@
                            
                             
                             <div class="form-group col-md-12">
-                            <label for="cover" class="col-md-12 control-label">Bukti pemasukan_rutin <i>(kosongkan jika tidak ada)</i> </label>
+                            <label for="cover" class="col-md-12 control-label">Bukti pengeluaran_rutin <i>(kosongkan jika tidak ada)</i> </label>
                             <div class="col-md-12">
                            
-                            <img width="188" height="188" @if($pemasukan_rutin->cover) src="{{ asset('images/PengeluaranRutin/'.$pemasukan_rutin->cover) }}" @endif />
+                            <img width="188" height="188" @if($pengeluaran_rutin->cover) src="{{ asset('images/PengeluaranRutin/'.$pengeluaran_rutin->cover) }}" @endif />
                                 <input type="file" class="uploads form-control" style="margin-top: 20px;" name="cover">
                             </div>
                             </div>
@@ -170,7 +170,7 @@
                             <div class="form-group col-md-12 ">
                                                 <label for="email" class="col-md-12 control-label">Keterangan <i>(kosongkan jika tidak ada)</label>
                                                   <div class="col-md-12">
-                                                    <textarea id="inputDescription"  name="keterangan" class="form-control col-md-12"  placeholder="Masukkan keterangan (Opsional) . . ." rows="3">{{ $pemasukan_rutin->keterangan }}</textarea>
+                                                    <textarea id="inputDescription"  name="keterangan" class="form-control col-md-12"  placeholder="Masukkan keterangan (Opsional) . . ." rows="3">{{ $pengeluaran_rutin->keterangan }}</textarea>
                                                   </div>
                             </div>
 

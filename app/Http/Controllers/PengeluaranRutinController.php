@@ -15,7 +15,7 @@ use App\Kategori;
 use App\DetailKategori;
 use App\DetailPengeluaran;
 use App\Kas;
-use App\pemasukan_rutin;
+use App\pengeluaran_rutin;
 use App\PengeluaranRutin;
 use Carbon\Carbon;
 use Hash;
@@ -33,7 +33,7 @@ use Illuminate\Support\Str;
 class PengeluaranRutinController extends Controller
 {
 
-    //READ pemasukan_rutin
+    //READ pengeluaran_rutin
     public function index()
     {
         //Akses Dari Luar 
@@ -55,17 +55,17 @@ class PengeluaranRutinController extends Controller
         if(Auth::user()->level == 'bendahara')
         {
               
-            $pemasukan_rutin = PengeluaranRutin::orderBy('updated_at','desc')->where('nama_pengguna', Auth::user()->petugas->id)->get();           
+            $pengeluaran_rutin = PengeluaranRutin::orderBy('updated_at','desc')->where('nama_pengguna', Auth::user()->petugas->id)->get();           
         } else {       
                 
-            $pemasukan_rutin = PengeluaranRutin::orderBy('updated_at','desc')->get();
+            $pengeluaran_rutin = PengeluaranRutin::orderBy('updated_at','desc')->get();
         }
 
 
         $kas = Kas::orderBy('updated_at','desc')->get();
         $kategori = DetailKategori::where('jenis', 'Rutin')->get();
         $kategori_pengeluaran = DetailPengeluaran::orderBy('updated_at','desc')->get();
-        return view('pengeluaran_rutin.index', compact('pemasukan_rutin','nama', 'kas', 'kategori','kategori_pengeluaran'));
+        return view('pengeluaran_rutin.index', compact('pengeluaran_rutin','nama', 'kas', 'kategori','kategori_pengeluaran'));
 
     }
 
@@ -89,14 +89,14 @@ class PengeluaranRutinController extends Controller
         if(Auth::user()->level == 'bendahara')
         {
               
-            $pemasukan_rutin = PengeluaranRutin::orderBy('updated_at','desc')
+            $pengeluaran_rutin = PengeluaranRutin::orderBy('updated_at','desc')
             ->where('nama_pengguna', Auth::user()->petugas->id)
             ->where('status', '0')
             ->get();           
         } else {       
                  
-            $pemasukan_rutin = PengeluaranRutin::get();
-            $pemasukan_rutin = PengeluaranRutin::orderBy('updated_at','desc')
+            $pengeluaran_rutin = PengeluaranRutin::get();
+            $pengeluaran_rutin = PengeluaranRutin::orderBy('updated_at','desc')
             ->where('status', '0')
             ->get();
         }
@@ -120,10 +120,10 @@ class PengeluaranRutinController extends Controller
         $kategori_pengeluaran = DetailPengeluaran::orderBy('updated_at','desc')->get();
         $kas = Kas::orderBy('updated_at','desc')->get();
         $kategori = DetailKategori::where('jenis', 'Rutin')->get();
-        return view('pengeluaran_rutin.index', compact('pemasukan_rutin','nama', 'kas','kategori', 'datas', 'kategoris','kategori_pengeluaran'));
+        return view('pengeluaran_rutin.index', compact('pengeluaran_rutin','nama', 'kas','kategori', 'datas', 'kategoris','kategori_pengeluaran'));
     }
    
-    //FILTER DATA pemasukan_rutin BERDASARKAN TANGGAL2
+    //FILTER DATA pengeluaran_rutin BERDASARKAN TANGGAL2
     // public function periode_rutin()
     // {   
     //      //Akses Dari Luar 
@@ -156,8 +156,8 @@ class PengeluaranRutinController extends Controller
 
     //     $kas = Kas::all();
     //     $kategori = Kategori::all();
-    //     $pemasukan_rutin = PengeluaranRutin::all();
-    //     $pemasukan_rutins  = PengeluaranRutin::count(); 
+    //     $pengeluaran_rutin = PengeluaranRutin::all();
+    //     $pengeluaran_rutins  = PengeluaranRutin::count(); 
 
  
     //     $kas = Kas::orderBy('kas','asc')->get();
@@ -166,13 +166,13 @@ class PengeluaranRutinController extends Controller
 
 
     //     if($_GET['kategori'] == ""){
-    //         $pemasukan_rutin = PengeluaranRutin::whereDate('tanggal','>=',$_GET['dari'])
+    //         $pengeluaran_rutin = PengeluaranRutin::whereDate('tanggal','>=',$_GET['dari'])
     //         ->whereDate('tanggal','<=',$_GET['sampai'])
     //         ->where('status', '1')
     //         ->get();
     //     }
     //     else{
-    //         $pemasukan_rutin = 
+    //         $pengeluaran_rutin = 
     //         PengeluaranRutin::whereDate('tanggal','>=',$_GET['dari'])
     //         ->whereDate('tanggal','<=',$_GET['sampai'])
     //         ->where('kategori_id',$_GET['kategori'])
@@ -180,7 +180,7 @@ class PengeluaranRutinController extends Controller
     //         ->where('status', '1')
     //         ->get();     
     //     }  
-    //     return view('pengeluaran_rutin.index',['pemasukan_rutin' => $pemasukan_rutin, 'kas' => $kas,'kategori' => $kategori, 'pemasukan_rutins'=>$pemasukan_rutins, 'datas'=>$datas,'kategoris'=>$kategoris]);
+    //     return view('pengeluaran_rutin.index',['pengeluaran_rutin' => $pengeluaran_rutin, 'kas' => $kas,'kategori' => $kategori, 'pengeluaran_rutins'=>$pengeluaran_rutins, 'datas'=>$datas,'kategoris'=>$kategoris]);
 
 
     // }
@@ -218,8 +218,8 @@ class PengeluaranRutinController extends Controller
         $kas = Kas::all();
         $kategori = DetailKategori::all();
         $kategori_pengeluaran = DetailPengeluaran::all();
-        $pemasukan_rutin = PengeluaranRutin::all();
-        $pemasukan_rutins  = PengeluaranRutin::count(); 
+        $pengeluaran_rutin = PengeluaranRutin::all();
+        $pengeluaran_rutins  = PengeluaranRutin::count(); 
 
  
         $kas = Kas::orderBy('kas','asc')->get();
@@ -228,13 +228,13 @@ class PengeluaranRutinController extends Controller
         $kas = Kas::orderBy('kas','asc')->get();
 
         if( $_GET['kategori_pengeluaran'] == ""  || $_GET['kas'] == ""){
-            $pemasukan_rutin = PengeluaranRutin::whereDate('tanggal','>=',$_GET['dari'])
+            $pengeluaran_rutin = PengeluaranRutin::whereDate('tanggal','>=',$_GET['dari'])
             ->whereDate('tanggal','<=',$_GET['sampai'])
             ->where('status','1')
             ->get();
         }
         else{
-            $pemasukan_rutin = 
+            $pengeluaran_rutin = 
             PengeluaranRutin::whereDate('tanggal','>=',$_GET['dari'])
             ->whereDate('tanggal','<=',$_GET['sampai'])
             ->where('detail_pengeluaran',$_GET['kategori_pengeluaran'])
@@ -242,7 +242,7 @@ class PengeluaranRutinController extends Controller
             ->where('status','1')
             ->get();     
         }  
-        return view('pengeluaran_rutin.index',['pemasukan_rutin' => $pemasukan_rutin, 'kategori_pengeluaran'=>$kategori_pengeluaran,'kas' => $kas,'kategori' => $kategori, 'pemasukan_rutins'=>$pemasukan_rutins, 'datas'=>$datas,'kategoris'=>$kategoris]);
+        return view('pengeluaran_rutin.index',['pengeluaran_rutin' => $pengeluaran_rutin, 'kategori_pengeluaran'=>$kategori_pengeluaran,'kas' => $kas,'kategori' => $kategori, 'pengeluaran_rutins'=>$pengeluaran_rutins, 'datas'=>$datas,'kategoris'=>$kategoris]);
 
 
     }
@@ -251,7 +251,7 @@ class PengeluaranRutinController extends Controller
         return Excel::download(new LaporanExport, 'Laporan.xlsx');
     }
 
-    //MENAMBAHKAN DATA pemasukan_rutin
+    //MENAMBAHKAN DATA pengeluaran_rutin
     public function create(Request $request)
     {   
          //Akses Dari Luar 
@@ -290,11 +290,11 @@ class PengeluaranRutinController extends Controller
  
 
         $id_kategori = DetailKategori::where('jenis','Rutin')->get();
-        $seluruh_pemasukan_rutin = DB::table('pemasukan_rutin')->select(DB::raw('SUM(nominal) as total'))
+        $seluruh_pengeluaran_rutin = DB::table('pengeluaran_rutin')->select(DB::raw('SUM(nominal) as total'))
         ->where('status','1')
         ->where('kategori_id',  $id_kategori )
         ->first();
-        $total = $seluruh_pemasukan_rutin->total;
+        $total = $seluruh_pengeluaran_rutin->total;
 
         $nama = Auth::user()->petugas->id;
         if(Auth::user()->level == 'bendahara')
@@ -308,9 +308,9 @@ class PengeluaranRutinController extends Controller
         $detail_pengeluarans = DetailPengeluaran::orderBy('updated_at','desc')->get();
         $kass = Kas::get();
 
-        $pemasukan_rutins = PengeluaranRutin::get();
+        $pengeluaran_rutins = PengeluaranRutin::get();
 
-        return view('pengeluaran_rutin.create', compact('nama','kode','kategoris','detail_pengeluarans','kass', 'pemasukan_rutins', 'total'));
+        return view('pengeluaran_rutin.create', compact('nama','kode','kategoris','detail_pengeluarans','kass', 'pengeluaran_rutins', 'total'));
         
     }
 
@@ -376,15 +376,15 @@ class PengeluaranRutinController extends Controller
 
         if(Auth::user()->level == 'bendahara')
         {
-            $pemasukan_rutin = PengeluaranRutin::where('nama_pengguna', Auth::user()->petugas->id)->findOrFail($id);   
+            $pengeluaran_rutin = PengeluaranRutin::where('nama_pengguna', Auth::user()->petugas->id)->findOrFail($id);   
         } else {            
-            $pemasukan_rutin = PengeluaranRutin::orderBy('id','desc')->findOrFail($id);
+            $pengeluaran_rutin = PengeluaranRutin::orderBy('id','desc')->findOrFail($id);
         }       
-        return view('pengeluaran_rutin.show', compact('pemasukan_rutin'));
+        return view('pengeluaran_rutin.show', compact('pengeluaran_rutin'));
     }
 
     //SEMUA USER BISA AKSES
-    //UPDATE pemasukan_rutin
+    //UPDATE pengeluaran_rutin
     public function edit($id)
     {   
 
@@ -396,20 +396,20 @@ class PengeluaranRutinController extends Controller
             return redirect()->to('/home');
         } 
 
-        //pemasukan_rutin edit berdasarkan user login
+        //pengeluaran_rutin edit berdasarkan user login
         $nama = Auth::user()->petugas->id;
         if(Auth::user()->level == 'bendahara')
         {
-            $pemasukan_rutin = PengeluaranRutin::where('nama_pengguna', Auth::user()->petugas->id)
+            $pengeluaran_rutin = PengeluaranRutin::where('nama_pengguna', Auth::user()->petugas->id)
             ->where('status','0')
             ->findOrFail($id);
-            $pemasukan_rutin  = PengeluaranRutin::findOrFail($id);
-            $pemasukan_rutin = PengeluaranRutin::orderBy('id','desc')->findOrFail($id);
+            $pengeluaran_rutin  = PengeluaranRutin::findOrFail($id);
+            $pengeluaran_rutin = PengeluaranRutin::orderBy('id','desc')->findOrFail($id);
            
          
         } else {            
-            $pemasukan_rutin  = PengeluaranRutin::findOrFail($id);
-            $pemasukan_rutin = PengeluaranRutin::orderBy('id','desc')->findOrFail($id);
+            $pengeluaran_rutin  = PengeluaranRutin::findOrFail($id);
+            $pengeluaran_rutin = PengeluaranRutin::orderBy('id','desc')->findOrFail($id);
 
 
         }
@@ -422,14 +422,14 @@ class PengeluaranRutinController extends Controller
         
         $kas = Kas::get();
 
-        return view('pengeluaran_rutin.edit', compact('kategori','kategori_pengeluaran','kas', 'pemasukan_rutin', 'nama'));
+        return view('pengeluaran_rutin.edit', compact('kategori','kategori_pengeluaran','kas', 'pengeluaran_rutin', 'nama'));
         
     }
 
     public function update(Request $request, $id)
     {
        
-        $pemasukan_rutin = PengeluaranRutin::findOrFail($id);
+        $pengeluaran_rutin = PengeluaranRutin::findOrFail($id);
         $nama = $request->input('nama_pengguna');
         $kode = $request->input('kode_pengeluaran_rutin');
         $tanggal = $request->input('tanggal');
@@ -447,22 +447,22 @@ class PengeluaranRutinController extends Controller
             $acak  = $file->getClientOriginalExtension();
             $fileName = rand(11111,99999).'-'.$dt->format('Y-m-d-H-i-s').'.'.$acak; 
             $request->file('cover')->move("images/PengeluaranRutin", $fileName);
-            $pemasukan_rutin->cover = $fileName;
+            $pengeluaran_rutin->cover = $fileName;
         }
         
-        $pemasukan_rutin->nama_pengguna = $nama;
-        $pemasukan_rutin->kode_pengeluaran_rutin = $kode;
-        $pemasukan_rutin->tanggal = $tanggal;
-        $pemasukan_rutin->kategori_id = $kategori;
-        $pemasukan_rutin->detail_pengeluaran = $detail_pengeluaran;
-        // $pemasukan_rutin->detail_pengeluaran = $detail_pengeluaran;
-        // $pemasukan_rutin->kategori_pengeluaran_id = $kategori_pengeluaran;
-        $pemasukan_rutin->kas_id = $kas;
-        $pemasukan_rutin->nominal = $nominal;
-        $pemasukan_rutin->keterangan = $keterangan;
+        $pengeluaran_rutin->nama_pengguna = $nama;
+        $pengeluaran_rutin->kode_pengeluaran_rutin = $kode;
+        $pengeluaran_rutin->tanggal = $tanggal;
+        $pengeluaran_rutin->kategori_id = $kategori;
+        $pengeluaran_rutin->detail_pengeluaran = $detail_pengeluaran;
+        // $pengeluaran_rutin->detail_pengeluaran = $detail_pengeluaran;
+        // $pengeluaran_rutin->kategori_pengeluaran_id = $kategori_pengeluaran;
+        $pengeluaran_rutin->kas_id = $kas;
+        $pengeluaran_rutin->nominal = $nominal;
+        $pengeluaran_rutin->keterangan = $keterangan;
       
-        $pemasukan_rutin->update();
-        $pemasukan_rutin->save();
+        $pengeluaran_rutin->update();
+        $pengeluaran_rutin->save();
         Session::flash('message', 'Berhasil diedit!');
         Session::flash('message_type', 'success');
         return redirect()->to('pengeluaran_rutin');
@@ -470,8 +470,8 @@ class PengeluaranRutinController extends Controller
 
     public function destroy($id)
     {
-        $pemasukan_rutin = PengeluaranRutin::find($id);
-        $pemasukan_rutin->delete();
+        $pengeluaran_rutin = PengeluaranRutin::find($id);
+        $pengeluaran_rutin->delete();
         Session::flash('message', 'Berhasil dihapus!');
         Session::flash('message_type', 'success');
         return redirect()->back()->with("success","PengeluaranRutin telah dihapus!");
@@ -479,8 +479,8 @@ class PengeluaranRutinController extends Controller
 
     public function hapus($id)
     {
-        $pemasukan_rutin = PengeluaranRutin::find($id);
-        $pemasukan_rutin->delete();
+        $pengeluaran_rutin = PengeluaranRutin::find($id);
+        $pengeluaran_rutin->delete();
         Session::flash('message', 'Berhasil dihapus!');
         Session::flash('message_type', 'success');
         return redirect()->back()->with("success","PengeluaranRutin telah dihapus!");

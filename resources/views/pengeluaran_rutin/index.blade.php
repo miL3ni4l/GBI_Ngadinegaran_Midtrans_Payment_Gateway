@@ -177,7 +177,7 @@
                                                       $total_pengeluaran = 0;
                                                       @endphp
 
-                                                      @foreach($pemasukan_rutin as $t)
+                                                      @foreach($pengeluaran_rutin as $t)
                                                       
                                                       <tr>
                                                             <td class="text-center">{{ $no++ }}</td>
@@ -282,7 +282,7 @@
                                                         @php
                                                         $no = 1;
                                                         @endphp
-                                                        @foreach($pemasukan_rutin as $t)
+                                                        @foreach($pengeluaran_rutin as $t)
                                                         <tr>
                                                           <td class="text-center">{{ $no++ }}</td>
                                                           @if(Auth::user()->level == 'admin')
