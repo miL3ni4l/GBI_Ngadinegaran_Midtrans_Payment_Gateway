@@ -32,7 +32,7 @@
                                                                 <div class="col-sm-6 invoice-col">
                                                                     <address>
                                                                         <p class="section-heading">
-                                                                        Transfer ke rekening Gereja.
+                                                                        1. Transfer ke rekening Gereja.
                                                                         BCA a/n Marthinus Sumendi atau Sardjono No Rek: 4451096448
                                                                         atau dapat diberikan secara langsung setiap hari Minggu pukul 10.00-12.00 WIB di Gedung Utama Gereja.</p>
                                                                     </address>
@@ -40,7 +40,7 @@
                                           
                                                                 <div class="col-sm-6 invoice-col">
                                                                     <address>
-                                                                        <p class="section-heading">Persembahan melalui aplikasi pembayaran online sebagai alternatif untuk mengirimkan persembahan.</p>  
+                                                                        <p class="section-heading">2. Persembahan melalui aplikasi pembayaran online sebagai alternatif untuk mengirimkan persembahan.</p>  
                                                                         <p class="section">Silahkan isi form dibawah ini.</p> 
                                                                     </address>
                                                                 </div>

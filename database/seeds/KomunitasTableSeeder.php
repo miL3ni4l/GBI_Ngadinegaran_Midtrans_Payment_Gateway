@@ -19,7 +19,7 @@ class KomunitasTableSeeder extends Seeder
               'pj'  			=> 'Adit',
               'kontak'  			=> '082212344321',
               'status'  			=> '1',
-              'cover'           => '91495-2022-04-22-03-45-12.jpg',
+              'cover'           => '16287-2022-04-22-20-53-54.jpg',
               'created_at'      => \Carbon\Carbon::now(),
               'updated_at'      => \Carbon\Carbon::now()
             ],
@@ -30,7 +30,7 @@ class KomunitasTableSeeder extends Seeder
                 'pj'  	    => 'Sara',
                 'kontak'  	    => '085756788765',
                 'status'  	    => '1',
-                'cover'           => '59821-2022-04-22-03-46-03.jpg',
+                'cover'           => '36949-2022-04-22-20-55-21.jpg',
                 'created_at'      => \Carbon\Carbon::now(),
                 'updated_at'      => \Carbon\Carbon::now()
             ]

@@ -2,30 +2,26 @@
 
 @section('header')
 <section id="home">
-    <div class="intro-text">
-      
-          <div class="intro-lead-in">
-            Selamat Datang di
-          </div>
-
-          <div class="">
+    
+        <div class="intro-text">
+          <div>
+            <div class="intro-lead-in">
+              Selamat Datang di
+            </div>
             <h1>GEREJA BAPTIS INDONESIA</h1>
   
             <h1>NGADINEGARAN</h1>
           </div>
-
         </div>
 
-          <div class="col-md-12 align-center">
+        <div class="col-md-12 align-center">
             <span class="fa-stack fa-6x">
             <a  class="btn btn-warning btn-m nav-link js-scroll-trigger btn-xl" href="https://api.whatsapp.com/send/?phone=6287870552929&text&app_absent=0">Hubungi Kami</a>
             </span>
 
 
-          </div>
+        </div>
 
-       
-        
         <!-- <div class="row text-center">
 
           <div class="col-md-4">
@@ -60,7 +56,6 @@
 
         </div> -->
 
-    </div>
 </section>
 @endsection
 
@@ -415,7 +410,7 @@
                                         <div class="col-12">
                                           <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
                                                     <div class="col-xl-6 col-lg-6">
-                                                      <img style="display:block; margin:auto;" @if($p->cover) src="{{ asset('images/PengeluaranRutin/'.$p->cover) }}" @endif /> 
+                                                      <img style="display:block; margin:auto;" @if($p->cover) src="{{ asset('images/Komunitas/'.$p->cover) }}" @endif /> 
                                                         <!-- <img class="img-fluid mb-3 mb-lg-0" src="utama/img/child.jpg" alt="..." /> -->
                                                     </div>
 
@@ -707,6 +702,5 @@
     }
 
   </script>
-
 
 @endsection
