@@ -73,6 +73,7 @@ Route::post('store_rutin', 'DetailKategoriController@store_rutin')->name('store_
 Route::get('create_khusus', 'DetailKategoriController@create_khusus')->name('create_khusus');
 Route::post('store_khusus', 'DetailKategoriController@store_khusus')->name('store_khusus');
 Route::get('/rutin', 'DetailKategoriController@rutin')->name('rutin');
+Route::get('/khusus', 'DetailKategoriController@khusus')->name('khusus');
 
 //DETAIL_KATEGORI_PENGELUARAN
 Route::resource('detail_pengeluaran', 'DetailPengeluaranController');

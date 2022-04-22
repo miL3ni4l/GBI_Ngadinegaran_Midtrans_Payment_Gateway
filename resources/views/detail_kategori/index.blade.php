@@ -32,12 +32,29 @@
                                           <a class="dropdown-item"href="{{ route('create_khusus') }}">Kategori Khusus</a>
                                         </div>
                                       </div>
-                                  
+
                                       <div class="btn-group">
+                                        <a type="button" class="btn btn-success">  <i class="fas fa-filter  text-center"></i></a>
+                                        <button type="button" class="btn btn-success dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                                          <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <div class="dropdown-menu" role="menu">
+                                          <a data-toggle="modal" data-target="#modal-filter"  type="button" >Kategori Rutin</a>
+                                          <a data-toggle="modal" data-target="#modal-filter1"  type="button" >Kategori Khusus</a>
+                                        </div>
+                                      </div>
+                                  
+                                      <!-- <div class="btn-group">
                                         <button  data-toggle="modal" data-target="#modal-filter"  type="button" class="btn btn-success">
                                         <i class="fas fa-filter  text-center"></i>
                                         </button>
                                       </div>
+
+                                      <div class="btn-group">
+                                        <button  data-toggle="modal" data-target="#modal-filter1"  type="button" class="btn btn-success">
+                                        <i class="fas fa-filter  text-center"></i>
+                                        </button>
+                                      </div> -->
                                     
                                       <div class="btn-group">
                                         <a   href="{{route('detail_kategori.index')}}"  type="button" class="btn btn-warning">
@@ -445,7 +462,7 @@
                         <div class="modal-content bg-gradient-white">
                 
                           <div class="modal-header">
-                            <h4 class="modal-title" id="modal-title-notification">Filter Kategori Pemasukan</h4>
+                            <h4 class="modal-title" id="modal-title-notification">Filter Kategori Rutin</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">×</span>
                             </button>
@@ -472,8 +489,64 @@
                                           <div class="form-group">
                                             <label>Cari Persembahan Rutin</label>
                                             <select class="form-control" name="kategori">
-                                            <option value="">-- SEMUA KATEGORI --</option>
+                                            <option value="">-- SEMUA KATEGORI RUTIN--</option>
                                               @foreach($kategori as $k)
+                                              <option <?php 
+                                              if(isset($_GET['kategori']))
+                                              { if($_GET['kategori'] == $k->id){echo "selected='selected'";} } ?> value="{{ $k->id }}">{{ $k->kategori }}</option>
+                                              @endforeach
+                                            </select>
+                                          </div>
+                                        </div>
+                                        <div class="form-group col-md-12 ">
+                                          <div class="form-group float-right">
+                                              <input type="submit" class="btn btn-success" value="Tampilkan" style="margin-top: 25px col-md-5">
+                                          </div>
+                                        </div>
+
+                                      </div>
+                                </form>
+                          </div>
+                
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- MODAL FILTER -->
+                    <div class="modal fade" id="modal-filter1" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
+                      <div class="modal-dialog modal-default modal-dialog-centered modal-" role="document">
+                        <div class="modal-content bg-gradient-white">
+                
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="modal-title-notification">Filter Kategori Khusus</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">×</span>
+                            </button>
+                          </div>
+                
+                          <div class="modal-body">
+                                <form method="GET" action="{{ route('khusus') }}">
+                                    {{ csrf_field() }}
+                                      <div class="box-body">
+                                                  
+                                        <div class="form-group col-md-12">
+                                          <div class="form-group">
+                                            <label>Dari Tanggal</label>
+                                            <input class="form-control datepicker2"  placeholder="Dari Tanggal" type="date" required="required" name="dari" value="<?php if(isset($_GET['dari'])){echo $_GET['dari'];} ?>">
+                                          </div>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                          <div class="form-group">
+                                            <label>Sampai Tanggal</label>
+                                            <input class="form-control datepicker2"  placeholder="Sampai Tanggal" type="date" required="required" name="sampai" value="<?php if(isset($_GET['sampai'])){echo $_GET['sampai'];} ?>">
+                                          </div>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                          <div class="form-group">
+                                            <label>Cari Persembahan Khusus</label>
+                                            <select class="form-control" name="kategori">
+                                            <option value="">-- SEMUA KATEGORI KHUSUS--</option>
+                                              @foreach($kategori_khusus as $k)
                                               <option <?php 
                                               if(isset($_GET['kategori']))
                                               { if($_GET['kategori'] == $k->id){echo "selected='selected'";} } ?> value="{{ $k->id }}">{{ $k->kategori }}</option>
@@ -515,6 +588,7 @@
             e.preventDefault();
            
             $('#modal-filter').modal();
+            $('#modal-filter1').modal();
         })
  
     })
