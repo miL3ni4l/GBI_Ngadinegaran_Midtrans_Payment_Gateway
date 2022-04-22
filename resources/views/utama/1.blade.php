@@ -1,15 +1,16 @@
 @extends('layouts2.utama')
 
 @section('header')
-<section id="">
+<section id="home">
     <div class="intro-text">
       
-        <div class="intro-lead-in">
-        Selamat Datang di
-        </div>
+          <div class="intro-lead-in">
+            Selamat Datang di
+          </div>
 
           <div class="">
             <h1>GEREJA BAPTIS INDONESIA</h1>
+  
             <h1>NGADINEGARAN</h1>
           </div>
 
@@ -17,8 +18,9 @@
 
           <div class="col-md-12 align-center">
             <span class="fa-stack fa-6x">
-            <a  class="btn btn-primary btn-m nav-link js-scroll-trigger" href="https://api.whatsapp.com/send/?phone=6287870552929&text&app_absent=0">Hubungi Kami</a>
+            <a  class="btn btn-warning btn-m nav-link js-scroll-trigger btn-xl" href="https://api.whatsapp.com/send/?phone=6287870552929&text&app_absent=0">Hubungi Kami</a>
             </span>
+
 
           </div>
 
@@ -132,13 +134,34 @@
     </div>
   </section> -->
 
-  <section id="profil_grj">
+  <section class="page-section bg-warning" id="about">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-12 text-center">
+
+                        <div class="col-lg-12 text-center">
+                          <h4 class="section-heading text-uppercase">JEMAAT</h4><br>
+                        </div>
+
+
+                        <p class="text-white-75 mb-4">Jemaat GBI Ngadinegaran Yogyakarta berada diarea D.I Yogyakarta baik didalam negri maupun luar negri. Dengan nilai-nilai budaya dan kasih dari Alkitab, jemaat GBI Ngadinegaran Yogyakarta menjadi jemaat yang menyenangkan, saling mengasihi dan peduli terhadap sesama.</p>
+                    </div>
+
+
+              
+                </div>
+                </div>
+            </div>
+  </section>
+
+  <section  id="profil_grj">
     <div class="container">
 
       <div class="row">
         <div class="col-lg-12 text-center">
           
           <h4 class="section-heading text-uppercase">PROFIL GEREJA</h4><br>
+          
         </div>
       </div>
 
@@ -205,7 +228,7 @@
     </div>
   </section>
 
-  <section id="profil_pdt">
+  <section  id="profil_pdt">
     <div class="container">
 
       <div class="row">
@@ -228,10 +251,10 @@
                                         </div> -->
 
 
-                                        <div style="padding-top:2%" class="col-md-12">
-                                            <div class="team-member">
+                                        <div style="padding-top:2%" class="col-md-12 ">
+                                            <div class="team-member ">
                 
-                                                <img class="mx-auto rounded-circle" id="img-n"  width="50" height="50" style="display:block; margin:auto;" @if($p->cover) src="{{ asset('images/Pendeta/'.$p->cover) }}" @endif /> 
+                                                <img class="mx-auto rounded-circle " id="img-n"  width="50" height="50" style="display:block; margin:auto;" @if($p->cover) src="{{ asset('images/Pendeta/'.$p->cover) }}" @endif /> 
                                                 <h4>{{ $p->nama_pendeta }} </h4>
                                                 <p class="text-muted">Pendeta</p>
                                                 <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i class="fab fa-whatsapp"></i></a>
@@ -362,12 +385,12 @@
     </div>
   </section>
 
-  <section id="ministries">
+  <section id="ministries" class="page-section bg-dark" >
     <div class="container">
 
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h4 class="section-heading text-uppercase">ministries</h4><br>
+            <h4 class="section-tittle text-uppercase text-white">ministries</h4><br>
           </div>
         </div>
 

@@ -69,11 +69,15 @@
           <!-- <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="/">Beranda</a>
           </li> -->
+
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#home">Home</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#profil_grj">Profil</a>
           </li>
            <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#profil_pdt">Pendeta</a>
+            <a class="nav-link js-scroll-trigger" href="#profil_pdt">Pendeta</a> 
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#ibadah">Ibadah</a>
@@ -95,9 +99,9 @@
             <a class="nav-link js-scroll-trigger" href="#contact">Kontak</a>
           </li>
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="https://www.youtube.com/c/GerejaBaptisIndonesiaNgadinegaran/">YouTube</a>
-          </li>
+          </li> -->
 
           <!-- <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="/login">User</a>

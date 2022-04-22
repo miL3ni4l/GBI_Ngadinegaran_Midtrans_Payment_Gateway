@@ -1,24 +1,20 @@
-
-
 @extends('layouts2.utama')
 @section('title', '- Profil')
-
 @section('content') 
 
 <section class="content-header">
     <div class="container-fluid">
-        <div class="row">
 
-                <!-- <div class="col-lg-12 text-center">
-                    <h4 class="section-heading text-uppercase">PERSEMBAHAN ONLINE</h4><br>
-                </div>
-                 -->
+                <ol class="breadcrumb float-sm-left bg-white">
+                                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                                <li class="breadcrumb-item active">Persembahan Online</li>
+                </ol>
+          
                 <div class=" table-responsive">
                     <div class="card card-solid">
 
-     
          
-                                                    <div class="col-lg-6 mx-auto">
+                                        <div class="col-lg-6 mx-auto">
                                                         <div class="invoice p-3 ">
 
                                                             <div class="row">
@@ -51,9 +47,8 @@
                                                             </div>
 
                                                         </div>
-                                                    </div>
+                                        </div>
                
-
                                         <div class="col-lg-6     mx-auto">
                                      
 
@@ -232,7 +227,7 @@
  
                     </div>              
                 </div>
-        </div>              
+           
     </div>
 </section>
 
