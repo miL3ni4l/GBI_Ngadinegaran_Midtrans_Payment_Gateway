@@ -224,7 +224,7 @@
                                     
                                             <tr>
                                               <td class="text-center">{{ $no++ }}</td>
-                                              <td class="text-ledt">{{ $t->kode_pemasukan_rutin }}</td>
+                                              <td class="text-ledt">{{ $t->kode_pengeluaran_rutin }}</td>
                                               <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
                                               <td>{{ $t->kategori_pengeluaran->kategori }}</td>
 
