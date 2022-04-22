@@ -88,12 +88,12 @@ class KomunitasController extends Controller
     public function store(Request $request)
     {   
       
-        // $count = Komunitas::where('komunitas',$request->input('komunitas'))->count();
-        // if($count>0){
-        //     Session::flash('message', 'Nama komunitas Sudah Ada !');
-        //     Session::flash('message_type', 'danger');
-        //     return redirect()->to('komunitas/create');
-        // }
+        $count = Komunitas::where('nama_komunitas',$request->input('nama_komunitas'))->count();
+        if($count>0){
+            Session::flash('message', 'Nama Komunitas Sudah Ada !');
+            Session::flash('message_type', 'danger');
+            return redirect()->to('komunitas/create');
+        }
 
         // Komunitas::create($request->all()); 
         
@@ -104,7 +104,7 @@ class KomunitasController extends Controller
             $dt = Carbon::now();
             $acak  = $file->getClientOriginalExtension();
             $fileName = rand(11111,99999).'-'.$dt->format('Y-m-d-H-i-s').'.'.$acak; 
-            $request->file('cover')->move("images/PengeluaranRutin", $fileName);
+            $request->file('cover')->move("images/Komunitas", $fileName);
             $cover = $fileName;
         }
 

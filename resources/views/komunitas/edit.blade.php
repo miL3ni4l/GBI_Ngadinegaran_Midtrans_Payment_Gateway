@@ -21,14 +21,14 @@
 
           <div class="col-sm-6">
 
-            <h4>Edit Ibadah <b> {{ $data->ibadah }}</b></h4> 
+            <h4>Edit Komunitas <b> {{ $data->nama_komunitas }}</b></h4> 
           </div>
 
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/home">Home</a></li>
-              <li class="breadcrumb-item active"><a href="/ibadah">Ibadah</a></li>
-              <li class="breadcrumb-item active">Edit Ibadah {{ $data->ibadah }}</li>
+              <li class="breadcrumb-item active"><a href="/komunitas">Ibadah</a></li>
+              <li class="breadcrumb-item active">Edit Komunitas {{ $data->nama_komunitas }}</li>
             </ol>
           </div>
           
@@ -41,49 +41,61 @@
                 {{ csrf_field() }}
                       {{ method_field('put') }}
                       
-                                                              <div class="form-group{{ $errors->has('nama_pengguna') ? ' has-error' : '' }}">
-                                                                  
-                                                                  <!-- <label for="nama_pengguna" class="col-md-7 control-label">Nama Pengguna <b style="color:Tomato;">*</b> </label> -->
-                                                                  <div class="col-md-12">
-                                                                      <input id="nama_pengguna" type="hidden" class="form-control" name="nama_pengguna" value="{{ $nama }}" readonly="">
-                                                                      @if ($errors->has('nama_pengguna'))
-                                                                          <span class="help-block">
-                                                                              <strong>{{ $errors->first('nama_pengguna') }}</strong>
-                                                                          </span>
-                                                                      @endif
-                                                                  </div>
-                                                              </div>
+                                    
 
-                                                              <div class="form-group{{ $errors->has('ibadah') ? ' has-error' : '' }}">
-                                                                        <label for="ibadah" class="col-md-4 control-label">Nama Ibadah <b style="color:Tomato;">*</b> </label>
+                                                              <div class="form-group{{ $errors->has('nama_komunitas') ? ' has-error' : '' }}">
+                                                                        <label for="nama_komunitas" class="col-md-4 control-label">Nama Komunitas <b style="color:Tomato;">*</b> </label>
                                                                         <div class="col-md-12">
-                                                                            <input id="ibadah" type="text" class="form-control" name="ibadah"  placeholder="Masukkan Nama Ibadah . . ."value="{{ $data->ibadah }}" required>
-                                                                            @if ($errors->has('ibadah'))
+                                                                            <input id="nama_komunitas" type="text" class="form-control" name="nama_komunitas"  placeholder="Masukkan Nama Komunitas . . ."value="{{ $data->nama_komunitas }}" required>
+                                                                            @if ($errors->has('nama_komunitas'))
                                                                                 <span class="help-block">
-                                                                                    <strong>{{ $errors->first('ibadah') }}</strong>
-                                                                                </span>
-                                                                            @endif
-                                                                        </div>
-                                                              </div>
-
-                                                              <div class="form-group{{ $errors->has('jam') ? ' has-error' : '' }}">
-                                                                        <label for="jam" class="col-md-4 control-label">Jam Ibadah <b style="color:Tomato;">*</b> </label>
-                                                                        <div class="col-md-12">
-                                                                            <input id="jam" type="time" class="form-control" name="jam"  placeholder="Masukkan Nama jam . . ."value="{{ $data->jam }}" required>
-                                                                            @if ($errors->has('jam'))
-                                                                                <span class="help-block">
-                                                                                    <strong>{{ $errors->first('jam') }}</strong>
+                                                                                    <strong>{{ $errors->first('nama_komunitas') }}</strong>
                                                                                 </span>
                                                                             @endif
                                                                         </div>
                                                               </div>
 
                                                               <div class="form-group col-md-12 ">
-                                                                                  <label for="email" class="control-label">Keterangan <i>(kosongkan jika tidak ada)</label>
+                                                                                  <label for="email" class="control-label">Deskripsi Komunitas <b style="color:Tomato;">*</b></label>
                                                                                    
-                                                                                      <textarea id="inputDescription"  name="keterangan" class="form-control col-md-12"  placeholder="Masukkan keterangan (Opsional) . . ." rows="3">{{ $data->keterangan }}</textarea>
+                                                                                      <textarea id="inputDescription"  name="deskripsi" class="form-control col-md-12"  placeholder="Masukkan keterangan (Opsional) . . ." rows="3">{{ $data->deskripsi }}</textarea>
                                                                                
                                                               </div>
+
+                                                              <div class="form-group{{ $errors->has('pj') ? ' has-error' : '' }}">
+                                                                        <label for="pj" class="col-md-4 control-label">Penanggung Jawab <b style="color:Tomato;">*</b> </label>
+                                                                        <div class="col-md-12">
+                                                                            <input id="pj" type="text" class="form-control" name="pj"  placeholder="Masukkan Nama Komunitas . . ."value="{{ $data->pj }}" required>
+                                                                            @if ($errors->has('pj'))
+                                                                                <span class="help-block">
+                                                                                    <strong>{{ $errors->first('pj') }}</strong>
+                                                                                </span>
+                                                                            @endif
+                                                                        </div>
+                                                              </div>
+
+                                                              <div class="form-group{{ $errors->has('kontak') ? ' has-error' : '' }}">
+                                                                        <label for="kontak" class="col-md-4 control-label">Kontak <b style="color:Tomato;">*</b> </label>
+                                                                        <div class="col-md-12">
+                                                                            <input id="kontak" type="number" class="form-control" name="kontak"  placeholder="Masukkan Nama Komunitas . . ."value="{{ $data->kontak }}" required>
+                                                                            @if ($errors->has('kontak'))
+                                                                                <span class="help-block">
+                                                                                    <strong>{{ $errors->first('kontak') }}</strong>
+                                                                                </span>
+                                                                            @endif
+                                                                        </div>
+                                                              </div>
+
+                                                              <div class="form-group col-md-12">
+                                                                <label for="cover" class="col-md-12 control-label">Cover <i>(kosongkan jika tidak ada)</i> </label>
+                                                                <div class="col-md-12">
+                                                              
+                                                                <img width="188" height="188" @if($data->cover) src="{{ asset('images/Komunitas/'.$data->cover) }}" @endif />
+                                                                    <input type="file" class="uploads form-control" style="margin-top: 20px;" name="cover">
+                                                                </div>
+                                                              </div>
+
+          
 
                                                               <div class="form-group col-md-12">
                                                                

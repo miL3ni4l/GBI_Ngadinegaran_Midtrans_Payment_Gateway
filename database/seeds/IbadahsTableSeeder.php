@@ -17,6 +17,7 @@ class IbadahsTableSeeder extends Seeder
               'kode_ibadah'  			=> 'I01',
               'ibadah'  			=> 'Ibadah Minggu',
               'jam'  			=> '07:00',
+              'status'  	    => '1',
               'created_at'      => \Carbon\Carbon::now(),
               'updated_at'      => \Carbon\Carbon::now()
             ],
@@ -25,6 +26,7 @@ class IbadahsTableSeeder extends Seeder
                 'kode_ibadah'  			=> 'I02',
                 'ibadah'  	    => 'Ibadah Doa Rabu',
                 'jam'  			=> '18:00',
+                'status'  	    => '1',
                 'created_at'      => \Carbon\Carbon::now(),
                 'updated_at'      => \Carbon\Carbon::now()
             ],
@@ -33,6 +35,7 @@ class IbadahsTableSeeder extends Seeder
                 'kode_ibadah'  			=> 'I03',
                 'ibadah'  	    => 'Ibadah PKRB & PKMB',
                 'jam'  			=> '18:30',
+                'status'  	    => '0',
                 'created_at'      => \Carbon\Carbon::now(),
                 'updated_at'      => \Carbon\Carbon::now()
             ],
@@ -41,6 +44,7 @@ class IbadahsTableSeeder extends Seeder
                 'kode_ibadah'  			=> 'I04',
                 'ibadah'  	    => 'Sekolah Minggu',
                 'jam'  			=> '08:00',
+                'status'  	    => '0',
                 'created_at'      => \Carbon\Carbon::now(),
                 'updated_at'      => \Carbon\Carbon::now()
             ]

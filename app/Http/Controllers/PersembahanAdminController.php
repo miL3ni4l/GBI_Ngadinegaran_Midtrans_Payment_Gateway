@@ -70,7 +70,7 @@ class PersembahanAdminController extends Controller
                 $pendeta = Pendeta::orderBy('updated_at','desc')->get();
                 $donation = Donation::orderBy('updated_at','desc')->get();
             
-                return view('donation.index',array('total_pemasukan_bulan_ini' => $total_pemasukan_bulan_ini,'ibadah' => $ibadah,'petugas' => $petugas,'profil' => $profil,'pendeta' => $pendeta,'donation' => $donation));
+                return view('persembahan.index',array('total_pemasukan_bulan_ini' => $total_pemasukan_bulan_ini,'ibadah' => $ibadah,'petugas' => $petugas,'profil' => $profil,'pendeta' => $pendeta,'donation' => $donation));
 
     }
 

@@ -34,5 +34,6 @@ class DatabaseSeeder extends Seeder
         // UTAMA
         $this->call(ProfilTableSeeder::class);  
         $this->call(PendetaTableSeeder::class);  
+        $this->call(KomunitasTableSeeder::class);  
     }
 }

@@ -91,7 +91,7 @@
                                                                 </div>
                                               </div>
                                               <div class="form-group col-md-12">
-                                                        <label for="email" class="col-md-12 control-label">Bukti pemasukan_rutin <i>(kosongkan jika tidak ada)</i> </label>
+                                                        <label for="email" class="col-md-12 control-label">Cover <i>(kosongkan jika tidak ada)</i> </label>
                                                         
                                                         <div class="col-md-12">
                                                             <img width="302" height="302" />
