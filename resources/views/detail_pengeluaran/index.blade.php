@@ -426,7 +426,7 @@
                             <div class="form-group">
                               <label>Cari Persembahan Rutin</label>
                               <select class="form-control" name="kategori">
-                              <option value="">-- SEMUA KATEGORI RUTIN --</option>
+                              <option value="">-- SEMUA KATEGORI PENGELUARAN --</option>
                                 @foreach($kategori as $k)
                                 <option <?php 
                                 if(isset($_GET['kategori']))

@@ -456,7 +456,7 @@
                     </section>
 
 
-                    <!-- MODAL FILTER -->
+                    <!-- MODAL FILTER RUTIN -->
                     <div class="modal fade" id="modal-filter" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
                       <div class="modal-dialog modal-default modal-dialog-centered modal-" role="document">
                         <div class="modal-content bg-gradient-white">
@@ -490,7 +490,7 @@
                                             <label>Cari Persembahan Rutin</label>
                                             <select class="form-control" name="kategori">
                                             <option value="">-- SEMUA KATEGORI RUTIN--</option>
-                                              @foreach($kategori as $k)
+                                              @foreach($kategori_rutin as $k)
                                               <option <?php 
                                               if(isset($_GET['kategori']))
                                               { if($_GET['kategori'] == $k->id){echo "selected='selected'";} } ?> value="{{ $k->id }}">{{ $k->kategori }}</option>
