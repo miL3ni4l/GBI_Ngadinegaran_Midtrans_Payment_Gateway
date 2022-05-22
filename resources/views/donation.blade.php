@@ -12,7 +12,6 @@
           
                 <div class=" table-responsive">
                     <div class="card card-solid">
-
          
                                         <div class="col-lg-6 mx-auto">
                                                         <div class="invoice p-3 ">
@@ -50,8 +49,7 @@
                                         </div>
                
                                         <div class="col-lg-6     mx-auto">
-                                     
-
+                                    
                                                     <div class="container">
                                                         <form action="#" id="donation_form">
 
@@ -100,22 +98,14 @@
                                                                         </div>
                                                                     </div>
 
+
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
-                                                                    
                                                                         <label>Jenis Persembahan <b style="color:Tomato;">*</b></label>
-                                                                                                    <!-- <select required="required" name="jk" class="custom-select mb-3" > -->
                                                                                                     <select name="donation_type" class="form-control" id="donation_type"  class="custom-select mb-3">
-                                                                                                       
-                                                                                                        <option value="">-- Pilih Jenis Persembahan --</option>  
-                                                                                                    @foreach($kategoris as $k)
-                                                                                                        <option value="{{$k->id = $k->kategori }}">{{$k->kategori}}</option>
-                                                                                                      
-                                                                                                    @endforeach
-                                                                                                        <!-- <option value="Kolekte">Kolekte</option> -->
+                                                                                                        <option value="Kolekte">Kolekte</option>
                                                                                                    
                                                                                                     </select>
-                                                                                        
                                                                         </div>
                                                                     </div>
 
@@ -155,21 +145,21 @@
                                                                     </div>
                                                                                                     
 
-                                                                    <div class="form-group col-md-12">
+                                                                    <!-- <div class="form-group col-md-12">
                                                                         
                                                                             <button type="submit" class="btn btn-success col-md-12 float-right" id="submit" >Kirim </button>     
-                                                                    </div>
+                                                                    </div> -->
 
 
                                                                 </div>
 
-                                                                <!-- <div class="row">
+                                                                <div class="row">
                                                                     <div class="col-md-12">
                                                                         <div class="form-group">
-                                                                            <button class="btn btn-primary" type="submit">Kirim</button>
+                                                                            <button class="btn btn-success" type="submit">Kirim</button>
                                                                         </div>
                                                                     </div>
-                                                                </div> -->
+                                                                </div>
 
                                                         </form>
                                                     </div>
