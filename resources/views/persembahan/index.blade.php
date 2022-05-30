@@ -35,7 +35,7 @@
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
   </div>
-<!-- 
+                      
                        <div class="content-header">
                         <div class="container-fluid">
                           <div class="row">
@@ -67,7 +67,7 @@
                                       <i>Month to Date</i>
                                     <span class="info-box-number">
 
-                                      <h5>{{$donation->where('status', 'success')->count()}}</h5>
+                                      <h5>{{$persembahan->where('status', 'success')->count()}}</h5>
                                      
                                     </span>
                                   </div>
@@ -79,7 +79,7 @@
 
                           </div>
                          </div>       
-                      </div> -->
+                      </div>
 
 
 
@@ -113,7 +113,7 @@
                           @php
                           $no = 1;
                           @endphp
-                          @foreach($donation as $k)
+                          @foreach($persembahan as $k)
                           <tr>
                             <td class="text-left">{{ $no++ }}</td>
                             <td>{{ $k->transaction_id }}</td>

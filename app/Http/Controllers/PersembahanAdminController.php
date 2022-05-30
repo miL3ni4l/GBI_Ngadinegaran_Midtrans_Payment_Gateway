@@ -58,19 +58,20 @@ class PersembahanAdminController extends Controller
                 $tahun = date('Y');
         
                 $pemasukan_bulan_ini = DB::table('persembahan')->select(DB::raw('SUM(amount) as total'))
-                ->where('status','1')
+                ->where('status','success')
                 ->whereMonth('created_at',$bulan)
                 ->whereYear('created_at',$tahun)
                 ->first();
                 $total_pemasukan_bulan_ini = $pemasukan_bulan_ini->total;
                 
+                
                 $ibadah = Ibadah::orderBy('updated_at','desc')->get();
                 $petugas = Petugas::orderBy('updated_at','desc')->get();
                 $profil = Profil::orderBy('updated_at','desc')->get();
                 $pendeta = Pendeta::orderBy('updated_at','desc')->get();
-                $donation = Donation::orderBy('updated_at','desc')->get();
+                $persembahan = Donation::orderBy('updated_at','desc')->get();
             
-                return view('persembahan.index',array('total_pemasukan_bulan_ini' => $total_pemasukan_bulan_ini,'ibadah' => $ibadah,'petugas' => $petugas,'profil' => $profil,'pendeta' => $pendeta,'donation' => $donation));
+                return view('persembahan.index',array('total_pemasukan_bulan_ini' => $total_pemasukan_bulan_ini,'ibadah' => $ibadah,'petugas' => $petugas,'profil' => $profil,'pendeta' => $pendeta,'persembahan' => $persembahan));
 
     }
 
