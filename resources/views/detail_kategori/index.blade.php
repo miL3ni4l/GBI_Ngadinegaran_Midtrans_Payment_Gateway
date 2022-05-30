@@ -235,6 +235,7 @@
 
                                                   <div class="row">
                                                     <div class="col-12 table-responsive">
+
                                                       <table class="table table-striped">
                                                             <thead>
                                                               <tr>
@@ -254,6 +255,27 @@
                                                                 $total_pemasukan = 0;
                                                                 $total_pengeluaran = 0;
                                                                 @endphp
+
+                                                                @foreach($persembahan as $t)
+                                                                 
+                                                                 <tr>
+                                                                   <td class="text-center">{{ $no++ }}</td>
+                                                                   <td class="text-left">{{ $t->transaction_id }}</td>
+                                                                   <td class="text-center">{{ date('d-m-Y', strtotime($t->updated_at )) }}</td>
+                                                                   <td>{{ $t->detail_kategori->kategori }}</td>
+                                                                      @if($t->note  == null)
+                                                                            <td class ="text-center"> -</td>
+                                                                      @else
+                                                                            <td>{{ $t->note }}</td>
+                                                                      @endif
+                                                                   <td class="text-right">
+                                                                     {{ "Rp.".number_format($t->amount).",-" }}
+                                                                     @php $total_pemasukan += $t->amount; @endphp
+                                                                   </td>
+
+                                                                 </tr>
+                                                    
+                                                                @endforeach
 
                                                                 @foreach($pemasukan_rutin as $t)
                                                                   @if($t->detail_kategori->jenis  == 'Rutin')
@@ -301,10 +323,6 @@
                                                                   @endif
                                                                 @endforeach
 
-
-
-
-
                                                             </tbody>
 
                                                             <tfoot class="bg-info text-white font-weight-bold">
@@ -319,6 +337,7 @@
 
 
                                                       </table>
+
                                                     </div>
                                                   </div>
 
@@ -545,7 +564,7 @@
                                           <div class="form-group">
                                             <label>Cari Persembahan Khusus</label>
                                             <select class="form-control" name="kategori">
-                                            <option value="">-- SEMUA KATEGORI KHUSUS--</option>
+                                            <!-- <option value="">-- SEMUA KATEGORI KHUSUS--</option> -->
                                               @foreach($kategori_khusus as $k)
                                               <option <?php 
                                               if(isset($_GET['kategori']))

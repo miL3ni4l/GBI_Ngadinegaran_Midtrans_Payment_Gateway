@@ -363,12 +363,18 @@ class DetailKategoriController extends Controller
         $kategori_khusus = DetailKategori::orderBy('kategori','asc')
         ->where('jenis', 'Khusus')
         ->get();
+
+        $persembahan = Donation::all();
+        $persembahan = Donation::orderBy('updated_at','desc')
+        ->where('status','success')
+        ->get();
+
+        $persembahans  = Donation::count(); 
         $pemasukan_rutin = pemasukan_rutin::all();
         $pemasukan_rutins  = pemasukan_rutin::count(); 
         $pemasukan_khusus = PemasukanKhusus::all();
         $pemasukan_khususs  = PemasukanKhusus::count(); 
-        $midtrans = Donation::all();
-        $midtranss  = Donation::count(); 
+       
 
         if($_GET['kategori'] == ""){
             $pemasukan_rutin = pemasukan_rutin::whereDate('tanggal','>=',$_GET['dari'])
@@ -395,13 +401,14 @@ class DetailKategoriController extends Controller
             ->whereDate('tanggal','>=',$_GET['dari'])
             ->whereDate('tanggal','<=',$_GET['sampai'])
             ->get(); 
-            // $midtrans = Donation::where('donation_type',$_GET['kategori'])
-            // ->where('status','success')
-            // ->whereDate('created_at','>=',$_GET['dari'])
-            // ->whereDate('created_at','<=',$_GET['sampai'])
-            // ->get();
+            $persembahan = Donation::where('donation_type',$_GET['kategori'])
+            ->where('status','success')
+            ->whereDate('created_at','>=',$_GET['dari'])
+            ->whereDate('created_at','<=',$_GET['sampai'])
+            ->get();
         }  
-        return view('detail_kategori.index',['kategoris_pemasukan'=> $kategoris_pemasukan,'pemasukan_rutin' => $pemasukan_rutin, 'pemasukan_khusus' => $pemasukan_khusus,'kategori_rutin' => $kategori_rutin, 'datas' => $datas,'details' => $details,'kategoris'=>$kategoris ,'kategori_khusus' => $kategori_khusus, 'pemasukan_rutins'=>$pemasukan_rutins]);
+        return view('detail_kategori.index',['kategoris_pemasukan'=> $kategoris_pemasukan,'pemasukan_rutin' => $pemasukan_rutin, 'pemasukan_khusus' => $pemasukan_khusus,'kategori_rutin' => $kategori_rutin, 'datas' => $datas,'details' => $details,'kategoris'=>$kategoris ,'kategori_khusus' => $kategori_khusus, 
+        'persembahan' => $persembahan,  'persembahans' => $persembahans, 'pemasukan_rutins'=>$pemasukan_rutins]);
 
 
     }
@@ -441,6 +448,10 @@ class DetailKategoriController extends Controller
         $kategori_khusus = DetailKategori::orderBy('kategori','asc')
         ->where('jenis', 'Khusus')
         ->get();
+        $persembahan = Donation::all();
+        $persembahan = Donation::orderBy('updated_at','desc')
+        ->where('status','success')->get();
+        $persembahans  = Donation::count(); 
         $pemasukan_rutin = pemasukan_rutin::all();
         $pemasukan_rutins  = pemasukan_rutin::count(); 
         $pemasukan_khusus = PemasukanKhusus::all();
@@ -473,13 +484,13 @@ class DetailKategoriController extends Controller
             ->whereDate('tanggal','>=',$_GET['dari'])
             ->whereDate('tanggal','<=',$_GET['sampai'])
             ->get(); 
-            // $midtrans = Donation::where('donation_type',$_GET['kategori'])
-            // ->where('status','success')
-            // ->whereDate('created_at','>=',$_GET['dari'])
-            // ->whereDate('created_at','<=',$_GET['sampai'])
-            // ->get();
+            $persembahan = Donation::where('donation_type',$_GET['kategori'])
+            ->where('status','success')
+            ->whereDate('created_at','>=',$_GET['dari'])
+            ->whereDate('created_at','<=',$_GET['sampai'])
+            ->get();
         }  
-        return view('detail_kategori.index',['kategoris_pemasukan'=> $kategoris_pemasukan,'pemasukan_rutin' => $pemasukan_rutin, 'pemasukan_khusus' => $pemasukan_khusus,'kategori_khusus' => $kategori_khusus, 'kategori_rutin' => $kategori_rutin, 'datas' => $datas,'details' => $details,'kategoris'=>$kategoris ,'pemasukan_rutins'=>$pemasukan_rutins]);
+        return view('detail_kategori.index',['kategoris_pemasukan'=> $kategoris_pemasukan,  'persembahan' => $persembahan,  'persembahans' => $persembahans, 'pemasukan_rutin' => $pemasukan_rutin, 'pemasukan_khusus' => $pemasukan_khusus,'kategori_khusus' => $kategori_khusus, 'kategori_rutin' => $kategori_rutin, 'datas' => $datas,'details' => $details,'kategoris'=>$kategoris ,'pemasukan_rutins'=>$pemasukan_rutins]);
 
 
     }
