@@ -35,7 +35,7 @@
                     <span class="info-box-icon bg-success"><i class="fa fa-caret-up"></i></span>
                     <div class="info-box-content">
                       <span class="info-box-text">Pemasukan</span>
-                      <h5 class="info-box-number text-dark ">{{ "Rp. ".number_format($pemasukan_rutin->total += $pemasukan_khusus->total)." ,-" }}</h5>
+                      <h5 class="info-box-number text-dark ">{{ "Rp. ".number_format($midtrans->total += $pemasukan_rutin->total += $pemasukan_khusus->total)." ,-" }}</h5>
                       <div class="progress"> 
                         <div class="progress-bar bg-success" style="width: 100%"></div>
                       </div>
@@ -82,7 +82,7 @@
               </div>
             </div>
            <!--GRAFIK 1-->
-            <div class="col-md-4 col-sm-4 col-12 ">
+            <div class="col-md-6 col-sm-6 col-12 ">
           
               <div class="card col-12"  >
                         <div class="card-header border-0">
@@ -98,7 +98,7 @@
               </div>                     
             </div>
             <!--GRAFIK 2-->
-            <div class="col-md-4 col-sm-4 col-12 ">
+            <div class="col-md-6 col-sm-6 col-12 ">
               
               <div class="card col-12">
                         <div class="card-header border-0">
@@ -115,7 +115,7 @@
                     
             </div>
             <!--GRAFIK KAS-->
-            <div class="col-md-4 col-sm-4 col-12 ">
+            <div class="col-md-6 col-sm-6 col-12 ">
               <div class="card col-12">
                         <div class="card-header border-0">
                           <div class="d-flex justify-content-between">
@@ -125,6 +125,20 @@
 
                         <div class="position-relative ">
                           <canvas id="grafik4"></canvas>
+                        </div>   
+              </div>                  
+            </div>
+            <!--GRAFIK MIDTRANS-->
+            <div class="col-md-6 col-sm-6  col-12 ">
+              <div class="card col-12">
+                        <div class="card-header border-0">
+                          <div class="d-flex justify-content-between">
+                            <h5  class="position-center ">Grafik <b>Midtrans Payment</b>  </h5>
+                          </div>
+                        </div>
+
+                        <div class="position-relative ">
+                          <canvas id="grafik8"></canvas>
                         </div>   
               </div>                  
             </div>
@@ -386,8 +400,14 @@
         ->whereMonth('tanggal',$bulan)
         ->whereYear('tanggal',$tahun)
         ->first();
+        $pemasukan_perbulan_persembahan = DB::table('persembahan')
+        ->select(DB::raw('SUM(amount) as total'))
+        ->where('status','success')
+        ->whereMonth('updated_at',$bulan)
+        ->whereYear('updated_at',$tahun)
+        ->first();
 
-        $total = $pemasukan_perbulan->total += $pemasukan_perbulan_khusus->total ;
+        $total = $pemasukan_perbulan->total += $pemasukan_perbulan_khusus->total +=  $pemasukan_perbulan_persembahan->total ;
         if($pemasukan_perbulan->total == ""){
           echo "0,";
         }else{
@@ -407,14 +427,14 @@
       <?php
       for($bulan=1;$bulan<=12;$bulan++){
         $tahun = date('Y');
-        $pengeluaran_perbulan = DB::table('pengeluaran_khusus')
+        $pengeluaran_perbulan_rutin = DB::table('pengeluaran_rutin')
         ->select(DB::raw('SUM(nominal) as total'))
         ->where('status','1')
         ->whereMonth('tanggal',$bulan)
         ->whereYear('tanggal',$tahun)
         ->first();
 
-        $pengeluaran_perbulan_rutin = DB::table('pengeluaran_rutin')
+        $pengeluaran_perbulan = DB::table('pengeluaran_khusus')
         ->select(DB::raw('SUM(nominal) as total'))
         ->where('status','1')
         ->whereMonth('tanggal',$bulan)
@@ -472,8 +492,13 @@
         ->where('status','1')
         ->whereYear('tanggal',$thn)
         ->first();
+        $tahun_persembahan = DB::table('persembahan')
+        ->select(DB::raw('SUM(amount) as total'))
+        ->where('status','success')
+        ->whereYear('updated_at',$thn)
+        ->first();
 
-        $total = $tahun->total += $tahun_khusus->total;
+        $total = $tahun->total += $tahun_khusus->total += $tahun_persembahan->total;
         if($tahun->total == ""){
           echo "0,";
         }else{
@@ -594,36 +619,55 @@
   }
 
   var barChartData8 = {
-    labels : ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"],
+    labels : ["Midtrans Payment"],
     datasets : [
     {
-      label: 'Payment',
+      label: 'Pemasukan',
       fillColor : "rgb(52, 152, 219)",
       strokeColor : "rgb(37, 116, 169)",
       highlightFill: "rgba(220,220,220,0.75)",
       highlightStroke: "rgba(220,220,220,1)",
       data : [
       <?php
-      for($bulan=1;$bulan<=12;$bulan++){
-        $tahun = date('Y');
-        $pemasukan_perbulan = DB::table('persembahan')
+        $pemasukan_perbulan_persembahan = DB::table('persembahan')
         ->select(DB::raw('SUM(amount) as total'))
         ->where('status','success')
-        ->whereMonth('created_at',$bulan)
-        ->whereYear('created_at',$tahun)
         ->first();
 
-        $total = $pemasukan_perbulan->total;
-        if($pemasukan_perbulan->total == ""){
+
+        $total = $pemasukan_perbulan_persembahan->total;
+        if($pemasukan_perbulan_persembahan->total == ""){
           echo "0,";
         }else{
           echo $total.",";
-          
         }
-      }
+      ?>
+      ]
+    },
+    {
+      label: 'Pengeluaran',
+      fillColor : "rgb(171, 183, 183)",
+      strokeColor : "rgb(149, 165, 166)",
+      highlightFill : "rgba(151,187,205,0.75)",
+      highlightStroke : "rgba(151,187,205,1)",
+      data : [
+      <?php
+        $pemasukan_perbulan_persembahan = DB::table('persembahan')
+        ->select(DB::raw('SUM(amount) as total'))
+        ->where('status','success')
+        ->first();
+
+
+        $total = $pemasukan_perbulan_persembahan->total;
+        if($pemasukan_perbulan_persembahan->total == ""){
+          echo "0,";
+        }else{
+          echo $total.",";
+        }
       ?>
       ]
     }
+   
     ]
 
   }

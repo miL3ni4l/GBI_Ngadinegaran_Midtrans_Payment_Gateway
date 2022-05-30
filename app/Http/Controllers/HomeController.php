@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\DetailKategori;
 use App\DetailPengeluaran;
 use App\kas;
+use App\Donation;
 use App\pemasukan_rutin;
 use App\User;
 
@@ -46,13 +47,13 @@ class HomeController extends Controller
         $kategori = DetailKategori::all();
         $jenis_kategori_khusus = DetailKategori::all(); 
         $kas = kas::all();
+        $persembahan = Donation::all();
         $pemasukan_rutin = pemasukan_rutin::all();
         $tanggal = date('Y-m-d');
         $bulan = date('m');
         $tahun = date('Y');
         $kategori = DetailKategori::all();
         $kategori_user = DetailKategori::all();
-        $kas = kas::all();
         $pemasukan_rutin = pemasukan_rutin::all();
         $tanggal = date('Y-m-d');
         $bulan = date('m');
@@ -160,6 +161,7 @@ class HomeController extends Controller
                 'jenis_kategori_khusus'=>$jenis_kategori_khusus ,
                 'kategori_user' => $kategori_user,
                 'kas' => $kas,
+                'persembahan' => $persembahan,
                 'total_pemasukan' => $total_pemasukan,
                 'total_pengeluaran' => $total_pengeluaran,
                 'pemasukan_rutin' => $pemasukan_rutin,
