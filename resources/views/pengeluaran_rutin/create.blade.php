@@ -118,6 +118,12 @@
                                                   @foreach($kategoris as $k)
                                                       <?php 
                                                           $id_kategori = $k->id;
+                                                          $pemasukan_persembahan = DB::table('persembahan')
+                                                          ->select(DB::raw('SUM(amount) as total'))
+                                                          ->where('donation_type',$id_kategori)
+                                                          ->where('status','success')
+                                                          ->first(); 
+
                                                           $pemasukan_perkategori = DB::table('pemasukan_rutin')
                                                           ->select(DB::raw('SUM(nominal) as total'))
                                                           ->where('kategori_id',$id_kategori)
@@ -134,7 +140,7 @@
                                                       
                                                       <option value="{{ $k->id }}">
                                                        {{ $k->kategori }}
-                                                       {{ "Rp. ".number_format($pemasukan_perkategori->total -= $pengeluaran_perkategori_rutin->total)." ,-" }}
+                                                       {{ "Rp. ".number_format($pemasukan_persembahan->total += $pemasukan_perkategori->total -= $pengeluaran_perkategori_rutin->total)." ,-" }}
                                                       </option>
                                              
                                                   @endforeach 
@@ -175,6 +181,8 @@
                                                       ->where('status','1')
                                                       ->first();
 
+                                                      
+
                                                   ?>
 
                                                   <option value="{{ $k->id }}">
@@ -183,6 +191,8 @@
                                                   </option>
 
                                                   @endforeach
+
+                                                 
                                                 </select>
                                               </div>
                                            
