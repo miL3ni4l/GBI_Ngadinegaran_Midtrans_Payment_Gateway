@@ -40,6 +40,7 @@ Route::resource('pendeta', 'PendetaController');
 // Route::get('/', 'DonationController@index')->name('donation.index');
 Route::get('/donation', 'DonationController@create')->name('donation.create');
 Route::get('/persembahan', 'PersembahanAdminController@index')->name('persembahan'); 
+Route::get('/filter_persembahan', 'PersembahanAdminController@filter_persembahan')->name('filter_persembahan');
 
 
 

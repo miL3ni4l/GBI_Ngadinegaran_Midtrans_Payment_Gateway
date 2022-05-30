@@ -435,7 +435,7 @@ class DetailKategoriController extends Controller
         $kategoris_pemasukan= Kategori::orderBy('updated_at','desc')->get();  
         $details = Kategori::orderBy('updated_at','desc')->get(); 
         $kategoris = DetailKategori::all(); 
-        $kategori = DetailKategori::orderBy('kategori','asc')
+        $kategori_rutin = DetailKategori::orderBy('kategori','asc')
         ->where('jenis', 'Rutin')
         ->get();
         $kategori_khusus = DetailKategori::orderBy('kategori','asc')
@@ -479,7 +479,7 @@ class DetailKategoriController extends Controller
             // ->whereDate('created_at','<=',$_GET['sampai'])
             // ->get();
         }  
-        return view('detail_kategori.index',['kategoris_pemasukan'=> $kategoris_pemasukan,'pemasukan_rutin' => $pemasukan_rutin, 'pemasukan_khusus' => $pemasukan_khusus,'kategori' => $kategori,'kategori_khusus' => $kategori_khusus, 'datas' => $datas,'details' => $details,'kategoris'=>$kategoris ,'pemasukan_rutins'=>$pemasukan_rutins]);
+        return view('detail_kategori.index',['kategoris_pemasukan'=> $kategoris_pemasukan,'pemasukan_rutin' => $pemasukan_rutin, 'pemasukan_khusus' => $pemasukan_khusus,'kategori_khusus' => $kategori_khusus, 'kategori_rutin' => $kategori_rutin, 'datas' => $datas,'details' => $details,'kategoris'=>$kategoris ,'pemasukan_rutins'=>$pemasukan_rutins]);
 
 
     }
