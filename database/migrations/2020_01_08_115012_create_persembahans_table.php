@@ -22,7 +22,9 @@ class CreatePersembahansTable extends Migration
             $table->string('transaction_id')->unique();
             $table->string('donor_name')->nullable();
             $table->string('donor_email')->nullable();
-            $table->string('donation_type')->nullable();
+            // $table->string('donation_type')->nullable();
+            $table->integer('donation_type')->unsigned();
+            $table->foreign('donation_type')->references('id')->on('detail_kategori')->onDelete('cascade')->onUpdate('cascade');
             $table->decimal('amount', 20, 2)->default(0);
             $table->string('note')->nullable();
             // $table->string('status')->default('pending');

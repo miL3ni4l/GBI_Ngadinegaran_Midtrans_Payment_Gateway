@@ -99,11 +99,26 @@
                                                                     </div>
 
 
-                                                                    <div class="col-md-12">
+                                                                    <!-- <div class="col-md-12">
                                                                         <div class="form-group">
                                                                         <label>Jenis Persembahan <b style="color:Tomato;">*</b></label>
                                                                                                     <select name="donation_type" class="form-control" id="donation_type"  class="custom-select mb-3">
                                                                                                         <option value="Kolekte">Kolekte</option>
+                                                                                                   
+                                                                                                    </select>
+                                                                        </div>
+                                                                    </div> -->
+
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                        <label>Jenis Persembahan <b style="color:Tomato;">*</b></label>
+                                                                                                    <select name="donation_type" class="form-control" id="donation_type"  class="custom-select mb-3">
+                                                                                                    <option value="">-- Pilih Kategori --</option>
+                                                                                                                    @foreach($kategoris as $k)                                            
+                                                                                                                        <option value="{{ $k->id }}">
+                                                                                                                        {{$k->kategori}}
+                                                                                                                        </option>
+                                                                                                                    @endforeach 
                                                                                                    
                                                                                                     </select>
                                                                         </div>

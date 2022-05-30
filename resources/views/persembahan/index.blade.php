@@ -100,6 +100,7 @@
                         <tr>
                         <th width="1%">NO</th>
                         <th class="text-center">KODE</th>
+                        <th class="text-center">TANGGAL</th>
                         <th class="text-center">NAMA</th>
                         <th class="text-center">EMAIL</th>
                         <th class="text-center">JENIS</th>
@@ -117,9 +118,10 @@
                           <tr>
                             <td class="text-left">{{ $no++ }}</td>
                             <td>{{ $k->transaction_id }}</td>
+                            <td>{{ $k->updated_at->format('d-M-Y') }}</td>
                             <td>{{ $k->donor_name }}</td>
                             <td>{{ $k->donor_email }}</td>
-                            <td>{{ $k->donation_type }}</td>
+                            <td>{{ $k->detail_kategori->kategori }}</td>
                             <td class="text-right">{{ "Rp.".number_format($k->amount).",-" }}</td>
                             <td class="text-center">
                           

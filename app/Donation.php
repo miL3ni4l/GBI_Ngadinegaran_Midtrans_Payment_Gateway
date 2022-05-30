@@ -13,10 +13,11 @@ class Donation extends Model
 
 	protected $fillable = ["donation_type","transaction_id", "donor_name","donor_email","amount","note","status","snap_token"];
 
-    public function detail_kategori()
+	public function detail_kategori()
 	{
-		return $this->belongsTo('App\Donation','donation_type');
+		return $this->belongsTo('App\DetailKategori','donation_type');
 	}
+
 
     /**
      * Set status to Pending
