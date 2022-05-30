@@ -19,4 +19,9 @@ class Petugas extends Model
     {
     	return $this->hasMany(Kategori::class);
     }
+
+    public function persembahan_pengeluaran_rutin()
+    {
+    	return $this->hasManyThrough(PersembahanPengeluaranRutin::class);
+    }
 }

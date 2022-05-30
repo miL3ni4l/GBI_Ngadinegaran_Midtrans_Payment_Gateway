@@ -25,7 +25,7 @@
                 </li>
 
 
-                @if(Auth::user()->petugas)       
+@if(Auth::user()->petugas)       
                 <div class="user-panel mt-1 pb-1 mb-1 d-flex">     
                 </div>
                 <!-- <li class=""> 
@@ -38,15 +38,60 @@
                 </li>     -->
                 
                 
-                <li class="nav-item {{ setActive(['persembahan*']) }}"> 
+                <!-- <li class="nav-item {{ setActive(['persembahan*']) }}"> 
                   <a class="nav-link {{ setActive(['persembahan*']) }}" href="/persembahan">
                       <i class="nav-icon fas fa-cloud"></i>
                       <p>
                         Midtrans
                       </p>
                     </a>
-                </li>
+                </li> -->
+
+                @if(Auth::user()->petugas)
+                        <li li class="nav-item">
+                          <a class="nav-link " data-toggle="collapse" href="#ui-basicMidtrans" aria-controls="ui-basic">
+                            <i class="nav-icon fas fa-cloud"></i>
+                            <p>
+                              Midtrans  
+                                              
+                              <i class="right fas fa-angle-left"></i>
+                              </p>
+                                       
+                          </a>
+
+                          <div class="collapse {{ setShow(['persembahan*','persembahan_pengeluaran_rutin*']) }}" id="ui-basicMidtrans">
+                            <ul class="nav flex-column sub-menu">
+                              
+                          
+                             
+                                <li class="nav-item">
+                                  <a class="nav-link {{ setActive(['persembahan*']) }}" href="/persembahan">
+                                  <i class="far fa-circle nav-icon"></i>
+                                    <p>Pemasukan</p>     
+                                    
+                                  </a>
+                                </li>
+                          
+
+                              <!--kas-->
+                         
+                                <li class="nav-item">
+                                  <a class="nav-link {{ setActive(['persembahan_pengeluaran_rutin*']) }}" href="{{route('persembahan_pengeluaran_rutin.index')}}">
+                                <i class="far fa-circle nav-icon"></i>
+                                  <p>Pengeluaran</p>
+                                  
+                                         
+                                  </a>
+                                </li>
+                               
+                            </ul>
+                          </div>
+                        </li>
+                @endif
+
+
       
+                <!-- MASTER DATA PEMASUKAN -->
                 @if(Auth::user()->petugas)
                         <li li class="nav-item">
                           <a class="nav-link " data-toggle="collapse" href="#ui-basicTM" aria-controls="ui-basic">
@@ -115,7 +160,7 @@
                                         </li>
                                     @endif
 
-                              @endif
+                          @endif
 
                               <!--kas-->
                               @if(Auth::user()->level == 'admin')
@@ -155,277 +200,218 @@
                             </ul>
                           </div>
                         </li>
-                      @endif
-                <!-- TUTUP -->
-                
-
-                      @if(Auth::user()->petugas)
-                        <li li class="nav-item">
-                          <a class="nav-link " data-toggle="collapse" href="#ui-basic1" aria-controls="ui-basic">
-                            <i class="nav-icon fas fa-caret-down"></i>
-                            <p>
-                              Pengeluaran  
-                                              
-                              <i class="right fas fa-angle-left"></i>
-                            </p>
-                            <span class="badge bg-danger">
-                                              @if(Auth::user()->level == 'admin')
-                                                {{
-                                                  $pengeluaran_rutin->where('status', '0')
-                                                  ->count()
-                                                  +
-                                                  $pengeluaran_khusus->where('status', '0')
-                                                  ->count()
-                                                }}
-                                              @else
-                                              {{
-                                                  $pengeluaran_rutin->where('status', '0')
-                                                  ->where('nama_pengguna', Auth::user()->petugas->id)
-                                                  ->count()
-                                                  +
-                                                  $pengeluaran_khusus->where('status', '0')
-                                                  ->where('nama_pengguna', Auth::user()->petugas->id)
-                                                  ->count()
-                                                }}
-                                              @endif
-
-                                            </span> 
-                          </a>
-
-                          <div class="collapse {{ setShow(['pengeluaran_rutin*','pengeluaran_khusus*']) }}" id="ui-basic1">
-                            <ul class="nav flex-column sub-menu">
-                              
-                          
-                              @if(Auth::user()->level == 'admin')
-                                <li class="nav-item">
-                                  <a class="nav-link {{ setActive(['pengeluaran_rutin*']) }}" href="{{route('pengeluaran_rutin.index')}}">
-                                <i class="far fa-circle nav-icon"></i>
-                                  <p>Rutin</p>
-                                  
-                                            <span class="badge bg-danger">
-                                              {{
-                                                $pengeluaran_rutin->where('status', '0')
-                                                ->count()
-                                              }}
-                                            </span> 
-                                  </a>
-                                </li>
-
-                              @endif
-
-                              <!--kas-->
-                              @if(Auth::user()->level == 'admin')
-                                <li class="nav-item">
-                                  <a class="nav-link {{ setActive(['pengeluaran_khusus*']) }}" href="{{route('pengeluaran_khusus.index')}}">
-                                <i class="far fa-circle nav-icon"></i>
-                                  <p>Khusus</p>
-                                  
-                                            <span class="badge bg-danger">
-                                              {{
-                                                $pengeluaran_khusus->where('status', '0')
-                                                ->count()
-                                              }}
-                                            </span> 
-                                  </a>
-                                </li>
-                                @else
-                                    @if(Auth::user()->petugas)
-                                        <li class="nav-item">
-                                          <a class="nav-link {{ setActive(['pengeluaran_khusus*']) }}" href="{{route('pengeluaran_khusus.index')}}">
-                                        <i class="far fa-circle nav-icon"></i>
-                                          <p>Khusus</p>
-                                                    @if(Auth::user()->petugas)
-                                                    <span class="badge bg-danger">
-                                                      {{
-                                                        $pengeluaran_khusus->where('status', '0')
-                                                        ->where('nama_pengguna', Auth::user()->petugas->id)
-                                                        ->count()
-                                                      }}
-                                                    </span>
-                                                    @endif
-                                          </a>
-                                        </li>
-                                    @endif
-                              @endif
-
-                            </ul>
-                          </div>
-                        </li>
-                      @endif
-
-              
-                  <div class="user-panel mt-1 pb-1 mb-1 d-flex">     
-                </div>
                 @endif
-              
-    
-              <!-- MASTER DATA -->
-           
+                  <!-- TUTUP -->
+                  
 
-              @if(Auth::user()->level == 'admin')
-                <li li class="nav-item">
-                <a class="nav-link " data-toggle="collapse" href="#ui-basic" aria-controls="ui-basic">
-                    <i class="nav-icon fas fa-book"></i>
-                    <p>
-                      Master Data
-                      <i class="right fas fa-angle-left"></i>
-                    </p>
-                  </a>
-
-                  <div class="collapse {{ setShow(['petugas*','detail_kategori*','kas*', 'user*','ibadah*','kategori*', 'detail_pengeluaran*']) }}" id="ui-basic">
-                    <ul class="nav flex-column sub-menu">
-
-
-                    <li class="nav-item">
-                      <a class="nav-link {{ setActive(['user*']) }}" href="{{route('user.index')}}">
-                        <i class="far fa-user-circle nav-icon"></i>
-                        <p>Akun</p>
-                        </a>
-                      </li>
-                      
-                    <li class="nav-item">
-                        <a class="nav-link {{ setActive(['petugas*']) }}" href="{{route('petugas.index')}}">
-                        <i class="far fa-hand-rock nav-icon"></i>
-                        <p>Petugas</p>
-                        </a>
-                      </li>
-                      @if(Auth::user()->petugas)
-                        <li class="nav-item">
-                          
-                          <a class="nav-link {{ setActive(['ibadah*']) }}" href="{{route('ibadah.index')}}">
-                          <i class="far fa fa-table nav-icon"></i>
-                          <p>Ibadah</p>
-                          </a >
-                        </li>      
-
-                          <!-- <li li class="nav-item">
-                            <a class="nav-link " data-toggle="collapse" href="#ui-basic2" aria-controls="ui-basic">
-                            <i class="nav-icon fas fa-archive"></i>
+                        @if(Auth::user()->petugas)
+                          <li li class="nav-item">
+                            <a class="nav-link " data-toggle="collapse" href="#ui-basic1" aria-controls="ui-basic">
+                              <i class="nav-icon fas fa-caret-down"></i>
                               <p>
-                                Kategori Pemasukan  
+                                Pengeluaran  
+                                                
                                 <i class="right fas fa-angle-left"></i>
                               </p>
+                              <span class="badge bg-danger">
+                                                @if(Auth::user()->level == 'admin')
+                                                  {{
+                                                    $pengeluaran_rutin->where('status', '0')
+                                                    ->count()
+                                                    +
+                                                    $pengeluaran_khusus->where('status', '0')
+                                                    ->count()
+                                                  }}
+                                                @else
+                                                {{
+                                                    $pengeluaran_rutin->where('status', '0')
+                                                    ->where('nama_pengguna', Auth::user()->petugas->id)
+                                                    ->count()
+                                                    +
+                                                    $pengeluaran_khusus->where('status', '0')
+                                                    ->where('nama_pengguna', Auth::user()->petugas->id)
+                                                    ->count()
+                                                  }}
+                                                @endif
+
+                                              </span> 
                             </a>
 
-                            <div class="collapse {{ setShow(['kategori*','detail_kategori*']) }}" id="ui-basic2">
+                            <div class="collapse {{ setShow(['pengeluaran_rutin*','pengeluaran_khusus*']) }}" id="ui-basic1">
                               <ul class="nav flex-column sub-menu">
                                 
                             
-                        
+                                @if(Auth::user()->level == 'admin')
                                   <li class="nav-item">
-                                  <a class="nav-link {{ setActive(['kategori*']) }}" href="{{route('kategori.index')}}">
+                                    <a class="nav-link {{ setActive(['pengeluaran_rutin*']) }}" href="{{route('pengeluaran_rutin.index')}}">
                                   <i class="far fa-circle nav-icon"></i>
-                                  <p>Kategori</p>
-                                  </a>
-                                  </li>
-  
-                                  <li class="nav-item">
-                                  <a class="nav-link {{ setActive(['detail_kategori*']) }}" href="{{route('detail_kategori.index')}}">
-                                <i class="far fa-circle nav-icon"></i>
-                                    <p>Detail Kategori</p>
-                                    </a>
-                                  </li>
-                              
-
-                              </ul>
-                            </div>
-                          </li> -->
-
-                          <li li class="nav-item">
-                            <a class="nav-link " data-toggle="collapse" href="#ui-basic2" aria-controls="ui-basic">
-                            <i class="nav-icon fas fa-archive"></i>
-                              <p>
-                                Kategori  
-                                <i class="right fas fa-angle-left"></i>
-                              </p>
-                            </a>
-
-                            <div class="collapse {{ setShow(['detail_pengeluaran*','detail_kategori*']) }}" id="ui-basic2">
-                              <ul class="nav flex-column sub-menu">                 
-
-                                  <!--kas-->
-                        
-                                  <li class="nav-item">
-                                  <a class="nav-link {{ setActive(['detail_kategori*']) }}" href="{{route('detail_kategori.index')}}">
-                                  <i class="nav-icon fas fa-caret-up"></i>
-                                    <p>Pemasukan</p>
+                                    <p>Rutin</p>
+                                    
+                                              <span class="badge bg-danger">
+                                                {{
+                                                  $pengeluaran_rutin->where('status', '0')
+                                                  ->count()
+                                                }}
+                                              </span> 
                                     </a>
                                   </li>
 
+                                @endif
+
+                                <!--kas-->
+                                @if(Auth::user()->level == 'admin')
                                   <li class="nav-item">
-                                  <a class="nav-link {{ setActive(['detail_pengeluaran*']) }}" href="{{route('detail_pengeluaran.index')}}">
-                                  <i class="nav-icon fas fa-caret-down"></i>
-                                    <p>Pengeluaran</p>
+                                    <a class="nav-link {{ setActive(['pengeluaran_khusus*']) }}" href="{{route('pengeluaran_khusus.index')}}">
+                                  <i class="far fa-circle nav-icon"></i>
+                                    <p>Khusus</p>
+                                    
+                                              <span class="badge bg-danger">
+                                                {{
+                                                  $pengeluaran_khusus->where('status', '0')
+                                                  ->count()
+                                                }}
+                                              </span> 
                                     </a>
                                   </li>
-                              
+                                  @else
+                                      @if(Auth::user()->petugas)
+                                          <li class="nav-item">
+                                            <a class="nav-link {{ setActive(['pengeluaran_khusus*']) }}" href="{{route('pengeluaran_khusus.index')}}">
+                                          <i class="far fa-circle nav-icon"></i>
+                                            <p>Khusus</p>
+                                                      @if(Auth::user()->petugas)
+                                                      <span class="badge bg-danger">
+                                                        {{
+                                                          $pengeluaran_khusus->where('status', '0')
+                                                          ->where('nama_pengguna', Auth::user()->petugas->id)
+                                                          ->count()
+                                                        }}
+                                                      </span>
+                                                      @endif
+                                            </a>
+                                          </li>
+                                      @endif
+                                @endif
 
                               </ul>
                             </div>
                           </li>
+                        @endif
 
-                          <!-- <li class="nav-item">
-                            <a class="nav-link {{ setActive(['detail_pengeluaran*']) }}" href="{{route('detail_pengeluaran.index')}}">
-                            <i class="nav-icon fas fa-archive"></i>
-                            <p>Kategori Pengeluaran</p>
-                            </a>
-                          </li> -->
-
-                          <!--kas-->
-                          <li class="nav-item">
-                          
-                            <a class="nav-link {{ setActive(['kas*']) }}" href="{{route('kas.index')}}">
-                            <i class="far fa fa-credit-card nav-icon"></i>
-                            <p>Kas</p>
-                            </a>
-                          </li>
-                      @endif
-
-                    </ul>
+                
+                    <div class="user-panel mt-1 pb-1 mb-1 d-flex">     
                   </div>
-                </li>
-              @else
-                  @if(Auth::user()->petugas)
-                      <li li class="nav-item">
-                        <a class="nav-link " data-toggle="collapse" href="#ui-basic" aria-controls="ui-basic">
-                          <i class="nav-icon fas fa-book"></i>
-                          <p>
-                            Master Data
-                            <i class="right fas fa-angle-left"></i>
-                          </p>
-                        </a>
+                @endif
+            
+                <!-- MASTER DATA PENGELUARAN -->
+                @if(Auth::user()->level == 'admin')
+                  <li li class="nav-item">
+                  <a class="nav-link " data-toggle="collapse" href="#ui-basic" aria-controls="ui-basic">
+                      <i class="nav-icon fas fa-book"></i>
+                      <p>
+                        Master Data
+                        <i class="right fas fa-angle-left"></i>
+                      </p>
+                    </a>
 
-                        <div class="collapse {{ setShow(['detail_kategori*','kas*']) }}" id="ui-basic">
-                          <ul class="nav flex-column sub-menu">
+                    <div class="collapse {{ setShow(['petugas*','detail_kategori*','kas*', 'user*','ibadah*','kategori*', 'detail_pengeluaran*']) }}" id="ui-basic">
+                      <ul class="nav flex-column sub-menu">
+
+
+                      <li class="nav-item">
+                        <a class="nav-link {{ setActive(['user*']) }}" href="{{route('user.index')}}">
+                          <i class="far fa-user-circle nav-icon"></i>
+                          <p>Akun</p>
+                          </a>
+                        </li>
+                        
+                      <li class="nav-item">
+                          <a class="nav-link {{ setActive(['petugas*']) }}" href="{{route('petugas.index')}}">
+                          <i class="far fa-hand-rock nav-icon"></i>
+                          <p>Petugas</p>
+                          </a>
+                        </li>
+                        @if(Auth::user()->petugas)
+                          <li class="nav-item">
                             
-                        
-                          <li li class="nav-item">
-                            <a class="nav-link " data-toggle="collapse" href="#ui-basic2" aria-controls="ui-basic">
-                            <i class="nav-icon fas fa-archive"></i>
-                              <p>
-                                Kategori  
-                                <i class="right fas fa-angle-left"></i>
-                              </p>
-                            </a>
+                            <a class="nav-link {{ setActive(['ibadah*']) }}" href="{{route('ibadah.index')}}">
+                            <i class="far fa fa-table nav-icon"></i>
+                            <p>Ibadah</p>
+                            </a >
+                          </li>      
 
-                            <div class="collapse {{ setShow(['detail_kategori*']) }}" id="ui-basic2">
-                              <ul class="nav flex-column sub-menu">
-                                       
+                            <!-- <li li class="nav-item">
+                              <a class="nav-link " data-toggle="collapse" href="#ui-basic2" aria-controls="ui-basic">
+                              <i class="nav-icon fas fa-archive"></i>
+                                <p>
+                                  Kategori Pemasukan  
+                                  <i class="right fas fa-angle-left"></i>
+                                </p>
+                              </a>
 
-                                  <!--kas-->
-                        
-                                  <li class="nav-item">
-                                  <a class="nav-link {{ setActive(['detail_kategori*']) }}" href="{{route('detail_kategori.index')}}">
-                                  <i class="nav-icon fas fa-caret-up"></i>
-                                    <p>Pemasukan</p>
-                                    </a>
-                                  </li>
+                              <div class="collapse {{ setShow(['kategori*','detail_kategori*']) }}" id="ui-basic2">
+                                <ul class="nav flex-column sub-menu">
+                                  
                               
+                          
+                                    <li class="nav-item">
+                                    <a class="nav-link {{ setActive(['kategori*']) }}" href="{{route('kategori.index')}}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Kategori</p>
+                                    </a>
+                                    </li>
+    
+                                    <li class="nav-item">
+                                    <a class="nav-link {{ setActive(['detail_kategori*']) }}" href="{{route('detail_kategori.index')}}">
+                                  <i class="far fa-circle nav-icon"></i>
+                                      <p>Detail Kategori</p>
+                                      </a>
+                                    </li>
+                                
 
-                              </ul>
-                            </div>
-                          </li>
+                                </ul>
+                              </div>
+                            </li> -->
 
+                            <li li class="nav-item">
+                              <a class="nav-link " data-toggle="collapse" href="#ui-basic2" aria-controls="ui-basic">
+                              <i class="nav-icon fas fa-archive"></i>
+                                <p>
+                                  Kategori  
+                                  <i class="right fas fa-angle-left"></i>
+                                </p>
+                              </a>
+
+                              <div class="collapse {{ setShow(['detail_pengeluaran*','detail_kategori*']) }}" id="ui-basic2">
+                                <ul class="nav flex-column sub-menu">                 
+
+                                    <!--kas-->
+                          
+                                    <li class="nav-item">
+                                    <a class="nav-link {{ setActive(['detail_kategori*']) }}" href="{{route('detail_kategori.index')}}">
+                                    <i class="nav-icon fas fa-caret-up"></i>
+                                      <p>Pemasukan</p>
+                                      </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                    <a class="nav-link {{ setActive(['detail_pengeluaran*']) }}" href="{{route('detail_pengeluaran.index')}}">
+                                    <i class="nav-icon fas fa-caret-down"></i>
+                                      <p>Pengeluaran</p>
+                                      </a>
+                                    </li>
+                                
+
+                                </ul>
+                              </div>
+                            </li>
+
+                            <!-- <li class="nav-item">
+                              <a class="nav-link {{ setActive(['detail_pengeluaran*']) }}" href="{{route('detail_pengeluaran.index')}}">
+                              <i class="nav-icon fas fa-archive"></i>
+                              <p>Kategori Pengeluaran</p>
+                              </a>
+                            </li> -->
 
                             <!--kas-->
                             <li class="nav-item">
@@ -435,12 +421,68 @@
                               <p>Kas</p>
                               </a>
                             </li>
+                        @endif
 
-                          </ul>
-                        </div>
-                      </li>
-                  @endif
-              @endif
+                      </ul>
+                    </div>
+                  </li>
+                @else
+                    @if(Auth::user()->petugas)
+                        <li li class="nav-item">
+                          <a class="nav-link " data-toggle="collapse" href="#ui-basic" aria-controls="ui-basic">
+                            <i class="nav-icon fas fa-book"></i>
+                            <p>
+                              Master Data
+                              <i class="right fas fa-angle-left"></i>
+                            </p>
+                          </a>
+
+                          <div class="collapse {{ setShow(['detail_kategori*','kas*']) }}" id="ui-basic">
+                            <ul class="nav flex-column sub-menu">
+                              
+                          
+                            <li li class="nav-item">
+                              <a class="nav-link " data-toggle="collapse" href="#ui-basic2" aria-controls="ui-basic">
+                              <i class="nav-icon fas fa-archive"></i>
+                                <p>
+                                  Kategori  
+                                  <i class="right fas fa-angle-left"></i>
+                                </p>
+                              </a>
+
+                              <div class="collapse {{ setShow(['detail_kategori*']) }}" id="ui-basic2">
+                                <ul class="nav flex-column sub-menu">
+                                        
+
+                                    <!--kas-->
+                          
+                                    <li class="nav-item">
+                                    <a class="nav-link {{ setActive(['detail_kategori*']) }}" href="{{route('detail_kategori.index')}}">
+                                    <i class="nav-icon fas fa-caret-up"></i>
+                                      <p>Pemasukan</p>
+                                      </a>
+                                    </li>
+                                
+
+                                </ul>
+                              </div>
+                            </li>
+
+
+                              <!--kas-->
+                              <li class="nav-item">
+                              
+                                <a class="nav-link {{ setActive(['kas*']) }}" href="{{route('kas.index')}}">
+                                <i class="far fa fa-credit-card nav-icon"></i>
+                                <p>Kas</p>
+                                </a>
+                              </li>
+
+                            </ul>
+                          </div>
+                        </li>
+                @endif
+@endif
 
 
             <!-- LAPORAN -->

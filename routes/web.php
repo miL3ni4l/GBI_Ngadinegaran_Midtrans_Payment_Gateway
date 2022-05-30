@@ -176,6 +176,19 @@ Route::get('/periode_khusus', 'PengeluaranKhususController@periode_khusus')->nam
 Route::get('pengeluaran_khusus/pdf/{id}', ['as' => 'pengeluaran_khusus.laporan', 'uses' => 'PengeluaranKhususController@cetak_pdf']);
 Route::get('pengeluaran_khusus/status/{id}','PengeluaranKhususController@status');
 
+// PENGELUARAN RUTIN PERSEMBAHAN
+Route::resource('persembahan_pengeluaran_rutin', 'PrsmbhnPnglrnRtnController');
+Route::get('pemasukan_rutin_create_rutin', 'PrsmbhnPnglrnRtnController@pemasukan_rutin_create_rutin')->name('pemasukan_rutin_create_rutin');
+Route::post('pemasukan_rutin_store_rutin', 'PrsmbhnPnglrnRtnController@pemasukan_rutin_store_rutin')->name('pemasukan_rutin_store_rutin');
+Route::get('pemasukan_rutin_create_rutin', 'PrsmbhnPnglrnRtnController@pemasukan_rutin_create_rutin')->name('pemasukan_rutin_create_rutin');
+Route::post('pemasukan_rutin_store_rutin', 'PrsmbhnPnglrnRtnController@pemasukan_rutin_store_rutin')->name('pemasukan_rutin_store_rutin');
+Route::get('/konfirmasi_persembahan_rutin', 'PrsmbhnPnglrnRtnController@konfirmasi_persembahan_rutin')->name('konfirmasi_persembahan_rutin');
+Route::get('/periode_persembahan_rutin', 'PrsmbhnPnglrnRtnController@periode_persembahan_rutin')->name('periode_persembahan_rutin');
+// Route::get('/periode_tanggal', 'PrsmbhnPnglrnRtnController@periode_tanggal')->name('periode_tanggal');
+
+//PENGELUARAN KHUSUS=====ROUTE DOWNLOAD BERDASARKAN ID
+Route::get('persembahan_pengeluaran_rutin/pdf/{id}', ['as' => 'persembahan_pengeluaran_rutin.laporan', 'uses' => 'PrsmbhnPnglrnRtnController@cetak_pdf']);
+Route::get('persembahan_pengeluaran_rutin/status/{id}','PrsmbhnPnglrnRtnController@status');
 
 //PENGELUARAN RUTIN
 Route::resource('pengeluaran_rutin', 'PengeluaranRutinController');
