@@ -49,7 +49,7 @@
                 <th>Status</th>
                 <th style="text-align: center;"></th>
             </tr>
-            @foreach ($donations as $donation)
+            @foreach ($persembahan as $donation)
             <tr>
                 <td><code>{{ $donation->id }}</code></td>
                 <td>{{ $donation->donor_name }}</td>
@@ -64,7 +64,7 @@
             </tr>
             @endforeach
             <tr>
-                <td colspan="6">{{ $donations->links() }}</td>
+                <td colspan="6">{{ $persembahan->links() }}</td>
             </tr>
         </table>
     </div>

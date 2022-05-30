@@ -85,7 +85,7 @@ class HomeController extends Controller
         ->first();
 
         //GRAFIK
-        $semua_pemasukan_midtrans = DB::table('donations')->select(DB::raw('SUM(amount) as total'))
+        $semua_pemasukan_midtrans = DB::table('persembahan')->select(DB::raw('SUM(amount) as total'))
         ->where('status','success')
         ->first();
 
@@ -99,7 +99,7 @@ class HomeController extends Controller
 
 
         // PEMASUKAN_KHUSUS
-        $midtrans = DB::table('donations')->select(DB::raw('SUM(amount) as total'))
+        $midtrans = DB::table('persembahan')->select(DB::raw('SUM(amount) as total'))
         ->where('status','success')
         ->first();
 

@@ -57,7 +57,7 @@ class PersembahanAdminController extends Controller
                 $bulan = date('m');
                 $tahun = date('Y');
         
-                $pemasukan_bulan_ini = DB::table('donations')->select(DB::raw('SUM(amount) as total'))
+                $pemasukan_bulan_ini = DB::table('persembahan')->select(DB::raw('SUM(amount) as total'))
                 ->where('status','1')
                 ->whereMonth('created_at',$bulan)
                 ->whereYear('created_at',$tahun)

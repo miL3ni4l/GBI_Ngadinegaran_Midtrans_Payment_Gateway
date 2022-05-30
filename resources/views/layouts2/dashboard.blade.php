@@ -606,7 +606,7 @@
       <?php
       for($bulan=1;$bulan<=12;$bulan++){
         $tahun = date('Y');
-        $pemasukan_perbulan = DB::table('donations')
+        $pemasukan_perbulan = DB::table('persembahan')
         ->select(DB::raw('SUM(amount) as total'))
         ->where('status','success')
         ->whereMonth('created_at',$bulan)

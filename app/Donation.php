@@ -8,7 +8,7 @@ class Donation extends Model
 {
     // protected $guarded = [];
 
-    protected $table = "donations";
+    protected $table = "persembahan";
 	protected $dates = ['created_at'];
 
 	protected $fillable = ["donation_type","transaction_id", "donor_name","donor_email","amount","note","status","snap_token"];

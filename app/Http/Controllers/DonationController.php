@@ -44,8 +44,8 @@ class DonationController extends Controller
 
     public function index()
     {
-        $donations = Donation::orderBy('id', 'desc')->paginate(8);
-        return view('welcome', compact('donations'));
+        $persembahan = Donation::orderBy('id', 'desc')->paginate(8);
+        return view('welcome', compact('persembahan'));
     }
  
     public function create()
