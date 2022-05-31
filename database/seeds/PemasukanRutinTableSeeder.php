@@ -47,7 +47,7 @@ class PemasukanRutinTableSeeder extends Seeder
               'nama_pengguna'  			=> 1,
               'kode_pemasukan_rutin'  			=> 'TM122',
               'status'  			=> '1',
-              'nominal'  			=> '350000',
+              'nominal'  			=> '250000',
               'tanggal'      => \Carbon\Carbon::now(),
               'created_at'      => \Carbon\Carbon::now(),
               'updated_at'      => \Carbon\Carbon::now()
