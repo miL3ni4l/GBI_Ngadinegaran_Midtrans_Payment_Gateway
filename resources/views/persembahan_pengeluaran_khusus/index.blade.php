@@ -263,7 +263,7 @@
                                               </td>
                                               @endif
                                             
-                                              <td class="text-left" > {{ $t->kode_pemasukan_rutin }} </td>
+                                              <td class="text-left" > {{ $t->kode_persembahan_pengeluaran_khusus }} </td>
                                               <td class="text-left">
                                                 {{$t->tanggal->format('d-M-y')}}
                                               </td>

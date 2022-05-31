@@ -29,8 +29,8 @@
              @if(Auth::user()->level == 'editor')
              <h1>EDITOR</h1>      
             @else
-                     <!--PEMASUKAN--> 
-                     <div class="col-md-4 col-sm-4 col-12">  
+            <!--PEMASUKAN--> 
+            <div class="col-md-4 col-sm-4 col-12">  
                     <div class="info-box">
                     <span class="info-box-icon bg-success"><i class="fa fa-caret-up"></i></span>
                     <div class="info-box-content">
@@ -51,7 +51,7 @@
                 <span class="info-box-icon bg-warning"><i class="fa fa-caret-down"></i></span>
                 <div class="info-box-content">
                   <span class="info-box-text">Pengeluaran</span>
-                  <h5 class="info-box-number text-dark ">{{ "Rp. ".number_format($pengeluaran_khusus->total += $pengeluaran_rutin->total  )." ,-" }}</h5>
+                  <h5 class="info-box-number text-dark ">{{ "Rp. ".number_format($total_pengeluaran  )." ,-" }}</h5>
                   <div class="progress">
                     <div class="progress-bar bg-warning" style="width: 100%"></div>
                   </div>
@@ -440,8 +440,22 @@
         ->whereMonth('tanggal',$bulan)
         ->whereYear('tanggal',$tahun)
         ->first();
+
+        $persembahan_pengeluaran_rutin = DB::table('persembahan_pengeluaran_rutin')
+        ->select(DB::raw('SUM(nominal) as total'))
+        ->where('status','1')
+        ->whereMonth('tanggal',$bulan)
+        ->whereYear('tanggal',$tahun)
+        ->first();
+
+        $persembahan_pengeluaran_khusus = DB::table('persembahan_pengeluaran_khusus')
+        ->select(DB::raw('SUM(nominal) as total'))
+        ->where('status','1')
+        ->whereMonth('tanggal',$bulan)
+        ->whereYear('tanggal',$tahun)
+        ->first();
         
-        $total = $pengeluaran_perbulan->total += $pengeluaran_perbulan_rutin->total ;
+        $total = $pengeluaran_perbulan->total += $pengeluaran_perbulan_rutin->total += $persembahan_pengeluaran_rutin->total += $persembahan_pengeluaran_khusus->total;
         if($total == ""){
           echo "0,";
         }else{
@@ -531,7 +545,19 @@
         ->whereYear('tanggal',$thn)
         ->first();
 
-        $total = $tahun->total += $tahun_rutin->total;
+        $persembahan_pengeluaran_rutin = DB::table('persembahan_pengeluaran_rutin')
+        ->select(DB::raw('SUM(nominal) as total'))
+        ->where('status','1')
+        ->whereYear('tanggal',$thn)
+        ->first();
+
+        $persembahan_pengeluaran_khusus = DB::table('persembahan_pengeluaran_khusus')
+        ->select(DB::raw('SUM(nominal) as total'))
+        ->where('status','1')
+        ->whereYear('tanggal',$thn)
+        ->first();
+
+        $total = $tahun->total += $tahun_rutin->total += $persembahan_pengeluaran_rutin->total += $persembahan_pengeluaran_khusus->total  ;
         if( $total == ""){
           echo "0,";
         }else{
@@ -652,14 +678,19 @@
       highlightStroke : "rgba(151,187,205,1)",
       data : [
       <?php
-        $pemasukan_perbulan_persembahan = DB::table('persembahan')
-        ->select(DB::raw('SUM(amount) as total'))
-        ->where('status','success')
+        $persembahan_pengeluaran_rutin = DB::table('persembahan_pengeluaran_rutin')
+        ->select(DB::raw('SUM(nominal) as total'))
+        ->where('status','1')
+        ->first();
+
+        $persembahan_pengeluaran_khusus = DB::table('persembahan_pengeluaran_khusus')
+        ->select(DB::raw('SUM(nominal) as total'))
+        ->where('status','1')
         ->first();
 
 
-        $total = $pemasukan_perbulan_persembahan->total;
-        if($pemasukan_perbulan_persembahan->total == ""){
+        $total = $persembahan_pengeluaran_rutin->total += $persembahan_pengeluaran_khusus->total;
+        if($persembahan_pengeluaran_rutin->total == ""){
           echo "0,";
         }else{
           echo $total.",";

@@ -120,12 +120,18 @@
                                                           ->where('status','success')
                                                           ->first(); 
 
+                                                          $persembahan_pengeluaran_rutin = DB::table('persembahan_pengeluaran_rutin')
+                                                          ->select(DB::raw('SUM(nominal) as total'))
+                                                          ->where('kategori_id',$id_kategori)
+                                                          ->where('status','1')
+                                                          ->first(); 
+ 
 
                                                       ?>
                                                       
                                                       <option value="{{ $k->id }}">
                                                        {{ $k->kategori }}
-                                                       {{ "Rp. ".number_format($pemasukan_persembahan->total )." ,-" }}
+                                                       {{ "Rp. ".number_format($pemasukan_persembahan->total -= $persembahan_pengeluaran_rutin->total )." ,-" }}
                                                       </option>
                                              
                                                   @endforeach 

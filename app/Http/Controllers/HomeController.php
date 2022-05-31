@@ -111,8 +111,6 @@ class HomeController extends Controller
         ->where('status','1')
         ->first();
 
- 
-
         $seluruh_pemasukan = DB::table('pemasukan_rutin')->select(DB::raw('SUM(nominal) as total'))
         ->where('status','1')
         ->first();
@@ -135,8 +133,15 @@ class HomeController extends Controller
         ->where('status','1')
         ->first();
 
+        $seluruh_pengeluaran_rutin_midtrans = DB::table('persembahan_pengeluaran_rutin')->select(DB::raw('SUM(nominal) as total'))
+        ->where('status','1')
+        ->first();
+        $seluruh_pengeluaran_khusus_midtrans = DB::table('persembahan_pengeluaran_khusus')->select(DB::raw('SUM(nominal) as total'))
+        ->where('status','1')
+        ->first();
+
         $total_pemasukan = $seluruh_pemasukan->total  += $seluruh_pemasukan_khusus->total += $midtrans->total ;
-        $total_pengeluaran =  $seluruh_pengeluaran_rutin->total +=  $seluruh_pengeluaran_khusus->total;
+        $total_pengeluaran =  $seluruh_pengeluaran_rutin->total +=  $seluruh_pengeluaran_khusus->total += $seluruh_pengeluaran_rutin_midtrans->total +=  $seluruh_pengeluaran_khusus_midtrans->total ;
         $total_saldo =  $total_pemasukan -=  $total_pengeluaran ; 
         
         
@@ -170,7 +175,9 @@ class HomeController extends Controller
                 'pemasukan_khusus' => $pemasukan_khusus,   
                 'pengeluaran_rutin' => $pengeluaran_rutin,
                 'pengeluaran_khusus' => $pengeluaran_khusus,  
-                'total_saldo' => $total_saldo 
+                'total_saldo' => $total_saldo,
+                'seluruh_pengeluaran_rutin_midtrans' => $seluruh_pengeluaran_rutin_midtrans,
+                'seluruh_pengeluaran_khusus_midtrans' => $seluruh_pengeluaran_khusus_midtrans
             ]
         );
     }

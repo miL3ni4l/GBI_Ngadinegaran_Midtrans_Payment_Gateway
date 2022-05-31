@@ -119,10 +119,16 @@
                                                         ->where('status','success')
                                                         ->first();
 
+                                                        $persembahan_pengeluaran_khusus = DB::table('persembahan_pengeluaran_khusus')
+                                                          ->select(DB::raw('SUM(nominal) as total'))
+                                                          ->where('kategori_id',$id_kategori)
+                                                          ->where('status','1')
+                                                          ->first(); 
+
                                                       ?>
 
                                                       <option value="{{ $k->id }}">
-                                                        {{ $k->kategori }} {{ "Rp. ".number_format($pemasukan_persembahan->total)." ,-" }}
+                                                        {{ $k->kategori }} {{ "Rp. ".number_format($pemasukan_persembahan->total -= $persembahan_pengeluaran_khusus->total)." ,-" }}
                                                         <!-- {{$k->kode_kategori}}-{{ $k->kategori }} -->
                                                       </option>
                                                   
