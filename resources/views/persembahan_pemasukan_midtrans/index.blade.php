@@ -20,7 +20,7 @@
               <div class="col-sm-12">
               
               <div class="btn-group">
-                                      <a  href="/persembahan" type="button" class="btn btn-warning">
+                                      <a  href="/persembahan_pemasukan_midtrans" type="button" class="btn btn-warning">
                                       <i class="fas fa-undo"></i>
                                       </a>
               </div>

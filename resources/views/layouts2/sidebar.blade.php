@@ -28,67 +28,72 @@
 @if(Auth::user()->petugas)       
                 <div class="user-panel mt-1 pb-1 mb-1 d-flex">     
                 </div>
-                <!-- <li class=""> 
-                  <a class="nav-link" >
-                      
-                      <p>
-                        pemasukan_rutin
-                      </p>
-                    </a>
-                </li>     -->
+
+
                 
-                
-                <!-- <li class="nav-item {{ setActive(['persembahan*']) }}"> 
-                  <a class="nav-link {{ setActive(['persembahan*']) }}" href="/persembahan">
+
+                @if(Auth::user()->level == 'admin')
+                  <li li class="nav-item">
+                    <a class="nav-link " data-toggle="collapse" href="#ui-basic3" aria-controls="ui-basic">
                       <i class="nav-icon fas fa-cloud"></i>
                       <p>
                         Midtrans
+                        <i class="right fas fa-angle-left"></i>
                       </p>
                     </a>
-                </li> -->
 
-                @if(Auth::user()->petugas)
-                        <li li class="nav-item">
-                          <a class="nav-link " data-toggle="collapse" href="#ui-basicMidtrans" aria-controls="ui-basic">
-                            <i class="nav-icon fas fa-cloud"></i>
-                            <p>
-                              Midtrans  
-                                              
-                              <i class="right fas fa-angle-left"></i>
-                              </p>
-                                       
-                          </a>
-
-                          <div class="collapse {{ setShow(['persembahan*','persembahan_pengeluaran_rutin*']) }}" id="ui-basicMidtrans">
-                            <ul class="nav flex-column sub-menu">
-                              
+                    <div class="collapse {{ setShow(['persembahan_pemasukan_midtrans*','persembahan_pengeluaran_rutin*','persembahan_pengeluaran_khusus*']) }}" id="ui-basic3">
+                      <ul class="nav flex-column sub-menu">
                           
-                             
-                                <li class="nav-item">
-                                  <a class="nav-link {{ setActive(['persembahan*']) }}" href="/persembahan">
-                                  <i class="far fa-circle nav-icon"></i>
-                                    <p>Pemasukan</p>     
-                                    
-                                  </a>
-                                </li>
-                          
-
-                              <!--kas-->
-                         
-                                <li class="nav-item">
-                                  <a class="nav-link {{ setActive(['persembahan_pengeluaran_rutin*']) }}" href="{{route('persembahan_pengeluaran_rutin.index')}}">
-                                <i class="far fa-circle nav-icon"></i>
-                                  <p>Pengeluaran</p>
-                                  
-                                         
-                                  </a>
-                                </li>
-                               
-                            </ul>
-                          </div>
+                        <li class="nav-item">
+                            <a class="nav-link {{ setActive(['persembahan_pemasukan_midtrans*']) }}" href="/persembahan_pemasukan_midtrans">
+                            <i class="nav-icon fas fa-caret-up"></i>
+                            <p>Pemasukan</p>
+                            </a>
                         </li>
-                @endif
 
+                        @if(Auth::user()->petugas)
+                                     
+                            <li li class="nav-item">
+                              <a class="nav-link " data-toggle="collapse" href="#ui-basic4" aria-controls="ui-basic">
+                              <i class="nav-icon fas fa-caret-down"></i>
+                                <p>
+                                  Pengeluaran  
+                                  <i class="right fas fa-angle-left"></i>
+                                </p>
+                              </a>
+
+                              <div class="collapse {{ setShow(['persembahan_pengeluaran_rutin*','persembahan_pengeluaran_khusus*']) }}" id="ui-basic4">
+                                <ul class="nav flex-column sub-menu">                 
+
+                                    <li class="nav-item">
+                                      <a class="nav-link {{ setActive(['persembahan_pengeluaran_rutin*']) }}" href="{{route('persembahan_pengeluaran_rutin.index')}}">
+                                      <i class="far fa-circle nav-icon"></i>
+                                        <p>Rutin</p>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                    <a class="nav-link {{ setActive(['persembahan_pengeluaran_khusus*']) }}" href="{{route('persembahan_pengeluaran_khusus.index')}}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                      <p>Khusus</p>
+                                      </a>
+                                    </li>
+
+                                    
+                                
+
+                                </ul>
+                              </div>
+                            </li>
+
+                        @endif
+
+                      </ul>
+                    </div>
+
+                  </li>
+                @endif
 
       
                 <!-- MASTER DATA PEMASUKAN -->
@@ -306,7 +311,7 @@
                 <!-- MASTER DATA PENGELUARAN -->
                 @if(Auth::user()->level == 'admin')
                   <li li class="nav-item">
-                  <a class="nav-link " data-toggle="collapse" href="#ui-basic" aria-controls="ui-basic">
+                    <a class="nav-link " data-toggle="collapse" href="#ui-basic" aria-controls="ui-basic">
                       <i class="nav-icon fas fa-book"></i>
                       <p>
                         Master Data
@@ -318,27 +323,28 @@
                       <ul class="nav flex-column sub-menu">
 
 
-                      <li class="nav-item">
-                        <a class="nav-link {{ setActive(['user*']) }}" href="{{route('user.index')}}">
-                          <i class="far fa-user-circle nav-icon"></i>
-                          <p>Akun</p>
-                          </a>
+                        <li class="nav-item">
+                          <a class="nav-link {{ setActive(['user*']) }}" href="{{route('user.index')}}">
+                            <i class="far fa-user-circle nav-icon"></i>
+                            <p>Akun</p>
+                            </a>
                         </li>
-                        
-                      <li class="nav-item">
-                          <a class="nav-link {{ setActive(['petugas*']) }}" href="{{route('petugas.index')}}">
-                          <i class="far fa-hand-rock nav-icon"></i>
-                          <p>Petugas</p>
-                          </a>
+                          
+                        <li class="nav-item">
+                            <a class="nav-link {{ setActive(['petugas*']) }}" href="{{route('petugas.index')}}">
+                            <i class="far fa-hand-rock nav-icon"></i>
+                            <p>Petugas</p>
+                            </a>
                         </li>
+
                         @if(Auth::user()->petugas)
-                          <li class="nav-item">
-                            
-                            <a class="nav-link {{ setActive(['ibadah*']) }}" href="{{route('ibadah.index')}}">
-                            <i class="far fa fa-table nav-icon"></i>
-                            <p>Ibadah</p>
-                            </a >
-                          </li>      
+                            <li class="nav-item">
+                              
+                              <a class="nav-link {{ setActive(['ibadah*']) }}" href="{{route('ibadah.index')}}">
+                              <i class="far fa fa-table nav-icon"></i>
+                              <p>Ibadah</p>
+                              </a >
+                            </li>      
 
                             <!-- <li li class="nav-item">
                               <a class="nav-link " data-toggle="collapse" href="#ui-basic2" aria-controls="ui-basic">
@@ -425,6 +431,7 @@
 
                       </ul>
                     </div>
+
                   </li>
                 @else
                     @if(Auth::user()->petugas)

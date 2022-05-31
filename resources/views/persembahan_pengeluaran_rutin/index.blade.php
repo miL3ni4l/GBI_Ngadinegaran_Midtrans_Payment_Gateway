@@ -42,7 +42,7 @@
                              
                               <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                                <li class="breadcrumb-item active">Midtrans Pengeluaran Rutin</li>
+                                <li class="breadcrumb-item active">Pengeluaran Rutin</li>
                               </ol>
                             </div>
                         </div> 
@@ -75,7 +75,7 @@
                       <div class="container-fluid">
                                         <div class="card">
                                           <div class="card-header pt-4">
-                                            <h3 class="card-title">Filter Midtrans Pengeluaran Rutin</h3>
+                                            <h3 class="card-title">Filter Pengeluaran Rutin</h3>
                                           </div>
                                           <div class="card-body">
                                                 <div class="invoice p-3 mb-3">
@@ -227,7 +227,7 @@
                             <div class="card">
                               
                                   <div class="card-header">
-                                    <h3 class="card-title">Data Midtrans Pengeluaran Rutin</h3>
+                                    <h3 class="card-title">Data Pengeluaran Rutin</h3>
                                   </div>
 
                                   <div class="card">

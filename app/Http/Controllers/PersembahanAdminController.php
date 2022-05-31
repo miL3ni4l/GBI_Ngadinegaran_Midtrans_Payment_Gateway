@@ -71,7 +71,7 @@ class PersembahanAdminController extends Controller
                 $pendeta = Pendeta::orderBy('updated_at','desc')->get();
                 $persembahan = Donation::orderBy('updated_at','desc')->get();
             
-                return view('persembahan.index',array('total_pemasukan_bulan_ini' => $total_pemasukan_bulan_ini,'ibadah' => $ibadah,'petugas' => $petugas,'profil' => $profil,'pendeta' => $pendeta,'persembahan' => $persembahan, 'kategori' => $kategori));
+                return view('persembahan_pemasukan_midtrans.index',array('total_pemasukan_bulan_ini' => $total_pemasukan_bulan_ini,'ibadah' => $ibadah,'petugas' => $petugas,'profil' => $profil,'pendeta' => $pendeta,'persembahan' => $persembahan, 'kategori' => $kategori));
 
     }
 
@@ -122,7 +122,7 @@ class PersembahanAdminController extends Controller
             ->where('status','success')
             ->get();     
         }  
-        return view('persembahan.index',['persembahan' => $persembahan,'persembahans' => $persembahans, 'kategori' => $kategori,
+        return view('persembahan_pemasukan_midtrans.index',['persembahan' => $persembahan,'persembahans' => $persembahans, 'kategori' => $kategori,
         'total_pemasukan_bulan_ini' => $total_pemasukan_bulan_ini,
     ]);
 
