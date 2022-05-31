@@ -14,6 +14,8 @@ use App\KategoriPengeluaranRutin;
 use App\DetailPengeluaran;
 use App\PengeluaranRutin;
 use App\pemasukan_rutin;
+use App\PersembahanPengeluaranRutin;
+use App\PersembahanPengeluaranKhusus;
 use App\User;
 
 use Hash;
@@ -211,6 +213,11 @@ class DetailPengeluaranController extends Controller
         $pemasukan_rutin = pemasukan_rutin::all();
         $pemasukan_rutins  = pemasukan_rutin::count(); 
 
+        $persembahan_pengeluaran_rutin = PersembahanPengeluaranRutin::all();
+        $persembahan_pengeluaran_rutins  = PersembahanPengeluaranRutin::count(); 
+        $persembahan_pengeluaran_khusus = PersembahanPengeluaranKhusus::all();
+        $persembahan_pengeluaran_khususs  = PersembahanPengeluaranKhusus::count(); 
+
         if($_GET['kategori'] == ""){
             $pemasukan_rutin = PengeluaranRutin::whereDate('tanggal','>=',$_GET['dari'])
             ->whereDate('tanggal','<=',$_GET['sampai'])
@@ -221,8 +228,18 @@ class DetailPengeluaranController extends Controller
             ->whereDate('tanggal','>=',$_GET['dari'])
             ->whereDate('tanggal','<=',$_GET['sampai'])
             ->get();     
+            $persembahan_pengeluaran_rutin = PersembahanPengeluaranRutin::where('detail_pengeluaran',$_GET['kategori'])
+            ->where('status','1')
+            ->whereDate('tanggal','>=',$_GET['dari'])
+            ->whereDate('tanggal','<=',$_GET['sampai'])
+            ->get();
         }  
-        return view('detail_pengeluaran.index',['pemasukan_rutin' => $pemasukan_rutin, 'kategori' => $kategori, 'datas' => $datas,'details' => $details,'kategoris'=>$kategoris ,'pemasukan_rutins'=>$pemasukan_rutins, 'kategori_pengeluaran'=> $kategori_pengeluaran]);
+        return view('detail_pengeluaran.index',['pemasukan_rutin' => $pemasukan_rutin, 'kategori' => $kategori, 'datas' => $datas,
+        'details' => $details,'kategoris'=>$kategoris ,'pemasukan_rutins'=>$pemasukan_rutins, 
+        'kategori_pengeluaran'=> $kategori_pengeluaran,
+        'persembahan_pengeluaran_rutin' => $persembahan_pengeluaran_rutin, 'persembahan_pengeluaran_khusus' => $persembahan_pengeluaran_khusus
+    
+    ]);
 
 
     }

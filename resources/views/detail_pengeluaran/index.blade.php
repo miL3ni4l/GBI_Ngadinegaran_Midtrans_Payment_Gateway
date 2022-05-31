@@ -216,14 +216,33 @@
                                       <tbody>
                                         @php
                                         $no = 1;
-                                        $total_pemasukan = 0;
                                         $total_pengeluaran = 0;
+                                        $total_pengeluaran_midtrans_rutin = 0;
+                                        $total_pengeluaran_midtrans_khusus = 0;
                                         @endphp
+
+                                        @foreach($persembahan_pengeluaran_rutin as $t)
+                                            <tr>
+                                              <td class="text-center">{{ $no++ }}</td>
+                                              <td class="text-left">{{ $t->kode_persembahan_pengeluaran_rutin }}</td>
+                                              <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
+                                              <td>{{ $t->kategori_pengeluaran->kategori}}</td>
+                                              @if($t->keterangan  == null)
+                                                    <td class ="text-center"> -</td>
+                                              @else
+                                                    <td>{{ $t->keterangan }}</td>
+                                              @endif                                           
+                                              <td class="text-right">
+                                                {{ "Rp.".number_format($t->nominal).",-" }}
+                                                @php $total_pengeluaran_midtrans_rutin += $t->nominal; @endphp
+                                              </td>
+                                            </tr>                             
+                                        @endforeach
 
                                         @foreach($pemasukan_rutin as $t)
                                             <tr>
                                               <td class="text-center">{{ $no++ }}</td>
-                                              <td class="text-ledt">{{ $t->kode_pengeluaran_rutin }}</td>
+                                              <td class="text-left">{{ $t->kode_pengeluaran_rutin }}</td>
                                               <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
                                               <td>{{ $t->kategori_pengeluaran->kategori }}</td>
                                               @if($t->keterangan  == null)
@@ -233,18 +252,19 @@
                                               @endif                                           
                                               <td class="text-right">
                                                 {{ "Rp.".number_format($t->nominal).",-" }}
-                                                @php $total_pemasukan += $t->nominal; @endphp
+                                                @php $total_pengeluaran += $t->nominal; @endphp
                                               </td>
                                             </tr>                             
                                         @endforeach
 
                                         
+
                                       </tbody>
 
                                       <tfoot class="bg-info text-white font-weight-bold">
                                         <tr>
                                           <td colspan="5" class="text-bold text-left bg-secondary">TOTAL PEMASUKAN </td>
-                                          <td class="text-right bg-primary">{{ "Rp.".number_format($total_pemasukan).",-" }}</td>
+                                          <td class="text-right bg-primary">{{ "Rp.".number_format($total_pengeluaran +=  $total_pengeluaran_midtrans_rutin ).",-" }}</td>
                                           
                                           
                                         </tr>

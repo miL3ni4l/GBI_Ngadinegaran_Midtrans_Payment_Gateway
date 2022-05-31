@@ -34,9 +34,13 @@ class DetailPengeluaran extends Model
     {
     	return $this->hasMany('App\DetailPengeluaran');
     }
-    public function persembahan_pengeluaran_rutin()
+    public function persembahan_pengeluaran_rtn()
     {
     	return $this->hasManyThrough(PersembahanPengeluaranRutin::class);
+    }
+    public function persembahan_pengeluaran_khs()
+    {
+    	return $this->hasManyThrough(PersembahanPengeluaranKhusus::class);
     }
     
 	
