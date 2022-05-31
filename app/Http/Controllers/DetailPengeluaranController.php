@@ -11,12 +11,16 @@ use Illuminate\Support\Facades\DB;
 use App\Petugas;
 use App\Kategori;
 use App\KategoriPengeluaranRutin;
+use App\DetailKategori;
 use App\DetailPengeluaran;
 use App\PengeluaranRutin;
+use App\PengeluaranKhusus;
 use App\pemasukan_rutin;
 use App\PersembahanPengeluaranRutin;
 use App\PersembahanPengeluaranKhusus;
 use App\User;
+use App\Donation;
+use App\PemasukanKhusus;
 
 use Hash;
 use Auth;
@@ -67,8 +71,10 @@ class DetailPengeluaranController extends Controller
                 $kategoris = DetailPengeluaran::orderBy('updated_at','desc')->get();   
             }
 
+            $persembahan_pengeluaran_rutin = PersembahanPengeluaranRutin::get();
             $pemasukan_rutins = pemasukan_rutin::all();
             $kategori = DetailPengeluaran::get();
+            $kategori_khusus = DetailKategori::where('jenis','Khusus' )->get();
             $pemasukan_rutin = pemasukan_rutin::get();
             $kategori_pengeluaran= KategoriPengeluaranRutin::orderBy('updated_at','desc')->get();    
             $seluruh_pemasukan = DB::table('pemasukan_rutin')->select(DB::raw('SUM(nominal) as total'))
@@ -78,7 +84,7 @@ class DetailPengeluaranController extends Controller
             $total = $seluruh_pemasukan->total;
 
             
-            return view('detail_pengeluaran.index', compact('datas','kategori', 'kategoris', 'pemasukan_rutins','pemasukan_rutin', 'total' , 'seluruh_pemasukan','kategori_pengeluaran'));
+            return view('detail_pengeluaran.index', compact('persembahan_pengeluaran_rutin','datas','kategori', 'kategoris', 'kategori_khusus','pemasukan_rutins','pemasukan_rutin', 'total' , 'seluruh_pemasukan','kategori_pengeluaran'));
 
     }
 
@@ -213,10 +219,21 @@ class DetailPengeluaranController extends Controller
         $pemasukan_rutin = pemasukan_rutin::all();
         $pemasukan_rutins  = pemasukan_rutin::count(); 
 
+
+        $kategori_khusus = DetailKategori::orderBy('kategori','asc')
+        ->where('jenis', 'Khusus')
+        ->get();
+
         $persembahan_pengeluaran_rutin = PersembahanPengeluaranRutin::all();
         $persembahan_pengeluaran_rutins  = PersembahanPengeluaranRutin::count(); 
         $persembahan_pengeluaran_khusus = PersembahanPengeluaranKhusus::all();
         $persembahan_pengeluaran_khususs  = PersembahanPengeluaranKhusus::count(); 
+
+        $pengeluaran_khusus = PengeluaranKhusus::get();   
+        $persembahan_pengeluaran_khusus = PersembahanPengeluaranKhusus::get();  
+
+
+
 
         if($_GET['kategori'] == ""){
             $pemasukan_rutin = PengeluaranRutin::whereDate('tanggal','>=',$_GET['dari'])
@@ -235,14 +252,113 @@ class DetailPengeluaranController extends Controller
             ->get();
         }  
         return view('detail_pengeluaran.index',['pemasukan_rutin' => $pemasukan_rutin, 'kategori' => $kategori, 'datas' => $datas,
+        'pengeluaran_khusus' => $pengeluaran_khusus, 'persembahan_pengeluaran_khusus' => $persembahan_pengeluaran_khusus, 
         'details' => $details,'kategoris'=>$kategoris ,'pemasukan_rutins'=>$pemasukan_rutins, 
-        'kategori_pengeluaran'=> $kategori_pengeluaran,
+        'kategori_pengeluaran'=> $kategori_pengeluaran, 'kategori_khusus'=>$kategori_khusus,
         'persembahan_pengeluaran_rutin' => $persembahan_pengeluaran_rutin, 'persembahan_pengeluaran_khusus' => $persembahan_pengeluaran_khusus
     
     ]);
 
 
     }
+
+
+    public function khusus_pengeluaran()
+    {   
+        //Akses Dari Luar 
+        if(Auth::user() == '') {
+            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+            return redirect()->to('login');
+        } 
+
+        //AKUN BELUM TERDAFTAR DI TABEL PETUGAS
+        if(Auth::user()->petugas == null) 
+        {
+            Session::flash('message', 'Anda Belum Ditambahkan Sebagai Petugas !');
+            Session::flash('message_type', 'danger');
+            return redirect()->to('/home');
+        } 
+        
+        //SUDAH TERDAFTAR SEBAGAI PETUGAS
+        if(Auth::user()->level == 'bendahara')
+        { 
+            $datas = DetailKategori::orderBy('updated_at','desc')->where('petugas_id', Auth::user()->petugas->id)->get();                         
+        } 
+        else 
+        {               
+            $datas = DetailKategori::orderBy('updated_at','desc')->get();
+        }
+
+        $kategoris_pemasukan= Kategori::orderBy('updated_at','desc')->get();  
+        $details = Kategori::orderBy('updated_at','desc')->get(); 
+        $kategoris = DetailPengeluaran::all(); 
+        $kategori = DetailPengeluaran::orderBy('kategori','asc')->get();
+        $kategori_rutin = DetailKategori::orderBy('kategori','asc')
+        ->where('jenis', 'Rutin')
+        ->get();
+        $kategori_khusus = DetailKategori::orderBy('kategori','asc')
+        ->where('jenis', 'Khusus')
+        ->get();
+        $persembahan = Donation::all();
+        $persembahan = Donation::orderBy('updated_at','desc')
+        ->where('status','success')->get();
+        $persembahans  = Donation::count(); 
+        $pemasukan_rutin = pemasukan_rutin::all();
+        $pemasukan_rutins  = pemasukan_rutin::count(); 
+        $pemasukan_khusus = PemasukanKhusus::all();
+        $pemasukan_khususs  = PemasukanKhusus::count(); 
+        $midtrans = Donation::all();
+        $midtranss  = Donation::count(); 
+        $kategori_pengeluaran= KategoriPengeluaranRutin::orderBy('updated_at','desc')->get();   
+        
+        $persembahan_pengeluaran_rutin = PersembahanPengeluaranRutin::all();
+        $persembahan_pengeluaran_rutins  = PersembahanPengeluaranRutin::count(); 
+        $persembahan_pengeluaran_khusus = PersembahanPengeluaranKhusus::all();
+        $persembahan_pengeluaran_khususs  = PersembahanPengeluaranKhusus::count(); 
+
+        if($_GET['kategori'] == ""){
+            $pengeluaran_khusus = PengeluaranKhusus::whereDate('tanggal','>=',$_GET['dari'])
+            ->where('status', '1')
+            ->whereDate('tanggal','<=',$_GET['sampai'])
+            ->get();
+            $persembahan_pengeluaran_khusus = PersembahanPengeluaranKhusus::whereDate('tanggal','>=',$_GET['dari'])
+            ->where('status', '1')
+            ->whereDate('tanggal','<=',$_GET['sampai'])
+            ->get();
+        }
+        else{
+            $pengeluaran_khusus = PengeluaranKhusus::where('kategori_id',$_GET['kategori'])
+            ->where('status', '1')
+            ->whereDate('tanggal','>=',$_GET['dari'])
+            ->whereDate('tanggal','<=',$_GET['sampai'])
+            ->get();   
+            $persembahan_pengeluaran_khusus = PersembahanPengeluaranKhusus::where('kategori_id',$_GET['kategori'])
+            ->where('status', '1')
+            ->whereDate('tanggal','>=',$_GET['dari'])
+            ->whereDate('tanggal','<=',$_GET['sampai'])
+            ->get();  
+
+        }  
+        return view('detail_pengeluaran.index',['kategoris_pemasukan'=> $kategoris_pemasukan,  
+        'pengeluaran_khusus' => $pengeluaran_khusus, 'persembahan_pengeluaran_khusus' => $persembahan_pengeluaran_khusus, 
+        'persembahan' => $persembahan,  'persembahans' => $persembahans, 
+        'pemasukan_rutin' => $pemasukan_rutin, 'pemasukan_khusus' => $pemasukan_khusus,
+        'kategori_khusus' => $kategori_khusus, 'kategori_rutin' => $kategori_rutin,
+        'kategori_pengeluaran'=> $kategori_pengeluaran,
+        'datas' => $datas,'details' => $details,'kategoris'=>$kategoris ,'kategori'=>$kategori ,'kategori_khusus'=>$kategori_khusus ,'pemasukan_rutins'=>$pemasukan_rutins,
+        'persembahan_pengeluaran_rutin' => $persembahan_pengeluaran_rutin, 'persembahan_pengeluaran_khusus' => $persembahan_pengeluaran_khusus
+    ]);
+
+
+    }
+
+
+
+
+
+
+
+
 
     //MENGUPADTE KATEGORI
     public function edit($id)

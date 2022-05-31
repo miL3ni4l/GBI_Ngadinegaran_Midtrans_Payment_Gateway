@@ -26,10 +26,16 @@
                       <a class="dropdown-item" href="{{ route('detail_pengeluaran.create') }}">Detail Kategori</a> 
                     </div>
                   </div>
+
                   <div class="btn-group">
-                    <button  data-toggle="modal" data-target="#modal-filter"  type="button" class="btn btn-success">
-                    <i class="fas fa-filter  text-center"></i>
-                    </button>
+                                        <a type="button" class="btn btn-success">  <i class="fas fa-filter  text-center"></i></a>
+                                        <button type="button" class="btn btn-success dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                                          <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <div class="dropdown-menu" role="menu">
+                                          <a data-toggle="modal" data-target="#modal-filter"  type="button" >Kategori Rutin</a>
+                                          <a data-toggle="modal" data-target="#modal-filter1"  type="button" >Kategori Khusus</a>
+                                        </div>
                   </div>
               
                   <div class="btn-group">
@@ -181,7 +187,7 @@
                                                     @endphp
                                                   @else
                                                     @php
-                                                      $katt = DB::table('detail_pengeluaran')->where('id',$id_kategori)->first();
+                                                      $katt = DB::table('detail_kategori')->where('id',$id_kategori)->first();
                                                       $kat = $katt->kategori
                                                     @endphp
                                                   @endif
@@ -216,7 +222,8 @@
                                       <tbody>
                                         @php
                                         $no = 1;
-                                        $total_pengeluaran = 0;
+                                        $total_pengeluaran_rutin = 0;
+                                        $total_pengeluaran_khusus = 0;
                                         $total_pengeluaran_midtrans_rutin = 0;
                                         $total_pengeluaran_midtrans_khusus = 0;
                                         @endphp
@@ -239,6 +246,24 @@
                                             </tr>                             
                                         @endforeach
 
+                                        @foreach($persembahan_pengeluaran_khusus as $t)
+                                            <tr>
+                                              <td class="text-center">{{ $no++ }}</td>
+                                              <td class="text-left">{{ $t->kode_persembahan_pengeluaran_khusus }}</td>
+                                              <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
+                                              <td>{{ $t->detail_kategori->kategori}}</td>
+                                              @if($t->keterangan  == null)
+                                                    <td class ="text-center"> -</td>
+                                              @else
+                                                    <td>{{ $t->keterangan }}</td>
+                                              @endif                                           
+                                              <td class="text-right">
+                                                {{ "Rp.".number_format($t->nominal).",-" }}
+                                                @php $total_pengeluaran_midtrans_khusus += $t->nominal; @endphp
+                                              </td>
+                                            </tr>                             
+                                        @endforeach
+
                                         @foreach($pemasukan_rutin as $t)
                                             <tr>
                                               <td class="text-center">{{ $no++ }}</td>
@@ -252,7 +277,28 @@
                                               @endif                                           
                                               <td class="text-right">
                                                 {{ "Rp.".number_format($t->nominal).",-" }}
-                                                @php $total_pengeluaran += $t->nominal; @endphp
+                                                @php $total_pengeluaran_rutin += $t->nominal; @endphp
+                                              </td>
+                                            </tr>                             
+                                        @endforeach
+
+
+                                        
+
+                                        @foreach($pengeluaran_khusus as $t)
+                                            <tr>
+                                              <td class="text-center">{{ $no++ }}</td>
+                                              <td class="text-left">{{ $t->kode_pemasukan_rutin }}</td>
+                                              <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
+                                              <td>{{ $t->detail_kategori->kategori }}</td>
+                                              @if($t->keterangan  == null)
+                                                    <td class ="text-center"> -</td>
+                                              @else
+                                                    <td>{{ $t->keterangan }}</td>
+                                              @endif                                           
+                                              <td class="text-right">
+                                                {{ "Rp.".number_format($t->nominal).",-" }}
+                                                @php $total_pengeluaran_khusus += $t->nominal; @endphp
                                               </td>
                                             </tr>                             
                                         @endforeach
@@ -264,7 +310,7 @@
                                       <tfoot class="bg-info text-white font-weight-bold">
                                         <tr>
                                           <td colspan="5" class="text-bold text-left bg-secondary">TOTAL PEMASUKAN </td>
-                                          <td class="text-right bg-primary">{{ "Rp.".number_format($total_pengeluaran +=  $total_pengeluaran_midtrans_rutin ).",-" }}</td>
+                                          <td class="text-right bg-primary">{{ "Rp.".number_format($total_pengeluaran_rutin +=  $total_pengeluaran_khusus +=  $total_pengeluaran_midtrans_rutin   +=  $total_pengeluaran_midtrans_khusus ).",-" }}</td>
                                           
                                           
                                         </tr>
@@ -414,7 +460,7 @@
         <div class="modal-content bg-gradient-white">
 
           <div class="modal-header">
-            <h4 class="modal-title" id="modal-title-notification">Filter Kategori Pengeluaran</h4>
+            <h4 class="modal-title" id="modal-title-notification">Filter Kategori Pengeluaran Rutin</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
@@ -468,6 +514,65 @@
       </div>
   </div>
 
+
+  
+                    <!-- MODAL FILTER -->
+                    <div class="modal fade" id="modal-filter1" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
+                      <div class="modal-dialog modal-default modal-dialog-centered modal-" role="document">
+                        <div class="modal-content bg-gradient-white">
+                
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="modal-title-notification">Filter Kategori Pengeluaran Khusus</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">×</span>
+                            </button>
+                          </div>
+                
+                          <div class="modal-body">
+                          <form method="GET" action="{{ route('khusus_pengeluaran') }}">
+                                {{ csrf_field() }}                                        
+                                  <div class="form-group col-md-12">
+                                    <div class="form-group">
+                                      <label>Dari Tanggal</label>
+                                      <input class="form-control datepicker2"  placeholder="Dari Tanggal" type="date" required="required" name="dari" value="<?php if(isset($_GET['dari'])){echo $_GET['dari'];} ?>">
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group col-md-12">
+                                    <div class="form-group">
+                                      <label>Sampai Tanggal</label>
+                                      <input class="form-control datepicker2"  placeholder="Sampai Tanggal" type="date" required="required" name="sampai" value="<?php if(isset($_GET['sampai'])){echo $_GET['sampai'];} ?>">
+                                    </div>
+                                  </div>
+
+
+                                  <div class="form-group col-md-12">
+                                    <div class="form-group">
+                                      <label>Cari Persembahan Rutin</label>
+                                      <select class="form-control" name="kategori">
+                                      <option value="">-- SEMUA KATEGORI PENGELUARAN --</option>
+                                        @foreach($kategori_khusus as $k)
+                                        <option <?php 
+                                        if(isset($_GET['kategori']))
+                                        { if($_GET['kategori'] == $k->id){echo "selected='selected'";} } ?> value="{{ $k->id }}">{{ $k->kategori }}</option>
+                                        @endforeach
+                                      </select>
+                                    </div>
+                                  </div>
+                                  
+                                  <div class="form-group col-md-12 ">
+                                    <div class="form-group float-right">
+                                        <input type="submit" class="btn btn-success" value="Tampilkan" style="margin-top: 25px col-md-5">
+                                    </div>
+                                  </div>
+
+
+                        </form>
+                          </div>
+                
+                        </div>
+                      </div>
+                    </div>
 @endsection
 
 @section('scripts')
@@ -485,6 +590,7 @@
               e.preventDefault();
             
               $('#modal-filter').modal();
+              $('#modal-filter1').modal();
           })
   
       })

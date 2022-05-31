@@ -88,7 +88,7 @@ Route::get('/laporan/excel', 'LaporanDetailPengeluaranController@laporan_excel')
 Route::get('/laporan/pdf', 'LaporanDetailPengeluaranController@laporan_pdf')->name('laporan_pdf');
 Route::get('/laporan/print', 'LaporanDetailPengeluaranController@laporan_print')->name('laporan_print');
 Route::get('/rutin_pengeluaran', 'DetailPengeluaranController@rutin_pengeluaran')->name('rutin_pengeluaran');
-
+Route::get('/khusus_pengeluaran', 'DetailPengeluaranController@khusus_pengeluaran')->name('khusus_pengeluaran');
 
 //KATEGORI PEMASUKAN
 Route::resource('kategori', 'KategoriController');
