@@ -30,6 +30,11 @@ class DetailKategori extends Model
     {
     	return $this->hasManyThrough(Donation::class);
     }
+
+    public function persembahan_pengeluaran()
+    {
+    	return $this->hasManyThrough(PersembahanPengeluaranKhusus::class);
+    }
     public function pemasukan_khusus()
     {
     	return $this->hasManyThrough(PemasukanKhusus::class);
