@@ -210,7 +210,7 @@ class PrsmbhnPnglrnRtnController extends Controller
         $getRow = PersembahanPengeluaranRutin::orderBy('id', 'DESC')->get();
         $rowCount = $getRow->count();
         $lastId = $getRow->first();
-        $kode = "TK2$tahun";
+        $kode = "TK1$tahun";
         // $kode = "TK1$tahun-00001";
         // if ($rowCount > 0) { 
         //     if ($lastId->id < 9) {

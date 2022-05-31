@@ -221,27 +221,24 @@
                                         @endphp
 
                                         @foreach($pemasukan_rutin as $t)
-                                    
                                             <tr>
                                               <td class="text-center">{{ $no++ }}</td>
                                               <td class="text-ledt">{{ $t->kode_pengeluaran_rutin }}</td>
                                               <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
                                               <td>{{ $t->kategori_pengeluaran->kategori }}</td>
-
                                               @if($t->keterangan  == null)
                                                     <td class ="text-center"> -</td>
                                               @else
                                                     <td>{{ $t->keterangan }}</td>
-                                              @endif
-                                              
+                                              @endif                                           
                                               <td class="text-right">
                                                 {{ "Rp.".number_format($t->nominal).",-" }}
                                                 @php $total_pemasukan += $t->nominal; @endphp
                                               </td>
-
-                                            </tr>
-                              
+                                            </tr>                             
                                         @endforeach
+
+                                        
                                       </tbody>
 
                                       <tfoot class="bg-info text-white font-weight-bold">
