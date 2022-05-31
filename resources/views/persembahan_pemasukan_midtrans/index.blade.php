@@ -41,51 +41,6 @@
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
-                        
-    <div class="content-header">
-                          <div class="container-fluid">
-                            <div class="row">
-
-                                <div class="col-12 col-sm-6 col-md-6">
-                                  <div class="info-box">
-                                    <span class="info-box-icon bg-info elevation-1"><i class="fas fa-caret-up"></i></span>
-
-                                    <div class="info-box-content">
-                                      <h6 class="info-box-text">Total Volume </h6>
-                                        <i>Month to Date</i>
-                                      <span class="info-box-number">
-
-                                        <h5>{{ "Rp. ".number_format($total_pemasukan_bulan_ini)." ,-" }}</h5>
-                                      
-                                      </span>
-                                    </div>
-  
-                                  </div>
-
-                                </div>
-
-                                <div class="col-12 col-sm-6 col-md-6">
-                                  <div class="info-box">
-                                    <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
-
-                                    <div class="info-box-content">
-                                      <h6 class="info-box-text">Total Transaction </h6>
-                                        <i>Month to Date</i>
-                                      <span class="info-box-number">
-
-                                        <h5>{{$persembahan->where('status', 'success')->count()}}</h5>
-                                      
-                                      </span>
-                                    </div>
-  
-                                  </div>
-
-                                </div>
-                              
-
-                            </div>
-                          </div>       
-    </div>
 
     @if(isset ($_GET['kategori']))
                       <section class="content-header">
@@ -231,6 +186,218 @@
                       </section>
     @endif
 
+    <div class="content-header">
+       <div class="container-fluid">
+          <div class="row">
+                <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-header">
+                      <h5 class="card-title">Grafik Midtrans Payment</h5>
+
+                      <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                      <div class="row">
+
+                        <div class="col-md-6 col-sm-6 col-12 ">
+                            <div class="card col-12"  >
+                              <p class="text-center">
+                                <strong>Grafik <b>Per Bulan</b> Tahun {{date('Y')}}</strong>
+                              </p>
+                              <div class="chart">
+                                <canvas id="grafik1"></canvas>
+                              </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 col-12 ">
+                            <div class="card col-12"  >
+                              <p class="text-center">
+                                <strong>Grafik <b>Per Kategori</b> Bulan {{date('M,Y')}}</strong>
+                              </p>
+
+                              <div class="chart">
+                                <canvas id="grafik2"></canvas>
+                              </div>
+                            </div>
+                        </div>
+                        
+                        <!-- /.col -->
+                        <!-- <div class="col-md-4">
+                          <p class="text-center">
+                            <strong>Goal Completion</strong>
+                          </p>
+                          <div class="progress-group">
+                            Add Products to Cart
+                            <span class="float-right"><b>160</b>/200</span>
+                            <div class="progress progress-sm">
+                              <div class="progress-bar bg-primary" style="width: 80%"></div>
+                            </div>
+                          </div>
+                          <div class="progress-group">
+                            Complete Purchase
+                            <span class="float-right"><b>310</b>/400</span>
+                            <div class="progress progress-sm">
+                              <div class="progress-bar bg-danger" style="width: 75%"></div>
+                            </div>
+                          </div>
+                          <div class="progress-group">
+                            <span class="progress-text">Visit Premium Page</span>
+                            <span class="float-right"><b>480</b>/800</span>
+                            <div class="progress progress-sm">
+                              <div class="progress-bar bg-success" style="width: 60%"></div>
+                            </div>
+                          </div>
+                          <div class="progress-group">
+                            Send Inquiries
+                            <span class="float-right"><b>250</b>/500</span>
+                            <div class="progress progress-sm">
+                              <div class="progress-bar bg-warning" style="width: 50%"></div>
+                            </div>
+                          </div>
+                        </div> -->
+
+                      </div>
+                      <!-- /.row -->
+                    </div>
+                    <!-- ./card-body -->
+                    <div class="card-footer">
+                      <div class="row">
+                        <div class="col-sm-3 col-6">
+                          <div class="description-block border-right">
+                            <h5 class="description-percentage text-success">{{$persembahan->where('status', 'success')->count()}}</h5>
+                            <span>Success</span>
+                          </div>
+                          <!-- /.description-block -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-3 col-6">
+                          <div class="description-block border-right">
+                          <h5 class="description-percentage text-warning">{{$persembahan->where('status', 'pending')->count()}}</h5>
+                            <span>Pending</span>
+                          </div>
+                          <!-- /.description-block -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-3 col-6">
+                          <div class="description-block border-right">
+                          <h5 class="description-percentage text-danger">{{$persembahan->where('status', 'failed')->count()}}</h5>
+                            <span>Failed</span>
+                          </div>
+                          <!-- /.description-block -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-3 col-6">
+                          <div class="description-block">
+                          <h5 class="description-percentage text-dark">{{$persembahan->where('status', 'expired')->count()}}</h5>
+                            <span>Expired</span>
+                          </div>
+                          <!-- /.description-block -->
+                        </div>
+                      </div>
+                      <!-- /.row -->
+                    </div>
+                    <!-- /.card-footer -->
+                  </div>
+                  <!-- /.card -->
+                </div>
+                <!-- /.col -->
+          </div>
+        </div>
+    </div>
+
+    <!-- <div class="content-header">
+                          <div class="container-fluid">
+                            <div class="row">
+
+                            <div class="col-md-6 col-sm-6 col-12 ">
+          
+                                <div class="card col-12"  >
+                                          <div class="card-header border-0">
+                                            <div class="d-flex justify-content-between">
+                                            <h5  class="position-center ">Grafik <b>Per Bulan</b> Tahun {{date('Y')}} </h5>
+                                            </div>
+                                          </div>
+
+                                          <div class="position-relative ">
+                                            <canvas id="grafik1"></canvas>
+                                          </div>
+                                    
+                                </div>                     
+                              </div>
+
+                              <div class="col-md-6 col-sm-6 col-12 ">
+          
+                                <div class="card col-12"  >
+                                          <div class="card-header border-0">
+                                            <div class="d-flex justify-content-between">
+                                            <h5  class="position-center ">Grafik <b>Per Bulan</b> Tahun {{date('Y')}} </h5>
+                                            </div>
+                                          </div>
+
+                                          <div class="position-relative ">
+                                            <canvas id="grafik2"></canvas>
+                                          </div>
+                                    
+                                </div>                     
+                              </div>
+
+                            </div>
+                          </div>       
+    </div> -->
+                        
+    <!-- <div class="content-header">
+                          <div class="container-fluid">
+                            <div class="row">
+
+                                <div class="col-12 col-sm-6 col-md-6">
+                                  <div class="info-box">
+                                    <span class="info-box-icon bg-info elevation-1"><i class="fas fa-caret-up"></i></span>
+
+                                    <div class="info-box-content">
+                                      <h6 class="info-box-text">Total Volume </h6>
+                                        <i>Month to Date</i>
+                                      <span class="info-box-number">
+
+                                        <h5>{{ "Rp. ".number_format($total_pemasukan_bulan_ini)." ,-" }}</h5>
+                                      
+                                      </span>
+                                    </div>
+  
+                                  </div>
+
+                                </div>
+
+                                <div class="col-12 col-sm-6 col-md-6">
+                                  <div class="info-box">
+                                    <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+
+                                    <div class="info-box-content">
+                                      <h6 class="info-box-text">Total Transaction </h6>
+                                        <i>Month to Date</i>
+                                      <span class="info-box-number">
+
+                                        <h5>{{$persembahan->where('status', 'success')->count()}}</h5>
+                                      
+                                      </span>
+                                    </div>
+  
+                                  </div>
+
+                                </div>
+                              
+
+                            </div>
+                          </div>       
+    </div> -->
 
     <section class="content">
       <div class="container-fluid">
@@ -238,7 +405,7 @@
           <div class="col-12">
               <div class="card">
                     <div class="card-header">
-                      <h3 class="card-title">Data Midtrans Payment</h3>
+                      <h3 class="card-title">Data Pemasukan</h3>
                     </div>
                     <div class="card">
                     </div>
@@ -359,6 +526,196 @@
                         </div>
                       </div>
     </div>
+
+
+
+
+
+<script>
+  var randomScalingFactor = function(){ return Math.round(Math.random()*500)};
+
+  var barChartData = {
+    labels : ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"],
+    datasets : [
+    {
+      label: 'Pemasukan',
+      fillColor : "rgb(52, 152, 219)",
+      strokeColor : "rgb(37, 116, 169)",
+      highlightFill: "rgba(220,220,220,0.75)",
+      highlightStroke: "rgba(220,220,220,1)",
+      data : [
+      <?php
+      for($bulan=1;$bulan<=12;$bulan++){
+        $tahun = date('Y');
+        $pemasukan_perbulan = DB::table('persembahan')
+        ->select(DB::raw('SUM(amount) as total'))
+        ->where('status','success')
+        ->whereMonth('updated_at',$bulan)
+        ->whereYear('updated_at',$tahun)
+        ->first();
+        // $pemasukan_perbulan_khusus = DB::table('pemasukan_khusus')
+        // ->select(DB::raw('SUM(nominal) as total'))
+        // ->where('status','1')
+        // ->whereMonth('tanggal',$bulan)
+        // ->whereYear('tanggal',$tahun)
+        // ->first();
+        // $pemasukan_perbulan_persembahan = DB::table('persembahan')
+        // ->select(DB::raw('SUM(amount) as total'))
+        // ->where('status','success')
+        // ->whereMonth('updated_at',$bulan)
+        // ->whereYear('updated_at',$tahun)
+        // ->first();
+
+        $total = $pemasukan_perbulan->total;
+        if($pemasukan_perbulan->total == ""){
+          echo "0,";
+        }else{
+          echo $total.",";
+        }
+      }
+      ?>
+      ]
+    },
+    {
+      label: 'Pengeluaran',
+      fillColor : "rgb(171, 183, 183)",
+      strokeColor : "rgb(149, 165, 166)",
+      highlightFill : "rgba(151,187,205,0.75)",
+      highlightStroke : "rgba(151,187,205,1)",
+      data : [
+      <?php
+      for($bulan=1;$bulan<=12;$bulan++){
+        $tahun = date('Y');
+
+        $persembahan_pengeluaran_rutin = DB::table('persembahan_pengeluaran_rutin')
+        ->select(DB::raw('SUM(nominal) as total'))
+        ->where('status','1')
+        ->whereMonth('tanggal',$bulan)
+        ->whereYear('tanggal',$tahun)
+        ->first();
+
+        $persembahan_pengeluaran_khusus = DB::table('persembahan_pengeluaran_khusus')
+        ->select(DB::raw('SUM(nominal) as total'))
+        ->where('status','1')
+        ->whereMonth('tanggal',$bulan)
+        ->whereYear('tanggal',$tahun)
+        ->first();
+        
+        $total =  $persembahan_pengeluaran_rutin->total += $persembahan_pengeluaran_khusus->total;
+        if($total == ""){
+          echo "0,";
+        }else{
+          echo $total.",";
+        }
+      }
+      ?>
+      ]
+    }
+    ]
+
+  }
+
+  var barChartData4 = {
+    labels : [
+    @foreach($kategori as $k)
+    "{{ $k->kategori }}",
+    @endforeach
+    ],
+    datasets : [
+    {
+      label: 'Pemasukan',
+      fillColor : "rgb(52, 152, 219)",
+      strokeColor : "rgb(37, 116, 169)",
+      highlightFill: "rgba(220,220,220,0.75)",
+      highlightStroke: "rgba(220,220,220,1)",
+      data : [
+      @foreach($kategori as $k)
+      <?php 
+      $id_kategori = $k->id;
+      $pemasukan_perbulan_persembahan = DB::table('persembahan')
+      ->select(DB::raw('SUM(amount) as total'))
+      ->where('donation_type',$id_kategori)
+      ->where('status','success')
+      ->first();
+
+
+      $total = $pemasukan_perbulan_persembahan->total;
+      if($pemasukan_perbulan_persembahan->total == ""){
+        echo "0,";
+      }else{
+        echo $total.",";
+      }
+      ?>
+      @endforeach
+      ]
+    },{
+      label: 'Pengeluaran',
+      fillColor : "rgb(171, 183, 183)",
+      strokeColor : "rgb(149, 165, 166)",
+      highlightFill : "rgba(151,187,205,0.75)",
+      highlightStroke : "rgba(254, 29, 29, 0)", 
+      data : [
+      @foreach($kategori as $k)
+      <?php 
+      $id_kategori = $k->id;
+      $persembahan_pengeluaran_rutin = DB::table('persembahan_pengeluaran_rutin')
+      ->select(DB::raw('SUM(nominal) as total'))
+      ->where('kategori_id',$id_kategori)
+      ->where('status','1')
+      ->first();
+      $persembahan_pengeluaran_khusus = DB::table('persembahan_pengeluaran_khusus')
+      ->select(DB::raw('SUM(nominal) as total'))
+      ->where('kategori_id',$id_kategori)
+      ->where('status','1')
+      ->first();
+
+      $total = $persembahan_pengeluaran_rutin->total += $persembahan_pengeluaran_khusus->total;
+      if($persembahan_pengeluaran_rutin->total == ""){
+        echo "0,";
+      }else{
+        echo $total.",";
+      }
+      ?>
+
+      @endforeach
+      ]
+    }
+    ]
+
+  }
+
+  window.onload = function()
+  {
+
+    var ctx = document.getElementById("grafik1").getContext("2d");
+    window.myBar = new Chart(ctx).Bar(barChartData, {
+     responsive : true,
+     animation: true,
+     barValueSpacing : 5,
+     barDatasetSpacing : 1,
+     tooltipFillColor: "rgba(0,0,0,0.8)",
+     multiTooltipTemplate: "<%= datasetLabel %> - Rp.<%= value.toLocaleString() %>,-"
+   });
+
+   var ctx = document.getElementById("grafik2").getContext("2d");
+    window.myBar = new Chart(ctx).Bar(barChartData4, {
+     responsive : true,
+     animation: true,
+     barValueSpacing : 5,
+     barDatasetSpacing : 1,
+     tooltipFillColor: "rgba(0,0,0,0.8)",
+     multiTooltipTemplate: "<%= datasetLabel %> - Rp.<%= value.toLocaleString() %>,-"
+   });
+
+  }
+
+</script>
+
+
+
+
+
+
 
 @endsection
 

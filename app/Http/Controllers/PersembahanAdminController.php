@@ -69,7 +69,10 @@ class PersembahanAdminController extends Controller
                 $petugas = Petugas::orderBy('updated_at','desc')->get();
                 $profil = Profil::orderBy('updated_at','desc')->get();
                 $pendeta = Pendeta::orderBy('updated_at','desc')->get();
-                $persembahan = Donation::orderBy('updated_at','desc')->get();
+                $persembahan = Donation::orderBy('updated_at','desc')
+                ->whereMonth('created_at',$bulan)
+                ->whereYear('created_at',$tahun)
+                ->get();
             
                 return view('persembahan_pemasukan_midtrans.index',array('total_pemasukan_bulan_ini' => $total_pemasukan_bulan_ini,'ibadah' => $ibadah,'petugas' => $petugas,'profil' => $profil,'pendeta' => $pendeta,'persembahan' => $persembahan, 'kategori' => $kategori));
 
