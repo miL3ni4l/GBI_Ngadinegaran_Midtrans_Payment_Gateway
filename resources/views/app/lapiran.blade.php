@@ -193,15 +193,39 @@
                                         
                                       </thead>
 
+
                                       <tbody>
                                           @php
                                           $no = 1;
+                                          $total_pemasukan_midtrans = 0;
+                                          $total_pengeluaran_midtrans_rutin = 0;
+                                          $total_pengeluaran_midtrans_khusus = 0;
                                           $total_pemasukan_rutin = 0;
                                           $total_pemasukan_khusus = 0;
                                           $total_pengeluaran_khusus = 0;
                                           $total_pengeluaran_rutin = 0;
                                         
                                           @endphp
+
+                                          <!-- MIDTRANS PEMASUKAN -->
+                                          @foreach($persembahan as $t)
+                                          <tr>
+                                            <td class="text-center">{{ $no++ }}</td>
+                                            <td class="text-left">{{ $t->transaction_id }}</td>
+                                            <td class="text-center">{{ date('d-m-Y', strtotime($t->updated_at )) }}</td>
+                                            <td class="text-left">{{ $t->detail_kategori->kategori }}</td>
+                                            <td class="text-left">Midtrans Payment</td>
+                                            <td class="text-right">{{ "Rp.".number_format($t->amount).",-" }}</td>
+                                            @php $total_pemasukan_midtrans += $t->amount; @endphp
+                                            <td class="text-left"></td>
+                                          </tr>
+                                          @endforeach
+                                          <tr>
+                                            <td colspan="5" class="text-bold text-left bg-green">PEMASUKAN MIDTRANS PAYMENT </td>
+                                            <td class="text-right bg-green"><b>{{ "Rp.".number_format($total_pemasukan_midtrans).",-" }}</b></td>
+                                            <td class="text-left bg-green"></td>
+                                          </tr>
+
 
                                           <!-- PEMASUKAN RUTIN -->
                                           @foreach($pemasukan_rutin as $t)
@@ -220,6 +244,44 @@
                                             <td colspan="5" class="text-bold text-left bg-green">PEMASUKAN RUTIN </td>
                                             <td class="text-right bg-green"><b>{{ "Rp.".number_format($total_pemasukan_rutin).",-" }}</b></td>
                                             <td class="text-left bg-green"></td>
+                                          </tr>
+
+                                          <!-- PEASUKAN KKHUSUS -->
+                                          @foreach($pemasukan_khusus as $t)
+                                          <tr>
+                                            <td class="text-center">{{ $no++ }}</td>
+                                            <td class="text-left">{{ $t->kode_pemasukan_khusus }}</td>
+                                            <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
+                                            <td class="text-left">{{ $t->detail_kategori->kategori }}</td>
+                                            <td class="text-left">{{ $t->kas->kas }}</td>
+                                            <td class="text-right">{{ "Rp.".number_format($t->nominal).",-" }}</td>
+                                            @php $total_pemasukan_khusus += $t->nominal; @endphp
+                                            <td class="text-left"></td>
+                                          </tr>
+                                          @endforeach
+                                          <tr>
+                                            <td colspan="5" class="text-bold text-left bg-green">PEMASUKAN KHUSUS </td>
+                                            <td class="text-right bg-green"><b>{{ "Rp.".number_format($total_pemasukan_khusus).",-" }}</b></td>
+                                            <td class="text-left bg-green"></td>
+                                          </tr>
+
+                                          <!-- PENGELUARAN MIDTRANS RUTIN -->
+                                          @foreach($persembahan_pengeluaran_rutin as $t)
+                                          <tr>
+                                            <td class="text-center">{{ $no++ }}</td>
+                                            <td class="text-left">{{ $t->kode_persembahan_pengeluaran_rutin }}</td>
+                                            <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
+                                            <td class="text-left">{{ $t->kategori_pengeluaran->kategori }}</td>
+                                            <td class="text-left">Midtrans Payment</td>
+                                            <td class="text-left"></td>
+                                            <td class="text-right">{{ "Rp.".number_format($t->nominal).",-" }}</td>
+                                            @php $total_pengeluaran_midtrans_rutin += $t->nominal; @endphp
+                                          </tr>
+                                          @endforeach
+                                          <tr>
+                                            <td colspan="5" class="text-bold text-left bg-yellow ">PENGELUARAN  MIDTRANS RUTIN </td>
+                                            <td class="text-left bg-yellow"></td>
+                                            <td class="text-right bg-yellow"><b>{{ "Rp.".number_format($total_pengeluaran_midtrans_rutin).",-" }}</b></td>
                                           </tr>
 
                                           <!-- PENGELUARAN RUTIN -->
@@ -241,24 +303,25 @@
                                             <td class="text-right bg-yellow"><b>{{ "Rp.".number_format($total_pengeluaran_rutin).",-" }}</b></td>
                                           </tr>
 
-                                          <!-- PEASUKAN KKHUSUS -->
-                                          @foreach($pemasukan_khusus as $t)
+                                          <!-- PENGELUARAN MIDTRANS KHUSUS -->
+                                          @foreach($persembahan_pengeluaran_khusus as $t)
                                           <tr>
                                             <td class="text-center">{{ $no++ }}</td>
-                                            <td class="text-left">{{ $t->kode_pemasukan_khusus }}</td>
+                                            <td class="text-left">{{ $t->kode_persembahan_pengeluaran_khusus }}</td>
                                             <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
                                             <td class="text-left">{{ $t->detail_kategori->kategori }}</td>
-                                            <td class="text-left">{{ $t->kas->kas }}</td>
-                                            <td class="text-right">{{ "Rp.".number_format($t->nominal).",-" }}</td>
-                                            @php $total_pemasukan_khusus += $t->nominal; @endphp
+                                            <td class="text-left">Midtrans Payment</td>
                                             <td class="text-left"></td>
+                                            <td class="text-right">{{ "Rp.".number_format($t->nominal).",-" }}</td>
+                                            @php $total_pengeluaran_midtrans_khusus += $t->nominal; @endphp
                                           </tr>
                                           @endforeach
                                           <tr>
-                                            <td colspan="5" class="text-bold text-left bg-green">PEMASUKAN KHUSUS </td>
-                                            <td class="text-right bg-green"><b>{{ "Rp.".number_format($total_pemasukan_khusus).",-" }}</b></td>
-                                            <td class="text-left bg-green"></td>
+                                            <td colspan="5" class="text-bold text-left bg-yellow ">PENGELUARAN  MIDTRANS KHUSUS </td>
+                                            <td class="text-left bg-yellow"></td>
+                                            <td class="text-right bg-yellow"><b>{{ "Rp.".number_format($total_pengeluaran_midtrans_khusus).",-" }}</b></td>
                                           </tr>
+                                          
 
                                           <!-- PENGELUARAN KHUSUS -->
                                           @foreach($pengeluaran_khusus as $t)
@@ -285,7 +348,7 @@
                                       <tfoot class="bg-info text-white font-weight-bold">
                  
                                         <tr>
-                                        @php $total_pemasukan =  $total_pemasukan_rutin +=  $total_pemasukan_khusus; @endphp
+                                        @php $total_pemasukan =  $total_pemasukan_midtrans +=  $total_pemasukan_rutin +=  $total_pemasukan_khusus; @endphp
                                           <td colspan="5" class="text-bold text-left bg-secondary">TOTAL PEMASUKAN </td>
                                           <td class="text-left bg-primary"></td>
                                           <td class="text-right bg-primary">{{ "Rp.".number_format($total_pemasukan).",-" }}</td>
@@ -293,7 +356,7 @@
                                           
                                         </tr>
                                         <tr>
-                                        @php $total_pengeluaran =  $total_pengeluaran_khusus +=  $total_pengeluaran_rutin; @endphp
+                                        @php $total_pengeluaran = $total_pengeluaran_midtrans_rutin += $total_pengeluaran_midtrans_khusus += $total_pengeluaran_khusus +=  $total_pengeluaran_rutin; @endphp
                                           <td colspan="5" class="text-bold text-left bg-secondary">TOTAL PENGELUARAN</td>
                                           <td class="text-left bg-primary"></td>
                                           <td class="text-right bg-primary">{{ "Rp.".number_format($total_pengeluaran).",-" }}</td>

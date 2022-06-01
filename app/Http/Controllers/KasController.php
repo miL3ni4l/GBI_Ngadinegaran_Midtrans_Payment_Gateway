@@ -15,6 +15,8 @@ use App\PemasukanKhusus;
 use App\PengeluaranKhusus;
 use App\PengeluaranRutin;
 use App\User;
+use App\Donation;
+
 
 use Hash;
 use Auth;
@@ -49,7 +51,22 @@ class KasController extends Controller
         //PERINTAH MEMANGGIL DATA DARI TABEL
         $kas = Kas::orderBy('updated_at','desc')->get();
 
-        return view('kas.index',array('kas' => $kas));
+        $persembahan = DB::table('persembahan')->select(DB::raw('SUM(amount) as total'))
+        ->where('status','success')
+        ->first();
+        $persembahan_pengeluaran_rutin = DB::table('persembahan_pengeluaran_rutin')->select(DB::raw('SUM(nominal) as total'))
+        ->where('status','1')
+        ->first();
+        $persembahan_pengeluaran_khusus = DB::table('persembahan_pengeluaran_khusus')->select(DB::raw('SUM(nominal) as total'))
+        ->where('status','1')
+        ->first();
+
+        $total_pemasukan =  $persembahan->total;
+        $total_pengeluaran =  $persembahan_pengeluaran_rutin->total +=  $persembahan_pengeluaran_khusus->total ;
+        $total_saldo =  $total_pemasukan -=  $total_pengeluaran ;
+
+        return view('kas.index',array('kas' => $kas , 'persembahan' => $persembahan , 
+        'total_saldo' => $total_saldo));
     }
 
     public function show($id)

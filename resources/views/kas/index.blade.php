@@ -23,11 +23,11 @@
                 <a href="{{ route('kas.create') }}"  type="button" class="btn btn-primary"><i class="fa fa-plus"></i></a>
             </div>       
             
-            <div class="btn-group">
+            <!-- <div class="btn-group">
                                     <button  data-toggle="modal" data-target="#modal-filter"  type="button" class="btn btn-success">
                                     <i class="fas fa-filter  text-center"></i>
                                     </button>
-            </div>
+            </div> -->
             <!-- <div class="btn-group">
                                     <button  data-toggle="modal" data-target="#modal-filter1"  type="button" class="btn btn-secondary">
                                     <i class="fas fa-tachometer-alt  text-center"></i>
@@ -384,7 +384,7 @@
                             
                             
                               
-                            <form action="{{ route('kas.destroy', $k->id)}}" method="post">
+                                  <form action="{{ route('kas.destroy', $k->id)}}" method="post">
                                     <div class="modal fade" id="modalDelete_{{ $k->id }}" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
                                       <div class="modal-dialog">
                                         <div class="modal-content">
@@ -413,6 +413,14 @@
                             @endif
                           </tr>
                           @endforeach
+                          <tr>
+                            <td class="text-left">{{ $no++ }}</td>
+                            <td>Kas Miidtrans Payment</td>
+                            <td class="text-center">-</td>
+                            <td class="text-right">{{ "Rp. ".number_format($total_saldo)." ,-" }}</td>
+                            <td class="text-center">-</td>
+                            <td class="text-center">-</td>
+                          </tr>
                         </tbody>
                       </table>
                   </div>

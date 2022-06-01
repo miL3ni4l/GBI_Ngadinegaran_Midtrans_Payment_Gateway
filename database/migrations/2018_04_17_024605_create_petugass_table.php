@@ -15,6 +15,7 @@ class CreatePetugassTable extends Migration
     {
         Schema::create('petugas', function (Blueprint $table) {
             $table->increments('id');
+            // $table->string('nama', 8);
             $table->string('kode_petugas');
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
