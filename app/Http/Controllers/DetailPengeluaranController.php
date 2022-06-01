@@ -216,8 +216,8 @@ class DetailPengeluaranController extends Controller
         $kategoris = DetailPengeluaran::all(); 
         $kategori = DetailPengeluaran::orderBy('kategori','asc')->get();
         $kategori_pengeluaran= KategoriPengeluaranRutin::orderBy('updated_at','desc')->get();    
-        $pemasukan_rutin = pemasukan_rutin::all();
-        $pemasukan_rutins  = pemasukan_rutin::count(); 
+        $pengeluaran_rutin = PengeluaranRutin::all();
+        $pengeluaran_rutins  = PengeluaranRutin::count(); 
 
 
         $kategori_khusus = DetailKategori::orderBy('kategori','asc')
@@ -236,12 +236,12 @@ class DetailPengeluaranController extends Controller
 
 
         if($_GET['kategori'] == ""){
-            $pemasukan_rutin = PengeluaranRutin::whereDate('tanggal','>=',$_GET['dari'])
+            $pengeluaran_rutin = PengeluaranRutin::whereDate('tanggal','>=',$_GET['dari'])
             ->whereDate('tanggal','<=',$_GET['sampai'])
             ->get();
         }
         else{
-            $pemasukan_rutin = PengeluaranRutin::where('detail_pengeluaran',$_GET['kategori'])
+            $pengeluaran_rutin = PengeluaranRutin::where('detail_pengeluaran',$_GET['kategori'])
             ->whereDate('tanggal','>=',$_GET['dari'])
             ->whereDate('tanggal','<=',$_GET['sampai'])
             ->get();     
@@ -251,9 +251,9 @@ class DetailPengeluaranController extends Controller
             ->whereDate('tanggal','<=',$_GET['sampai'])
             ->get();
         }  
-        return view('detail_pengeluaran.index',['pemasukan_rutin' => $pemasukan_rutin, 'kategori' => $kategori, 'datas' => $datas,
+        return view('detail_pengeluaran.index',['pengeluaran_rutin' => $pengeluaran_rutin, 'kategori' => $kategori, 'datas' => $datas,
         'pengeluaran_khusus' => $pengeluaran_khusus, 'persembahan_pengeluaran_khusus' => $persembahan_pengeluaran_khusus, 
-        'details' => $details,'kategoris'=>$kategoris ,'pemasukan_rutins'=>$pemasukan_rutins, 
+        'details' => $details,'kategoris'=>$kategoris ,'pengeluaran_rutins'=>$pengeluaran_rutins, 
         'kategori_pengeluaran'=> $kategori_pengeluaran, 'kategori_khusus'=>$kategori_khusus,
         'persembahan_pengeluaran_rutin' => $persembahan_pengeluaran_rutin, 'persembahan_pengeluaran_khusus' => $persembahan_pengeluaran_khusus
     

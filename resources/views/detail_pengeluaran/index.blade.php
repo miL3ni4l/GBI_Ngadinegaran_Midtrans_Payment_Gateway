@@ -27,7 +27,7 @@
                     </div>
                   </div>
 
-                  <div class="btn-group">
+                  <!-- <div class="btn-group">
                                         <a type="button" class="btn btn-success">  <i class="fas fa-filter  text-center"></i></a>
                                         <button type="button" class="btn btn-success dropdown-toggle dropdown-icon" data-toggle="dropdown">
                                           <span class="sr-only">Toggle Dropdown</span>
@@ -36,7 +36,7 @@
                                           <a data-toggle="modal" data-target="#modal-filter"  type="button" >Kategori Rutin</a>
                                           <a data-toggle="modal" data-target="#modal-filter1"  type="button" >Kategori Khusus</a>
                                         </div>
-                  </div>
+                  </div> -->
               
                   <div class="btn-group">
                     <a   href="{{route('detail_pengeluaran.index')}}"  type="button" class="btn btn-warning">
@@ -53,469 +53,582 @@
       </div><!-- /.container-fluid -->
   </div>
 
-  @if (Session::has('message'))
-                    <section class="content-header">
-                      <div class="container-fluid">
+                    @if (Session::has('message'))
+                                      <section class="content-header">
+                                        <div class="container-fluid">
 
-                              <div class="alert alert-{{ Session::get('message_type') }}" id="waktu2" style="margin-top:10px;">{{ Session::get('message') }}
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <!-- <a class="close" data-dismiss="alert" >x</a> -->
-                                  <a class="close" data-dismiss="alert" class="btn btn-danger btn-sm" ><i style="color:red" class="fas fa-times"></i></a>  
-                                </button>
-                              </div>
-          
-                      </div>
-                    </section>
-                    
-  @endif
-
-  <div class="content-header">
-    <div class="container-fluid">
-                <div class="row">
-                
-                  <div class="col-md-12">
-                    <div class="card card-outline card-success">
-                      <div class="card-header">
-                        <h3 class="card-title">
-                        <b>Kategori Pengeluaran</b> </h3>
-                      </div>
-                    
-
-                      <div class="card-body ">
-                        <div class="row">
-                          @foreach($kategori_pengeluaran as $kp)
-                            &nbsp
-                            <div >
-                              <button class="btn btn-outline-info"><b>{{ $kp->kode_kategori }}</b> {{ $kp->kategori }}
-                                                              <a href="{{route('kategori_pengeluaran.edit', $kp->id)}}" class="btn btn-secondary btn-sm text-center">
-                                                                    <i class="fas fa-edit  text-center"></i>
-                                                              </a>
-                                                              <a  data-toggle="modal" data-target="#hapus_kategori_{{ $kp->id }}" class="btn btn-danger btn-sm text-center">
-                                                                                                    <i class="fas fa-trash  text-center"></i>
-                                                              </a>  
-                              </button> &nbsp
-                            </div>
-                            &nbsp
-
+                                                <div class="alert alert-{{ Session::get('message_type') }}" id="waktu2" style="margin-top:10px;">{{ Session::get('message') }}
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <!-- <a class="close" data-dismiss="alert" >x</a> -->
+                                                    <a class="close" data-dismiss="alert" class="btn btn-danger btn-sm" ><i style="color:red" class="fas fa-times"></i></a>  
+                                                  </button>
+                                                </div>
                             
-                            <form action="{{ route('kategori_pengeluaran.destroy', $kp->id)}}" method="post">
-                                                                  <div class="modal fade" id="hapus_kategori_{{ $kp->id }}" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
-                                                                      <div class="modal-dialog">
-                                                                        <div class="modal-content">
-                                                                          <div class="modal-header  bg-danger">
-                                                                            <h4 class="modal-title">Peringatan</h4>
-                                                                          </div>
-                                                                          <div class="modal-body">
-                                                                          {{ csrf_field() }}
-                                                                                          {{ method_field('delete') }}
+                                        </div>
+                                      </section>
+                                      
+                    @endif
 
-                                                                                          <p>Apakah anda yakin ingin menghapus data <b>{{$kp->kategori}}</b> ?</p>
-                                                                          </div>
-                                                                          <div class="modal-footer justify-content-between">
-                                                                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close m-r-5"></i> Batal</button>
-                                                                            
-                                                                            <button type="submit" class="btn btn-danger toastrDefaultError"><i class="fa fa-trash m-r-5"></i> Hapus</button>
-                                                                            
-                                                                                </div>
-                                                                              </div>
-                                                                            </div>
-                                                                          </div>
-                            </form>
-                          @endforeach
-                        </div>
-                      </div>
-                     
-     
+                    <div class="content-header">
+                      <div class="container-fluid">
+                        <div class="row">
+
+                          <div class="col-md-12">
+                                                  <div class="card card-outline card-success">
+                                                    <div class="card-header">
+                                                      <div class="card-tools"> 
+                                                      </div>
+                                                    </div>
+                                                      <form method="GET" action="{{ route('rutin_pengeluaran') }}">
+                                                          {{ csrf_field() }}
+
+                                                        <!--area ditambah   -->
+                                                        <div class="row col-md-12">
+
+                                                                <div class="form-group col-md-6">
+                                                                <div class="form-group">
+                                                                    <label>Dari Tanggal <b style="color:Tomato;">*</b></label>
+                                                                    <input class="form-control datepicker2" placeholder="Dari Tanggal" type="date" required="required" name="dari" value="<?php if(isset($_GET['dari'])){echo $_GET['dari'];} ?>">
+                                                                </div>
+                                                                </div>
+
+                                                                <div class="form-group col-md-6">
+                                                                <div class="form-group">
+                                                                    <label>Sampai Tanggal <b style="color:Tomato;">*</b></label>
+                                                                    <input class="form-control datepicker2" placeholder="Sampai Tanggal" type="date" required="required" name="sampai" value="<?php if(isset($_GET['sampai'])){echo $_GET['sampai'];} ?>">
+                                                                </div>
+                                                                </div>
+
+
+                                                                <div class="form-group{{ $errors->has('kategori') ? ' has-error' : '' }}">
+                                                                      
+                                                                          <input id="kategori" type="hidden" class="form-control" name="kategori" value="" readonly="">
+                                                                          @if ($errors->has('kategori'))
+                                                                              <span class="help-block">
+                                                                                  <strong>{{ $errors->first('kategori') }}</strong>
+                                                                              </span>
+                                                                          @endif
+                                                              
+                                                                </div>
+
+                                                                <div class="form-group col-md-12 ">
+                                                                  <div class="form-group float-right">
+                                                                      <input type="submit" class="btn btn-success" value="Tampilkan">         
+                                                                  </div>
+                                                                </div>
+
+                                                        </div>
+
+                                                          
+                                                      
+                                                                      
+                                                      </form>
+                                                  </div>
+                          </div> 
+
+                        </div>    
+                      </div>  
                     </div>
-                  </div>
-         
-                </div>
 
-
-
-    </div>
-  </div>
-
-  @if(isset ($_GET['kategori']))
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="card">
-
-                          <div class="card-header pt-4">
-                            <h3 class="card-title">Filter Kategori Pengeluaran</h3>
-                          </div>
-
-                          <div class="card-body">
-                                <div class="invoice p-3 mb-3">
+                    <!-- <div class="content-header">
+                      <div class="container-fluid">
                                   <div class="row">
 
-                                    <div class="col-12">
-                                      <h4>
-                                        <img src="/adminlte/dist/img/credit/gbi.png" alt="Visa">
-                                        &nbsp; GBI Ngadinegaran Yogyakarta
-                                      </h4>
-                                    </div> 
+                                  
+                                  
+                                    <div class="col-md-12">
+                                      <div class="card card-outline card-success">
 
-                                    <table class="col-12 float-right">
-                                      <h4>
-                                          <div class="col-12">
-                                            <div class="invoice-col">
+                                        <div class="card-header">
+                                          <h3 class="card-title">
+                                          <b>Kategori Pengeluaran</b> </h3>
+                                        </div>
+                                      
 
-                                              <tr>
-                                                <th width="175">DARI TANGGAL</th>
-                                                <th width="2%" class="text-left">:</th>
-                                                <td  class="text-left">{{ date('d-m-Y',strtotime($_GET['dari'])) }}</td>
-                                              </tr>
-                                            
-                                              <tr >
-                                                <th width="175">SAMPAI TANGGAL</th>
-                                                <th width="2%" class="text-left">:</th>
-                                                <td class="text-left">{{ date('d-m-Y',strtotime($_GET['sampai'])) }}</td>
-                                              </tr> 
+                                        <div class="card-body ">
+                                          <div class="row">
+                                            @foreach($kategori_pengeluaran as $kp)
+                                              &nbsp
+                                              <div >
+                                                <button class="btn btn-outline-info"><b>{{ $kp->kode_kategori }}</b> {{ $kp->kategori }}
+                                                                                <a href="{{route('kategori_pengeluaran.edit', $kp->id)}}" class="btn btn-secondary btn-sm text-center">
+                                                                                      <i class="fas fa-edit  text-center"></i>
+                                                                                </a>
+                                                                                <a  data-toggle="modal" data-target="#hapus_kategori_{{ $kp->id }}" class="btn btn-danger btn-sm text-center">
+                                                                                                                      <i class="fas fa-trash  text-center"></i>
+                                                                                </a>  
+                                                </button> &nbsp
+                                              </div>
+                                              &nbsp
+
                                               
-                                              <tr>
-                                                <th width="175">KATEGORI</th>
-                                                <th width="2%" class="text-left">:</th>
-                                                <td  class="text-left">
-                                                  @php
-                                                  $id_kategori = $_GET['kategori'];
-                                                  @endphp
+                                              <form action="{{ route('kategori_pengeluaran.destroy', $kp->id)}}" method="post">
+                                                                                    <div class="modal fade" id="hapus_kategori_{{ $kp->id }}" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
+                                                                                        <div class="modal-dialog">
+                                                                                          <div class="modal-content">
+                                                                                            <div class="modal-header  bg-danger">
+                                                                                              <h4 class="modal-title">Peringatan</h4>
+                                                                                            </div>
+                                                                                            <div class="modal-body">
+                                                                                            {{ csrf_field() }}
+                                                                                                            {{ method_field('delete') }}
 
-                                                  @if($id_kategori == "")
-                                                    @php
-                                                    $kat = "SEMUA KATEGORI RUTIN";
-                                                    @endphp
-                                                  @else
-                                                    @php
-                                                      $katt = DB::table('detail_kategori')->where('id',$id_kategori)->first();
-                                                      $kat = $katt->kategori
-                                                    @endphp
-                                                  @endif
-                                        
-                                                  {{$kat}}
-                                                </td>
-                                              </tr>
+                                                                                                            <p>Apakah anda yakin ingin menghapus data <b>{{$kp->kategori}}</b> ?</p>
+                                                                                            </div>
+                                                                                            <div class="modal-footer justify-content-between">
+                                                                                              <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close m-r-5"></i> Batal</button>
+                                                                                              
+                                                                                              <button type="submit" class="btn btn-danger toastrDefaultError"><i class="fa fa-trash m-r-5"></i> Hapus</button>
+                                                                                              
+                                                                                                  </div>
+                                                                                                </div>
+                                                                                              </div>
+                                                                                            </div>
+                                              </form>
+                                            @endforeach
+                                          </div>
+                                        </div>
+                                      
+                      
+                                      </div>
+                                    </div>
+                          
+                                  </div>
+
+
+
+                      </div>
+                    </div> -->
+
+                    @if(isset ($_GET['kategori']))
+                      <section class="content-header">
+                        <div class="container-fluid">
+                          <div class="card">
+
+                                            <div class="card-header pt-4">
+                                              <h3 class="card-title">Filter Kategori Pengeluaran</h3>
+                                            </div>
+
+                                            <div class="card-body">
+                                                  <div class="invoice p-3 mb-3">
+                                                    <div class="row">
+
+                                                      <div class="col-12">
+                                                        <h4>
+                                                          <img src="/adminlte/dist/img/credit/gbi.png" alt="Visa">
+                                                          &nbsp; GBI Ngadinegaran Yogyakarta
+                                                        </h4>
+                                                      </div> 
+
+                                                      <table class="col-12 float-right">
+                                                        <h4>
+                                                            <div class="col-12">
+                                                              <div class="invoice-col">
+
+                                                                <tr>
+                                                                  <th width="175">DARI TANGGAL</th>
+                                                                  <th width="2%" class="text-left">:</th>
+                                                                  <td  class="text-left">{{ date('d-m-Y',strtotime($_GET['dari'])) }}</td>
+                                                                </tr>
+                                                              
+                                                                <tr >
+                                                                  <th width="175">SAMPAI TANGGAL</th>
+                                                                  <th width="2%" class="text-left">:</th>
+                                                                  <td class="text-left">{{ date('d-m-Y',strtotime($_GET['sampai'])) }}</td>
+                                                                </tr> 
+                                                                
+                                                                <tr>
+                                                                  <th width="175">KATEGORI</th>
+                                                                  <th width="2%" class="text-left">:</th>
+                                                                  <td  class="text-left">
+                                                                    @php
+                                                                    $id_kategori = $_GET['kategori'];
+                                                                    @endphp
+
+                                                                    @if($id_kategori == "")
+                                                                      @php
+                                                                      $kat = "SEMUA KATEGORI PENGELUARAN";
+                                                                      @endphp
+                                                                    @else
+                                                                      @php
+                                                                        $katt = DB::table('detail_kategori')->where('id',$id_kategori)->first();
+                                                                        $kat = $katt->kategori
+                                                                      @endphp
+                                                                    @endif
+                                                          
+                                                                    {{$kat}}
+                                                                  </td>
+                                                                </tr>
+
+                                                              </div>
+                                                            </div>
+                                                        </h4>
+                                                      </table>
+
+                                                    </div>
+                                                  </div>
+                                                  <br> 
+
+                                                  <div class="row">
+                                                    <div class="col-12 table-responsive">
+                                                      <table class="table table-striped">
+                                                        <thead>
+                                                          <tr>
+                                                            <th class="text-center">NO</th>
+                                                            <th class="text-center">KODE</th>
+                                                            <th class="text-center">TANGGAL</th>
+                                                            <th class="text-center">KATEGORI</th>
+                                                            <th class="text-center">KETERANGAN</th>
+                                                            <th class="text-center">NOMINAL</th>
+                                                          </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                          @php
+                                                          $no = 1;
+                                                          $total_pengeluaran_rutin = 0;
+                                                          $total_pengeluaran_khusus = 0;
+                                                          $total_pengeluaran_midtrans_rutin = 0;
+                                                          $total_pengeluaran_midtrans_khusus = 0;
+                                                          @endphp
+
+                                                          @foreach($pengeluaran_rutin as $t)
+                                                              <tr>
+                                                                <td class="text-center">{{ $no++ }}</td>
+                                                                <td class="text-left">{{ $t->kode_pengeluaran_rutin }}</td>
+                                                                <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
+                                                                <td>{{ $t->kategori_pengeluaran->kategori }}</td>
+                                                                @if($t->keterangan  == null)
+                                                                      <td class ="text-center"> -</td>
+                                                                @else
+                                                                      <td>{{ $t->keterangan }}</td>
+                                                                @endif                                           
+                                                                <td class="text-right">
+                                                                  {{ "Rp.".number_format($t->nominal).",-" }}
+                                                                  @php $total_pengeluaran_rutin += $t->nominal; @endphp
+                                                                </td>
+                                                              </tr>                             
+                                                          @endforeach
+
+                                                          @foreach($persembahan_pengeluaran_rutin as $t)
+                                                              <tr>
+                                                                <td class="text-center">{{ $no++ }}</td>
+                                                                <td class="text-left">{{ $t->kode_persembahan_pengeluaran_rutin }}</td>
+                                                                <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
+                                                                <td>{{ $t->kategori_pengeluaran->kategori}}</td>
+                                                                @if($t->keterangan  == null)
+                                                                      <td class ="text-center"> -</td>
+                                                                @else
+                                                                      <td>{{ $t->keterangan }}</td>
+                                                                @endif                                           
+                                                                <td class="text-right">
+                                                                  {{ "Rp.".number_format($t->nominal).",-" }}
+                                                                  @php $total_pengeluaran_midtrans_rutin += $t->nominal; @endphp
+                                                                </td>
+                                                              </tr>                             
+                                                          @endforeach  
+
+                                                          @foreach($pengeluaran_khusus as $t)
+                                                              <tr>
+                                                                <td class="text-center">{{ $no++ }}</td>
+                                                                <td class="text-left">{{ $t->kode_pemasukan_rutin }}</td>
+                                                                <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
+                                                                <td>{{ $t->detail_kategori->kategori }}</td>
+                                                                @if($t->keterangan  == null)
+                                                                      <td class ="text-center"> -</td>
+                                                                @else
+                                                                      <td>{{ $t->keterangan }}</td>
+                                                                @endif                                           
+                                                                <td class="text-right">
+                                                                  {{ "Rp.".number_format($t->nominal).",-" }}
+                                                                  @php $total_pengeluaran_khusus += $t->nominal; @endphp
+                                                                </td>
+                                                              </tr>                             
+                                                          @endforeach
+                                                          
+                                                          @foreach($persembahan_pengeluaran_khusus as $t)
+                                                              <tr>
+                                                                <td class="text-center">{{ $no++ }}</td>
+                                                                <td class="text-left">{{ $t->kode_persembahan_pengeluaran_khusus }}</td>
+                                                                <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
+                                                                <td>{{ $t->detail_kategori->kategori}}</td>
+                                                                @if($t->keterangan  == null)
+                                                                      <td class ="text-center"> -</td>
+                                                                @else
+                                                                      <td>{{ $t->keterangan }}</td>
+                                                                @endif                                           
+                                                                <td class="text-right">
+                                                                  {{ "Rp.".number_format($t->nominal).",-" }}
+                                                                  @php $total_pengeluaran_midtrans_khusus += $t->nominal; @endphp
+                                                                </td>
+                                                              </tr>                             
+                                                          @endforeach
+
+                                                        </tbody>
+
+                                                        <tfoot class="bg-info text-white font-weight-bold">
+                                                          <tr>
+                                                            <td colspan="5" class="text-bold text-left bg-secondary">TOTAL PEMASUKAN </td>
+                                                            <td class="text-right bg-primary">{{ "Rp.".number_format($total_pengeluaran_rutin +=  $total_pengeluaran_khusus +=  $total_pengeluaran_midtrans_rutin   +=  $total_pengeluaran_midtrans_khusus ).",-" }}</td>
+                                                            
+                                                            
+                                                          </tr>
+                                                        </tfoot>
+
+                                                      </table>
+                                                    </div>
+                                                  </div>
+
+                                                  <div class="row">                       
+                                                    <div class="col-6">
+                                                      <p class="lead"><b>Pembayaran Via BANK BCA :</b></p>                       
+                                                      <img src="/adminlte/dist/img/credit/visa.png" alt="Visa">                      
+                                                      <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
+                                                        Kas BCA GBI NGADINEGARAN
+                                                        </br>
+                                                        No Rekening :<b> 445 1096 448</b>
+                                                        </br>
+                                                        <b>a/n Marthinus Sumendi S.Th atau Sardjono</b>
+                                                      </p>
+                                                    </div>        
+                                                  </div>        
 
                                             </div>
+
+                          </div>   
+                        </div>
+                      </section>
+                    @endif
+
+                    <section class="content">
+                      <div class="container-fluid">
+                        <div class="row">
+                          <div class="col-12">
+                              <div class="card">
+
+
+                                      <div class="card card-outline card-success">
+                                        
+                                      @if(Auth::user()->level == 'admin')
+                                        <div class="card-header">
+                                          <h3 class="card-title">
+                                          <b>Kategori Pengeluaran</b> </h3>
+                                        </div>
+
+                                        <div class="card-body ">
+                                          <div class="row">
+                                            @foreach($kategori_pengeluaran as $kp)
+                                              &nbsp
+                                              <div >
+                                                <button class="btn btn-outline-info"><b>{{ $kp->kode_kategori }}</b> {{ $kp->kategori }}
+                                                                                <a href="{{route('kategori_pengeluaran.edit', $kp->id)}}" class="btn btn-secondary btn-sm text-center">
+                                                                                      <i class="fas fa-edit  text-center"></i>
+                                                                                </a>
+                                                                                <a  data-toggle="modal" data-target="#hapus_kategori_{{ $kp->id }}" class="btn btn-danger btn-sm text-center">
+                                                                                                                      <i class="fas fa-trash  text-center"></i>
+                                                                                </a>  
+                                                </button> &nbsp
+                                              </div>
+                                              &nbsp
+
+                                              
+                                              <form action="{{ route('kategori_pengeluaran.destroy', $kp->id)}}" method="post">
+                                                                                    <div class="modal fade" id="hapus_kategori_{{ $kp->id }}" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
+                                                                                        <div class="modal-dialog">
+                                                                                          <div class="modal-content">
+                                                                                            <div class="modal-header  bg-danger">
+                                                                                              <h4 class="modal-title">Peringatan</h4>
+                                                                                            </div>
+                                                                                            <div class="modal-body">
+                                                                                            {{ csrf_field() }}
+                                                                                                            {{ method_field('delete') }}
+
+                                                                                                            <p>Apakah anda yakin ingin menghapus data <b>{{$kp->kategori}}</b> ?</p>
+                                                                                            </div>
+                                                                                            <div class="modal-footer justify-content-between">
+                                                                                              <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close m-r-5"></i> Batal</button>
+                                                                                              
+                                                                                              <button type="submit" class="btn btn-danger toastrDefaultError"><i class="fa fa-trash m-r-5"></i> Hapus</button>
+                                                                                              
+                                                                                                  </div>
+                                                                                                </div>
+                                                                                              </div>
+                                                                                            </div>
+                                              </form>
+                                            @endforeach
                                           </div>
-                                      </h4>
-                                    </table>
-
-                                  </div>
-                                </div>
-                                <br> 
-
-                                <div class="row">
-                                  <div class="col-12 table-responsive">
-                                    <table class="table table-striped">
-                                      <thead>
-                                        <tr>
-                                          <th class="text-center">NO</th>
-                                          <th class="text-center">KODE</th>
-                                          <th class="text-center">TANGGAL</th>
-                                          <th class="text-center">KATEGORI</th>
-                                          <th class="text-center">KETERANGAN</th>
-                                          <th class="text-center">NOMINAL</th>
-                                        </tr>
-                                      </thead>
-
-                                      <tbody>
-                                        @php
-                                        $no = 1;
-                                        $total_pengeluaran_rutin = 0;
-                                        $total_pengeluaran_khusus = 0;
-                                        $total_pengeluaran_midtrans_rutin = 0;
-                                        $total_pengeluaran_midtrans_khusus = 0;
-                                        @endphp
-
-                                        @foreach($persembahan_pengeluaran_rutin as $t)
-                                            <tr>
-                                              <td class="text-center">{{ $no++ }}</td>
-                                              <td class="text-left">{{ $t->kode_persembahan_pengeluaran_rutin }}</td>
-                                              <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
-                                              <td>{{ $t->kategori_pengeluaran->kategori}}</td>
-                                              @if($t->keterangan  == null)
-                                                    <td class ="text-center"> -</td>
-                                              @else
-                                                    <td>{{ $t->keterangan }}</td>
-                                              @endif                                           
-                                              <td class="text-right">
-                                                {{ "Rp.".number_format($t->nominal).",-" }}
-                                                @php $total_pengeluaran_midtrans_rutin += $t->nominal; @endphp
-                                              </td>
-                                            </tr>                             
-                                        @endforeach
-
-                                        @foreach($persembahan_pengeluaran_khusus as $t)
-                                            <tr>
-                                              <td class="text-center">{{ $no++ }}</td>
-                                              <td class="text-left">{{ $t->kode_persembahan_pengeluaran_khusus }}</td>
-                                              <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
-                                              <td>{{ $t->detail_kategori->kategori}}</td>
-                                              @if($t->keterangan  == null)
-                                                    <td class ="text-center"> -</td>
-                                              @else
-                                                    <td>{{ $t->keterangan }}</td>
-                                              @endif                                           
-                                              <td class="text-right">
-                                                {{ "Rp.".number_format($t->nominal).",-" }}
-                                                @php $total_pengeluaran_midtrans_khusus += $t->nominal; @endphp
-                                              </td>
-                                            </tr>                             
-                                        @endforeach
-
-                                        @foreach($pemasukan_rutin as $t)
-                                            <tr>
-                                              <td class="text-center">{{ $no++ }}</td>
-                                              <td class="text-left">{{ $t->kode_pengeluaran_rutin }}</td>
-                                              <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
-                                              <td>{{ $t->kategori_pengeluaran->kategori }}</td>
-                                              @if($t->keterangan  == null)
-                                                    <td class ="text-center"> -</td>
-                                              @else
-                                                    <td>{{ $t->keterangan }}</td>
-                                              @endif                                           
-                                              <td class="text-right">
-                                                {{ "Rp.".number_format($t->nominal).",-" }}
-                                                @php $total_pengeluaran_rutin += $t->nominal; @endphp
-                                              </td>
-                                            </tr>                             
-                                        @endforeach
+                                        </div>
+                                      @endif
 
 
-                                        
+                                      </div>
+                                
+                                    <!-- <div class="card-header">
+                                      <h3 class="card-title">Data Detail Kategori Pengeluaran</h3>
+                                    </div> -->
 
-                                        @foreach($pengeluaran_khusus as $t)
-                                            <tr>
-                                              <td class="text-center">{{ $no++ }}</td>
-                                              <td class="text-left">{{ $t->kode_pemasukan_rutin }}</td>
-                                              <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
-                                              <td>{{ $t->detail_kategori->kategori }}</td>
-                                              @if($t->keterangan  == null)
-                                                    <td class ="text-center"> -</td>
-                                              @else
-                                                    <td>{{ $t->keterangan }}</td>
-                                              @endif                                           
-                                              <td class="text-right">
-                                                {{ "Rp.".number_format($t->nominal).",-" }}
-                                                @php $total_pengeluaran_khusus += $t->nominal; @endphp
-                                              </td>
-                                            </tr>                             
-                                        @endforeach
+                                    <div class="card">
+                                    </div>
 
-                                        
+                                    
+                                      <!-- BUKA TABEL -->
+                                      <div class=" table-responsive col-md-12 col-sm-6 col-12">
+                                        <table class="table table-striped" id="example1">
+                                                          <thead>
+                                                            <tr>
+                                                                      <th width="1%">NO</th>
+                                                                      <th class="text-center">KODE</th>                                                  
+                                                                      <th class="text-center">KATEGORI</th>
+                                                                      <th class="text-center">DETAIL KATEGORI</th>
+                                                                      
+                                                                      <th class="text-center">KETERANGAN</th>
 
-                                      </tbody>
+                                                                      <th class="text-center" >UPDATE</th>
+                                                                      @if(Auth::user()->level == 'admin')
+                                                                      <th class="text-center col-md-2" width="10%">OPSI</th>
+                                                                      @endif
+                                                            </tr>
+                                                          </thead>
 
-                                      <tfoot class="bg-info text-white font-weight-bold">
-                                        <tr>
-                                          <td colspan="5" class="text-bold text-left bg-secondary">TOTAL PEMASUKAN </td>
-                                          <td class="text-right bg-primary">{{ "Rp.".number_format($total_pengeluaran_rutin +=  $total_pengeluaran_khusus +=  $total_pengeluaran_midtrans_rutin   +=  $total_pengeluaran_midtrans_khusus ).",-" }}</td>
-                                          
-                                          
-                                        </tr>
-                                      </tfoot>
+                                                          <tbody>
+                                                                        @php
+                                                                        $no = 1;
+                                                                        @endphp
+                                                                        @foreach($datas as $k)
+                                                                        <tr>
+                                                                            <td class="text-left">{{ $no++ }}</td>
+                                                                            <td class="text-left" >{{ $k->nama_kategori->kode_kategori }}</td>
+                                                                    
+                                                                            @if($k->kategori_id  == null)
+                                                                            <td>
+                                                                              -
+                                                                            </td>
+                                                                            @else
+                                                                            <td>{{ $k->nama_kategori->kategori }}</td> 
+                                                                            @endif
 
-                                    </table>
-                                  </div>
-                                </div>
+                                                                            <td>{{ $k->kategori }}</td> 
+                                                                        
 
-                                <div class="row">                       
-                                  <div class="col-6">
-                                    <p class="lead"><b>Pembayaran Via BANK BCA :</b></p>                       
-                                    <img src="/adminlte/dist/img/credit/visa.png" alt="Visa">                      
-                                    <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
-                                      Kas BCA GBI NGADINEGARAN
-                                      </br>
-                                      No Rekening :<b> 445 1096 448</b>
-                                      </br>
-                                      <b>a/n Marthinus Sumendi S.Th atau Sardjono</b>
-                                    </p>
-                                  </div>        
-                                </div>        
+                                                                            @if($k->keterangan  == null)
+                                                                                  <td class ="text-center"> - </td>
+                                                                                  @else
+                                                                                  <td>{{ $k->keterangan }}</td>
+                                                                            @endif
+
+                                                                            <td class="text-left">{{ $k->updated_at->diffForHumans() }}</td>
+                                                                            
+                                              
+                                                                            
+                                                                            @if(Auth::user()->level == 'admin')
+                                                                            <td class="text-center col-md-1">    
+                                                                              <a href="{{route('detail_pengeluaran.edit', $k->id)}}" class="btn btn-secondary btn-sm col-md-2 text-center">
+                                                                                <i class="fas fa-edit  text-center"></i>
+                                                                              </a>
+                                                                              <a  data-toggle="modal" data-target="#modalDelete_{{ $k->id }}" class="btn btn-danger btn-sm col-md-2 text-center">
+                                                                                <i class="fas fa-trash  text-center"></i>
+                                                                              </a>
+                                                                            
+                                                                              <!-- Modal -->
+                                                                              <form action="{{ route('detail_pengeluaran.destroy', $k->id)}}" method="post">
+                                                                                <div class="modal fade" id="modalDelete_{{ $k->id }}" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
+                                                                                    <div class="modal-dialog">
+                                                                                      <div class="modal-content">
+                                                                                        <div class="modal-header  bg-danger">
+                                                                                          <h4 class="modal-title">Peringatan</h4>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                        {{ csrf_field() }}
+                                                                                                        {{ method_field('delete') }}
+
+                                                                                                        <p>Apakah anda yakin ingin menghapus data kategori <b>{{$k->kategori}}</b> ?</p>
+                                                                                        </div>
+                                                                                        <div class="modal-footer justify-content-between">
+                                                                                          <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close m-r-5"></i> Batal</button>
+                                                                                          
+                                                                                          <button type="submit" class="btn btn-danger toastrDefaultError"><i class="fa fa-trash m-r-5"></i> Hapus</button>
+                                                                                          
+                                                                                              </div>
+                                                                                            </div>
+                                                                                          </div>
+                                                                                        </div>
+                                                                                </form>
+
+                                                                            </td>
+                                                                            @endif             
+                                                                                    
+                                                                        </tr>
+                                                                        @endforeach
+                                                          </tbody>
+                                        </table>             
+                                      </div>
+
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+  
+                    <!-- MODAL FILTER -->
+                    <div class="modal fade" id="modal-filter" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
+                        <div class="modal-dialog modal-default modal-dialog-centered modal-" role="document">
+                          <div class="modal-content bg-gradient-white">
+
+                            <div class="modal-header">
+                              <h4 class="modal-title" id="modal-title-notification">Filter Kategori Pengeluaran Rutin</h4>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                              </button>
+                            </div>
+
+                            <div class="modal-body">
+                              
+                                  <form method="GET" action="{{ route('rutin_pengeluaran') }}">
+                                          {{ csrf_field() }}                                        
+                                            <div class="form-group col-md-12">
+                                              <div class="form-group">
+                                                <label>Dari Tanggal</label>
+                                                <input class="form-control datepicker2"  placeholder="Dari Tanggal" type="date" required="required" name="dari" value="<?php if(isset($_GET['dari'])){echo $_GET['dari'];} ?>">
+                                              </div>
+                                            </div>
+
+                                            <div class="form-group col-md-12">
+                                              <div class="form-group">
+                                                <label>Sampai Tanggal</label>
+                                                <input class="form-control datepicker2"  placeholder="Sampai Tanggal" type="date" required="required" name="sampai" value="<?php if(isset($_GET['sampai'])){echo $_GET['sampai'];} ?>">
+                                              </div>
+                                            </div>
+
+
+                                            <div class="form-group col-md-12">
+                                              <div class="form-group">
+                                                <label>Cari Persembahan Rutin</label>
+                                                <select class="form-control" name="kategori">
+                                                <option value="">-- SEMUA KATEGORI PENGELUARAN --</option>
+                                                  @foreach($kategori as $k)
+                                                  <option <?php 
+                                                  if(isset($_GET['kategori']))
+                                                  { if($_GET['kategori'] == $k->id){echo "selected='selected'";} } ?> value="{{ $k->id }}">{{ $k->kategori }}</option>
+                                                  @endforeach
+                                                </select>
+                                              </div>
+                                            </div>
+                                            
+                                            <div class="form-group col-md-12 ">
+                                              <div class="form-group float-right">
+                                                  <input type="submit" class="btn btn-success" value="Tampilkan" style="margin-top: 25px col-md-5">
+                                              </div>
+                                            </div>
+
+
+                                  </form>
+                          
+                            </div>
 
                           </div>
-
-        </div>   
-      </div>
-    </section>
-  @endif
-
-
-  <section class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-            <div class="card">
-              
-                  <div class="card-header">
-                    <h3 class="card-title">Data Detail Kategori Pengeluaran</h3>
-                  </div>
-
-                  <div class="card">
-                  </div>
-
-                  
-                    <!-- BUKA TABEL -->
-                    <div class=" table-responsive col-md-12 col-sm-6 col-12">
-                      <table class="table table-striped" id="example1">
-                                        <thead>
-                                          <tr>
-                                                    <th width="1%">NO</th>
-                                                    <th class="text-center">KODE</th>                                                  
-                                                    <th class="text-center">KATEGORI</th>
-                                                    <th class="text-center">DETAIL KATEGORI</th>
-                                                    
-                                                    <th class="text-center">KETERANGAN</th>
-
-                                                    <th class="text-center" >UPDATE</th>
-                                                    @if(Auth::user()->level == 'admin')
-                                                    <th class="text-center col-md-2" width="10%">OPSI</th>
-                                                    @endif
-                                          </tr>
-                                        </thead>
-
-                                        <tbody>
-                                                      @php
-                                                      $no = 1;
-                                                      @endphp
-                                                      @foreach($datas as $k)
-                                                      <tr>
-                                                          <td class="text-left">{{ $no++ }}</td>
-                                                          <td class="text-left" >{{ $k->nama_kategori->kode_kategori }}</td>
-                                                  
-                                                          @if($k->kategori_id  == null)
-                                                          <td>
-                                                            -
-                                                          </td>
-                                                          @else
-                                                          <td>{{ $k->nama_kategori->kategori }}</td> 
-                                                          @endif
-
-                                                          <td>{{ $k->kategori }}</td> 
-                                                      
-
-                                                          @if($k->keterangan  == null)
-                                                                <td class ="text-center"> - </td>
-                                                                @else
-                                                                <td>{{ $k->keterangan }}</td>
-                                                          @endif
-
-                                                          <td class="text-left">{{ $k->updated_at->diffForHumans() }}</td>
-                                                          
-                            
-                                                          
-                                                          @if(Auth::user()->level == 'admin')
-                                                          <td class="text-center col-md-1">    
-                                                            <a href="{{route('detail_pengeluaran.edit', $k->id)}}" class="btn btn-secondary btn-sm col-md-2 text-center">
-                                                              <i class="fas fa-edit  text-center"></i>
-                                                            </a>
-                                                            <a  data-toggle="modal" data-target="#modalDelete_{{ $k->id }}" class="btn btn-danger btn-sm col-md-2 text-center">
-                                                              <i class="fas fa-trash  text-center"></i>
-                                                            </a>
-                                                          
-                                                            <!-- Modal -->
-                                                            <form action="{{ route('detail_pengeluaran.destroy', $k->id)}}" method="post">
-                                                              <div class="modal fade" id="modalDelete_{{ $k->id }}" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
-                                                                  <div class="modal-dialog">
-                                                                    <div class="modal-content">
-                                                                      <div class="modal-header  bg-danger">
-                                                                        <h4 class="modal-title">Peringatan</h4>
-                                                                      </div>
-                                                                      <div class="modal-body">
-                                                                      {{ csrf_field() }}
-                                                                                      {{ method_field('delete') }}
-
-                                                                                      <p>Apakah anda yakin ingin menghapus data kategori <b>{{$k->kategori}}</b> ?</p>
-                                                                      </div>
-                                                                      <div class="modal-footer justify-content-between">
-                                                                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close m-r-5"></i> Batal</button>
-                                                                        
-                                                                        <button type="submit" class="btn btn-danger toastrDefaultError"><i class="fa fa-trash m-r-5"></i> Hapus</button>
-                                                                        
-                                                                            </div>
-                                                                          </div>
-                                                                        </div>
-                                                                      </div>
-                                                              </form>
-
-                                                          </td>
-                                                          @endif             
-                                                                  
-                                                      </tr>
-                                                      @endforeach
-                                        </tbody>
-                      </table>             
+                        </div>
                     </div>
 
-            </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- MODAL FILTER -->
-  <div class="modal fade" id="modal-filter" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
-      <div class="modal-dialog modal-default modal-dialog-centered modal-" role="document">
-        <div class="modal-content bg-gradient-white">
-
-          <div class="modal-header">
-            <h4 class="modal-title" id="modal-title-notification">Filter Kategori Pengeluaran Rutin</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-
-          <div class="modal-body">
-            
-                <form method="GET" action="{{ route('rutin_pengeluaran') }}">
-                        {{ csrf_field() }}                                        
-                          <div class="form-group col-md-12">
-                            <div class="form-group">
-                              <label>Dari Tanggal</label>
-                              <input class="form-control datepicker2"  placeholder="Dari Tanggal" type="date" required="required" name="dari" value="<?php if(isset($_GET['dari'])){echo $_GET['dari'];} ?>">
-                            </div>
-                          </div>
-
-                          <div class="form-group col-md-12">
-                            <div class="form-group">
-                              <label>Sampai Tanggal</label>
-                              <input class="form-control datepicker2"  placeholder="Sampai Tanggal" type="date" required="required" name="sampai" value="<?php if(isset($_GET['sampai'])){echo $_GET['sampai'];} ?>">
-                            </div>
-                          </div>
-
-
-                          <div class="form-group col-md-12">
-                            <div class="form-group">
-                              <label>Cari Persembahan Rutin</label>
-                              <select class="form-control" name="kategori">
-                              <option value="">-- SEMUA KATEGORI PENGELUARAN --</option>
-                                @foreach($kategori as $k)
-                                <option <?php 
-                                if(isset($_GET['kategori']))
-                                { if($_GET['kategori'] == $k->id){echo "selected='selected'";} } ?> value="{{ $k->id }}">{{ $k->kategori }}</option>
-                                @endforeach
-                              </select>
-                            </div>
-                          </div>
-                          
-                          <div class="form-group col-md-12 ">
-                            <div class="form-group float-right">
-                                <input type="submit" class="btn btn-success" value="Tampilkan" style="margin-top: 25px col-md-5">
-                            </div>
-                          </div>
-
-
-                </form>
-        
-          </div>
-
-        </div>
-      </div>
-  </div>
-
-
-  
                     <!-- MODAL FILTER -->
                     <div class="modal fade" id="modal-filter1" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
                       <div class="modal-dialog modal-default modal-dialog-centered modal-" role="document">

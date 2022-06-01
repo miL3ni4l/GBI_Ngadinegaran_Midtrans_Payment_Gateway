@@ -89,7 +89,7 @@
 
 
                     @if(Auth::user()->level == 'admin')
-                      <div class="content-header">
+                      <!-- <div class="content-header">
                         <div class="container-fluid">
                           <div class="row">
 
@@ -157,11 +157,9 @@
                                 </div>
                               </div>
 
-                             
-
                           </div>
                          </div>       
-                      </div>
+                      </div> -->
                     @endif
 
                     @if(isset ($_GET['kategori']))
@@ -367,10 +365,74 @@
                         <div class="row">
                           <div class="col-12">
                               <div class="card">
+
+                                    <?php
+                                      $seluruh_pemasukan = DB::table('pemasukan_rutin')->select(DB::raw('SUM(nominal) as total'))
+                                      ->where('status','1')
+                                      ->first();
+                          
+                                      $total = $seluruh_pemasukan->total;
+                                    ?>
+
+                                    @if(Auth::user()->level == 'admin')
+                                      <div class="card card-outline card-success">
+                                          <div class="card-header">
+                                            <h3 class="card-title">
+                                            <b>Data Kategori Pemasukan</b> 
+                                            </h3>
+                                          </div>
+
+                                          <div class="card-tools"> 
+                                            <div class="card-body ">
+
+                                            <div class="row">
+                                              @foreach($kategoris_pemasukan as $kp)
+                                              &nbsp
+                                                <div >
+                                                  <button class="btn btn-outline-info"><b>{{ $kp->kode_kategori }}</b> {{ $kp->kategori }}
+                                                                                  <a href="{{route('kategori.edit', $kp->id)}}" class="btn btn-secondary btn-sm text-center">
+                                                                                        <i class="fas fa-edit  text-center"></i>
+                                                                                  </a>
+                                                                                  <a  data-toggle="modal" data-target="#hapus_kategori_{{ $kp->id }}" class="btn btn-danger btn-sm text-center">
+                                                                                                                        <i class="fas fa-trash  text-center"></i>
+                                                                                  </a>  
+                                                  </button> &nbsp
+                                                </div>
                                 
-                                    <div class="card-header">
+                                              &nbsp
+                                                  <form action="{{ route('kategori.destroy', $kp->id)}}" method="post">
+                                                                                    <div class="modal fade" id="hapus_kategori_{{ $kp->id }}" tabindex="-1" role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
+                                                                                      <div class="modal-dialog">
+                                                                                        <div class="modal-content">
+                                                                                            <div class="modal-header  bg-danger">
+                                                                                              <h4 class="modal-title">Peringatan</h4>
+                                                                                            </div>
+                                                                                            <div class="modal-body">
+                                                                                            {{ csrf_field() }}
+                                                                                                            {{ method_field('delete') }}
+
+                                                                                                            <p>Apakah anda yakin ingin menghapus data kategori <b>{{$kp->kategori}}</b> ?</p>
+                                                                                            </div>
+                                                                                            <div class="modal-footer justify-content-between">
+                                                                                              <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close m-r-5"></i> Batal</button>
+                                                                                              
+                                                                                              <button type="submit" class="btn btn-danger toastrDefaultError"><i class="fa fa-trash m-r-5"></i> Hapus</button>
+                                                                                              
+                                                                                            </div>
+                                                                                        </div>
+                                                                                      </div>
+                                                                                    </div>
+                                                  </form>
+                                              @endforeach
+                                            </div>
+                                            </div>
+                                          </div>
+                                      </div>
+                                    @endif
+                                
+                                    <!-- <div class="card-header">
                                       <h3 class="card-title">Data Detail Kategori Pemasukan</h3>
-                                    </div>
+                                    </div> -->
 
                                     <div class="card">
                                     </div>

@@ -192,7 +192,7 @@
                 <div class="col-md-12">
                   <div class="card">
                     <div class="card-header">
-                      <h5 class="card-title">Grafik Midtrans Payment</h5>
+                      <h5 class="card-title">Grafik Midtrans Payment Per Bulan</h5>
 
                       <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -210,7 +210,7 @@
                         <div class="col-md-6 col-sm-6 col-12 ">
                             <div class="card col-12"  >
                               <p class="text-center">
-                                <strong>Grafik <b>Per Bulan</b> Tahun {{date('Y')}}</strong>
+                                <strong>Grafik <b>{{date('Y')}} </b></strong>
                               </p>
                               <div class="chart">
                                 <canvas id="grafik1"></canvas>
