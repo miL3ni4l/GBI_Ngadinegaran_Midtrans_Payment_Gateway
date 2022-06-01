@@ -479,7 +479,7 @@
                                                             <div class="row">
                                                                 <div class="col-12">
                                                           
-                                                                    <h5  class="position-center ">Persembahan Tahun {{date('Y')}} <a  href="/donation"  class="btn btn-warning btn-sm text-center"><i class="fas fa-credit-card  text-center"></i> klik disini</a>
+                                                                    <h5  class="position-center ">Persembahan Online Tahun {{date('Y')}} <a  href="/donation"  class="btn btn-warning btn-sm text-center"><i class="fas fa-credit-card  text-center"></i> klik disini</a>
                                                                     </h5> 
                                                                 </div>
                                                             </div>
@@ -662,13 +662,20 @@
         <?php
         for($bulan=1;$bulan<=12;$bulan++){
           $tahun = date('Y');
-          $pemasukan_perbulan = DB::table('pemasukan_rutin')
-          ->select(DB::raw('SUM(nominal) as total'))
-          ->where('status','1')
-          ->whereMonth('tanggal',$bulan)
-          ->whereYear('tanggal',$tahun)
-          ->first();
+          // $pemasukan_perbulan = DB::table('pemasukan_rutin')
+          // ->select(DB::raw('SUM(nominal) as total'))
+          // ->where('status','1')
+          // ->whereMonth('tanggal',$bulan)
+          // ->whereYear('tanggal',$tahun)
+          // ->first();
 
+
+          $pemasukan_perbulan = DB::table('persembahan')
+          ->select(DB::raw('SUM(amount) as total'))
+          ->where('status','success')
+          ->whereMonth('created_at',$bulan)
+          ->whereYear('created_at',$tahun)
+          ->first();
 
           $total = $pemasukan_perbulan->total ;
           if($pemasukan_perbulan->total == ""){

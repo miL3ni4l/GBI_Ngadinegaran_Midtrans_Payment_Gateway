@@ -113,10 +113,14 @@
                                                                         <div class="form-group">
                                                                         <label>Jenis Persembahan <b style="color:Tomato;">*</b></label>
                                                                                                     <select name="donation_type" class="form-control" id="donation_type"  class="custom-select mb-3">
-                                                                                                    <option value="">-- Pilih Kategori --</option>
+                                                                                                    <option value="">-- Pilih Jenis Persembahan --</option>
+                                                                                                                    @php
+                                                                                                                    $no = 1;
+                                                                                                                    @endphp
+
                                                                                                                     @foreach($kategoris as $k)                                            
                                                                                                                         <option value="{{ $k->id }}">
-                                                                                                                        {{$k->kategori}}
+                                                                                                                        {{ $no++ }}. {{$k->kategori}}
                                                                                                                         </option>
                                                                                                                     @endforeach 
                                                                                                    
