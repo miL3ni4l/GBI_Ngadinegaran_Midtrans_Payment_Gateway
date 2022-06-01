@@ -22,11 +22,11 @@
                                                       <a href="{{ route('ibadah.create') }}"  type="button" class="btn btn-primary"><i class="fa fa-plus"></i></a>
                                                     </div>
 
-                                                    <div class="btn-group">
+                                                    <!-- <div class="btn-group">
                                                       <button  data-toggle="modal" data-target="#modal-filter"  type="button" class="btn btn-success">
                                                       <i class="fas fa-filter  text-center"></i>
                                                       </button>
-                                                    </div>
+                                                    </div> -->
                                             
                                                     <div class="btn-group">
                                                       <a  href="{{route('ibadah.index')}}" type="button" class="btn btn-warning">
