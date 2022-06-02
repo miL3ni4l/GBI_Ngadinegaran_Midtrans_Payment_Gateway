@@ -75,7 +75,7 @@
                       <div class="container-fluid">
                                         <div class="card">
                                           <div class="card-header pt-4">
-                                            <h3 class="card-title">Filter Pengeluaran Rutin</h3>
+                                            <h3 class="card-title">Filter Midtrans Pengeluaran Rutin</h3>
                                           </div>
                                           <div class="card-body">
                                                 <div class="invoice p-3 mb-3">
@@ -227,7 +227,7 @@
                             <div class="card">
                               
                                   <div class="card-header">
-                                    <h3 class="card-title">Data Pengeluaran Rutin</h3>
+                                    <h3 class="card-title">Data Midtrans Pengeluaran Rutin</h3>
                                   </div>
 
                                   <div class="card">
@@ -381,7 +381,7 @@
         <div class="modal-content bg-gradient-white">
  
           <div class="modal-header">
-            <h4 class="modal-title" id="modal-title-notification">Filter Pengeluaran Rutin</h4>
+            <h4 class="modal-title" id="modal-title-notification">Filter Midtrans Pengeluaran Khusus</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
@@ -409,7 +409,7 @@
 
                       <div class="form-group col-md-12">
                         <div class="form-group">
-                          <label>Kategori Pengeluaran</label>
+                          <label>Kategori Pemasukan</label>
                           <select class="form-control" name="kategori_pengeluaran">
                           <option value="">-- SEMUA KATEGORI --</option>
                             @foreach($kategori_pengeluaran as $k)

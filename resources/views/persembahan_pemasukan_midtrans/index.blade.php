@@ -48,7 +48,7 @@
                           <div class="card">
 
                                             <div class="card-header pt-4">
-                                              <h3 class="card-title">Filter Kategori Pengeluaran</h3>
+                                              <h3 class="card-title">Filter Midtrans Payment</h3>
                                             </div>
 
                                             <div class="card-body">
