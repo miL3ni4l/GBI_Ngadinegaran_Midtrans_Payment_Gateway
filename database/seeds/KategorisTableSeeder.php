@@ -18,13 +18,6 @@ class KategorisTableSeeder extends Seeder
               'kategori'  			=> 'Persembahan',
               'created_at'      => \Carbon\Carbon::now(),
               'updated_at'      => \Carbon\Carbon::now()
-            ],
-            [
-                'id'  			=> 2,
-                'kode_kategori'  			=> 'KM02',
-                'kategori'  	    => 'DLL',
-                'created_at'      => \Carbon\Carbon::now(),
-                'updated_at'      => \Carbon\Carbon::now()
             ]
         ]);
     }

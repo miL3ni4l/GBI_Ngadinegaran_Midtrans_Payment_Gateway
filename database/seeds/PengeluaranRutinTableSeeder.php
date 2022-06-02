@@ -20,7 +20,7 @@ class PengeluaranRutinTableSeeder extends Seeder
               'nama_pengguna'  			=> 1,
               'kode_pengeluaran_rutin'  			=> 'TK122',
               'status'  			=> '1',
-              'nominal'  			=> '1500000',
+              'nominal'  			=> '150000',
               'tanggal'      => \Carbon\Carbon::now(),
               'created_at'      => \Carbon\Carbon::now(),
               'updated_at'      => \Carbon\Carbon::now()
@@ -33,7 +33,7 @@ class PengeluaranRutinTableSeeder extends Seeder
                 'nama_pengguna'  			=> 1,
                 'kode_pengeluaran_rutin'  			=> 'TK122',
                 'status'  			=> '1',
-                'nominal'  			=> '150000',
+                'nominal'  			=> '350000',
                 'tanggal'      => \Carbon\Carbon::now(),
                 'created_at'      => \Carbon\Carbon::now(),
                 'updated_at'      => \Carbon\Carbon::now()
@@ -42,12 +42,12 @@ class PengeluaranRutinTableSeeder extends Seeder
             [
               'id'  			=> 3,
               'kategori_id'  			=> 1,
-              'detail_pengeluaran'  			=> 5,
+              'detail_pengeluaran'  			=> 4,
               'kas_id'  			=> 1,
               'nama_pengguna'  			=> 1,
               'kode_pengeluaran_rutin'  			=> 'TK122',
               'status'  			=> '1',
-              'nominal'  			=> '150000',
+              'nominal'  			=> '250000',
               'tanggal'      => \Carbon\Carbon::now(),
               'created_at'      => \Carbon\Carbon::now(),
               'updated_at'      => \Carbon\Carbon::now()
@@ -60,7 +60,7 @@ class PengeluaranRutinTableSeeder extends Seeder
               'nama_pengguna'  			=> 1,
               'kode_pengeluaran_rutin'  			=> 'TK122',
               'status'  			=> '1',
-              'nominal'  			=> '2500000',
+              'nominal'  			=> '250000',
               'tanggal'      => \Carbon\Carbon::now(),
               'created_at'      => \Carbon\Carbon::now(),
               'updated_at'      => \Carbon\Carbon::now()
@@ -68,7 +68,7 @@ class PengeluaranRutinTableSeeder extends Seeder
             [
               'id'  			=> 5,
               'kategori_id'  			=> 1,
-              'detail_pengeluaran'  			=> 7,
+              'detail_pengeluaran'  			=> 4,
               'kas_id'  			=> 2,
               'nama_pengguna'  			=> 1,
               'kode_pengeluaran_rutin'  			=> 'TK122',

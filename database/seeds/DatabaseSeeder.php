@@ -26,10 +26,12 @@ class DatabaseSeeder extends Seeder
         //RUTIN
         $this->call(PemasukanRutinTableSeeder::class); 
         $this->call(PengeluaranRutinTableSeeder::class); 
+        $this->call(PersembahanPengeluaranRutinTableSeeder::class); 
 
         // KHUSUS
         $this->call(PemasukanKhususTableSeeder::class); 
         $this->call(PengeluaranKhususTableSeeder::class);
+        $this->call(PersembahanPengeluaranKhususTableSeeder::class); 
         
         // UTAMA
         $this->call(ProfilTableSeeder::class);  
