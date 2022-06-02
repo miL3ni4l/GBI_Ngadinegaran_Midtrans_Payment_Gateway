@@ -189,6 +189,28 @@ class LaporanKasController extends Controller
                 ->whereDate('tanggal','<=',$_GET['sampai'])
                 ->orderby('updated_at', 'desc')
                 ->get();
+
+                $persembahan = Donation::whereDate('created_at','>=',$_GET['dari'])
+                ->where('status', 'success')
+                ->whereDate('created_at','<=',$_GET['sampai'])
+                ->orderby('created_at', 'desc')
+                ->get();
+
+                $persembahan_pengeluaran_rutin = PersembahanPengeluaranRutin::whereDate('tanggal','>=',$_GET['dari'])
+                ->where('status', '1')
+                ->whereDate('tanggal','<=',$_GET['sampai'])
+                ->orderby('tanggal', 'desc')
+                ->get();
+
+                
+                $persembahan_pengeluaran_khusus = PersembahanPengeluaranKhusus::whereDate('tanggal','>=',$_GET['dari'])
+                ->where('status', '1')
+                ->whereDate('tanggal','<=',$_GET['sampai'])
+                ->orderby('tanggal', 'desc')
+                ->get();
+
+
+
             }else{
                 $pemasukan_rutin = pemasukan_rutin::where('kas_id',$_GET['kas'])
                 ->where('status', '1')
@@ -218,8 +240,11 @@ class LaporanKasController extends Controller
                 ->orderby('updated_at', 'desc')
                 ->get();
             }    
-             return view('app.lapiran_print',['pemasukan_rutin' => $pemasukan_rutin, 'pengeluaran_khusus' => $pengeluaran_khusus, 'pengeluaran_rutin' => $pengeluaran_rutin,
-             'kas' => $kas, 
+             return view('app.lapiran_print',['pemasukan_rutin' => $pemasukan_rutin, 'pengeluaran_khusus' => $pengeluaran_khusus, 
+             'pengeluaran_rutin' => $pengeluaran_rutin,'kas' => $kas, 
+             'persembahan' => $persembahan, 
+             'persembahan_pengeluaran_rutin' => $persembahan_pengeluaran_rutin, 
+             'persembahan_pengeluaran_khusus' => $persembahan_pengeluaran_khusus, 
              'pemasukan_khusus' => $pemasukan_khusus,  
              'seluruh_pemasukan' => $seluruh_pemasukan,  
              'seluruh_pengeluaran' => $seluruh_pengeluaran,

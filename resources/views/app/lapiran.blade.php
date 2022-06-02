@@ -322,7 +322,6 @@
                                             <td class="text-right bg-yellow"><b>{{ "Rp.".number_format($total_pengeluaran_midtrans_khusus).",-" }}</b></td>
                                           </tr>
                                           
-
                                           <!-- PENGELUARAN KHUSUS -->
                                           @foreach($pengeluaran_khusus as $t)
                                           <tr>

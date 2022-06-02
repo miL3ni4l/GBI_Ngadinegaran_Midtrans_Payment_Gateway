@@ -17,7 +17,7 @@
       <td width="5%" class="text-center">:</td>
       <td>{{ date('d-m-Y',strtotime($_GET['sampai'])) }}</td>
     </tr>
-    <tr>
+    <!-- <tr>
       <td width="50%">KAS</td>
       <td width="5%" class="text-center">:</td>
       <td>
@@ -38,7 +38,7 @@
 
         {{$kat}}
       </td>
-    </tr>
+    </tr> -->
   </table>
   <table class="table table-bordered table-striped">
     <thead>
@@ -56,22 +56,39 @@
 
       @php
       $no = 1;
+      $total_pemasukan_midtrans = 0;
+      $total_pengeluaran_midtrans_rutin = 0;
+      $total_pengeluaran_midtrans_khusus = 0;
       $total_pemasukan_rutin = 0;
       $total_pemasukan_khusus = 0;
       $total_pengeluaran_rutin = 0;
       $total_pengeluaran_khusus = 0;
       @endphp
+
+        @foreach($persembahan as $t)
+                                          <tr>
+                                            <td class="text-center">{{ $no++ }}</td>
+                                            <td class="text-left">{{ $t->transaction_id }}</td>
+                                            <td class="text-center">{{ date('d-m-Y', strtotime($t->updated_at )) }}</td>
+                                            <td class="text-left">{{ $t->detail_kategori->kategori }}</td>
+                                            <td class="text-left">Midtrans Payment</td>
+                                            <td class="text-right">{{ "Rp.".number_format($t->amount).",-" }}</td>
+                                            @php $total_pemasukan_midtrans += $t->amount; @endphp
+                                            <td class="text-left"></td>
+                                          </tr>
+        @endforeach
+
         @foreach($pemasukan_rutin as $t)
-        <tr>
-          <td class="text-left">{{ $no++ }}</td>
-          <td>{{ $t->kode_pemasukan_rutin }}</td>
-          <td class="text-left">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
-          <td>{{ $t->detail_kategori->kategori }}</td>
-          <td>{{ $t->kas->kas }}</td>
-          <td class="text-right">{{ "Rp.".number_format($t->nominal).",-" }}</td>
-                @php $total_pemasukan_rutin += $t->nominal; @endphp
-          <td class="text-left"></td>
-        </tr>
+          <tr>
+            <td class="text-left">{{ $no++ }}</td>
+            <td>{{ $t->kode_pemasukan_rutin }}</td>
+            <td class="text-left">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
+            <td>{{ $t->detail_kategori->kategori }}</td>
+            <td>{{ $t->kas->kas }}</td>
+            <td class="text-right">{{ "Rp.".number_format($t->nominal).",-" }}</td>
+                  @php $total_pemasukan_rutin += $t->nominal; @endphp
+            <td class="text-left"></td>
+          </tr>
         @endforeach
 
         @foreach($pemasukan_khusus as $t)
@@ -87,6 +104,19 @@
                       </tr>
         @endforeach
 
+        @foreach($persembahan_pengeluaran_rutin as $t)
+                                          <tr>
+                                            <td class="text-center">{{ $no++ }}</td>
+                                            <td class="text-left">{{ $t->kode_persembahan_pengeluaran_rutin }}</td>
+                                            <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
+                                            <td class="text-left">{{ $t->kategori_pengeluaran->kategori }}</td>
+                                            <td class="text-left">Midtrans Payment</td>
+                                            <td class="text-left"></td>
+                                            <td class="text-right">{{ "Rp.".number_format($t->nominal).",-" }}</td>
+                                            @php $total_pengeluaran_midtrans_rutin += $t->nominal; @endphp
+                                          </tr>
+        @endforeach
+
         @foreach($pengeluaran_rutin as $t)
                       <tr>
                         <td class="text-left">{{ $no++ }}</td>
@@ -100,6 +130,19 @@
                       </tr>
         @endforeach
 
+        @foreach($persembahan_pengeluaran_khusus as $t)
+                                          <tr>
+                                            <td class="text-center">{{ $no++ }}</td>
+                                            <td class="text-left">{{ $t->kode_persembahan_pengeluaran_khusus }}</td>
+                                            <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
+                                            <td class="text-left">{{ $t->detail_kategori->kategori }}</td>
+                                            <td class="text-left">Midtrans Payment</td>
+                                            <td class="text-left"></td>
+                                            <td class="text-right">{{ "Rp.".number_format($t->nominal).",-" }}</td>
+                                            @php $total_pengeluaran_midtrans_khusus += $t->nominal; @endphp
+                                          </tr>
+        @endforeach
+
         @foreach($pengeluaran_khusus as $t)
                       <tr>
                         <td class="text-left">{{ $no++ }}</td>
@@ -111,13 +154,15 @@
                         <td class="text-right">{{ "Rp.".number_format($t->nominal).",-" }}</td>
                         @php $total_pengeluaran_khusus += $t->nominal; @endphp
                       </tr>
-          @endforeach
+        @endforeach
+
+
     </tbody>
     <tfoot>
       <tr>
         <td colspan="5" class="text-bold text-right">TOTAL</td>
-        <td class="text-right">{{ $total_pemasukan_rutin += $total_pemasukan_khusus}}</td>
-        <td class="text-right">{{ $total_pengeluaran_rutin += $total_pengeluaran_khusus }}</td>
+        <td class="text-right">{{ $total_pemasukan_rutin += $total_pemasukan_khusus += $total_pemasukan_midtrans }}</td>
+        <td class="text-right">{{ $total_pengeluaran_rutin += $total_pengeluaran_khusus +=  $total_pengeluaran_midtrans_rutin +=  $total_pengeluaran_midtrans_khusus }}</td>
       </tr>
     </tfoot>
   </table>
