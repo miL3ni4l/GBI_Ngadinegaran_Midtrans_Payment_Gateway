@@ -36,7 +36,7 @@ class PemasukanKhususTableSeeder extends Seeder
               'nama_pengguna'  			=> 1,
               'kode_pemasukan_khusus'  			=> 'TM222',
               'status'  			=> '1',
-              'nominal'  			=> '150000',
+              'nominal'  			=> '1500000',
               'tanggal'      => \Carbon\Carbon::now(),
               'created_at'      => \Carbon\Carbon::now(),
               'updated_at'      => \Carbon\Carbon::now()
