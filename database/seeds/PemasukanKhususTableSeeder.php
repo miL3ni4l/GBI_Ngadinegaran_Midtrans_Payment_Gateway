@@ -17,7 +17,7 @@ class PemasukanKhususTableSeeder extends Seeder
             [
                 'id'  			=> 1,
                 'ibadah_id'  			=> 1,
-                'kategori_id'  			=> 3,
+                'kategori_id'  			=> 4,
                 'kas_id'  			=> 1,
                 'nama_pengguna'  			=> 1,
                 'kode_pemasukan_khusus'  			=> 'TM222',
@@ -31,7 +31,7 @@ class PemasukanKhususTableSeeder extends Seeder
             [
               'id'  			=> 2,
               'ibadah_id'  			=> 1,
-              'kategori_id'  			=> 3,
+              'kategori_id'  			=> 4,
               'kas_id'  			=> 1,
               'nama_pengguna'  			=> 1,
               'kode_pemasukan_khusus'  			=> 'TM222',
@@ -45,7 +45,7 @@ class PemasukanKhususTableSeeder extends Seeder
             [
               'id'  			=> 3,
               'ibadah_id'  			=> 1,
-              'kategori_id'  			=> 3,
+              'kategori_id'  			=> 4,
               'kas_id'  			=> 2,
               'nama_pengguna'  			=> 1,
               'kode_pemasukan_khusus'  			=> 'TM222',
@@ -59,7 +59,7 @@ class PemasukanKhususTableSeeder extends Seeder
             [
               'id'  			=> 4,
               'ibadah_id'  			=> 1,
-              'kategori_id'  			=> 3,
+              'kategori_id'  			=> 4,
               'kas_id'  			=> 2,
               'nama_pengguna'  			=> 1,
               'kode_pemasukan_khusus'  			=> 'TM222',

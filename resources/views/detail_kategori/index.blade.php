@@ -168,7 +168,7 @@
                           <div class="card">
 
                                             <div class="card-header pt-4">
-                                              <h3 class="card-title">Filter Kategori Pengeluaran</h3>
+                                              <h3 class="card-title">Filter Kategori Pemasukan</h3>
                                             </div>
 
                                             <div class="card-body">
@@ -570,7 +570,7 @@
                                           <div class="form-group">
                                             <label>Cari Persembahan Rutin</label>
                                             <select class="form-control" name="kategori">
-                                            <option value="">-- SEMUA KATEGORI RUTIN--</option>
+                                            <!-- <option value="">-- SEMUA KATEGORI RUTIN--</option> -->
                                               @foreach($kategori_rutin as $k)
                                               <option <?php 
                                               if(isset($_GET['kategori']))
