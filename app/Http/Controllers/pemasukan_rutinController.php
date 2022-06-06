@@ -141,9 +141,9 @@ class pemasukan_rutinController extends Controller
         //KATEGORI BERDASARKAN USERLOGIN
         if(Auth::user()->level == 'bendahara')
         { 
-            $datas = DetailKategori::orderBy('updated_at','desc')->where('nama_pengguna', Auth::user()->petugas->id)->get();  
+            $datas = DetailKategori::orderBy('updated_at','desc')->where('petugas_id', Auth::user()->petugas->id)->get();  
             $details = Kategori::orderBy('updated_at','desc')->get();                       
-            $kategoris =  DetailKategori::orderBy('updated_at','desc')->where('nama_pengguna', Auth::user()->petugas->id)->get();  
+            $kategoris =  DetailKategori::orderBy('updated_at','desc')->where('petugas_id', Auth::user()->petugas->id)->get();  
         } 
         else 
         {               
