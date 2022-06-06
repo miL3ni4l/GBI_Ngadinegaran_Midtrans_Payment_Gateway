@@ -20,7 +20,7 @@ class PemasukanRutinTableSeeder extends Seeder
               'kas_id'			=> 1,
               'nama_pengguna'			=> 1,
               'status'			=> '1',
-              'nominal'			=> '750000',
+              'nominal'			=> '1250000',
               'tanggal'      => \Carbon\Carbon::now(),
               'created_at'      => \Carbon\Carbon::now(),
               'updated_at'      => \Carbon\Carbon::now()
@@ -33,7 +33,7 @@ class PemasukanRutinTableSeeder extends Seeder
                 'kas_id'			=> 1,
                 'nama_pengguna'			=> 1,
                 'status'			=> '1',
-                'nominal'			=> '250000',
+                'nominal'			=> '750000',
                 'tanggal'      => \Carbon\Carbon::now(),
                 'created_at'      => \Carbon\Carbon::now(),
                 'updated_at'      => \Carbon\Carbon::now()
