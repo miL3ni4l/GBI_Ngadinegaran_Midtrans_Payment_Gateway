@@ -479,7 +479,7 @@
                                                             <div class="row">
                                                                 <div class="col-12">
                                                           
-                                                                    <h5  class="position-center ">Persembahan Online Tahun {{date('Y')}} <a  href="/donation"  class="btn btn-warning btn-sm text-center"><i class="fas fa-credit-card  text-center"></i> klik disini</a>
+                                                                    <h5  class="position-center ">Persembahan Online Tahun {{date('Y')}} <a  href="/persembahan"  class="btn btn-warning btn-sm text-center"><i class="fas fa-credit-card  text-center"></i> klik disini</a>
                                                                     </h5> 
                                                                 </div>
                                                             </div>

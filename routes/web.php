@@ -38,7 +38,7 @@ Route::resource('pendeta', 'PendetaController');
 
 // persembahan
 // Route::get('/', 'DonationController@index')->name('donation.index');
-Route::get('/donation', 'DonationController@create')->name('donation.create');
+Route::get('/persembahan', 'DonationController@create')->name('persembahan.create');
 Route::get('/persembahan_pemasukan_midtrans', 'PersembahanAdminController@index')->name('persembahan_pemasukan_midtrans'); 
 Route::get('/filter_persembahan', 'PersembahanAdminController@filter_persembahan')->name('filter_persembahan');
 
