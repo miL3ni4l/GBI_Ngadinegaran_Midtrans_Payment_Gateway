@@ -377,7 +377,7 @@
       </div>
       <div class="modal-body">
 
-        <form method="GET" action="{{ route('periode_khusus') }}">
+        <form method="GET" action="{{ route('periode_khusus_midtrans') }}">
           {{ csrf_field() }}
           <div class="form-group col-md-12">
             <div class="form-group">

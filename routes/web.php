@@ -184,7 +184,7 @@ Route::post('pemasukan_rutin_store_rutin', 'PrsmbhnPnglrnKhsController@pemasukan
 Route::get('pemasukan_rutin_create_khusus', 'PrsmbhnPnglrnKhsController@pemasukan_rutin_create_khusus')->name('pemasukan_rutin_create_khusus');
 Route::post('pemasukan_rutin_store_khusus', 'PrsmbhnPnglrnKhsController@pemasukan_rutin_store_khusus')->name('pemasukan_rutin_store_khusus');
 Route::get('/konfirmasi_khusus', 'PrsmbhnPnglrnKhsController@konfirmasi_khusus')->name('konfirmasi_khusus');
-Route::get('/periode_khusus', 'PrsmbhnPnglrnKhsController@periode_khusus')->name('periode_khusus');
+Route::get('/periode_khusus_midtrans', 'PrsmbhnPnglrnKhsController@periode_khusus_midtrans')->name('periode_khusus_midtrans');
 // Route::get('/periode_tanggal', 'PrsmbhnPnglrnKhsController@periode_tanggal')->name('periode_tanggal');
 
 //PENGELUARAN KHUSUS=====ROUTE DOWNLOAD BERDASARKAN ID

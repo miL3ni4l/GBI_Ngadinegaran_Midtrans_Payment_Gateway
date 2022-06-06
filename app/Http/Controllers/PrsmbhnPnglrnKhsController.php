@@ -120,7 +120,7 @@ class PrsmbhnPnglrnKhsController extends Controller
     }
    
     //FILTER DATA pemasukan_rutin BERDASARKAN TANGGAL2
-    public function periode_khusus()
+    public function periode_khusus_midtrans()
     {   
          //Akses Dari Luar 
         if(Auth::user() == '') {

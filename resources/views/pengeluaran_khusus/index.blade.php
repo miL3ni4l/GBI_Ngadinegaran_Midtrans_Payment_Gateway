@@ -116,27 +116,7 @@
                                                             {{$kat}}
                                                           </td>
                                               </tr>
-                                              <tr>
-                                                <th width="175">KAS</th>
-                                                <th width="2%" class="text-left">:</th>
-                                                          <td class="text-left">
-                                                            @php
-                                                              $id_kas = $_GET['kas'];
-                                                              @endphp
-
-                                                              @if($id_kas == "")
-                                                                @php
-                                                                $kat = "SEMUA KAS";
-                                                                @endphp
-                                                              @else
-                                                                @php
-                                                                  $katt = DB::table('kas')->where('id',$id_kas)->first();
-                                                                  $kat = $katt->kas
-                                                                @endphp
-                                                            @endif
-                                                            {{$kat}}
-                                                          </td>
-                                              </tr>
+                                              
                                             </div>
                                           </div>
                                       </h4>
@@ -431,17 +411,7 @@
                             </div>
                           </div>
 
-                          <div class="form-group col-md-12">
-                            <div class="form-group">
-                              <label>Cari Kas</label>
-                              <select class="form-control" name="kas">
-                              <!-- <option value="">-- SEMUA KAS --</option> -->
-                                @foreach($kas as $k)
-                                <option <?php if(isset($_GET['kas'])){ if($_GET['kas'] == $k->id){echo "selected='selected'";} } ?> value="{{ $k->id }}">{{ $k->kas }}</option>
-                                @endforeach
-                              </select>
-                            </div>
-                          </div>
+
           
                           <div class="form-group col-md-12 ">
                             <div class="form-group float-right">

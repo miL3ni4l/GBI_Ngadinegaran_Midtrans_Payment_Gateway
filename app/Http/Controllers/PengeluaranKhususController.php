@@ -162,7 +162,7 @@ class PengeluaranKhususController extends Controller
         $kas = Kas::orderBy('kas','asc')->get();
 
 
-        if($_GET['kategori'] == ""  || $_GET['kas'] == ""){
+        if($_GET['kategori'] == "" ){
             $pemasukan_rutin = PengeluaranKhusus::whereDate('tanggal','>=',$_GET['dari'])
             ->whereDate('tanggal','<=',$_GET['sampai'])
             ->where('status', '1')
@@ -173,7 +173,6 @@ class PengeluaranKhususController extends Controller
             PengeluaranKhusus::whereDate('tanggal','>=',$_GET['dari'])
             ->whereDate('tanggal','<=',$_GET['sampai'])
             ->where('kategori_id',$_GET['kategori'])
-            ->where('kas_id',$_GET['kas'])
             ->where('status', '1')
             ->get();     
         }  
