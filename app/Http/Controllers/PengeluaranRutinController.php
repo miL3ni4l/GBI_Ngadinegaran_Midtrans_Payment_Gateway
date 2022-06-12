@@ -42,6 +42,8 @@ class PengeluaranRutinController extends Controller
             Session::flash('message_type', 'danger');
             return redirect()->to('login');
         } 
+
+        
         //AKUN BELUM TERDAFTAR DI TABEL PETUGAS
         if(Auth::user()->petugas == null) 
         {

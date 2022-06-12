@@ -187,7 +187,8 @@
                                                 <input type="number" class="form-control" required="required" name="nominal" autocomplete="off" placeholder="Masukkan Nominal . . .">
                                               </div>
 
-                                              <div class="container  col-md-12">                               
+                                              @if(Auth::user()->level == 'admin')
+                                            <div class="container  col-md-12">                               
                                                 <label>Status <b style="color:Tomato;">*</b></label>
                                                 <select required="required" name="status" class="custom-select mb-3" >
                                                   <option value="">-- Pilih Status --</option>
@@ -195,6 +196,21 @@
                                                   <option value="1">Sudah Diterima</option>
                                                 </select>
                                               </div>
+                                              @else
+                                              <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
+                                                    
+                                                    <!-- <label for="status" class="col-md-7 control-label">Kode pemasukan_rutin <b style="color:Tomato;">*</b> </label> -->
+                                                    <div class="col-md-12">
+                                                        <input id="status" type="hidden" class="form-control" name="status" value="0" readonly="">
+                                                        @if ($errors->has('status'))
+                                                            <span class="help-block">
+                                                                <strong>{{ $errors->first('status') }}</strong>
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                              </div>
+
+                                              @endif
                                               
 
                       </div>

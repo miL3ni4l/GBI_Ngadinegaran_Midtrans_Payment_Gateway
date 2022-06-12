@@ -30,6 +30,8 @@
                 </div>
 
 
+
+
                 
 
                 @if(Auth::user()->level == 'admin')
@@ -93,6 +95,18 @@
                     </div>
 
                   </li>
+                  @else
+
+
+                  <li class="nav-item {{ setActive(['persembahan_pemasukan_midtrans*']) }}"> 
+                  <a class="nav-link {{ setActive(['persembahan_pemasukan_midtrans*']) }}" href="{{route('persembahan_pemasukan_midtrans')}}">
+                      <i class="nav-icon fas fa-cloud"></i>
+                      <p>
+                      Midtrans
+                      
+                      </p>
+                    </a>
+                </li>
                 @endif
 
       
