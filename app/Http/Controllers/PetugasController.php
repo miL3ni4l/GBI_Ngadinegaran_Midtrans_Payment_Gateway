@@ -76,15 +76,9 @@ class PetugasController extends Controller
         $getRow = Petugas::orderBy('id', 'DESC')->get();
         $rowCount = $getRow->count();
         $lastId = $getRow->first();
-        $kode = "NIP-00001";
+        $kode = "NIP-01";
         if ($rowCount > 0) {
             if ($lastId->id < 9) {
-                    $kode = "NIP-0000".''.($lastId->id + 1);
-            } else if ($lastId->id < 99) {
-                    $kode = "NIP-000".''.($lastId->id + 1);
-            } else if ($lastId->id < 999) {
-                    $kode = "NIP-00".''.($lastId->id + 1);
-            } else if ($lastId->id < 9999) {
                     $kode = "NIP-0".''.($lastId->id + 1);
             } else {
                     $kode = "NIP-".''.($lastId->id + 1);

@@ -14,9 +14,9 @@ class PetugassTableSeeder extends Seeder
        \App\Petugas::insert([
             [
               'id'  			=> 1,
-              'nama'  			=> 'Joshua Jo',
+              'nama'  			=> 'Administrator',
               'jk'  			=> 'L',
-              'kode_petugas' 	=> 'NIP-0001',
+              'kode_petugas' 	=> 'NIP-01',
               'user_id'			=> 1,
               'alamat' 	        => 'Jalan Bantul',
               'no_telp' 	        => '085500001234',
@@ -25,9 +25,9 @@ class PetugassTableSeeder extends Seeder
             ],
             [
               'id'  			=> 2,
-              'nama'  			=> 'Dita',
+              'nama'  			=> 'User 1',
               'jk'  			=> 'P',
-              'kode_petugas' 	=> 'NIP-0002',
+              'kode_petugas' 	=> 'NIP-02',
               'user_id'			=> 3,
               'alamat' 	        => 'Jalan Imogiri',
               'no_telp' 	        => NULL,

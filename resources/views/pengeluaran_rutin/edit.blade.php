@@ -157,7 +157,7 @@
                            
                             
                             <div class="form-group col-md-12">
-                            <label for="cover" class="col-md-12 control-label">Bukti pengeluaran_rutin <i>(kosongkan jika tidak ada)</i> </label>
+                            <label for="cover" class="col-md-12 control-label">Bukti Pengeluaran Rutin <i>(kosongkan jika tidak ada)</i> </label>
                             <div class="col-md-12">
                            
                             <img width="188" height="188" @if($pengeluaran_rutin->cover) src="{{ asset('images/PengeluaranRutin/'.$pengeluaran_rutin->cover) }}" @endif />
