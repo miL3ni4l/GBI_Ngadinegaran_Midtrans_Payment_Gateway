@@ -102,9 +102,13 @@
               <div class="form-group col-md-12" style="width: 100%;margin-bottom:20px">
                 <label>Jenis Ibadah <b style="color:Tomato;">*</b></label>
                 <select class="form-control py-0" required="required" name="ibadah" style="width: 100%">
+                  @php
+                  $no = 1;
+                  @endphp
+
 
                   @foreach($ibadah as $i)
-                  <option {{ ($pemasukan_rutin->nama_ibadah->id == $i->id ? "selected='selected'" : "") }} value="{{ $i->id }}">{{ $i->ibadah }}</option>
+                  <option {{ ($pemasukan_rutin->nama_ibadah->id == $i->id ? "selected='selected'" : "") }} value="{{ $i->id }}">{{ $no++ }}. {{ $i->ibadah }}</option>
                   @endforeach
                 </select>
               </div>
@@ -112,9 +116,12 @@
               <div class="form-group col-md-12" style="width: 100%;margin-bottom:20px">
                 <label>Kategori <b style="color:Tomato;">*</b></label>
                 <select class="form-control py-0" required="required" name="kategori" style="width: 100%">
+                  @php
+                  $no = 1;
+                  @endphp
 
                   @foreach($kategori as $k)
-                  <option {{ ($pemasukan_rutin->detail_kategori->id == $k->id ? "selected='selected'" : "") }} value="{{ $k->id }}">{{ $k->kategori }}</option>
+                  <option {{ ($pemasukan_rutin->detail_kategori->id == $k->id ? "selected='selected'" : "") }} value="{{ $k->id }}">{{ $no++ }}. {{ $k->kategori }}</option>
                   @endforeach
                 </select>
               </div>
@@ -122,9 +129,12 @@
               <div class="form-group col-md-12" style="width: 100%;margin-bottom:20px">
                 <label>Kas <b style="color:Tomato;">*</b></label>
                 <select class="form-control py-0" required="required" name="kas" style="width: 100%">
+                  @php
+                  $no = 1;
+                  @endphp
 
                   @foreach($kas as $k)
-                  <option {{ ($pemasukan_rutin->kas->id == $k->id ? "selected='selected'" : "") }} value="{{ $k->id }}">{{ $k->kas }}</option>
+                  <option {{ ($pemasukan_rutin->kas->id == $k->id ? "selected='selected'" : "") }} value="{{ $k->id }}">{{ $no++ }}. {{ $k->kas }}</option>
                   @endforeach
                 </select>
               </div>

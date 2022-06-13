@@ -232,7 +232,7 @@
                                                         <label for="email" class="col-md-12 control-label">Bukti Pengeluaran Rutin <i>(kosongkan jika tidak ada)</i> </label>
                                                         
                                                         <div class="col-md-12">
-                                                            <img width="300" height="300" />
+                                                            <img width="322" height="322" />
                                                             <input type="file" class="uploads form-control" style="margin-top: 20px;" name="cover">
                                                         </div>
                                               </div>

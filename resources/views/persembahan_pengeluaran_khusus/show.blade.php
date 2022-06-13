@@ -75,8 +75,8 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer bg-white">
-                  <p>Bukti pemasukan_rutin :</p>
-                  <img width="275" height="275" @if($pemasukan_rutin->cover) src="{{ asset('images/PengeluaranKhusus/'.$pemasukan_rutin->cover) }}" @endif />
+                  <p>Bukti Pengeluaran Khusus :</p>
+                  <img width="275" height="275" @if($pemasukan_rutin->cover) src="{{ asset('images/PersembahanPengeluaranKhusus/'.$pemasukan_rutin->cover) }}" @endif />
                   <ul class="mailbox-attachments d-flex align-items-stretch clearfix">
                     <!-- <li>
                                     <span class="mailbox-attachment-icon"><i class="far fa-file-pdf"></i></span>
