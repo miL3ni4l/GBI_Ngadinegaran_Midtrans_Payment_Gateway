@@ -49,7 +49,7 @@
         </div>
 
 
-        <div class=" table-responsive col-md-6 col-sm-12 col-12">
+        <div class=" table-responsive col-md-12 col-sm-12 col-12">
 
           <!--area ditambah-->
           <!--area diisi-->
@@ -112,44 +112,20 @@
                 <input type="number" class="form-control py-0" required="required" name="nominal" value="{{ $pemasukan_rutin->nominal }}" style="width: 100%">
               </div>
 
-
-            </div>
-          </div>
-
-
-        </div>
-
-
-        <!-- KANAN -->
-
-        
-        <div class=" table-responsive col-md-6 col-sm-12 col-12">
-
-          <!--area ditambah-->
-          <!--area diisi-->
-          <div class="card card-secondary">
-            <div class="card-body">
-
-              <!--area ditambah   -->
-
-
+              
               <div class="form-group col-md-12">
-                <label for="cover" class="col-md-12 control-label">Bukti pemasukan_rutin <i>(kosongkan jika tidak ada)</i> </label>
+                <label for="cover" class="col-md-12 control-label">Bukti Pengeluaran <i>(kosongkan jika tidak ada)</i> </label>
                 <div class="col-md-12">
 
-                  <img width="30" height="30" @if($pemasukan_rutin->cover) src="{{ asset('images/PersembahanPengeluaranKhusus/'.$pemasukan_rutin->cover) }}" @endif />
+                  <img width="250" height="250" @if($pemasukan_rutin->cover) src="{{ asset('images/PersembahanPengeluaranKhusus/'.$pemasukan_rutin->cover) }}" @endif />
                   <input type="file" class="uploads form-control" style="margin-top: 20px;" name="cover">
                 </div>
               </div>
-
-
 
               <div class="form-group col-md-12" style="width: 150%;margin-bottom:28px">
                 <label>Keterangan</label>
                 <textarea class="form-control py-0" name="keterangan" autocomplete="off" placeholder="Masukkan keterangan (Opsional) .." style="width: 100%">{{ $pemasukan_rutin->keterangan }}</textarea>
               </div>
-
-
 
               <div class="form-group col-md-12">
 
@@ -169,14 +145,54 @@
               </div>
 
 
-
-
-
             </div>
           </div>
 
 
         </div>
+
+
+        <!-- KANAN -->
+
+
+        <!-- <div class=" table-responsive col-md-6 col-sm-12 col-12">
+          <div class="card card-secondary">
+            <div class="card-body">
+
+              <div class="form-group col-md-12">
+                <label for="cover" class="col-md-12 control-label">Bukti pemasukan_rutin <i>(kosongkan jika tidak ada)</i> </label>
+                <div class="col-md-12">
+
+                  <img width="30" height="30" @if($pemasukan_rutin->cover) src="{{ asset('images/PersembahanPengeluaranKhusus/'.$pemasukan_rutin->cover) }}" @endif />
+                  <input type="file" class="uploads form-control" style="margin-top: 20px;" name="cover">
+                </div>
+              </div>
+
+              <div class="form-group col-md-12" style="width: 150%;margin-bottom:28px">
+                <label>Keterangan</label>
+                <textarea class="form-control py-0" name="keterangan" autocomplete="off" placeholder="Masukkan keterangan (Opsional) .." style="width: 100%">{{ $pemasukan_rutin->keterangan }}</textarea>
+              </div>
+
+              <div class="form-group col-md-12">
+
+                <button type="submit" class="btn btn-success col-md-2 float-right" id="submit">
+                  Submit
+                </button>
+
+
+
+
+                &nbsp;
+                <button type="reset" class="btn btn-danger col-md-4 float-left">
+                  Reset
+                </button>
+
+
+              </div>
+
+            </div>
+          </div>
+        </div> -->
 
       </div>
     </div><!-- /.container-fluid -->
