@@ -98,9 +98,12 @@
               <div class="form-group col-md-12" style="width: 100%;margin-bottom:20px">
                 <label>Detail Kategori <b style="color:Tomato;">*</b></label>
                 <select class="form-control py-0" required="required" name="kategori" style="width: 100%">
+                  @php
+                  $no = 1;
+                  @endphp
 
                   @foreach($kategori as $k)
-                  <option {{ ($pemasukan_rutin->detail_kategori->id == $k->id ? "selected='selected'" : "") }} value="{{ $k->id }}">{{ $k->kategori }}</option>
+                  <option {{ ($pemasukan_rutin->detail_kategori->id == $k->id ? "selected='selected'" : "") }} value="{{ $k->id }}"> {{ $no++ }}. {{ $k->kategori }}</option>
                   @endforeach
                 </select>
               </div>
@@ -112,7 +115,7 @@
                 <input type="number" class="form-control py-0" required="required" name="nominal" value="{{ $pemasukan_rutin->nominal }}" style="width: 100%">
               </div>
 
-              
+
               <div class="form-group col-md-12">
                 <label for="cover" class="col-md-12 control-label">Bukti Pengeluaran <i>(kosongkan jika tidak ada)</i> </label>
                 <div class="col-md-12">

@@ -95,19 +95,25 @@
               <div class="form-group col-md-12" style="width: 100%;margin-bottom:20px">
                 <label>Dari Kategori <b style="color:Tomato;">*</b></label>
                 <select class="form-control py-0" required="required" name="kategori_id" style="width: 100%">
+                  @php
+                  $no = 1;
+                  @endphp
 
                   @foreach($kategori as $k)
-                  <option {{ ($pengeluaran_rutin->nama_kategori->id == $k->id ? "selected='selected'" : "") }} value="{{ $k->id }}">{{ $k->kategori }}</option>
-                  @endforeach
+                  <option{{($pengeluaran_rutin->nama_kategori->id == $k->id ? "selected='selected'" : "") }} value="{{ $k->id }}"> {{ $no++ }}. {{ $k->kategori }}</option>
+                    @endforeach
                 </select>
               </div>
 
               <div class="form-group col-md-12" style="width: 100%;margin-bottom:20px">
                 <label>Kategori Pengeluaran <b style="color:Tomato;">*</b></label>
                 <select class="form-control py-0" required="required" name="detail_pengeluaran" style="width: 100%">
+                  @php
+                  $no = 1;
+                  @endphp
 
                   @foreach($kategori_pengeluaran as $k)
-                  <option {{ ($pengeluaran_rutin->nama_kategori->id == $k->id ? "selected='selected'" : "") }} value="{{ $k->id }}">{{ $k->kategori }}</option>
+                  <option {{ ($pengeluaran_rutin->nama_kategori->id == $k->id ? "selected='selected'" : "") }} value="{{ $k->id }}"> {{ $no++ }}. {{ $k->kategori }}</option>
                   @endforeach
                 </select>
               </div>
