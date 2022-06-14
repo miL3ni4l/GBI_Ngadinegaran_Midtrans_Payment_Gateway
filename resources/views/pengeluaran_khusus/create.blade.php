@@ -112,6 +112,10 @@
                 <label>Kategori <b style="color:Tomato;">*</b></label>
                 <select required="required" name="kategori" class="custom-select mb-3">
                   <option value="">-- Pilih Kategori --</option>
+                  @php
+$no = 1;
+@endphp
+
                   @foreach($kategoris as $k)
 
                   <?php
@@ -140,7 +144,7 @@
                   ?>
 
                   <option value="{{ $k->id }}">
-                    {{ $k->kategori }} {{ "Rp. ".number_format($pemasukan_perkategori->total -= $pengeluaran_perkategori_khusus->total)." ,-" }}
+                  {{ $no++ }}. {{ $k->kategori }} {{ "Rp. ".number_format($pemasukan_perkategori->total -= $pengeluaran_perkategori_khusus->total)." ,-" }}
                     <!-- {{$k->kode_kategori}}-{{ $k->kategori }} -->
                   </option>
 
@@ -154,6 +158,10 @@
                 <label>Kas <b style="color:Tomato;">*</b></label>
                 <select required="required" name="kas" class="custom-select mb-3">
                   <option value="">-- Pilih Kas --</option>
+                  @php
+$no = 1;
+@endphp
+
                   @foreach($kass as $k)
 
                   <?php
@@ -173,7 +181,7 @@
                   ?>
 
                   <option value="{{ $k->id }}">
-                    {{ $k->kas }} {{ "Rp. ".number_format($pemasukan_perkas->total -= $pengeluaran_perkas->total)." ,-" }}
+                  {{ $no++ }}. {{ $k->kas }} {{ "Rp. ".number_format($pemasukan_perkas->total -= $pengeluaran_perkas->total)." ,-" }}
 
                   </option>
                   @endforeach
