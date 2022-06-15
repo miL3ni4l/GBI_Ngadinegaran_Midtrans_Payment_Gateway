@@ -186,6 +186,70 @@ class pemasukan_rutinController extends Controller
 
     }
 
+    public function pemasukan_rutin_print()
+    {   
+         //Akses Dari Luar 
+        if(Auth::user() == '') {
+            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+            return redirect()->to('login');
+        } 
+
+        //AKUN BELUM TERDAFTAR DI TABEL PETUGAS
+        if(Auth::user()->petugas == null) 
+        {
+            Session::flash('message', 'Anda Belum Ditambahkan Sebagai Petugas !');
+            Session::flash('message_type', 'danger');
+            return redirect()->to('/home');
+        } 
+
+        //KATEGORI BERDASARKAN USERLOGIN
+        if(Auth::user()->level == 'bendahara')
+        { 
+            $datas = DetailKategori::orderBy('updated_at','desc')->where('petugas_id', Auth::user()->petugas->id)->get();  
+            $details = Kategori::orderBy('updated_at','desc')->get();                       
+            $kategoris =  DetailKategori::orderBy('updated_at','desc')->where('petugas_id', Auth::user()->petugas->id)->get();  
+        } 
+        else 
+        {               
+            $datas = DetailKategori::orderBy('updated_at','desc')->get();
+            $details = Kategori::orderBy('updated_at','desc')->get();
+            $kategoris = DetailKategori::orderBy('updated_at','desc')->get();   
+        }
+
+        $kas = Kas::all();
+        $ibadah = Ibadah::all();
+        $kategori = DetailKategori::all();
+        $pemasukan_rutin = pemasukan_rutin::all();
+        $pemasukan_rutins  = pemasukan_rutin::count(); 
+
+ 
+        $kas = Kas::orderBy('kas','asc')->get();
+        $kategori = DetailKategori::orderBy('kategori','asc')
+        ->where('jenis', 'Rutin')->get();
+        $kas = kas::orderBy('kas','asc')->get();
+
+
+        if($_GET['ibadah'] == "" || $_GET['kategori'] == ""  || $_GET['kas'] == ""){
+            $pemasukan_rutin = pemasukan_rutin::whereDate('tanggal','>=',$_GET['dari'])
+            ->whereDate('tanggal','<=',$_GET['sampai'])
+            ->where('status','1')
+            ->get();
+        }
+        else{
+            $pemasukan_rutin = 
+            pemasukan_rutin::whereDate('tanggal','>=',$_GET['dari'])
+            ->whereDate('tanggal','<=',$_GET['sampai'])
+            ->where('ibadah_id',$_GET['ibadah'])
+            ->where('kategori_id',$_GET['kategori'])
+            ->where('kas_id',$_GET['kas'])
+            ->where('status','1')
+            ->get();     
+        }  
+        return view('pemasukan_rutin.pemasukan_rutin_print',['pemasukan_rutin' => $pemasukan_rutin, 'kas' => $kas,'kategori' => $kategori,'ibadah' => $ibadah, 'pemasukan_rutins'=>$pemasukan_rutins, 'datas'=>$datas,'kategoris'=>$kategoris]);
+
+
+    }
+
     public function laporan_excel()
     {
         return Excel::download(new LaporanExport, 'Laporan.xlsx');

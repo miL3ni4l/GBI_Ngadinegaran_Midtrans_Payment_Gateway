@@ -46,6 +46,8 @@ Route::get('/persembahan/print', 'PersembahanAdminController@persembahan_print')
 Route::get('/persembahan_pengeluaran_rutin/print', 'PrsmbhnPnglrnRtnController@persembahan_pengeluaran_rutin_print')->name('persembahan_pengeluaran_rutin_print');
 Route::get('/persembahan_pengeluaran_khusus/print', 'PrsmbhnPnglrnKhsController@persembahan_pengeluaran_khusus_print')->name('persembahan_pengeluaran_khusus_print');
 
+Route::get('/pemasukan_rutin/print', 'pemasukan_rutinController@pemasukan_rutin_print')->name('pemasukan_rutin_print');
+Route::get('/pemasukan_khusus/print', 'PemasukanKhususController@pemasukan_khusus_print')->name('pemasukan_khusus_print');
 
 
 
