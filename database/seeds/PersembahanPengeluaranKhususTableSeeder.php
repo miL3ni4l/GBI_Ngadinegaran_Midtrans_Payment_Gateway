@@ -14,7 +14,7 @@ class PersembahanPengeluaranKhususTableSeeder extends Seeder
        \App\PersembahanPengeluaranKhusus::insert([
             [
               'id'  			=> 1,
-              'kategori_id'  			=> 2,
+              'kategori_id'  			=> 4,
               'nama_pengguna'  			=> 1,
               'kode_persembahan_pengeluaran_khusus'  			=> 'TK222',
               'status'  			=> '1',

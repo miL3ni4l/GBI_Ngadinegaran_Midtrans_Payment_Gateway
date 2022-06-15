@@ -183,6 +183,60 @@ class PrsmbhnPnglrnKhsController extends Controller
         return view('persembahan_pengeluaran_khusus.index', ['pemasukan_rutin' => $pemasukan_rutin, 'kas' => $kas, 'kategori' => $kategori, 'pemasukan_rutins' => $pemasukan_rutins, 'datas' => $datas, 'kategoris' => $kategoris]);
     }
 
+    //FILTER DATA pemasukan_rutin BERDASARKAN TANGGAL2
+    public function persembahan_pengeluaran_khusus_print()
+    {
+        //Akses Dari Luar 
+        if (Auth::user() == '') {
+            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+            return redirect()->to('login');
+        }
+
+        //AKUN BELUM TERDAFTAR DI TABEL PETUGAS
+        if (Auth::user()->petugas == null) {
+            Session::flash('message', 'Anda Belum Ditambahkan Sebagai Petugas !');
+            Session::flash('message_type', 'danger');
+            return redirect()->to('/home');
+        }
+
+        //KATEGORI BERDASARKAN USERLOGIN
+        if (Auth::user()->level == 'bendahara') {
+            $datas = DetailKategori::orderBy('updated_at', 'desc')->where('nama_pengguna', Auth::user()->petugas->id)->get();
+            $details = Kategori::orderBy('updated_at', 'desc')->get();
+            $kategoris =  DetailKategori::orderBy('updated_at', 'desc')->where('nama_pengguna', Auth::user()->petugas->id)->get();
+        } else {
+            $datas = DetailKategori::orderBy('updated_at', 'desc')->get();
+            $details = Kategori::orderBy('updated_at', 'desc')->get();
+            $kategoris = DetailKategori::orderBy('updated_at', 'desc')->get();
+        }
+
+        $kas = Kas::all();
+        $kategori = DetailKategori::all();
+        $pemasukan_rutin = PersembahanPengeluaranKhusus::all();
+        $pemasukan_rutins  = PersembahanPengeluaranKhusus::count();
+
+
+        $kas = Kas::orderBy('kas', 'asc')->get();
+        $kategori = DetailKategori::where('jenis', 'Khusus')->get();
+        $kas = Kas::orderBy('kas', 'asc')->get();
+
+
+        if ($_GET['kategori'] == "") {
+            $pemasukan_rutin = PersembahanPengeluaranKhusus::whereDate('tanggal', '>=', $_GET['dari'])
+                ->whereDate('tanggal', '<=', $_GET['sampai'])
+                ->where('status', '1')
+                ->get();
+        } else {
+            $pemasukan_rutin =
+                PersembahanPengeluaranKhusus::whereDate('tanggal', '>=', $_GET['dari'])
+                ->whereDate('tanggal', '<=', $_GET['sampai'])
+                ->where('kategori_id', $_GET['kategori'])
+                ->where('status', '1')
+                ->get();
+        }
+        return view('persembahan_pengeluaran_khusus.persembahan_pengeluaran_khusus_print', ['pemasukan_rutin' => $pemasukan_rutin, 'kas' => $kas, 'kategori' => $kategori, 'pemasukan_rutins' => $pemasukan_rutins, 'datas' => $datas, 'kategoris' => $kategoris]);
+    }
+
     public function laporan_excel()
     {
         return Excel::download(new LaporanExport, 'Laporan.xlsx');
