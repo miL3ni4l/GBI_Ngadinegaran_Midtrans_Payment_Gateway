@@ -42,6 +42,8 @@ Route::get('/persembahan', 'DonationController@create')->name('persembahan.creat
 Route::get('/persembahan_pemasukan_midtrans', 'PersembahanAdminController@index')->name('persembahan_pemasukan_midtrans'); 
 Route::get('/filter_persembahan', 'PersembahanAdminController@filter_persembahan')->name('filter_persembahan');
 
+Route::get('/persembahan/print', 'PersembahanAdminController@persembahan_print')->name('persembahan_print');
+Route::get('/persembahan/excel', 'PersembahanAdminController@persembahan_midtrans_excel')->name('persembahan_midtrans_excel');
 
 
 // USER

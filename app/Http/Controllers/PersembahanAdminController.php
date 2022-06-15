@@ -39,97 +39,148 @@ class PersembahanAdminController extends Controller
     public function index()
     {
 
-                //Akses Dari Luar 
-                if(Auth::user() == '') {
-                    Session::flash('message', 'Oopss..', 'Anda dilarang masuk ke area ini.');
-                    Session::flash('message_type', 'danger');
-                    return redirect()->to('login');
-                } 
-                //AKUN BELUM TERDAFTAR DI TABEL PETUGAS
-                if(Auth::user()->petugas == null) 
-                {
-                    Session::flash('message', 'Anda Belum Ditambahkan Sebagai Petugas !');
-                    Session::flash('message_type', 'danger');
-                    return redirect()->to('/home');
-                } 
-
-                $tanggal = date('Y-m-d');
-                $bulan = date('m');
-                $tahun = date('Y');
-        
-                $pemasukan_bulan_ini = DB::table('persembahan')->select(DB::raw('SUM(amount) as total'))
-                ->where('status','success')
-                ->whereMonth('created_at',$bulan)
-                ->whereYear('created_at',$tahun)
-                ->first();
-                $total_pemasukan_bulan_ini = $pemasukan_bulan_ini->total;
-                
-                $kategori = DetailKategori::orderBy('id', 'desc')->get();
-                $ibadah = Ibadah::orderBy('updated_at','desc')->get();
-                $petugas = Petugas::orderBy('updated_at','desc')->get();
-                $profil = Profil::orderBy('updated_at','desc')->get();
-                $pendeta = Pendeta::orderBy('updated_at','desc')->get();
-                $persembahan = Donation::orderBy('updated_at','desc')
-                ->whereMonth('created_at',$bulan)
-                ->whereYear('created_at',$tahun)
-                ->get();
-            
-                return view('persembahan_pemasukan_midtrans.index',array('total_pemasukan_bulan_ini' => $total_pemasukan_bulan_ini,'ibadah' => $ibadah,'petugas' => $petugas,'profil' => $profil,'pendeta' => $pendeta,'persembahan' => $persembahan, 'kategori' => $kategori));
-
-    }
-
-    public function filter_persembahan()
-    {   
-         //Akses Dari Luar 
-        if(Auth::user() == '') {
-            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+        //Akses Dari Luar 
+        if (Auth::user() == '') {
+            Session::flash('message', 'Oopss..', 'Anda dilarang masuk ke area ini.');
+            Session::flash('message_type', 'danger');
             return redirect()->to('login');
-        } 
-
+        }
         //AKUN BELUM TERDAFTAR DI TABEL PETUGAS
-        if(Auth::user()->petugas == null) 
-        {
+        if (Auth::user()->petugas == null) {
             Session::flash('message', 'Anda Belum Ditambahkan Sebagai Petugas !');
             Session::flash('message_type', 'danger');
             return redirect()->to('/home');
-        } 
+        }
+
+        $tanggal = date('Y-m-d');
+        $bulan = date('m');
+        $tahun = date('Y');
+
+        $pemasukan_bulan_ini = DB::table('persembahan')->select(DB::raw('SUM(amount) as total'))
+            ->where('status', 'success')
+            ->whereMonth('created_at', $bulan)
+            ->whereYear('created_at', $tahun)
+            ->first();
+        $total_pemasukan_bulan_ini = $pemasukan_bulan_ini->total;
+
+        $kategori = DetailKategori::orderBy('id', 'desc')->get();
+        $ibadah = Ibadah::orderBy('updated_at', 'desc')->get();
+        $petugas = Petugas::orderBy('updated_at', 'desc')->get();
+        $profil = Profil::orderBy('updated_at', 'desc')->get();
+        $pendeta = Pendeta::orderBy('updated_at', 'desc')->get();
+        $persembahan = Donation::orderBy('updated_at', 'desc')
+            ->whereMonth('created_at', $bulan)
+            ->whereYear('created_at', $tahun)
+            ->get();
+
+        return view('persembahan_pemasukan_midtrans.index', array('total_pemasukan_bulan_ini' => $total_pemasukan_bulan_ini, 'ibadah' => $ibadah, 'petugas' => $petugas, 'profil' => $profil, 'pendeta' => $pendeta, 'persembahan' => $persembahan, 'kategori' => $kategori));
+    }
+
+    public function filter_persembahan()
+    {
+        //Akses Dari Luar 
+        if (Auth::user() == '') {
+            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+            return redirect()->to('login');
+        }
+
+        //AKUN BELUM TERDAFTAR DI TABEL PETUGAS
+        if (Auth::user()->petugas == null) {
+            Session::flash('message', 'Anda Belum Ditambahkan Sebagai Petugas !');
+            Session::flash('message_type', 'danger');
+            return redirect()->to('/home');
+        }
 
         $tanggal = date('Y-m-d');
         $bulan = date('m');
         $tahun = date('Y');
         $pemasukan_bulan_ini = DB::table('persembahan')->select(DB::raw('SUM(amount) as total'))
-        ->where('status','success')
-        ->whereMonth('created_at',$bulan)
-        ->whereYear('created_at',$tahun)
-        ->first();
+            ->where('status', 'success')
+            ->whereMonth('created_at', $bulan)
+            ->whereYear('created_at', $tahun)
+            ->first();
         $total_pemasukan_bulan_ini = $pemasukan_bulan_ini->total;
-        
+
         $kategori = DetailKategori::all();
         $kategori = DetailKategori::orderBy('id', 'desc')->get();
 
         $persembahan = Donation::all();
-        $persembahan = Donation::orderBy('updated_at','desc')->get();
-        $persembahans  = Donation::count(); 
-   
+        $persembahan = Donation::orderBy('updated_at', 'desc')->get();
+        $persembahans  = Donation::count();
 
-        if($_GET['kategori'] == ""){
-            $persembahan = Donation::whereDate('updated_at','>=',$_GET['dari'])
-            ->whereDate('updated_at','<=',$_GET['sampai'])
-            ->where('status','success')
-            ->get();
+
+        if ($_GET['kategori'] == "") {
+            $persembahan = Donation::whereDate('updated_at', '>=', $_GET['dari'])
+                ->whereDate('updated_at', '<=', $_GET['sampai'])
+                ->where('status', 'success')
+                ->get();
+        } else {
+            $persembahan = Donation::whereDate('updated_at', '>=', $_GET['dari'])
+                ->whereDate('updated_at', '<=', $_GET['sampai'])
+                ->where('donation_type', $_GET['kategori'])
+                ->where('status', 'success')
+                ->get();
         }
-        else{
-            $persembahan = Donation::whereDate('updated_at','>=',$_GET['dari'])
-            ->whereDate('updated_at','<=',$_GET['sampai'])
-            ->where('donation_type',$_GET['kategori'])
-            ->where('status','success')
-            ->get();     
-        }  
-        return view('persembahan_pemasukan_midtrans.index',['persembahan' => $persembahan,'persembahans' => $persembahans, 'kategori' => $kategori,
-        'total_pemasukan_bulan_ini' => $total_pemasukan_bulan_ini,
-    ]);
-
-
+        return view('persembahan_pemasukan_midtrans.index', [
+            'persembahan' => $persembahan, 'persembahans' => $persembahans, 'kategori' => $kategori,
+            'total_pemasukan_bulan_ini' => $total_pemasukan_bulan_ini,
+        ]);
     }
-    
+
+    public function persembahan_print()
+    {
+        //Akses Dari Luar 
+        if (Auth::user() == '') {
+            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+            return redirect()->to('login');
+        }
+
+        //AKUN BELUM TERDAFTAR DI TABEL PETUGAS
+        if (Auth::user()->petugas == null) {
+            Session::flash('message', 'Anda Belum Ditambahkan Sebagai Petugas !');
+            Session::flash('message_type', 'danger');
+            return redirect()->to('/home');
+        }
+
+        $tanggal = date('Y-m-d');
+        $bulan = date('m');
+        $tahun = date('Y');
+        $pemasukan_bulan_ini = DB::table('persembahan')->select(DB::raw('SUM(amount) as total'))
+            ->where('status', 'success')
+            ->whereMonth('created_at', $bulan)
+            ->whereYear('created_at', $tahun)
+            ->first();
+        $total_pemasukan_bulan_ini = $pemasukan_bulan_ini->total;
+
+        $kategori = DetailKategori::all();
+        $kategori = DetailKategori::orderBy('id', 'desc')->get();
+
+        $persembahan = Donation::all();
+        $persembahan = Donation::orderBy('updated_at', 'desc')->get();
+        $persembahans  = Donation::count();
+
+
+        if ($_GET['kategori'] == "") {
+            $persembahan = Donation::whereDate('updated_at', '>=', $_GET['dari'])
+                ->whereDate('updated_at', '<=', $_GET['sampai'])
+                ->where('status', 'success')
+                ->get();
+        } else {
+            $persembahan = Donation::whereDate('updated_at', '>=', $_GET['dari'])
+                ->whereDate('updated_at', '<=', $_GET['sampai'])
+                ->where('donation_type', $_GET['kategori'])
+                ->where('status', 'success')
+                ->get();
+        }
+        return view('persembahan_pemasukan_midtrans.persembahan_print', [
+            'persembahan' => $persembahan, 'persembahans' => $persembahans, 'kategori' => $kategori,
+            'total_pemasukan_bulan_ini' => $total_pemasukan_bulan_ini,
+        ]);
+    }
+
+    //COMPOSER REQUIRED composer require maatwebsite/excel:^3.0.1
+    public function persembahan_midtrans_excel()
+    {
+        return Excel::download(new PersembahanMidtransExport, 'Laporan_Persembahan_Midtrans.xlsx');
+    }
 }
