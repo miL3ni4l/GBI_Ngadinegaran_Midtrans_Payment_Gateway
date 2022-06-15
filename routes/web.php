@@ -42,6 +42,8 @@ Route::get('/persembahan', 'DonationController@create')->name('persembahan.creat
 Route::get('/persembahan_pemasukan_midtrans', 'PersembahanAdminController@index')->name('persembahan_pemasukan_midtrans'); 
 Route::get('/filter_persembahan', 'PersembahanAdminController@filter_persembahan')->name('filter_persembahan');
 
+
+//PRINT
 Route::get('/persembahan/print', 'PersembahanAdminController@persembahan_print')->name('persembahan_print');
 Route::get('/persembahan_pengeluaran_rutin/print', 'PrsmbhnPnglrnRtnController@persembahan_pengeluaran_rutin_print')->name('persembahan_pengeluaran_rutin_print');
 Route::get('/persembahan_pengeluaran_khusus/print', 'PrsmbhnPnglrnKhsController@persembahan_pengeluaran_khusus_print')->name('persembahan_pengeluaran_khusus_print');
@@ -49,7 +51,8 @@ Route::get('/persembahan_pengeluaran_khusus/print', 'PrsmbhnPnglrnKhsController@
 Route::get('/pemasukan_rutin/print', 'pemasukan_rutinController@pemasukan_rutin_print')->name('pemasukan_rutin_print');
 Route::get('/pemasukan_khusus/print', 'PemasukanKhususController@pemasukan_khusus_print')->name('pemasukan_khusus_print');
 
-
+Route::get('/pengeluaran_rutin/print', 'PengeluaranRutinController@pengeluaran_rutin_print')->name('pengeluaran_rutin_print');
+Route::get('/pengeluaran_khusus/print', 'PengeluaranKhususController@pengeluaran_khusus_print')->name('pengeluaran_khusus_print');
 
 Route::get('/persembahan/excel', 'PersembahanAdminController@persembahan_midtrans_excel')->name('persembahan_midtrans_excel');
 
