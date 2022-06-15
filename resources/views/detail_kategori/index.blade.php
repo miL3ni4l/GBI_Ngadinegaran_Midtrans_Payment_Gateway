@@ -171,16 +171,22 @@
         <h3 class="card-title">Filter Kategori Pemasukan</h3>
       </div>
 
+            <!-- LOGO -->
+      <div class="card-header pt-4">
+        <div class="col-12">
+          <h5>
+            <img src="/adminlte/dist/img/credit/gbi.png" alt="Visa"> GBI Ngadinegaran Yogyakarta
+
+            <a target="_BLANK" href="{{ route('detail_kategori_print',['kategori' => $_GET['kategori'], 'dari' => $_GET['dari'], 'sampai' => $_GET['sampai']]) }}" class="btn btn-default float-right bg-primary col-md-2 text-center"><i class="fa fa-print "></i> &nbsp; Print</a>
+
+          </h5>
+        </div>
+      </div>
+
       <div class="card-body">
         <div class="invoice p-3 mb-3">
           <div class="row">
 
-            <div class="col-12">
-              <h4>
-                <img src="/adminlte/dist/img/credit/gbi.png" alt="Visa">
-                &nbsp; GBI Ngadinegaran Yogyakarta
-              </h4>
-            </div>
 
             <table class="col-12 float-right">
               <h4>
@@ -576,8 +582,8 @@
                 <select class="form-control" name="kategori">
                   <!-- <option value="">-- SEMUA KATEGORI RUTIN--</option> -->
                   @php
-$no = 1;
-@endphp
+                  $no = 1;
+                  @endphp
 
                   @foreach($kategori_rutin as $k)
                   <option <?php
@@ -643,8 +649,8 @@ $no = 1;
                 <select class="form-control" name="kategori">
                   <!-- <option value="">-- SEMUA KATEGORI KHUSUS--</option> -->
                   @php
-$no = 1;
-@endphp
+                  $no = 1;
+                  @endphp
 
                   @foreach($kategori_khusus as $k)
                   <option <?php

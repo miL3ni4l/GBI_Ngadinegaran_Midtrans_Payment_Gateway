@@ -413,6 +413,91 @@ class DetailKategoriController extends Controller
 
     }
 
+    public function detail_kategori_print()
+    {   
+        //Akses Dari Luar 
+        if(Auth::user() == '') {
+            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+            return redirect()->to('login');
+        } 
+
+        //AKUN BELUM TERDAFTAR DI TABEL PETUGAS
+        if(Auth::user()->petugas == null) 
+        {
+            Session::flash('message', 'Anda Belum Ditambahkan Sebagai Petugas !');
+            Session::flash('message_type', 'danger');
+            return redirect()->to('/home');
+        } 
+        
+        //SUDAH TERDAFTAR SEBAGAI PETUGAS
+        if(Auth::user()->level == 'bendahara')
+        { 
+            $datas = DetailKategori::orderBy('updated_at','desc')->where('petugas_id', Auth::user()->petugas->id)->get();                         
+        } 
+        else 
+        {               
+            $datas = DetailKategori::orderBy('updated_at','desc')->get();
+        }
+
+        $kategoris_pemasukan= Kategori::orderBy('updated_at','desc')->get();  
+        $details = Kategori::orderBy('updated_at','desc')->get(); 
+        $kategoris = DetailKategori::all(); 
+        $kategori_rutin = DetailKategori::orderBy('kategori','asc')
+        ->where('jenis', 'Rutin')
+        ->get();
+        $kategori_khusus = DetailKategori::orderBy('kategori','asc')
+        ->where('jenis', 'Khusus')
+        ->get();
+
+        $persembahan = Donation::all();
+        $persembahan = Donation::orderBy('updated_at','desc')
+        ->where('status','success')
+        ->get();
+
+        $persembahans  = Donation::count(); 
+        $pemasukan_rutin = pemasukan_rutin::all();
+        $pemasukan_rutins  = pemasukan_rutin::count(); 
+        $pemasukan_khusus = PemasukanKhusus::all();
+        $pemasukan_khususs  = PemasukanKhusus::count(); 
+       
+
+        if($_GET['kategori'] == ""){
+            $pemasukan_rutin = pemasukan_rutin::whereDate('tanggal','>=',$_GET['dari'])
+            ->where('status', '1')
+            ->whereDate('tanggal','<=',$_GET['sampai'])
+            ->get();
+            $pemasukan_khusus = PemasukanKhusus::whereDate('tanggal','>=',$_GET['dari'])
+            ->where('status', '1')
+            ->whereDate('tanggal','<=',$_GET['sampai'])
+            ->get();
+            // $midtrans = Donation::whereDate('created_at','>=',$_GET['dari'])
+            // ->where('status','success')
+            // ->whereDate('created_at','<=',$_GET['sampai'])
+            // ->get();
+        }
+        else{
+            $pemasukan_rutin = pemasukan_rutin::where('kategori_id',$_GET['kategori'])
+            ->where('status', '1')
+            ->whereDate('tanggal','>=',$_GET['dari'])
+            ->whereDate('tanggal','<=',$_GET['sampai'])
+            ->get();    
+            $pemasukan_khusus = PemasukanKhusus::where('kategori_id',$_GET['kategori'])
+            ->where('status', '1')
+            ->whereDate('tanggal','>=',$_GET['dari'])
+            ->whereDate('tanggal','<=',$_GET['sampai'])
+            ->get(); 
+            $persembahan = Donation::where('donation_type',$_GET['kategori'])
+            ->where('status','success')
+            ->whereDate('created_at','>=',$_GET['dari'])
+            ->whereDate('created_at','<=',$_GET['sampai'])
+            ->get();
+        }  
+        return view('detail_kategori.detail_kategori_print',['kategoris_pemasukan'=> $kategoris_pemasukan,'pemasukan_rutin' => $pemasukan_rutin, 'pemasukan_khusus' => $pemasukan_khusus,'kategori_rutin' => $kategori_rutin, 'datas' => $datas,'details' => $details,'kategoris'=>$kategoris ,'kategori_khusus' => $kategori_khusus, 
+        'persembahan' => $persembahan,  'persembahans' => $persembahans, 'pemasukan_rutins'=>$pemasukan_rutins]);
+
+
+    }
+
     public function khusus()
     {   
         //Akses Dari Luar 

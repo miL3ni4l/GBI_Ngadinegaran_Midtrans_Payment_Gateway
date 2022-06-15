@@ -54,6 +54,8 @@ Route::get('/pemasukan_khusus/print', 'PemasukanKhususController@pemasukan_khusu
 Route::get('/pengeluaran_rutin/print', 'PengeluaranRutinController@pengeluaran_rutin_print')->name('pengeluaran_rutin_print');
 Route::get('/pengeluaran_khusus/print', 'PengeluaranKhususController@pengeluaran_khusus_print')->name('pengeluaran_khusus_print');
 
+Route::get('/detail_kategori/print', 'DetailKategoriController@detail_kategori_print')->name('detail_kategori_print');
+
 Route::get('/persembahan/excel', 'PersembahanAdminController@persembahan_midtrans_excel')->name('persembahan_midtrans_excel');
 
 
