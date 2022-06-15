@@ -77,15 +77,22 @@
       <div class="card-header pt-4">
         <h3 class="card-title">Filter Midtrans Pengeluaran Rutin</h3>
       </div>
+
+      <!-- LOGO -->
+      <div class="card-header pt-4">
+        <div class="col-12">
+          <h5>
+            <img src="/adminlte/dist/img/credit/gbi.png" alt="Visa"> GBI Ngadinegaran Yogyakarta
+
+            <a target="_BLANK" href="{{ route('persembahan_pengeluaran_rutin_print',['kategori_pengeluaran' => $_GET['kategori_pengeluaran'], 'dari' => $_GET['dari'], 'sampai' => $_GET['sampai']]) }}" class="btn btn-default float-right bg-primary col-md-2 text-center"><i class="fa fa-print "></i> &nbsp; Print</a>
+
+          </h5>
+        </div>
+      </div>
+
       <div class="card-body">
         <div class="invoice p-3 mb-3">
           <div class="row">
-            <div class="col-12">
-              <h4>
-                <img src="/adminlte/dist/img/credit/gbi.png" alt="Visa">
-                &nbsp; GBI Ngadinegaran Yogyakarta
-              </h4>
-            </div>
             <table class="col-12 float-right">
               <h4>
                 <div class="col-12">

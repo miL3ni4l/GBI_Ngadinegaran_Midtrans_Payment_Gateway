@@ -43,6 +43,11 @@ Route::get('/persembahan_pemasukan_midtrans', 'PersembahanAdminController@index'
 Route::get('/filter_persembahan', 'PersembahanAdminController@filter_persembahan')->name('filter_persembahan');
 
 Route::get('/persembahan/print', 'PersembahanAdminController@persembahan_print')->name('persembahan_print');
+Route::get('/persembahan_pengeluaran_rutin/print', 'PrsmbhnPnglrnRtnController@persembahan_pengeluaran_rutin_print')->name('persembahan_pengeluaran_rutin_print');
+
+
+
+
 Route::get('/persembahan/excel', 'PersembahanAdminController@persembahan_midtrans_excel')->name('persembahan_midtrans_excel');
 
 
