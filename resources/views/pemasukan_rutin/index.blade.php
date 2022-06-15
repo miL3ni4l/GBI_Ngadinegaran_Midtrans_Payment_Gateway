@@ -91,8 +91,6 @@
 
             <a target="_BLANK" href="{{ route('pemasukan_rutin_print',['kategori' => $_GET['kategori'],'ibadah' => $_GET['ibadah'],'kas' => $_GET['kas'], 'dari' => $_GET['dari'], 'sampai' => $_GET['sampai']]) }}" class="btn btn-default float-right bg-primary col-md-2 text-center"><i class="fa fa-print "></i> &nbsp; Print</a>
 
-            <!-- <a target="_BLANK" href="{{ route('lapiran_excel',['kategori' => $_GET['kategori'], 'dari' => $_GET['dari'], 'sampai' => $_GET['sampai']]) }}" class="btn btn-default float-right bg-success col-md-2 text-center" ><i class="fa fa-file-excel"></i></i> &nbsp; Cetak Excel</a>           
-                   -->
           </h5>
         </div>
       </div>

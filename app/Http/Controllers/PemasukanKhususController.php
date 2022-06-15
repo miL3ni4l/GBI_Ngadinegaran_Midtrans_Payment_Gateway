@@ -182,6 +182,68 @@ class PemasukanKhususController extends Controller
 
     }
 
+    public function pemasukan_khusus_print()
+    {   
+        //Akses Dari Luar 
+        if(Auth::user() == '') {
+            Session::flash('message', 'Oopss..', 'Anda dilarang masuk ke area ini.');
+            Session::flash('message_type', 'danger');
+            return redirect()->to('login');
+        } 
+
+        //AKUN BELUM TERDAFTAR DI TABEL PETUGAS
+        if(Auth::user()->petugas == null) 
+        {
+            Session::flash('message', 'Anda Belum Ditambahkan Sebagai Petugas !');
+            Session::flash('message_type', 'danger');
+            return redirect()->to('/home');
+        } 
+
+        //KATEGORI BERDASARKAN USERLOGIN
+        if(Auth::user()->level == 'bendahara')
+        { 
+            $pemasukan_khusus = PemasukanKhusus::orderBy('updated_at','desc')->where('nama_pengguna', Auth::user()->petugas->id)->get();
+        } 
+        else 
+        {               
+            $pemasukan_khusus = PemasukanKhusus::orderBy('updated_at','desc')->get();   
+        }
+
+        $kas = Kas::all();
+        $ibadah = Ibadah::all();
+        $kategori = DetailKategori::all();
+        $pemasukan_khusus = PemasukanKhusus::all();
+        $pemasukan_khususs  = PemasukanKhusus::count(); 
+
+ 
+        $kas = Kas::orderBy('kas','asc')->get();
+        $kategori = DetailKategori::orderBy('kategori','asc')
+        ->where('jenis', 'Khusus')->get();
+        $kas = kas::orderBy('kas','asc')->get();
+
+
+        if($_GET['ibadah'] == "" || $_GET['kategori'] == ""  || $_GET['kas'] == ""){
+            $pemasukan_khusus = PemasukanKhusus::whereDate('tanggal','>=',$_GET['dari'])
+            ->whereDate('tanggal','<=',$_GET['sampai'])
+            ->where('status','1')
+            ->get();
+        }
+        else{
+            $pemasukan_khusus = 
+            PemasukanKhusus::whereDate('tanggal','>=',$_GET['dari'])
+            ->whereDate('tanggal','<=',$_GET['sampai'])
+            ->where('ibadah_id',$_GET['ibadah'])
+            ->where('kategori_id',$_GET['kategori'])
+            ->where('kas_id',$_GET['kas'])
+            ->where('status','1')
+            ->get();     
+        }  
+        return view('pemasukan_khusus.pemasukan_khusus_print',['pemasukan_khusus' => $pemasukan_khusus, 'kas' => $kas,'kategori' => $kategori,'ibadah' => $ibadah, 'pemasukan_khususs'=>$pemasukan_khususs]);
+
+
+    }
+
+
     public function laporan_excel()
     {
         return Excel::download(new LaporanExport, 'Laporan.xlsx');
