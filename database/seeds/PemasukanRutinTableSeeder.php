@@ -37,6 +37,32 @@ class PemasukanRutinTableSeeder extends Seeder
                 'tanggal'      => \Carbon\Carbon::now(),
                 'created_at'      => \Carbon\Carbon::now(),
                 'updated_at'      => \Carbon\Carbon::now()
+            ],
+            [
+                'id'  			=> 3,
+                'kode_pemasukan_rutin' 	=> 'TR0001',
+                'ibadah_id'			=> 1,
+                'kategori_id'			=> 2,
+                'kas_id'			=> 1,
+                'nama_pengguna'			=> 1,
+                'status'			=> '1',
+                'nominal'			=> '250000',
+                'tanggal'      => \Carbon\Carbon::now(),
+                'created_at'      => \Carbon\Carbon::now(),
+                'updated_at'      => \Carbon\Carbon::now()
+            ],
+            [
+                'id'  			=> 4,
+                'kode_pemasukan_rutin' 	=> 'TR0001',
+                'ibadah_id'			=> 2,
+                'kategori_id'			=> 1,
+                'kas_id'			=> 1,
+                'nama_pengguna'			=> 1,
+                'status'			=> '1',
+                'nominal'			=> '250000',
+                'tanggal'      => \Carbon\Carbon::now(),
+                'created_at'      => \Carbon\Carbon::now(),
+                'updated_at'      => \Carbon\Carbon::now()
             ]
         ]);
     }

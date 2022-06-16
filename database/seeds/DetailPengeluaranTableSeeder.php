@@ -31,7 +31,7 @@ class DetailPengeluaranTableSeeder extends Seeder
       ],
       [
         'id'        => 3,
-        'kategori'        => '1 Kertas HVS Folio 80gram ',
+        'kategori'        => 'Kertas HVS Folio 80gram ',
         'petugas_id'        => 1,
         'kategori_id'        => 2,
         'created_at'      => \Carbon\Carbon::now(),

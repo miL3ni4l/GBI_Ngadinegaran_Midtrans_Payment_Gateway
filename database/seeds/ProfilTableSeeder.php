@@ -22,7 +22,7 @@ class ProfilTableSeeder extends Seeder
               'tlp_gereja'			=> '0878 7055 2929',
               'sejarah_gereja'			=> 'Berdiri sejak 5 Mei 1967',
               'visi_gereja'			=> 'MELATY Melaksanakan Amanat Agung Tuhan Yesus Kristus (Matius 28:18-20).',
-              'misi_gereja'			=> 'Mencerdaskan Kehidupan Bangsa ',
+              'misi_gereja'			=> '-',
               'created_at'      => \Carbon\Carbon::now(),
               'updated_at'      => \Carbon\Carbon::now()
             ]

@@ -114,6 +114,10 @@
                 <label>Ibadah <b style="color:Tomato;">*</b></label>
                 <select required="required" name="ibadah" class="custom-select mb-3">
                   <option value="">-- Pilih Jenis Ibadah --</option>
+                  @php
+                  $no = 1;
+                  @endphp
+
                   @foreach($ibadahs as $i)
                   <?php
                   $id_ibadah = $i->id;
@@ -145,7 +149,7 @@
                   }
                   ?>
                   <option value="{{ $i->id }}">
-                    {{ $i->ibadah }}
+                    {{ $no++ }}. {{ $i->ibadah }}
                     <!-- || {{ "Rp. ".number_format($pemasukan_peribadah->total -= $pengeluaran_peribadah->total)." ,-" }} -->
                   </option>
                   @endforeach
@@ -157,6 +161,10 @@
                 <label>Kategori <b style="color:Tomato;">*</b></label>
                 <select required="required" name="kategori" class="custom-select mb-3">
                   <option value="">-- Pilih Kategori --</option>
+                  @php
+                  $no = 1;
+                  @endphp
+
                   @foreach($kategoris as $k)
 
                   <?php
@@ -190,7 +198,7 @@
                   ?>
 
                   <option value="{{ $k->id }}">
-                    {{ $k->kategori }}
+                    {{ $no++ }}. {{ $k->kategori }}
                     <!-- || {{ "Rp. ".number_format($pemasukan_perkategori->total -= $pengeluaran_perkategori->total)." ,-" }} -->
                   </option>
                   @endforeach
@@ -203,6 +211,10 @@
                 <label>Kas <b style="color:Tomato;">*</b></label>
                 <select required="required" name="kas" class="custom-select mb-3">
                   <option value="">-- Pilih Kas --</option>
+                  @php
+                  $no = 1;
+                  @endphp
+
                   @foreach($kass as $k)
 
                   <?php
@@ -235,7 +247,7 @@
                   }
                   ?>
                   <option value="{{ $k->id }}">
-                    {{ $k->kas }}
+                    {{ $no++ }}. {{ $k->kas }}
                     <!-- {{ "Rp. ".number_format($pemasukan_perkas->total -= $pengeluaran_perkas->total)." ,-" }} -->
                     <!-- <a class="text-blue"> 
                                                       <b>                           
@@ -304,7 +316,7 @@
               </div>
               @else
               <div class="form-group col-md-12">
-                <label for="email" class="col-md-12 control-label">Bukti Pemasukan Khusus  <i>(kosongkan jika tidak ada)</i> </label>
+                <label for="email" class="col-md-12 control-label">Bukti Pemasukan Khusus <i>(kosongkan jika tidak ada)</i> </label>
 
                 <div class="col-md-12">
                   <img width="235" height="235" />

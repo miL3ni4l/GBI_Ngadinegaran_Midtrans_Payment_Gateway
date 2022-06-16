@@ -47,6 +47,16 @@ class DetailKategorisTableSeeder extends Seeder
         'kode_kategori'        => '2',
         'kategori'        => 'Pembangunan',
         'jenis'        => 'Khusus',
+        'petugas_id'        => 1,
+        'kategori_id'        => 1,
+        'created_at'      => \Carbon\Carbon::now(),
+        'updated_at'      => \Carbon\Carbon::now()
+      ],
+      [
+        'id'        => 5,
+        'kode_kategori'        => '2',
+        'kategori'        => 'Pengadaan Alat Musik',
+        'jenis'        => 'Khusus',
         'petugas_id'        => 2,
         'kategori_id'        => 1,
         'created_at'      => \Carbon\Carbon::now(),

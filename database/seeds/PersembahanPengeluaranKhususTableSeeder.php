@@ -22,6 +22,17 @@ class PersembahanPengeluaranKhususTableSeeder extends Seeder
               'tanggal'      => \Carbon\Carbon::now(),
               'created_at'      => \Carbon\Carbon::now(),
               'updated_at'      => \Carbon\Carbon::now()
+            ],
+            [
+              'id'  			=> 2,
+              'kategori_id'  			=> 4,
+              'nama_pengguna'  			=> 1,
+              'kode_persembahan_pengeluaran_khusus'  			=> 'TK222',
+              'status'  			=> '1',
+              'nominal'  			=> '350000',
+              'tanggal'      => \Carbon\Carbon::now(),
+              'created_at'      => \Carbon\Carbon::now(),
+              'updated_at'      => \Carbon\Carbon::now()
             ]
         ]);
     }
