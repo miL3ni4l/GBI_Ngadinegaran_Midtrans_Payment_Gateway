@@ -66,7 +66,7 @@
                           </i> </p>
                         </p>
 
-                        <p>Bukti pemasukan_rutin :</p>
+                        <p>Bukti Pemasukan :</p>
                         <img width="250" height="250" @if($pemasukan_khusus->cover) src="{{ asset('images/PemasukanKhusus/'.$pemasukan_khusus->cover) }}" @endif />      
                       </div>
                     </div>

@@ -419,7 +419,9 @@
                             <td class="text-center">-</td>
                             <td class="text-right">{{ "Rp. ".number_format($total_saldo)." ,-" }}</td>
                             <td class="text-center">-</td>
+                            @if(Auth::user()->level == 'admin')
                             <td class="text-center">-</td>
+                            @endif
                           </tr>
                         </tbody>
                       </table>

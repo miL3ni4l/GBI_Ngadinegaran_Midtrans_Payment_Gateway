@@ -63,7 +63,7 @@
                           Keterangan :<i>{{$pemasukan_rutin->keterangan}}</i> 
                         </p>
 
-                        <p>Bukti pemasukan_rutin :</p>
+                        <p>Bukti Pemasukan :</p>
                         <img width="270" height="270" @if($pemasukan_rutin->cover) src="{{ asset('images/pemasukan_rutin/'.$pemasukan_rutin->cover) }}" @endif /> 
                       </div>
                     </div>
