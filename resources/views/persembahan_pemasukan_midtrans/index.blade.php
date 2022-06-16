@@ -48,7 +48,7 @@
     <div class="card">
 
       <div class="card-header pt-4">
-        <h3 class="card-title">Filter Midtrans Payment</h3>
+        <h3 class="card-title">Filter Persembahan Online</h3>
       </div>
 
       <!-- LOGO -->
@@ -479,7 +479,7 @@
     <div class="modal-content bg-gradient-white">
 
       <div class="modal-header">
-        <h4 class="modal-title" id="modal-title-notification">Filter Midtrans Payment</h4>
+        <h4 class="modal-title" id="modal-title-notification">Filter Persembahan Online</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>

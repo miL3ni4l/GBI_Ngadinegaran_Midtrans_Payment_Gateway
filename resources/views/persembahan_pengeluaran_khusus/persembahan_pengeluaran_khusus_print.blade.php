@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <h2>LAPORAN PERSEMBAHAN ONLINE</h2>
+    <h2>Laporan Midtrans Pengeluaran Khusus</h2>
     <link rel="stylesheet" href="{{ asset('asset_admin/bower_components/bootstrap/dist/css/bootstrap.min.css') }} ">
 </head>
 
