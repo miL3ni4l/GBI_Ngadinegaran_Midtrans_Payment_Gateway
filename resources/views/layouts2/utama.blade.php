@@ -103,9 +103,9 @@
             <a class="nav-link js-scroll-trigger" href="https://www.youtube.com/c/GerejaBaptisIndonesiaNgadinegaran/">YouTube</a>
           </li> -->
 
-          <!-- <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/login">User</a>
-          </li> -->
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/login">Login</a>
+          </li>
 
 
           
