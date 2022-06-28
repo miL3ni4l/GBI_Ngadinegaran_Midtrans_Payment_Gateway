@@ -119,7 +119,7 @@
                   @endphp
 
                   @foreach($kategori_pengeluaran as $k)
-                  <option {{ ($pengeluaran_rutin->nama_kategori->id == $k->id ? "selected='selected'" : "") }} value="{{ $k->id }}"> {{ $no++ }}. {{ $k->kategori }}</option>
+                  <option {{ ($pengeluaran_rutin->kategori_pengeluaran->id == $k->id ? "selected='selected'" : "") }} value="{{ $k->id }}"> {{ $no++ }}. {{ $k->kategori }}</option>
                   @endforeach
                 </select>
               </div>
