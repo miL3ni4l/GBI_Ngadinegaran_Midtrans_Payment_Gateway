@@ -239,7 +239,7 @@
                 <tr>
                   <th width="1%">NO</th>
                   @if(Auth::user()->level == 'admin')
-                  <th class="text-center col-md-1">CONFIRM </th>
+                  <th class="text-center col-md-1">KONFIRMASI </th>
                   @endif
                   <th class="text-center col-md-1">KODE</th>
                   <th class="text-center ">TANGGAL</th>
@@ -262,9 +262,9 @@
                   @if(Auth::user()->level == 'admin')
                   <td>
                     @if($t->status == '1')
-                    <a href="{{ url('pengeluaran_khusus/status/'.$t->id) }}" class="btn btn-sm btn-danger">BELUM</a>
+                    <a href="{{ url('pengeluaran_khusus/status/'.$t->id) }}" class="btn btn-sm btn-danger">BATALKAN</a>
                     @else
-                    <a href="{{ url('pengeluaran_khusus/status/'.$t->id) }}" class="btn btn-sm btn-success">SUDAH</a>
+                    <a href="{{ url('pengeluaran_khusus/status/'.$t->id) }}" class="btn btn-sm btn-success">KONFIRMASI</a>
                     @endif
                   </td>
                   @endif

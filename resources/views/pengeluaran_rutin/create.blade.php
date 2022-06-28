@@ -143,7 +143,7 @@
 
                   <option value="{{ $k->id }}">
                     {{ $no++ }}. {{ $k->kategori }}
-                    {{ "Rp. ".number_format( $pemasukan_perkategori->total -= $pengeluaran_perkategori_rutin->total)." ,-" }}
+                    <!-- {{ "Rp. ".number_format( $pemasukan_perkategori->total -= $pengeluaran_perkategori_rutin->total)." ,-" }} -->
                   </option>
 
                   @endforeach
@@ -197,8 +197,8 @@
                   ?>
 
                   <option value="{{ $k->id }}">
-                    {{ $no++ }}. {{ $k->kas }}
-                    {{ "Rp. ".number_format($pemasukan_perkas->total -= $pengeluaran_perkas_rutin->total)." ,-" }}
+                    {{ $no++ }}. {{ $k->kas }} 
+                    ({{ "Rp. ".number_format($pemasukan_perkas->total -= $pengeluaran_perkas_rutin->total)." ,-" }})
                   </option>
 
                   @endforeach
