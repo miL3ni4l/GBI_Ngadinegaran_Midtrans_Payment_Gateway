@@ -1,3 +1,6 @@
+//PERHATIAN
+Please use the updated and composer compatible library: Midtrans PHP. For better more modern composer compatibility.
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
